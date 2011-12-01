@@ -291,7 +291,7 @@ function get_weather() {
 			'temp'  =>65
 		)
 	);
-
+	
 	if( ($weather = get_transient($cache_key)) === False) {
 		if( ($html = @file_get_contents(WEATHER_URL)) !== False) {
 			$start_point = '<table class="twc-forecast-table twc-second">';
@@ -300,16 +300,12 @@ function get_weather() {
 
 			$forecast_table = substr($html, $start_point_index + strlen($start_point), $length);
 
-
 			// Today
 			//// Image ID
-			$match = preg_match('/<td class="twc-col-1 twc-animated-icon" rowspan="2">(.*)<\/td>/', $forecast_table, $matches);
+			$match = preg_match('/http:\/\/s.imwx.com\/v.20100719.135915\/img\/wxicon\/130\/(\d+).png/', $forecast_table, $matches);
+
 			if($match == 1) {
-				$img_part = $matches[0];
-				$match = preg_match('/\/(\d+)\.png/', $img_part, $matches);
-				if($match == 1) {
-					$weather['today']['image'] = $matches[1];
-				}
+				$weather['today']['image'] = $matches[1];
 			}
 			//// Temp
 			$match = preg_match('/<td class="twc-col-1 twc-forecast-temperature">(.*)<\/td>/', $forecast_table, $matches);
@@ -349,6 +345,7 @@ function get_weather() {
 				}
 			}
 		}
+
 		set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
 	}
 	return $weather;
