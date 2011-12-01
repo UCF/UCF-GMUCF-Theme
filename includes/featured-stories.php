@@ -1,5 +1,5 @@
 <?php
-$rss = fetch_feed(FEATURED_STORY_RSS_URL);
+$rss = fetch_feed(FEATURED_STORIES_RSS_URL);
 
 if(!is_wp_error($rss)) {
 	$rss_items = $rss->get_items(0, $rss->get_item_quantity(3));
@@ -28,6 +28,6 @@ if(!is_wp_error($rss)) {
 		</tr>
 	<? } ?>
 	</table>
-	<a style="font-weight:100;color:#9d1a1a;" href="<?=FEATURED_STORY_MORE_URL?>">More UCF Stories</a>
+	<a style="font-weight:100;color:#9d1a1a;" href="<?=FEATURED_STORIES_MORE_URL?>">More UCF Stories</a>
 <?
 }
