@@ -144,7 +144,7 @@
 									</table>
 								</td>
 								<td style="width:230px;padding-left:40px;vertical-align:top;">
-									<a href="www.ucf.edu">
+									<a href="http://www.ucf.edu">
 										<img src="<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png" style="border:0"/>
 									</a>
 									<p style="line-height:1.4em;font-size:90%;margin:0;padding:0;">
