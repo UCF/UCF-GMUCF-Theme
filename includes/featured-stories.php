@@ -1,8 +1,8 @@
 <?php
-$rss = fetch_feed(FEATURED_STORIES_RSS_URL);
+$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=95');
 
 if(!is_wp_error($rss)) {
-	$rss_items = $rss->get_items(0, $rss->get_item_quantity(3));
+	$rss_items = $rss->get_items(1, $rss->get_item_quantity(3));
 	?>	
 	<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
 	<?
