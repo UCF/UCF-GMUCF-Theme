@@ -25,8 +25,7 @@ define('EVENTS_CALENDAR_ID', 1);
 define('EVENTS_FETCH_TIMEOUT', 3); // seconds
 define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
-define('FEATURED_STORY_RSS_URL', 'http://today.ucf.edu/feed/rss/');
-define('FEATURED_STORY_THUMB_URL', 'http://today.ucf.edu/widget/thumb/');
+define('FEATURED_STORY_RSS_URL', 'http://today.ucf.edu/feed/?thumb=95');
 
 require_once('functions-base.php');     # Base theme functions
 require_once('custom-post-types.php');  # Where per theme post types are defined
