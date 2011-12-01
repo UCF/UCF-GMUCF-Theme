@@ -11,19 +11,23 @@ if(!is_wp_error($rss)) {
 	?>
 		<tr>
 			<td style="vertical-align:top;padding-bottom:40px;">
-				<? if($enclosure && ($thumbnail = $enclosure->get_thumbnail())) { ?>
-				<img src="<?=$thumbnail?>" />
-				<? } else { ?>
-				<img src="<?=bloginfo('stylesheet_directory')?>/static/img/no-photo.png" />
-				<? } ?>
+				<a style="color:#333;text-decoration:none;" href="<?=$rss_item->get_permalink()?>">
+					<? if($enclosure && ($thumbnail = $enclosure->get_thumbnail())) { ?>
+					<img src="<?=$thumbnail?>" style="border:none;" />
+					<? } else { ?>
+					<img src="<?=bloginfo('stylesheet_directory')?>/static/img/no-photo.png" style="border:none;" />
+					<? } ?>
+				</a>
 			</td>
 			<td style="padding-left:20px;padding-bottom:40px;">
-				<span style="font-weight:bold;font-size:95%;line-height:1.3em;">
-					<?=$rss_item->get_title()?>
-				</span>
-				<p style="font-family:Georgia,serif;font-size:85%;margin:3px 0 0 0;font-weight:100;line-height:1.4em;">
-					<?=$rss_item->get_description();?>
-				</p>
+				<a style="color:#333;text-decoration:none;font-weight:bold;" href="<?=$rss_item->get_permalink()?>"
+					<span style="font-size:95%;line-height:1.3em;">
+						<?=$rss_item->get_title()?>
+					</span>
+					<p style="font-family:Georgia,serif;font-size:85%;margin:3px 0 0 0;font-weight:100;line-height:1.4em;">
+						<?=$rss_item->get_description();?>
+					</p>
+				</a>
 			</td>
 		</tr>
 	<? } ?>
