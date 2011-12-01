@@ -20,6 +20,11 @@ define('GA_ACCOUNT', $theme_options['ga_account']);
 define('CB_UID', $theme_options['cb_uid']);
 define('CB_DOMAIN', $theme_options['cb_domain']);
 
+define('EVENTS_URL', 'http://events.ucf.edu');
+define('EVENTS_CALENDAR_ID', 1);
+define('EVENTS_FETCH_TIMEOUT', 3); // seconds
+define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
+
 require_once('functions-base.php');     # Base theme functions
 require_once('custom-post-types.php');  # Where per theme post types are defined
 require_once('shortcodes.php');         # Per theme shortcodes
@@ -183,3 +188,77 @@ if ($theme_options['bw_verify']){
 		'content' => htmlentities($theme_options['bw_verify']),
 	);
 }
+
+
+/* Custom Theme Functions */
+
+/**
+ * Fetch events from UCF event system (with caching)
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_event_data($options = array())
+{
+	$cache_key_prefix = 'events-';
+	$default_options = array(
+		'limit'       => 5,
+		'calendar_id' => EVENTS_CALENDAR_ID,
+		'format'      => 'json');
+	
+	$options = array_merge($default_options, $options);
+	
+	$cache_key = $cache_key_prefix.implode('', $options);
+
+	if( ($events = get_transient($cache_key)) !== False) {
+		return $events;
+	} else {
+		$events = array();
+		$context = stream_context_create(
+				array(
+					'http' => array(
+							'method'  => 'GET',
+							'timeout' => EVENTS_FETCH_TIMEOUT
+						)
+				)
+			);
+		if( ($raw_events = @file_get_contents(EVENTS_URL.'?'.http_build_query($options), false, $context)) !== FALSE ) {
+			$raw_events = substr($raw_events, 0, strpos($raw_events, '"}]') + 3);
+			if( !is_null($json_events = json_decode($raw_events)) ) {
+				$events = $json_events;
+			}
+		}
+
+		if(isset($options['limit']) && count($events) > $options['limit']) {
+			$events = array_slice($events, 0, $options['limit']);
+		}
+		set_transient($cache_key, $events, EVENTS_CACHE_DURATION);
+		return $events;
+	}
+}
+
+/**
+ * Wraps get_event_data and returns today's events
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_todays_events($options = array()) {
+	$date = getdate();
+	$options = array_merge($options,array('y'=>$date['year'], 'm'=>$date['mon'], 'd'=>$date['mday']));
+	return get_event_data($options);
+}
+
+/**
+ * Wraps get_event_data and returns tomorrow's events
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_tomorrows_events($options = array()) {
+	$tomorrow = date_add((new DateTime()), new DateInterval('P0Y1DT0H0M'));
+	$date = getdate($tomorrow->getTimestamp());
+	$options = array_merge($options,array('y'=>$date['year'], 'm'=>$date['mon'], 'd'=>$date['mday']));
+	return get_event_data($options);
+}
+?>
