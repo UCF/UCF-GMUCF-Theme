@@ -1,7 +1,7 @@
 <table border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
 	<tr>
 		<td style="border-bottom:1px solid #ddd;padding-bottom:20px;padding-left:10px;">
-			<p style="font-size:150%;font-weight:100;margin-bottom:10px;">
+			<p style="font-size:140%;font-weight:100;margin-bottom:10px;">
 				Today @ UCF
 			</p>
 			<table border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
@@ -37,7 +37,7 @@
 	</tr>
 	<tr>
 		<td style="padding-top:20px;padding-left:10px;">
-			<p style="font-size:150%;font-weight:100;margin-bottom:10px;">
+			<p style="font-size:140%;font-weight:100;margin-bottom:10px;">
 				Tomorrow @ UCF
 			</p>
 			<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0 0 20px 0; background-color:#FFF;">
