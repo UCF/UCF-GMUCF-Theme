@@ -1,4 +1,4 @@
-<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml">
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<title>Good Morning UCF</title>
@@ -6,7 +6,7 @@
 			<!--
 			html, body { margin:0px; padding:0; background-color:#FFF; color:#333; font-family:Helvetica, sans-serif; }
 			-->
-			* {font-size:100%;}
+			* {zoom:1;}
 		</style>
 	</head>
 	<body bgcolor="#FFF">
