@@ -9,14 +9,19 @@
 				$start_timestamp = strtotime($event->starts);
 				?>
 				<tr>
-					<td  style="text-align:center;background-color:#fef7c8;border:1px solid #e1e1e1;color:#666;padding:5px;">
-								<span style="font-weight:bold;">
-									<?=date('g:i', $start_timestamp)?>
-								</span>
-								<br />
-								<?=date('A', $start_timestamp)?>
+					<td style="vertical-align:top;">
+						<table width="55" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:55px; margin:0; background-color:#fef7c8;border:1px solid #e1e1e1">
+							<tr>
+								<td style="padding:5px;text-align:center;color:#666;">
+									<span style="font-weight:bold;">
+										<?=date('g:i', $start_timestamp)?>
+									</span>
+									<br />
+									<?=date('A', $start_timestamp)?>
+								</td>
+							</tr>
+						</table>
 					</td>
-			
 					<td style="padding-left:10px;">
 						<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="color:#333;font-weight:100;font-size:90%;">
 							<?=$event->title?>
@@ -40,12 +45,18 @@
 					$start_timestamp = strtotime($event->starts);
 				?>
 				<tr>
-					<td  style="text-align:center;background-color:#fef7c8;border:1px solid #e1e1e1;color:#666;padding:5px;">
-								<span style="font-weight:bold;">
-									<?=date('g:i', $start_timestamp)?>
-								</span>
-								<br />
-								<?=date('A', $start_timestamp)?>
+					<td style="vertical-align:top;">
+						<table width="55" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:55px; margin:0; background-color:#fef7c8;border:1px solid #e1e1e1">
+							<tr>
+								<td style="padding:5px;text-align:center;color:#666;">
+									<span style="font-weight:bold;">
+										<?=date('g:i', $start_timestamp)?>
+									</span>
+									<br />
+									<?=date('A', $start_timestamp)?>
+								</td>
+							</tr>
+						</table>
 					</td>
 			
 					<td style="padding-left:10px;">
