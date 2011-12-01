@@ -140,6 +140,15 @@ Config::$theme_settings = array(
 			'value'       => $theme_options['search_per_page'],
 		)),
 	),
+	'Featured Stories' => array(
+		new TextField(array(
+			'name'        => 'RSS Feed URL',
+			'id'          => THEME_OPTIONS_NAME.'[featured_story_rss_url]',
+			'description' => 'Example: http://today.ucf.edu/feed/rss/',
+			'default'     => 10,
+			'value'       => $theme_options['featured_story_rss_url'],
+		)),
+	)
 );
 
 Config::$links = array(
