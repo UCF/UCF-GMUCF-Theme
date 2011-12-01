@@ -303,7 +303,7 @@ function get_weather() {
 
 			// Today
 			//// Image ID
-			$match = preg_match('/<td class="twc-col-1 twc-adminated-icon">(.*)<\/td>/', $forecast_table, $matches);
+			$match = preg_match('/<td class="twc-col-1 twc-adminated-icon" rowspan="2">(.*)<\/td>/', $forecast_table, $matches);
 			if($match == 1) {
 				$img_part = $matches[0];
 				$match = preg_match('/\/(\d+)\.png/', $img_part, $matches);
@@ -328,7 +328,8 @@ function get_weather() {
 				if($matches[1] == 'Tonight') {
 					$column = 2;
 				}
-				// Tomorrow
+				// Tonight
+				///// Image ID
 				$match = preg_match('/<td class="twc-col-'.$column.' twc-forecast-icon">(.*)<\/td>/', $forecast_table, $matches);
 				if($match == 1) {
 					$img_part = $matches[0];
@@ -347,9 +348,6 @@ function get_weather() {
 					}
 				}
 			}
-
-
-			
 		}
 		set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
 	}
