@@ -25,6 +25,9 @@ define('EVENTS_CALENDAR_ID', 1);
 define('EVENTS_FETCH_TIMEOUT', 3); // seconds
 define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
+define('FEATURED_STORY_RSS_URL', 'http://today.ucf.edu/feed/rss/');
+define('FEATURED_STORY_THUMB_URL', 'http://today.ucf.edu/widget/thumb/');
+
 require_once('functions-base.php');     # Base theme functions
 require_once('custom-post-types.php');  # Where per theme post types are defined
 require_once('shortcodes.php');         # Per theme shortcodes
@@ -138,15 +141,6 @@ Config::$theme_settings = array(
 			'description' => 'Number of search results to show per page of results',
 			'default'     => 10,
 			'value'       => $theme_options['search_per_page'],
-		)),
-	),
-	'Featured Stories' => array(
-		new TextField(array(
-			'name'        => 'RSS Feed URL',
-			'id'          => THEME_OPTIONS_NAME.'[featured_story_rss_url]',
-			'description' => 'Example: http://today.ucf.edu/feed/rss/',
-			'default'     => 10,
-			'value'       => $theme_options['featured_story_rss_url'],
 		)),
 	)
 );
