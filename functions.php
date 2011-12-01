@@ -28,6 +28,8 @@ define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 define('FEATURED_STORIES_RSS_URL', 'http://today.ucf.edu/feed/');
 define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 
+define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/feeds/announcement/');
+
 require_once('functions-base.php');     # Base theme functions
 require_once('custom-post-types.php');  # Where per theme post types are defined
 require_once('shortcodes.php');         # Per theme shortcodes

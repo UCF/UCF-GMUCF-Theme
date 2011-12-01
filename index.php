@@ -96,29 +96,7 @@
 										</tr>
 										<tr>
 											<td style="padding-top:40px;">
-												<span style="font-size:150%;font-weight:100;display:block;padding-bottom:40px;">
-													UCF Announcements
-												</span>
-												<p style="padding-bottom:20px;padding-top:0;margin:0;">
-													<a style="font-weight:100;color:#9d1a1a;" href="www.google.com">
-														Scholarship and Book Award Applications for USPS Employees
-													</a>
-												</p>
-												<p style="padding-bottom:20px;padding-top:0;margin:0;">
-													<a style="font-weight:100;color:#9d1a1a;" href="www.google.com">
-														Intermediate Microsoft Excel 2010 Course October 13th
-													</a>
-												</p>
-												<p style="padding-bottom:20px;padding-top:0;margin:0;">
-													<a style="font-weight:100;color:#9d1a1a;" href="www.google.com">
-														Intermediate Microsoft Access 2010 Course October 17th
-													</a>
-												</p>
-												<p style="padding-bottom:20px;padding-top:0;margin:0;">
-													<a style="font-weight:100;color:#9d1a1a;" href="www.google.com">
-														Fiber Optics Certification Courses
-													</a>
-												</p>
+												<? get_template_part('includes/announcements'); ?>
 											<td>
 										</tr>
 									</table>
