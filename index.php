@@ -99,48 +99,7 @@
 									<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
 										<tr>
 											<td style="border-bottom:1px solid #ddd;padding-bottom:20px;">
-												<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
-													<tr>
-														<td style="vertical-align:top;padding-bottom:40px;">
-															<img src="<?=bloginfo('stylesheet_directory')?>/static/img/gmucf-story1-feature.png" />
-														</td>
-														<td style="padding-left:20px;padding-bottom:40px;">
-															<span style="font-weight:bold;font-size:95%;line-height:1.3em;">
-																Growth: A Message from Dr. Hitt
-															</span>
-															<p style="font-family:Georgia,serif;font-size:85%;margin:3px 0 0 0;font-weight:100;line-height:1.4em;">
-																Dr. Marcy Verduin is the College of Medicine’s new associate dean for students. The search committee that interviewed candidates to replace retiring Associate Dean.
-															</p>
-														</td>
-													</tr>
-													<tr>
-														<td style="vertical-align:top;padding-bottom:40px;">
-															<img src="<?=bloginfo('stylesheet_directory')?>/static/img/gmucf-story2-feature.png" />
-														</td>
-														<td style="padding-left:20px;padding-bottom:40px;">
-															<span style="font-weight:bold;font-size:95%;line-height:1.3em;">
-																Robotics Club Brings Home 2nd Place from ASVC 2010
-															</span>
-															<p style="font-family:Georgia,serif;font-size:85%;margin:3px 0 0 0;font-weight:100;line-height:1.4em;">
-																The UCF Robotics Club brought home a $5,000 second place win from the third International Autonomous Surface.
-															</p>
-														</td>
-													</tr>
-													<tr>
-														<td style="vertical-align:top;padding-bottom:20px;">
-															<img src="<?=bloginfo('stylesheet_directory')?>/static/img/gmucf-story3-feature.png" />
-														</td>
-														<td style="padding-left:20px;padding-bottom:20px;">
-															<span style="font-weight:bold;font-size:95%;line-height:1.3em;">
-																Verduin Named College of Medicine’s Assoc Dean for Students
-															</span>
-															<p style="font-family:Georgia,serif;font-size:85%;margin:3px 0 0 0;font-weight:100;line-height:1.4em;">
-																Dr. Marcy Verduin is the College of Medicine’s new associate dean for students. The search committee that interviewed candidates to replace retiring Associate Dean Dr. Verduin’s appointment.
-															</p>
-														</td>
-													</tr>
-												</table>
-												<a style="font-weight:100;color:#9d1a1a;" href="www.google.com">More UCF Stories</a>
+												<? get_template_part('includes/featured-stories'); ?>
 											</td>
 										</tr>
 										<tr>
