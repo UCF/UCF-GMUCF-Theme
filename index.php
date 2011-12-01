@@ -126,18 +126,18 @@
 										</tr>
 										<tr>
 											<td>
-												<a href="http://www.google.com" style="text-decoration:none;">
-													<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/gmucf-facebook.png" />
+												<a href="http://www.facebook.com/ucf/" style="text-decoration:none;">
+													<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/facebook.png" />
 												</a>
 											</td>
 											<td style="padding-left:10px;">
-												<a href="http://www.google.com" style="text-decoration:none;">
-													<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/gmucf-youtube.png" />
+												<a href="http://www.youtube.com/user/UCF/" style="text-decoration:none;">
+													<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/youtube.png" />
 												</a>
 											</td>
 											<td style="padding-left:10px;">
-												<a href="http://www.google.com" style="text-decoration:none;">
-													<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/gmucf-twitter.png" />
+												<a href="http://www.twitter.com/UCF/" style="text-decoration:none;">
+													<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/twitter.png" />
 												</a>
 											</td>
 										</tr>
