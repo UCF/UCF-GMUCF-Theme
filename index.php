@@ -3,8 +3,10 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<title>Good Morning UCF</title>
 		<style type="text/css">
+			<!--
 			html, body { margin:0px; padding:0; background-color:#FFF; color:#333; font-family:Helvetica, sans-serif; }
-			v\:* { behavior: url(#default#VML); display:inline-block}
+			-->
+			* {font-size:100%;}
 		</style>
 	</head>
 	<body bgcolor="#FFF">
