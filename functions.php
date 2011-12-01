@@ -303,7 +303,7 @@ function get_weather() {
 
 			// Today
 			//// Image ID
-			$match = preg_match('/<td class="twc-col-1 twc-adminated-icon" rowspan="2">(.*)<\/td>/', $forecast_table, $matches);
+			$match = preg_match('/<td class="twc-col-1 twc-animated-icon" rowspan="2">(.*)<\/td>/', $forecast_table, $matches);
 			if($match == 1) {
 				$img_part = $matches[0];
 				$match = preg_match('/\/(\d+)\.png/', $img_part, $matches);
