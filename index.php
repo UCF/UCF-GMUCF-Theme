@@ -11,6 +11,7 @@
 		<div id="main" style="padding: 0;">
 			<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:20px auto 0 auto; background-color:#FFF;border-bottom:1px solid #ddd;">
 				<tr style="text-align:center;border-bottom:1px solid #ddd;">
+					<? $weather = get_weather(); ?>
 					<td style="font-weight:bold;border-right:1px solid #ddd;width:160px;">
 						<table style="padding-left:20px">
 							<tr>
@@ -18,9 +19,11 @@
 								<td></td>
 							</tr>
 							<tr>
-								<td style="width:60px;"><img src="<?=bloginfo('stylesheet_directory')?>/static/img/gmucf-weather-today.png" /></td>
+								<td style="width:60px;"><img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" /></td>
 								<td>
-									<span style="font-size:160%;position:relative;left:5px;">71&deg;</span>
+									<span style="font-size:160%;position:relative;left:5px;">
+										<?=$weather['today']['temp']?>&deg;
+									</span>
 									<span style="font-weight:100;display:block;">High</span>
 								</td>
 							</tr>
@@ -34,20 +37,26 @@
 								<td></td>
 							</tr>
 							<tr>
-								<td><img src="<?=bloginfo('stylesheet_directory')?>/static/img/gmucf-weather-tonight.png" /></td>
+								<td><img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['image']?>.png" /></td>
 								<td style="text-align:center;">
-									<span style="font-size:160%;position:relative;left:5px;">53&deg;</span>
+									<span style="font-size:160%;position:relative;left:5px;">
+										<?=$weather['tonight']['temp']?>&deg;
+									</span>
 									<span style="font-weight:100;display:block;">Low</span>
 								</td>
 								<td style="text-align:left;font-size:80%;font-weight:100;padding-left:17px;">
-									<a style="color:#333;" href="www.weather.com/weather/today/Oviedo+FL+USFL0378">More<br />Weather</a>
+									<a style="color:#333;" href="<?=WEATHER_URL?>">More<br />Weather</a>
 								</td>
 							</tr>
 						</table>
 					</td>
 					<td style="border-right:1px solid #ddd;">
-						<span style="font-size:110%;letter-spacing:1px;display:block;margin-bottom:7px;">THURSDAY</span>
-						<span style="font-size:135%;letter-spacing:1.2px;font-weight:100;">October 20</span>
+						<span style="font-size:110%;letter-spacing:1px;display:block;margin-bottom:7px;">
+							<?=strtoupper(date('l'))?>
+						</span>
+						<span style="font-size:135%;letter-spacing:1.2px;font-weight:100;">
+							<?=date('F j')?>
+						</span>
 					</td>
 					<td style="text-align:left; padding-left:10px;width:10px;padding-right:20px;">
 						<a style="color:#333;font-size:85%;line-height:1.5em;" href="www.google.com">

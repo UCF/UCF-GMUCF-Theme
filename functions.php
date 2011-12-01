@@ -30,6 +30,9 @@ define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 
 define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/feeds/announcement/');
 
+define('WEATHER_URL', 'http://www.weather.com/weather/today/Orlando+FL+32816');
+define('WEATHER_CACHE_DURATION', 60 * 30); // weather
+
 require_once('functions-base.php');     # Base theme functions
 require_once('custom-post-types.php');  # Where per theme post types are defined
 require_once('shortcodes.php');         # Per theme shortcodes
@@ -266,4 +269,82 @@ function get_tomorrows_events($options = array()) {
 	$options = array_merge($options,array('y'=>$date['year'], 'm'=>$date['mon'], 'd'=>$date['mday']));
 	return get_event_data($options);
 }
+
+/**
+ * Fetches weather.com image ID and temp for today and tonight
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_weather() {
+	
+	$cache_key = 'weather';
+
+	// Default weather
+	$weather = array(
+		'today' => array(
+				'image' =>30,
+				'temp'  =>75
+		),
+		'tonight'=> array(
+			'image' =>30,
+			'temp'  =>65
+		)
+	);
+
+	if( ($weather = get_transient($cache_key)) === False) {
+		
+
+		if( ($html = @file_get_contents(WEATHER_URL)) !== False) {
+			$start_point = '<table class="twc-forecast-table twc-second">';
+			$start_point_index = stripos($html,$start_point);
+			$length = stripos($html, '</table>', $start_point_index) - ($start_point_index + strlen($start_point));
+
+			$forecast_table = substr($html, $start_point_index + strlen($start_point), $length);
+
+
+			// Today
+			//// Image ID
+			$match = preg_match('/<td class="twc-col-2 twc-forecast-icon">(.*)<\/td>/', $forecast_table, $matches);
+			if($match == 1) {
+				$img_part = $matches[0];
+				$match = preg_match('/\/(\d+)\.png/', $img_part, $matches);
+				if($match == 1) {
+					$weather['today']['image'] = $matches[1];
+				}
+			}
+			//// Temp
+			$match = preg_match('/<td class="twc-col-2 twc-forecast-temperature">(.*)<\/td>/', $forecast_table, $matches);
+			if($match == 1) {
+				$deg_part = $matches[0];
+				$match = preg_match('/(\d+)&deg;/', $deg_part, $matches);
+				if($match == 1) {
+					$weather['today']['temp'] = $matches[1];
+				}
+			}
+
+			// Tomorrow
+			$match = preg_match('/<td class="twc-col-3 twc-forecast-icon">(.*)<\/td>/', $forecast_table, $matches);
+			if($match == 1) {
+				$img_part = $matches[0];
+				$match = preg_match('/\/(\d+)\.png/', $img_part, $matches);
+				if($match == 1) {
+					$weather['tonight']['image'] = $matches[1];
+				}
+			}
+			//// Temp
+			$match = preg_match('/<td class="twc-col-3 twc-forecast-temperature">(.*)<\/td>/', $forecast_table, $matches);
+			if($match == 1) {
+				$deg_part = $matches[0];
+				$match = preg_match('/(\d+)&deg;/', $deg_part, $matches);
+				if($match == 1) {
+					$weather['tonight']['temp'] = $matches[1];
+				}
+			}
+		}
+		set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
+	}
+	return $weather;
+}
+
 ?>
