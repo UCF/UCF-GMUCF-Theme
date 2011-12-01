@@ -95,7 +95,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="width:330px;padding-top:20px;">
+								<td style="width:330px;padding-top:20px;vertical-align:top;">
 									<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
 										<tr>
 											<td style="border-bottom:1px solid #ddd;padding-bottom:20px;">
