@@ -70,16 +70,8 @@
 				</tr>
 				<tr>
 					<td style="padding-top:20px">
-						<img src="<?=bloginfo('stylesheet_directory')?>/static/img/gmucf-feature.png" />
-						<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto;padding-top:20px; background-color:#FFF;">
-							<tr>
-								<td colspan="2" style="padding-bottom:15px;">
-									<span style="font-size:190%;font-weight:100;">Harvey Runs on Water for 180 Yards</span>
-									<div style="padding-top:5px;font-weight:100;line-height:1.4em;padding-bottom:10px;font-size:100%">
-											Even while playing in a torrential rain Saturday night at Bright House Networks Stadium, UCF’s reign over Conference USA rival Marshall continued in full force. <a style="color:#9d1a1a;" href="www.google.com">Read More.</a>
-									</div>
-								</td>
-							</tr>
+						<? get_template_part('includes/top-story'); ?>
+						<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto;background-color:#FFF;">
 							<tr>
 								<td  colspan="2" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:3px 0;">
 									<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#feedce" cellspacing="0" style="width: 100%;padding:20px 15px; background-color:#feedce;">
