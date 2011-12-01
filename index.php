@@ -81,20 +81,7 @@
 					<td style="padding-top:20px">
 						<? get_template_part('includes/top-story'); ?>
 						<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto;background-color:#FFF;">
-							<tr>
-								<td  colspan="2" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:3px 0;">
-									<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#feedce" cellspacing="0" style="width: 100%;padding:20px 15px; background-color:#feedce;">
-										<tr>
-											<td>
-												<span style="display:block;margin:0;padding:0;color:#e84a13;font-size:100%;font-weight:bold;">WEATHER ADVISORY</span>
-												<p style="padding:10px 0 0 0;margin:0;font-weight:100;font-size:140%;line-height:1.4em;">
-													Severe weather expected today at UCF’s main campus. Please check local advisories before leaving for UCF. For more information visit today.ucf.edu.
-												</p>
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
+							<?=get_template_part('includes/alert')?>
 							<tr>
 								<td style="width:330px;padding-top:20px;vertical-align:top;">
 									<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">

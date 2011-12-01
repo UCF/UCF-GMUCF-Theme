@@ -322,4 +322,53 @@ class Example extends CustomPostType{
 	}
 }
 
+
+class Alert extends CustomPostType{
+	public 
+		$name           = 'alert',
+		$plural_name    = 'Alerts',
+		$singular_name  = 'Alert',
+		$add_new_item   = 'Add New Alert',
+		$edit_item      = 'Edit Alert',
+		$new_item       = 'New Alert',
+		$public         = True,
+		$use_categories = False,
+		$use_thumbnails = False,
+		$use_editor     = True,
+		$use_order      = False,
+		$use_title      = True,
+		$use_shortcode  = False,
+		$use_metabox    = False;
+	
+	
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		$outputs = array();
+		foreach($objects as $o){
+			$outputs[] = $class->toHTML($o);
+		}
+		
+		return implode(', ', $outputs);
+	}
+	
+	
+	public function toHTML($object){
+		return $object->post_title;
+	}
+	
+	
+	public function fields(){
+		return array(
+			array(
+				'name'  => 'Help',
+				'desc'  => 'This title and content of this post will be displayed below the top story.',
+				'id'    => $this->options('name').'_help',
+				'type'  => 'help',
+			),
+		);
+	}
+}
+
 ?>

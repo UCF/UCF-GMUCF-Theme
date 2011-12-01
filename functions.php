@@ -45,7 +45,7 @@ require_once('functions-admin.php');    # Admin/login functions
  * object.
  **/
 Config::$custom_post_types = array(
-	'Example',
+	'Alert',
 );
 
 Config::$body_classes = array('default',);

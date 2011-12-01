@@ -8,7 +8,7 @@ if(!is_wp_error($rss)) {
 	$thumbnail = $enclosure->get_thumbnail();
 	?>
 	<img src="<?=$thumbnail?>" />
-	<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto;padding-top:20px; background-color:#FFF;">
+	<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto;padding-top:20px; background-color:#FFF;border-bottom:1px solid #ddd;">
 		<tr>
 			<td colspan="2" style="padding-bottom:15px;">
 				<span style="font-size:190%;font-weight:100;"><?=$rss_item->get_title()?></span>
