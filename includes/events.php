@@ -22,7 +22,7 @@
 							</tr>
 						</table>
 					</td>
-					<td style="padding-left:10px;">
+					<td style="padding-left:10px;vertical-align:top;">
 						<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="color:#333;font-weight:100;font-size:90%;">
 							<?=$event->title?>
 						</a>
@@ -58,8 +58,7 @@
 							</tr>
 						</table>
 					</td>
-			
-					<td style="padding-left:10px;">
+					<td style="padding-left:10px;vertical-align:top;">
 						<a href="www.google.com" style="color:#333;font-weight:100;font-size:90%;">
 							<?=$event->title?>
 						</a>
