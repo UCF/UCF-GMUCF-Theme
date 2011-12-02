@@ -93,7 +93,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td style="padding-top:40px;">
+											<td style="padding-top:20px;">
 												<? get_template_part('includes/announcements'); ?>
 											<td>
 										</tr>
