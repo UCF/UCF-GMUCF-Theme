@@ -61,7 +61,7 @@
 						</span>
 					</td>
 					<td style="text-align:left; padding-left:10px;width:10px;padding-right:20px;">
-						<a style="color:#333;font-size:85%;line-height:1.5em;" href="www.google.com">
+						<a style="color:#333;font-size:85%;line-height:1.5em;" href="http://www.history.com/this-day-in-history">
 							This
 							Day
 							in
