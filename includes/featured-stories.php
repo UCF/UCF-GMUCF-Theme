@@ -20,11 +20,11 @@ if(!is_wp_error($rss)) {
 				</a>
 			</td>
 			<td style="padding-left:20px;padding-bottom:40px;">
-				<a style="color:#333;text-decoration:none;font-weight:bold;" href="<?=$rss_item->get_permalink()?>"
-					<span style="font-size:95%;line-height:1.3em;">
+				<a style="font-size:16px;color:#333;text-decoration:none;font-weight:bold;" href="<?=$rss_item->get_permalink()?>"
+					<span style="line-height:1.3em;">
 						<?=$rss_item->get_title()?>
 					</span>
-					<p style="font-family:Georgia,serif;font-size:85%;margin:3px 0 0 0;font-weight:100;line-height:1.4em;">
+					<p style="font-family:Georgia,serif;font-size:14px;margin:3px 0 0 0;font-weight:100;line-height:1.4em;">
 						<?=$rss_item->get_description();?>
 					</p>
 				</a>
@@ -32,6 +32,6 @@ if(!is_wp_error($rss)) {
 		</tr>
 	<? } ?>
 	</table>
-	<a style="font-weight:100;color:#9d1a1a;" href="<?=FEATURED_STORIES_MORE_URL?>">More UCF Stories</a>
+	<a style="font-weight:100;color:#9d1a1a;font-size:16px;" href="<?=FEATURED_STORIES_MORE_URL?>">More UCF Stories</a>
 <?
 }

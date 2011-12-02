@@ -77,7 +77,7 @@
 			</table>
 			<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto;padding-top:35px; background-color:#FFF;">
 				<tr>
-					<td style="font-size:240%;font-weight:100;">Good Morning, Patrick.</td>
+					<td style="font-size:40px;font-weight:100;">Good Morning, Patrick.</td>
 				</tr>
 				<tr>
 					<td style="padding-top:20px">
@@ -109,7 +109,7 @@
 								<td style="width:330px;vertical-align:top;">
 									<table border="0" align="left" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="margin:0; background-color:#FFF;">
 										<tr>
-											<td colspan="3" style="font-size:125%;font-weight:100;padding-bottom:3px;">
+											<td colspan="3" style="font-size:22px;font-weight:100;padding-bottom:3px;">
 												Get Social:
 											</td>
 										</tr>
@@ -136,7 +136,7 @@
 									<a href="http://www.ucf.edu">
 										<img src="<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png" style="border:0"/>
 									</a>
-									<p style="line-height:1.4em;font-size:90%;margin:0;padding:0;">
+									<p style="line-height:1.4em;font-size:15px;margin:0;padding:0;">
 										4000 Central Florida Blvd.
 										<br />
 										Orlando, FL 32816
