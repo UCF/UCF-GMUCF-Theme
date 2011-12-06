@@ -411,7 +411,7 @@ class TopStory extends CustomPostType {
 		return array(
 			array(
 				'name'  => 'External URI',
-				'desc'  => 'The `Read More` links at the end of the story description will be points to this URI. Leave this field blank to hide he `Read More` link.',
+				'desc'  => 'If not empty, a link with the title `Read More` will be displayed at the end of the story description.',
 				'id'    => $this->options('name').'_external_uri',
 				'type'  => 'text',
 			),
