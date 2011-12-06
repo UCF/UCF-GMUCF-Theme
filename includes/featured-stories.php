@@ -13,7 +13,7 @@ if(!is_wp_error($rss)) {
 			<td style="vertical-align:top;padding-bottom:40px;">
 				<a style="color:#333;text-decoration:none;" href="<?=$rss_item->get_permalink()?>">
 					<? if($enclosure && ($thumbnail = $enclosure->get_thumbnail())) { ?>
-					<img src="<?=$thumbnail?>" style="border:none;" />
+					<img src="<?=esc_html($thumbnail)?>" style="border:none;" />
 					<? } else { ?>
 					<img src="<?=bloginfo('stylesheet_directory')?>/static/img/no-photo.png" style="border:none;" />
 					<? } ?>
@@ -22,10 +22,10 @@ if(!is_wp_error($rss)) {
 			<td style="padding-left:20px;padding-bottom:40px;">
 				<a style="font-size:16px;color:#333;text-decoration:none;font-weight:bold;" href="<?=$rss_item->get_permalink()?>"
 					<span style="line-height:1.3em;">
-						<?=$rss_item->get_title()?>
+						<?=esc_html($rss_item->get_title())?>
 					</span>
 					<p style="font-family:Georgia,serif;font-size:14px;margin:3px 0 0 0;font-weight:100;line-height:1.4em;">
-						<?=$rss_item->get_description();?>
+						<?=esc_html($rss_item->get_description())?>
 					</p>
 				</a>
 			</td>

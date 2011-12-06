@@ -8,10 +8,10 @@ if( ($top_story = get_todays_top_story()) !== False && has_post_thumbnail($top_s
 	$thumbnail_id  = get_post_thumbnail_id($top_story->ID);
 	$image_details = wp_get_attachment_image_src($thumbnail_id, 'top_story');
 
-	$thumbnail_src     = $image_details[0];
-	$story_title       = $top_story->post_title;
-	$story_description = $top_story->post_content;
-	$read_more_uri     = get_post_meta($top_story->ID, 'top_story_external_uri', True);
+	$thumbnail_src     = esc_html($image_details[0]);
+	$story_title       = esc_html($top_story->post_title);
+	$story_description = esc_html($top_story->post_content);
+	$read_more_uri     = esc_html(get_post_meta($top_story->ID, 'top_story_external_uri', True));
 
 } else {
 	$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=600x308');
@@ -21,10 +21,10 @@ if( ($top_story = get_todays_top_story()) !== False && has_post_thumbnail($top_s
 		$rss_item = $rss_items[0];
 		$enclosure = $rss_item->get_enclosure();
 		
-		$thumbnail_src     = $enclosure->get_thumbnail();
-		$story_title       = $rss_item->get_title();
-		$story_description = $rss_item->get_description();
-		$read_more_uri     = $rss_item->get_permalink();
+		$thumbnail_src     = esc_html($enclosure->get_thumbnail());
+		$story_title       = esc_html($rss_item->get_title());
+		$story_description = esc_html($rss_item->get_description());
+		$read_more_uri     = esc_html($rss_item->get_permalink());
 	}
 }
 ?>

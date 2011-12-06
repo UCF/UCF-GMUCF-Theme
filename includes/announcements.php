@@ -9,7 +9,7 @@ if(!is_wp_error($rss)) {
 	foreach($rss_items as $item) { ?>
 		<p style="padding-top:0;margin:0;">
 			<a style="font-weight:100;color:#9d1a1a;font-size:16px;" href="<?=$item->get_permalink()?>">
-				<?=$item->get_title()?>
+				<?=esc_html($item->get_title())?>
 			</a>
 		</p>
 		<br />

@@ -29,7 +29,7 @@
 						</td>
 						<td style="padding-left:10px;vertical-align:top;">
 							<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="color:#333;font-weight:100;font-size:15px;">
-								<?=$event->title?>
+								<?=esc_html($event->title)?>
 							</a>
 						</td>
 					</tr>
@@ -71,7 +71,7 @@
 						</td>
 						<td style="padding-left:10px;vertical-align:top;">
 							<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="color:#333;font-weight:100;font-size:15px;">
-								<?=$event->title?>
+								<?=esc_html($event->title)?>
 							</a>
 						</td>
 					</tr>
