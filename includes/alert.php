@@ -12,7 +12,7 @@ if(count($alerts) > 0) {
 				<td>
 					<span style="display:block;margin:0;padding:0;color:#e84a13;font-size:100%;font-weight:bold;"><?=esc_html($alert->post_title)?></span>
 					<p style="padding:10px 0 0 0;margin:0;font-weight:100;font-size:140%;line-height:1.4em;">
-						<?=esc_html($alert->post_content)?>
+						<?=nl2br(esc_html($alert->post_content))?>
 					</p>
 					<? if( ($alert_uri = get_post_meta($alert->ID, 'alert_external_uri', True)) !== '') { ?>
 					<p style="margin:0;padding:20px 0 0 0;">

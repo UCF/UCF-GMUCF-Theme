@@ -10,7 +10,7 @@ if( ($top_story = get_todays_top_story()) !== False && has_post_thumbnail($top_s
 
 	$thumbnail_src     = esc_html($image_details[0]);
 	$story_title       = esc_html($top_story->post_title);
-	$story_description = esc_html($top_story->post_content);
+	$story_description = nl2br(esc_html($top_story->post_content));
 	$read_more_uri     = esc_html(get_post_meta($top_story->ID, 'top_story_external_uri', True));
 
 } else {
@@ -26,7 +26,7 @@ if( ($top_story = get_todays_top_story()) !== False && has_post_thumbnail($top_s
 			
 			$thumbnail_src     = esc_html($enclosure->get_thumbnail());
 			$story_title       = esc_html($rss_item->get_title());
-			$story_description = esc_html($rss_item->get_description());
+			$story_description = nl2br(esc_html($rss_item->get_description()));
 			$read_more_uri     = esc_html($rss_item->get_permalink());
 
 			if($thumbnail_src != '') {
