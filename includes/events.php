@@ -7,7 +7,7 @@
 			<table border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
 			<? 
 			$todays_events = get_todays_events(array('limit'=>7));
-			if(count($today_events) == 0) { ?>
+			if(count($todays_events) == 0) { ?>
 				<p>There are no events today.</p>
 			<? } else {
 				foreach($todays_events as $event) {
