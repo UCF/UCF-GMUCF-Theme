@@ -362,8 +362,8 @@ class Alert extends CustomPostType{
 	public function fields(){
 		return array(
 			array(
-				'name'  => 'External URI',
-				'desc'  => 'If this is field is not empty, a link with the title `Click here for more information` will be displayed at the bottom of the alert box.',
+				'name'  => '`More Information` Link Target',
+				'desc'  => 'If this is field is not empty, a link with the title `Click here for more information` and pointing to this URI will be displayed at the bottom of the alert box.',
 				'id'    => $this->options('name').'_external_uri',
 				'type'  => 'text',
 			),
@@ -410,8 +410,8 @@ class TopStory extends CustomPostType {
 	public function fields(){
 		return array(
 			array(
-				'name'  => 'External URI',
-				'desc'  => 'If not empty, a link with the title `Read More` will be displayed at the end of the story description.',
+				'name'  => '`Read More` Link Target',
+				'desc'  => 'If not empty, a link with the title `Read More` and pointing to this URI will be displayed at the end of the story description.',
 				'id'    => $this->options('name').'_external_uri',
 				'type'  => 'text',
 			),
