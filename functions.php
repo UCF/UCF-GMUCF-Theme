@@ -218,7 +218,7 @@ function get_event_data($options = array())
 	
 	$cache_key = $cache_key_prefix.implode('', $options);
 
-	if( ($events = get_transient($cache_key)) !== False) {
+	if( False) {
 		return $events;
 	} else {
 		$events = array();
@@ -230,8 +230,9 @@ function get_event_data($options = array())
 						)
 				)
 			);
+		
 		if( ($raw_events = @file_get_contents(EVENTS_URL.'?'.http_build_query($options), false, $context)) !== FALSE ) {
-			$raw_events = substr($raw_events, 0, strpos($raw_events, '"}]') + 3);
+			
 			if( !is_null($json_events = json_decode($raw_events)) ) {
 				$events = $json_events;
 			}
