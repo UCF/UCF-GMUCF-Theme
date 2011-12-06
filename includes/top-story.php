@@ -17,14 +17,23 @@ if( ($top_story = get_todays_top_story()) !== False && has_post_thumbnail($top_s
 	$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=600x308');
 
 	if(!is_wp_error($rss)) {
-		$rss_items = $rss->get_items(0, $rss->get_item_quantity(1));
+		$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
 		$rss_item = $rss_items[0];
-		$enclosure = $rss_item->get_enclosure();
-		
-		$thumbnail_src     = esc_html($enclosure->get_thumbnail());
-		$story_title       = esc_html($rss_item->get_title());
-		$story_description = esc_html($rss_item->get_description());
-		$read_more_uri     = esc_html($rss_item->get_permalink());
+
+		foreach($rss_items as $rss_item) {
+
+			$enclosure = $rss_item->get_enclosure();
+			
+			$thumbnail_src     = esc_html($enclosure->get_thumbnail());
+			$story_title       = esc_html($rss_item->get_title());
+			$story_description = esc_html($rss_item->get_description());
+			$read_more_uri     = esc_html($rss_item->get_permalink());
+
+			if($thumbnail_src != '') {
+				set_transient('top_story_id', $rss_item->get_id());
+				break;
+			}
+		}
 	}
 }
 ?>
