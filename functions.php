@@ -232,7 +232,6 @@ function get_event_data($options = array())
 			);
 		
 		if( ($raw_events = @file_get_contents(EVENTS_URL.'?'.http_build_query($options), false, $context)) !== FALSE ) {
-			
 			if( !is_null($json_events = json_decode($raw_events)) ) {
 				$events = $json_events;
 			}
