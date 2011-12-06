@@ -33,6 +33,9 @@ define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/feeds/announcement/');
 define('WEATHER_URL', 'http://www.weather.com/weather/today/Orlando+FL+32816');
 define('WEATHER_CACHE_DURATION', 60 * 30); // weather
 
+# Custom Image Sizes
+add_image_size('top_story', 600, 308, True);
+
 require_once('functions-base.php');     # Base theme functions
 require_once('custom-post-types.php');  # Where per theme post types are defined
 require_once('shortcodes.php');         # Per theme shortcodes
@@ -45,7 +48,7 @@ require_once('functions-admin.php');    # Admin/login functions
  * object.
  **/
 Config::$custom_post_types = array(
-	'Alert',
+	'Alert', 'TopStory'
 );
 
 Config::$body_classes = array('default',);
@@ -351,4 +354,25 @@ function get_weather() {
 	return $weather;
 }
 
+
+/**
+ * Today's top story if ther eis one
+ *
+ * @return post object
+ * @author Chris Conover
+ **/
+ function get_todays_top_story() {
+ 	
+ 	$today  = getdate();
+ 	$params = array(
+ 		'year'       => $today['year'],
+ 		'monthnum'   => $today['mon'],
+ 		'day'        => $today['mday'],
+ 		'post_status'=> 'publish',
+ 		'post_type'  => 'top_story'
+	);
+
+	$query = new WP_Query(http_build_query($params));
+	return (count($query->posts) > 0) ? $query->posts[0] : False;
+ }
 ?>

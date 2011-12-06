@@ -371,4 +371,52 @@ class Alert extends CustomPostType{
 	}
 }
 
+class TopStory extends CustomPostType {
+		public 
+		$name           = 'top_story',
+		$plural_name    = 'Top Stories',
+		$singular_name  = 'Top Story',
+		$add_new_item   = 'Add New Top Story',
+		$edit_item      = 'Edit Top Story',
+		$new_item       = 'New Top Story',
+		$public         = True,
+		$use_categories = False,
+		$use_thumbnails = True,
+		$use_editor     = True,
+		$use_order      = False,
+		$use_title      = True,
+		$use_shortcode  = False,
+		$use_metabox    = True;
+	
+	
+	public function objectsToHTML($objects){
+		$class = get_custom_post_type($objects[0]->post_type);
+		$class = new $class;
+		
+		$outputs = array();
+		foreach($objects as $o){
+			$outputs[] = $class->toHTML($o);
+		}
+		
+		return implode(', ', $outputs);
+	}
+	
+	
+	public function toHTML($object){
+		return $object->post_title;
+	}
+	
+	
+	public function fields(){
+		return array(
+			array(
+				'name'  => 'External URI',
+				'desc'  => 'The `Read More` links at the end of the story description will be points to this URI. Leave this field blank to hide he `Read More` link.',
+				'id'    => $this->options('name').'_external_uri',
+				'type'  => 'text',
+			),
+		);
+	}
+}
+
 ?>
