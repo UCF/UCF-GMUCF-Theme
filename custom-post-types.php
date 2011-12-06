@@ -338,7 +338,7 @@ class Alert extends CustomPostType{
 		$use_order      = False,
 		$use_title      = True,
 		$use_shortcode  = False,
-		$use_metabox    = False;
+		$use_metabox    = True;
 	
 	
 	public function objectsToHTML($objects){
@@ -362,10 +362,10 @@ class Alert extends CustomPostType{
 	public function fields(){
 		return array(
 			array(
-				'name'  => 'Help',
-				'desc'  => 'This title and content of this post will be displayed below the top story.',
-				'id'    => $this->options('name').'_help',
-				'type'  => 'help',
+				'name'  => 'External URI',
+				'desc'  => 'If this is field is not empty, a link with the title `Click here for more information` will be displayed at the bottom of the alert box.',
+				'id'    => $this->options('name').'_external_uri',
+				'type'  => 'text',
 			),
 		);
 	}
