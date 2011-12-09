@@ -17,16 +17,16 @@
 					<td style="font-weight:bold;border-right:1px solid #ddd;width:160px;">
 						<table style="padding-left:20px">
 							<tr>
-								<td style="font-size:90%;">TODAY</td>
+								<td style="font-size:14px;">TODAY</td>
 								<td></td>
 							</tr>
 							<tr>
 								<td style="width:60px;"><img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" /></td>
 								<td>
-									<span style="font-size:160%;position:relative;left:5px;">
+									<span style="font-size:24px;position:relative;left:5px;">
 										<?=$weather['today']['temp']?>&deg;
 									</span>
-									<span style="font-weight:100;display:block;">High</span>
+									<span style="font-size:18px;font-weight:100;display:block;">High</span>
 								</td>
 							</tr>
 						</table>
@@ -34,17 +34,17 @@
 					<td style="font-weight:bold;border-right:1px solid #ddd;width:225px;">
 						<table style="margin-left:20px;">
 							<tr>
-								<td style="font-size:90%;">TONIGHT</td>
+								<td style="font-size:14px;">TONIGHT</td>
 								<td></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td><img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['image']?>.png" /></td>
 								<td style="text-align:center;">
-									<span style="font-size:160%;position:relative;left:5px;">
+									<span style="font-size:24px;position:relative;left:5px;">
 										<?=$weather['tonight']['temp']?>&deg;
 									</span>
-									<span style="font-weight:100;display:block;">Low</span>
+									<span style="font-size:18px;font-weight:100;display:block;">Low</span>
 								</td>
 								<td style="text-align:left;font-size:80%;font-weight:100;padding-left:17px;">
 									<a style="color:#333;" href="<?=WEATHER_URL?>">More<br />Weather</a>
@@ -53,10 +53,10 @@
 						</table>
 					</td>
 					<td style="border-right:1px solid #ddd;">
-						<span style="font-size:110%;letter-spacing:1px;display:block;margin-bottom:7px;">
+						<span style="font-size:19px;letter-spacing:1px;display:block;margin-bottom:7px;">
 							<?=strtoupper(date('l'))?>
 						</span>
-						<span style="font-size:135%;letter-spacing:1.2px;font-weight:100;">
+						<span style="font-size:20px;letter-spacing:1.2px;font-weight:100;">
 							<?=date('F j')?>
 						</span>
 					</td>
