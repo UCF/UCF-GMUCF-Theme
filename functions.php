@@ -356,7 +356,7 @@ function get_weather() {
 
 
 /**
- * Today's top story if ther eis one
+ * Today's top story if ther is one
  *
  * @return post object
  * @author Chris Conover
