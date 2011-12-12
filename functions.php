@@ -476,4 +476,29 @@ function get_featured_stories_details() {
 	}
 	return $stories;
 }
+
+/**
+ * Fetch announcment info from RSS feed
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_announcement_details() {
+	$announcements = array();
+
+	$rss = fetch_feed(ANNOUNCEMENTS_RSS_URL);
+	if(!is_wp_error($rss)) {
+		$rss_items = $rss->get_items(0, $rss->get_item_quantity(4));
+		foreach($rss_items as $rss_item) {
+			array_push(
+				$announcements,
+				array(
+					'title' => esc_html($rss_item->get_title()),
+					'permalink' => esc_html($rss_item->get_permalink())
+				)
+			);
+		}
+	}
+	return $announcements;
+}
 ?>
