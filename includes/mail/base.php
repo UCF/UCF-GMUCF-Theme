@@ -104,7 +104,10 @@
 								</td>
 							</tr>
 						</table>
-						<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto; background-color:#FFF;padding-top:65px;">
+						<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto; background-color:#FFF;padding-top:45px;">
+
+						</table>
+						<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto; background-color:#FFF;padding-top:15px;border-top:1px solid #ddd;padding-bottom:15px;">
 							<tr>
 								<td style="width:330px;vertical-align:top;">
 									<table border="0" align="left" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="margin:0; background-color:#FFF;">
