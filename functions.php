@@ -375,4 +375,15 @@ function get_weather() {
 	$query = new WP_Query(http_build_query($params));
 	return (count($query->posts) > 0) ? $query->posts[0] : False;
  }
+
+/**
+ * Truncates a string based on word count
+ *
+ * @return string
+ * @author Chris Conover
+ **/
+function truncate($string, $word_count=30) {
+	$parts = explode(' ', $string, $word_count);
+	return implode(' ', array_slice($parts, 0, count($parts) - 1)).'...';
+}
 ?>

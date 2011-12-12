@@ -29,7 +29,7 @@ if(!is_wp_error($rss)) {
 							<?=esc_html($rss_item->get_title())?>
 						</span>
 						<p style="font-family:Georgia,serif;font-size:14px;margin:3px 0 0 0;font-weight:100;line-height:1.4em;">
-							<?=esc_html($rss_item->get_description())?>
+							<?=truncate(esc_html($rss_item->get_description()))?>
 						</p>
 					</a>
 				</td>
