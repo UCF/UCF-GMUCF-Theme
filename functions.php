@@ -386,4 +386,94 @@ function truncate($string, $word_count=30) {
 	$parts = explode(' ', $string, $word_count);
 	return implode(' ', array_slice($parts, 0, count($parts) - 1)).'...';
 }
+
+/**
+ * Logic for determining top story content
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_top_story_details() {
+	$details = array(
+		'thumbnail_src'     => '',
+		'story_title'       => '',
+		'story_description' => '',
+		'read_more_uri'     => '');
+
+	if( ($top_story = get_todays_top_story()) !== False && has_post_thumbnail($top_story->ID)) {
+		$thumbnail_id  = get_post_thumbnail_id($top_story->ID);
+		$image_details = wp_get_attachment_image_src($thumbnail_id, 'top_story');
+
+		$details['thumbnail_src']     = esc_html($image_details[0]);
+		$details['story_title']       = esc_html($top_story->post_title);
+		$details['story_description'] = nl2br(esc_html($top_story->post_content));
+		$details['read_more_uri']     = esc_html(get_post_meta($top_story->ID, 'top_story_external_uri', True));
+
+	} else {
+		$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=600x308');
+
+		if(!is_wp_error($rss)) {
+			$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
+			$rss_item = $rss_items[0];
+
+			foreach($rss_items as $rss_item) {
+
+				$enclosure = $rss_item->get_enclosure();
+				
+				$details['thumbnail_src']     = esc_html($enclosure->get_thumbnail());
+				$details['story_title']       = esc_html($rss_item->get_title());
+				$details['story_description'] = truncate(nl2br(esc_html($rss_item->get_description())));
+				$details['read_more_uri']     = esc_html($rss_item->get_permalink());
+
+				if($details['thumbnail_src'] != '') {
+					set_transient('top_story_id', $rss_item->get_id());
+					break;
+				}
+			}
+		}
+	}
+	return $details;
+}
+
+/**
+ * Logic for determining top story content
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_featured_stories_details() {
+	$stories = array();
+
+	$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=95');
+
+	if(!is_wp_error($rss)) {
+		$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
+
+		$count = 0;
+		$top_story_id = get_transient('top_story_id');
+		foreach($rss_items as $rss_item) {
+			if($count == 3) break;
+			if($top_story_id !== $rss_item->get_id()) {
+				$story = array(
+					'thumbnail_src' => '',
+					'title'         => '',
+					'description'   => '',
+					'permalink'     => ''
+				);
+				$enclosure = $rss_item->get_enclosure();
+				if($enclosure && ($thumbnail = $enclosure->get_thumbnail())) {
+					$story['thumbnail_src'] = $thumbnail;
+ 				} else {
+					$story['thumbnail_src'] = bloginfo('stylesheet_directory').'/static/img/no-photo.png';
+				}
+				$story['title']       = esc_html($rss_item->get_title());
+				$story['description'] = truncate(esc_html($rss_item->get_description()));
+				$story['permalink']   = esc_html($rss_item->get_permalink());
+				array_push($stories, $story);
+				$count++;
+			}
+		}
+	}
+	return $stories;
+}
 ?>
