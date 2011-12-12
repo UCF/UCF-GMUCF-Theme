@@ -1,7 +1,7 @@
 <html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-		<title>Good Morning UCF</title>
+		<title>Good Morning UCF - <?=date('F j')?></title>
 		<style type="text/css">
 			<!--
 			html, body { margin:0px; padding:0; background-color:#FFF; color:#333; font-family:Helvetica, sans-serif; }
