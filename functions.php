@@ -464,7 +464,7 @@ function get_featured_stories_details() {
 				if($enclosure && ($thumbnail = $enclosure->get_thumbnail())) {
 					$story['thumbnail_src'] = $thumbnail;
  				} else {
-					$story['thumbnail_src'] = bloginfo('stylesheet_directory').'/static/img/no-photo.png';
+					$story['thumbnail_src'] = get_bloginfo('stylesheet_directory', 'raw').'/static/img/no-photo.png';
 				}
 				$story['title']       = esc_html($rss_item->get_title());
 				$story['description'] = truncate(esc_html($rss_item->get_description()));
