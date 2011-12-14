@@ -6,3 +6,10 @@ Version: v0.0.1
 */
 
 /*/ Global Styles /*/
+html {background:none;}
+#blueprint-container {width:600px;margin:auto;}
+#UCFHBHeader {display:none;}
+
+/* Header */
+#header > div {float:left;}
+#header .when {font-size:120%;display:block;}
