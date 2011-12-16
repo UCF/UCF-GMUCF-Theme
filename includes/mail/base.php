@@ -53,15 +53,15 @@
 						</table>
 					</td>
 					<td style="border-right:1px solid #ddd;">
-						<span style="font-size:19px;letter-spacing:1px;display:block;margin-bottom:7px;">
+						<span style="font-size:21px;letter-spacing:1px;display:block;margin-bottom:7px;">
 							<?=strtoupper(date('l'))?>
 						</span>
-						<span style="font-size:20px;letter-spacing:1.2px;font-weight:100;">
+						<span style="font-size:18px;letter-spacing:1.2px;font-weight:100;">
 							<?=date('F j')?>
 						</span>
 					</td>
 					<td style="text-align:left; padding-left:10px;width:10px;padding-right:20px;">
-						<a style="color:#333;font-size:85%;line-height:1.5em;" href="http://www.history.com/this-day-in-history">
+						<a style="color:#333;font-size:14px;line-height:1.5em;" href="http://www.history.com/this-day-in-history">
 							This
 							Day
 							in
