@@ -420,14 +420,16 @@ function get_top_story_details() {
 
 				$enclosure = $rss_item->get_enclosure();
 				
-				$details['thumbnail_src']     = esc_html($enclosure->get_thumbnail());
-				$details['story_title']       = esc_html($rss_item->get_title());
-				$details['story_description'] = truncate(nl2br(esc_html($rss_item->get_description())));
-				$details['read_more_uri']     = esc_html($rss_item->get_permalink());
+				if($enclosure) {
+					$details['thumbnail_src']     = esc_html($enclosure->get_thumbnail());
+					$details['story_title']       = esc_html($rss_item->get_title());
+					$details['story_description'] = truncate(nl2br(esc_html($rss_item->get_description())));
+					$details['read_more_uri']     = esc_html($rss_item->get_permalink());
 
-				if($details['thumbnail_src'] != '') {
-					set_transient('top_story_id', $rss_item->get_id());
-					break;
+					if($details['thumbnail_src'] != '') {
+						set_transient('top_story_id', $rss_item->get_id());
+						break;
+					}
 				}
 			}
 		}
