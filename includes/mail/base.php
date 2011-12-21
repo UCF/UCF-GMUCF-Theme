@@ -77,7 +77,7 @@
 			</table>
 			<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto;padding-top:35px; background-color:#FFF;">
 				<tr>
-					<td style="font-size:40px;font-weight:100;">Good Morning, Patrick.</td>
+					<td style="font-size:40px;font-weight:100;">Good Morning, !@!First Name!@!.</td>
 				</tr>
 				<tr>
 					<td style="padding-top:20px">
