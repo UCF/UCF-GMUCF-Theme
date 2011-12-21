@@ -7,7 +7,7 @@ extract(get_top_story_details());
 		<td colspan="2" style="padding-bottom:15px;">
 			<span style="font-size:30px;font-weight:100;"><?=$story_title?></span>
 			<div style="padding-top:5px;font-weight:100;line-height:1.4em;padding-bottom:10px;font-size:18px">
-					<?=$story_description?> <? if($read_more_uri != '') {?><a style="color:#9d1a1a;" href="<?=$read_more_uri?>">Read More.</a><?}?>
+					<?=$story_description?> <? if($read_more_uri != '') {?><a style="color:#9d1a1a;text-decoration:underline;" href="<?=$read_more_uri?>">Read More.</a><?}?>
 			</div>
 		</td>
 	</tr>

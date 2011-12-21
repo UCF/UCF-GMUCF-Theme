@@ -81,7 +81,7 @@
 				<? } 
 			} ?>
 			</table>
-			<a style="font-weight:100;color:#9d1a1a;font-size:16px;" href="<?=EVENTS_URL?>">
+			<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=EVENTS_URL?>">
 				More Events
 			</a>
 		</td>

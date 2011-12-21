@@ -24,4 +24,4 @@
 	}
 ?>
 </table>
-<a style="font-weight:100;color:#9d1a1a;font-size:16px;" href="<?=FEATURED_STORIES_MORE_URL?>">More UCF Stories</a>
+<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=FEATURED_STORIES_MORE_URL?>">More UCF Stories</a>
