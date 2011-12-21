@@ -53,7 +53,7 @@
 						</table>
 					</td>
 					<td style="border-right:1px solid #ddd;">
-						<span style="font-size:21px;letter-spacing:1px;display:block;margin-bottom:7px;">
+						<span style="font-size:18px;letter-spacing:1px;display:block;margin-bottom:7px;">
 							<?=strtoupper(date('l'))?>
 						</span>
 						<span style="font-size:18px;letter-spacing:1.2px;font-weight:100;">
