@@ -303,33 +303,57 @@ function get_weather() {
 
 			$forecast_table = substr($html, $start_point_index + strlen($start_point), $length);
 
-			// Today
-			//// Image ID
-			$match = preg_match('/http:\/\/s.imwx.com\/v.20100719.135915\/img\/wxicon\/130\/(\d+).png/', $forecast_table, $matches);
-
-			if($match == 1) {
-				$weather['today']['image'] = $matches[1];
-			}
-			//// Temp
-			$match = preg_match('/<td class="twc-col-1 twc-forecast-temperature">(.*)<\/td>/', $forecast_table, $matches);
-			if($match == 1) {
-				$deg_part = $matches[0];
-				$match = preg_match('/(\d+)&deg;/', $deg_part, $matches);
-				if($match == 1) {
-					$weather['today']['temp'] = $matches[1];
-				}
-			}
-
 			// Check to see if the next column in Today or Tonight
 			$match = preg_match('/<td class="twc-col-2 twc-forecast-when">(.*)<\/td>/', $forecast_table, $matches);
 			if($match == 1) {
-				$column = 3;
+				$tonight_column = 3;
 				if($matches[1] == 'Tonight') {
-					$column = 2;
+					$tonight_column = 2;
+
+					# Duplicate the matching code here because it's a little
+					# different than below
+
+					// Today is the first column
+					//// Image ID
+					$match = preg_match('/http:\/\/s.imwx.com\/v.20100719.135915\/img\/wxicon\/130\/(\d+).png/', $forecast_table, $matches);
+
+					if($match == 1) {
+						$weather['today']['image'] = $matches[1];
+					}
+					//// Temp
+					$match = preg_match('/<td class="twc-col-1 twc-forecast-temperature">(.*)<\/td>/', $forecast_table, $matches);
+					if($match == 1) {
+						$deg_part = $matches[0];
+						$match = preg_match('/(\d+)&deg;/', $deg_part, $matches);
+						if($match == 1) {
+							$weather['today']['temp'] = $matches[1];
+						}
+					}
+				} else {
+					// Today is the second column
+					///// Image ID
+					$match = preg_match('/<td class="twc-col-2 twc-forecast-icon">(.*)<\/td>/', $forecast_table, $matches);
+					if($match == 1) {
+						$img_part = $matches[0];
+						$match = preg_match('/\/(\d+)\.png/', $img_part, $matches);
+						if($match == 1) {
+							$weather['today']['image'] = $matches[1];
+						}
+					}
+					//// Temp
+					$match = preg_match('/<td class="twc-col-2 twc-forecast-temperature">(.*)<\/td>/', $forecast_table, $matches);
+					if($match == 1) {
+						$deg_part = $matches[0];
+						$match = preg_match('/(\d+)&deg;/', $deg_part, $matches);
+						if($match == 1) {
+							$weather['today']['temp'] = $matches[1];
+						}
+					}	
+
 				}
 				// Tonight
 				///// Image ID
-				$match = preg_match('/<td class="twc-col-'.$column.' twc-forecast-icon">(.*)<\/td>/', $forecast_table, $matches);
+				$match = preg_match('/<td class="twc-col-'.$tonight_column.' twc-forecast-icon">(.*)<\/td>/', $forecast_table, $matches);
 				if($match == 1) {
 					$img_part = $matches[0];
 					$match = preg_match('/\/(\d+)\.png/', $img_part, $matches);
@@ -338,7 +362,7 @@ function get_weather() {
 					}
 				}
 				//// Temp
-				$match = preg_match('/<td class="twc-col-'.$column.' twc-forecast-temperature">(.*)<\/td>/', $forecast_table, $matches);
+				$match = preg_match('/<td class="twc-col-'.$tonight_column.' twc-forecast-temperature">(.*)<\/td>/', $forecast_table, $matches);
 				if($match == 1) {
 					$deg_part = $matches[0];
 					$match = preg_match('/(\d+)&deg;/', $deg_part, $matches);
