@@ -519,8 +519,9 @@ function get_announcement_details() {
 			array_push(
 				$announcements,
 				array(
-					'title' => esc_html($rss_item->get_title()),
-					'permalink' => esc_html($rss_item->get_permalink())
+					'title'     => esc_html($rss_item->get_title()),
+					# MyOrg doesn't handle encoded ampersands correctly
+					'permalink' => str_replace('&amp;', '&', esc_html($rss_item->get_permalink()))
 				)
 			);
 		}
