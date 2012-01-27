@@ -30,7 +30,7 @@
 	</head>
 	<body class="<?=body_classes()?>">
 		<div id="blueprint-container" class="container">
-			<div id="header" class="clearfix">
+			<div id="header">
 				<? $weather = get_weather(); ?>
 				<div class="weather" id="today">
 					<span class="when">TODAY</span>
