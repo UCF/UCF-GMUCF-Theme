@@ -9,7 +9,7 @@
 	<?	foreach($todays_events as $event) {
 			$start_timestamp = strtotime($event->starts);
 		?>
-			<li>
+			<li class="clearfix">
 				<div class="date">
 					<span style="font-weight:bold;">
 						<?=date('g:i', $start_timestamp)?>
@@ -38,7 +38,7 @@
 	<?	foreach($tomorrows_events as $event) {
 			$start_timestamp = strtotime($event->starts);
 		?>
-			<li>
+			<li class="clearfix">
 				<div class="date">
 					<span style="font-weight:bold;">
 						<?=date('g:i', $start_timestamp)?>

@@ -10,3 +10,5 @@ foreach(get_featured_stories_details() as $details) {
 	</li>
 	<?
 }
+?>
+</ul>

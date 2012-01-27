@@ -30,18 +30,18 @@
 	</head>
 	<body class="<?=body_classes()?>">
 		<div id="blueprint-container" class="container">
-			<div id="header">
+			<div id="header" class="clearfix">
 				<? $weather = get_weather(); ?>
 				<div class="weather" id="today">
 					<span class="when">TODAY</span>
 					<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" />
-					<?=$weather['today']['temp']?>&deg;
+					<span class="temp"><?=$weather['today']['temp']?>&deg;</span>
 					<span class="type">High</span>
 				</div>
 				<div class="weather" id="tonight">
 					<span class="when">TONIGHT</span>
 					<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['image']?>.png" />
-					<?=$weather['tonight']['temp']?>&deg;
+					<span class="temp"><?=$weather['tonight']['temp']?>&deg;</span>
 					<span class="type">Low</span>
 				</div>
 				<div id="date">
