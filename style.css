@@ -14,7 +14,7 @@ html {background:none;}
 h1 {font-size:45px;font-weight:300;margin-bottom:20px;}
 
 /* Header */
-#header {margin-bottom:40px;border-bottom:1px solid #ddd;}
+#header {margin-bottom:40px;border-bottom:1px solid #ddd;height:90px;}
 #header > div {float:left;}
 #header .weather {width:135px;}
 #header .weather, 
@@ -51,6 +51,7 @@ h1 {font-size:45px;font-weight:300;margin-bottom:20px;}
 #todays_events,
 	#tomorrows_events {}
 #todays_events {border-bottom:1px solid #ddd;padding-bottom:15px;margin-bottom:15px;}
+#tomorrows_events {margin-bottom:30px;}
 #todays_events h2,
 	#tomorrows_events h2 {font-weight:100;font-family:Helvetica,sans-serif;font-size:25px;margin-bottom:10px;padding-left:10px;}
 #todays_events h2 {margin-top:0;}
@@ -58,6 +59,7 @@ h1 {font-size:45px;font-weight:300;margin-bottom:20px;}
 .events > li {list-style-type:none;}
 .events > li .date {color:#666;float:left;background-color:#fef7c8;border:1px solid #e1e1e1;text-align:center;width:55px;padding:5px 0;font-family:Helvetica,sans-serif;}
 .events > li > a {float:right;font-weight:normal;font-family:Helvetica,sans-serif;font-size:15px;width:142px;text-decoration:none;}
+#tomorrows_events > a {font-family:Helvetica,sans-serif;color:#9D1A1A;text-decoration:none;font-weight:normal;font-size:17px;}
 
 /* Announcemnts */
 #announcements {}
@@ -71,8 +73,8 @@ h1 {font-size:45px;font-weight:300;margin-bottom:20px;}
 #bottom #social,
 	#bottom #ucf {border:none;padding:0;}
 #bottom #social h2 {font-family:Helvetica,sans-serif;font-weight:100;margin-bottom:5px;}
-#bottom #social a {text-indent:-300em;width:51px;height:51px;display:block;float:left;}
-#bottom #social #facebook {background:#FFF url('static/img/facebook.png') no-repeat center center;}
+#bottom #social a {text-indent:-300em;width:51px;height:51px;display:block;float:left;margin-left:10px;}
+#bottom #social #facebook {background:#FFF url('static/img/facebook.png') no-repeat center center;margin-left:0;}
 #bottom #social #youtube {background:#FFF url('static/img/youtube.png') no-repeat center center;}
 #bottom #social #twitter {background:#FFF url('static/img/twitter.png') no-repeat center center;}
 #bottom #ucf {display:block;background:#FFF url('static/img/logo-no-opportunity.png') no-repeat top left;font-family:Helvetica,sans-serif;text-decoration:none;padding-top:61px;}

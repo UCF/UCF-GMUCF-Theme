@@ -9,7 +9,7 @@
 	<?	foreach($todays_events as $event) {
 			$start_timestamp = strtotime($event->starts);
 		?>
-			<li class="clearfix">
+			<li class="clear clearfix">
 				<div class="date">
 					<span style="font-weight:bold;">
 						<?=date('g:i', $start_timestamp)?>
@@ -26,6 +26,7 @@
 	}
 	?>
 	</ul>
+	<div class="clear">&nbsp;</div>
 </div>
 <div id="tomorrows_events">
 	<h2>Tomororw @ UCF</h2>
@@ -38,7 +39,7 @@
 	<?	foreach($tomorrows_events as $event) {
 			$start_timestamp = strtotime($event->starts);
 		?>
-			<li class="clearfix">
+			<li class="clear clearfix">
 				<div class="date">
 					<span style="font-weight:bold;">
 						<?=date('g:i', $start_timestamp)?>
@@ -55,4 +56,6 @@
 	}
 	?>
 	</ul>
+	<div class="clear">&nbsp;</div>
+	<a href="http://events.ucf.edu">More Events</a>
 </div>
