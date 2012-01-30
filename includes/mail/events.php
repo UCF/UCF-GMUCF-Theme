@@ -6,11 +6,13 @@
 			</p>
 			<table border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
 			<? 
-			$todays_events = get_todays_events(array('limit'=>7));
+			$todays_events = get_todays_events();
 			if(count($todays_events) == 0) { ?>
 				<p>There are no events today.</p>
 			<? } else {
+				$count = 0;
 				foreach($todays_events as $event) {
+					if($count == 7) break;
 					$start_timestamp = strtotime($event->starts);
 					?>
 					<tr>
@@ -36,9 +38,16 @@
 					<tr>
 						<td colspan="2" style="height:10px;">&nbsp;</td>
 					</tr>
-				<? } 
+				<? 
+				$count++;
+				}
 			} ?>
 			</table>
+			<? if((count($todays_events) - 7) > 0) { ?>
+			<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=EVENTS_URL?>">
+				<?= count($todays_events) - 7 ?> More Events Today
+			</a>
+			<? } ?>
 		</td>
 	</tr>
 	<tr>
@@ -81,9 +90,11 @@
 				<? } 
 			} ?>
 			</table>
+			<? if((count($tomorrows_events) - 7) > 0) { ?>
 			<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=EVENTS_URL?>">
-				More Events
+				<?= count($tomorrows_events) - 7 ?> More Events Today
 			</a>
+			<? } ?>
 		</td>
 	</tr>
 </table>
