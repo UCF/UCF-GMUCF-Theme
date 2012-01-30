@@ -213,7 +213,6 @@ function get_event_data($options = array())
 {
 	$cache_key_prefix = 'events-';
 	$default_options = array(
-		'limit'       => 5,
 		'calendar_id' => EVENTS_CALENDAR_ID,
 		'format'      => 'json');
 	
