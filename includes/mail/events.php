@@ -93,8 +93,11 @@
 					} 
 			} ?>
 			</table>
-			<? if((count($tomorrows_events) - 7) > 0) { ?>
-			<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=EVENTS_URL?>">
+			<? if((count($tomorrows_events) - 7) > 0) { 
+				$tomorrow = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
+				$tomorrow_event_url = EVENTS_URL.'?y='.date('Y', $tomorrow).'&m='.date('n',$tomorrow).'&d='.date('j', $tomorrow);
+				?>
+			<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=$tomorrow_event_url?>">
 				<?= count($tomorrows_events) - 7 ?> More Events Tomorrow
 			</a>
 			<? } ?>
