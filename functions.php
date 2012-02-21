@@ -434,7 +434,6 @@ function get_top_story_details() {
 
 	} else {
 		$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=600x308');
-
 		if(!is_wp_error($rss)) {
 			$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
 			$rss_item = $rss_items[0];
@@ -442,8 +441,9 @@ function get_top_story_details() {
 			foreach($rss_items as $rss_item) {
 
 				$enclosure = $rss_item->get_enclosure();
-				
-				if($enclosure) {
+
+				if($enclosure && in_array($enclosure->get_type(),get_valid_enclosure_types())) {
+
 					$details['thumbnail_src']     = esc_html($enclosure->get_thumbnail());
 					$details['story_title']       = esc_html($rss_item->get_title());
 					$details['story_description'] = truncate(nl2br(esc_html($rss_item->get_description())));
@@ -486,7 +486,7 @@ function get_featured_stories_details() {
 					'permalink'     => ''
 				);
 				$enclosure = $rss_item->get_enclosure();
-				if($enclosure && ($thumbnail = $enclosure->get_thumbnail())) {
+				if($enclosure && in_array($enclosure->get_type(),get_valid_enclosure_types()) && ($thumbnail = $enclosure->get_thumbnail())) {
 					$story['thumbnail_src'] = $thumbnail;
  				} else {
 					$story['thumbnail_src'] = get_bloginfo('stylesheet_directory', 'raw').'/static/img/no-photo.png';
@@ -527,4 +527,15 @@ function get_announcement_details() {
 	}
 	return $announcements;
 }
+
+/**
+ * Return a list of valid enclosure mime types
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_valid_enclosure_types() {
+	return array('image/jpeg','image/png','image/jpg');
+}
+
 ?>
