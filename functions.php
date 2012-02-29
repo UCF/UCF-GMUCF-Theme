@@ -204,6 +204,26 @@ if ($theme_options['bw_verify']){
 /* Custom Theme Functions */
 
 /**
+ * Compare events based on start time
+ *
+ * @return integer
+ * @author Chris Conover
+ **/
+function compare_event_starts($a, $b) {
+	// Just take into account the time part of the start date time.
+	// Otherwise events that are ongoing would be put in front.
+	$a_parts = explode(' ', $a->starts);
+	$b_parts = explode(' ', $b->starts);
+	$a_start = strtotime($a_parts[1]);
+	$b_start = strtotime($b_parts[1]);
+	if($a_start == $b_start) {
+		return 0;
+	} else {
+		return ($a_start > $b_start) ? +1 : -1;
+	}
+}
+
+/**
  * Fetch events from UCF event system (with caching)
  *
  * @return array
@@ -220,7 +240,7 @@ function get_event_data($options = array())
 	
 	$cache_key = $cache_key_prefix.implode('', $options);
 
-	if( False) {
+	if(($events = get_transient($cache_key)) !== False) {
 		return $events;
 	} else {
 		$events = array();
@@ -239,9 +259,13 @@ function get_event_data($options = array())
 			}
 		}
 
+		// Events aren't neccessarily sorted from earliest to latest start time
+		usort($events, 'compare_event_starts');
+
 		if(isset($options['limit']) && count($events) > $options['limit']) {
 			$events = array_slice($events, 0, $options['limit']);
 		}
+
 		set_transient($cache_key, $events, EVENTS_CACHE_DURATION);
 		return $events;
 	}
