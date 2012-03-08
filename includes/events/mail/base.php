@@ -193,78 +193,74 @@ switch($edition) {
 			?>
 			<tr>
 				<td style="border-top:1px solid #ddd;padding-top:35px;padding-bottom:35px;">
-					<span style="font-size:25px;font-weight:500;padding-right:15px;"><?=$title?>, <?=date('n/j', $title_date->getTimestamp())?></span>  <a href="http://www.google.com" style="font-size:15px;color:#9d1a1a;">View all <?=$event_day?> events</a>
-					<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;padding-top:20px;">
+					<span style="font-size:25px;font-weight:500;padding-right:15px;"><?=$title?>, <?=date('n/j', $title_date->getTimestamp())?></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.google.com" style="font-size:15px;color:#9d1a1a;">View all <?=$event_day?> events</a>
+					<br /><br />
+					<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:200px;border-right:1px solid #ddd;vertical-align:top;padding-right:15px;">
-								<span style="color:#1c658e;font-size:15px;font-weight:500;">MORNING</span><br />
+								<span style="color:#1c658e;font-size:15px;font-weight:500;">MORNING</span>
+								<br /><br />
 								<? if(count($day['morning']) == 0){ ?>
-								<p style="margin:0;padding-top:15px;">No Morning Events</p>
+								No Morning Events
 								<? } else { ?>
-								<ul style="margin:0;padding:10px 0 0 0;width:100%;">
 									<? foreach($day['morning'] as $section=>$events){ ?>
-									<li style="list-style-type:none;padding-bottom:15px;">
-										<span style="color:#9d1a1a;font-weight:bold;font-size:12px;">
-											<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
-										</span>
-										<ul style="padding:3px 0 0 0;margin:0;">
+										<div style="list-style-type:none;margin-bottom:5px;">
+											<span style="color:#9d1a1a;font-weight:bold;font-size:12px;">
+												<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
+											</span>	
 											<? foreach($events as $event){ ?>
-											<li style="list-style-type:none;padding-bottom:15px;">
-												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;text-decoration:underline;">
+											<div style="list-style-type:none;margin-bottom:15px;">
+												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#000000;text-decoration:underline;">
 													<?=esc_html($event->title)?>
 												</a>
-											</li>
+											</div>
 											<? } ?>
-										</ul>
-									</li>
+										</div>
 									<? } ?>
-								</ul>
 								<? } ?>
 							</td>
 							<td style="width:200px;border-right:1px solid #ddd;padding-left:15px;vertical-align:top;padding-right:15px;">
-								<span style="color:#1c658e;font-size:15px;font-weight:500;">AFTERNOON</span><br />
+								<span style="color:#1c658e;font-size:15px;font-weight:500;">AFTERNOON</span>
+								<br /><br />
 								<? if(count($day['afternoon']) == 0){ ?>
-								<p style="margin:0;padding-top:15px;">No Afternoon Events</p>
+								No Afternoon Events
 								<? } else { ?>
-								<ul style="margin:0;padding:10px 0 0 0;width:100%;">
 									<? foreach($day['afternoon'] as $section=>$events){ ?>
-									<li style="list-style-type:none;padding-bottom:15px;">
-										<span style="color:#9d1a1a;font-weight:bold;font-size:12px;"><?=$section?></span>
-										<ul style="padding:3px 0 0 0;margin:0;">
+										<div style="list-style-type:none;margin-bottom:5px;">
+											<span style="color:#9d1a1a;font-weight:bold;font-size:12px;">
+												<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
+											</span>	
 											<? foreach($events as $event){ ?>
-											<li style="list-style-type:none;padding-bottom:15px;">
-												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;text-decoration:underline;">
+											<div style="list-style-type:none;margin-bottom:15px;">
+												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#000000;text-decoration:underline;">
 													<?=esc_html($event->title)?>
 												</a>
-											</li>
+											</div>
 											<? } ?>
-										</ul>
-									</li>
+										</div>
 									<? } ?>
-								</ul>
 								<? } ?>
 							</td>
 							<td style="width:200px;padding-left:15px;vertical-align:top;">
-								<span style="color:#1c658e;font-size:15px;font-weight:500;">EVENING</span><br  />
+								<span style="color:#1c658e;font-size:15px;font-weight:500;">EVENING</span>
+								<br  /><br />
 								<? if(count($day['evening']) == 0){ ?>
-								<p style="margin:0;padding-top:15px;">No Evening Events</p>
+								No Evening Events
 								<? } else { ?>
-								<ul style="margin:0;padding:10px 0 0 0;width:100%;">
 									<? foreach($day['evening'] as $section=>$events){ ?>
-									<li style="list-style-type:none;padding-bottom:15px;">
-										<span style="color:#9d1a1a;font-weight:bold;font-size:12px;"><?=$section?></span>
-										<ul style="padding:3px 0 0 0;margin:0;">
+										<div style="list-style-type:none;margin-bottom:5px;">
+											<span style="color:#9d1a1a;font-weight:bold;font-size:12px;">
+												<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
+											</span>	
 											<? foreach($events as $event){ ?>
-											<li style="list-style-type:none;padding-bottom:15px;">
-												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;text-decoration:underline;">
+											<div style="list-style-type:none;margin-bottom:15px;">
+												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#000000;text-decoration:underline;">
 													<?=esc_html($event->title)?>
 												</a>
-											</li>
+											</div>
 											<? } ?>
-										</ul>
-									</li>
+										</div>
 									<? } ?>
-								</ul>
 								<? } ?>
 							</td>
 						</tr>
