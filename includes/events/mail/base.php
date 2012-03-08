@@ -46,7 +46,7 @@ switch($edition) {
 	<body bgcolor="#FFF">
 		<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 			<tr>
-				<td style="padding-top:30px;font-size:20px;font-weight:200;">
+				<td style="padding-top:30px;font-size:25px;font-weight:200;">
 					!@!First Name!@!, check out:
 				</td>
 			</tr>
