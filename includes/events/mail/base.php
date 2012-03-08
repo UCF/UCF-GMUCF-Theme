@@ -204,7 +204,9 @@ switch($edition) {
 								<ul style="margin:0;padding:10px 0 0 0;width:100%;">
 									<? foreach($day['morning'] as $section=>$events){ ?>
 									<li style="list-style-type:none;padding-bottom:15px;">
-										<span style="color:#9d1a1a;font-weight:bold;font-size:12px;"><?=$section?></span>
+										<span style="color:#9d1a1a;font-weight:bold;font-size:12px;">
+											<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
+										</span>
 										<ul style="padding:3px 0 0 0;margin:0;">
 											<? foreach($events as $event){ ?>
 											<li style="list-style-type:none;padding-bottom:15px;">
