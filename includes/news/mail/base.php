@@ -87,26 +87,26 @@
 							</tr>
 							<tr>
 								<td style="padding-top:20px">
-									<? get_template_part('includes/mail/top-story'); ?>
+									<? get_template_part('includes/news/mail/top-story'); ?>
 									<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto;background-color:#FFF;">
-										<?=get_template_part('includes/mail/alert')?>
+										<?=get_template_part('includes/news/mail/alert')?>
 										<tr>
 											<td style="width:330px;padding-top:20px;vertical-align:top;">
 												<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
 													<tr>
 														<td style="border-bottom:1px solid #ddd;padding-bottom:20px;">
-															<? get_template_part('includes/mail/featured-stories'); ?>
+															<? get_template_part('includes/news/mail/featured-stories'); ?>
 														</td>
 													</tr>
 													<tr>
 														<td style="padding-top:20px;">
-															<? get_template_part('includes/mail/announcements'); ?>
+															<? get_template_part('includes/news/mail/announcements'); ?>
 														<td>
 													</tr>
 												</table>
 											</td>
 											<td style="width:230px;padding-top:20px;padding-left:20px;vertical-align:top;">
-												<? get_template_part('includes/mail/events'); ?>
+												<? get_template_part('includes/news/mail/events'); ?>
 											</td>
 										</tr>
 									</table>

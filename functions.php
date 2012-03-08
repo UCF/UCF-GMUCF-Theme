@@ -203,6 +203,13 @@ if ($theme_options['bw_verify']){
 
 /* Custom Theme Functions */
 
+if(isset($_GET['no_cache'])) {
+	add_filter( 'wp_feed_cache_transient_lifetime', create_function('$a', 'return 0;') );
+	define('CLEAR_CACHE', TRUE);
+} else {
+	define('CLEAR_CACHE', FALSE);
+}
+
 /**
  * Compare events based on start time
  *
@@ -240,7 +247,7 @@ function get_event_data($options = array())
 	
 	$cache_key = $cache_key_prefix.implode('', $options);
 
-	if(($events = get_transient($cache_key)) !== False) {
+	if(!CLEAR_CACHE && ($events = get_transient($cache_key)) !== False) {
 		return $events;
 	} else {
 		$events = array();
@@ -318,7 +325,7 @@ function get_weather() {
 		)
 	);
 	
-	if( ($weather = get_transient($cache_key)) === False) {
+	if(!CLEAR_CACHE && ($weather = get_transient($cache_key)) === False) {
 		if( ($html = @file_get_contents(WEATHER_URL)) !== False) {
 			$start_point = '<table class="twc-forecast-table twc-second">';
 			$start_point_index = stripos($html,$start_point);

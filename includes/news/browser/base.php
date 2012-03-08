@@ -1,16 +1,16 @@
 <?=get_header()?>
 <div id="content">
 	<h1>Good Morning, Patrick.</h1>
-	<?=get_template_part('includes/browser/top-story')?>
+	<?=get_template_part('includes/news/browser/top-story')?>
 	<div class="narrow">
-		<?=get_template_part('includes/browser/alert')?>
+		<?=get_template_part('includes/news/browser/alert')?>
 
 		<div id="left" >
-			<?=get_template_part('includes/browser/featured-stories')?>
-			<?=get_template_part('includes/browser/announcements')?>
+			<?=get_template_part('includes/news/browser/featured-stories')?>
+			<?=get_template_part('includes/news/browser/announcements')?>
 		</div>
 		<div id="right">
-			<?=get_template_part('includes/browser/events')?>
+			<?=get_template_part('includes/news/browser/events')?>
 		</div>
 		<div id="bottom" class="clearfix">
 			<div id="social">
