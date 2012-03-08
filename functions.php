@@ -31,7 +31,11 @@ define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/feeds/announcement/');
 
 define('WEATHER_URL', 'http://www.weather.com/weather/today/Orlando+FL+32816');
+define('WEATHER_EXTENDED_URL', 'http://www.weather.com/weather/tenday/32816');
 define('WEATHER_CACHE_DURATION', 60 * 30); // weather
+
+define('EVENTS_WEEKEND_EDITION', 0);
+define('EVENTS_WEEKDAY_EDITION', 1);
 
 # Custom Image Sizes
 add_image_size('top_story', 600, 308, True);
@@ -410,6 +414,85 @@ function get_weather() {
 
 
 /**
+ * Fetches weather.com image ID and temp for today and tonight
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_extended_weather() {
+
+	$cache_key = 'extended-weather';
+
+	$weather = array(
+		array('image'=>30, 'high'=>75, 'low'=>65),
+		array('image'=>30, 'high'=>75, 'low'=>65),
+		array('image'=>30, 'high'=>75, 'low'=>65),
+		array('image'=>30, 'high'=>75, 'low'=>65),
+		array('image'=>30, 'high'=>75, 'low'=>65),
+		array('image'=>30, 'high'=>75, 'low'=>65),
+		array('image'=>30, 'high'=>75, 'low'=>65),
+		array('image'=>30, 'high'=>75, 'low'=>65),
+		array('image'=>30, 'high'=>75, 'low'=>65),
+		array('image'=>30, 'high'=>75, 'low'=>65),
+	);
+
+	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
+		$weather = array();
+		if( ($html = @file_get_contents(WEATHER_EXTENDED_URL)) !== False) {
+
+			$start_point = '<table class="twc-forecast-table twc-second">';
+			$start_point_index = stripos($html,$start_point);
+			$length = stripos($html, '</table>', $start_point_index) - ($start_point_index + strlen($start_point));
+
+			$forecast_table = substr($html, $start_point_index + strlen($start_point), $length);
+
+			for($i = 1; $i <= 10; $i++) {
+				$image = NULL;
+				$high  = NULL;
+				$low   = NULL;
+
+				// image ID
+				$match = preg_match('/<td class="twc-col-'.$i.' twc-forecast-icon " id="twc-wx-icon'.$i.'">(.*)<\/td>/', $forecast_table, $matches);
+				
+				if($match == 1) {
+					$img_part = $matches[0];
+					$match = preg_match('/\/(\d+)\.png/', $img_part, $matches);
+					if($match == 1) {
+						$image = $matches[1];
+					}
+				}
+
+				// high
+				$match = preg_match('/<td class="twc-col-'.$i.' twc-forecast-temperature" id="twc-wx-hi'.$i.'">(.*)<\/td>/s', $forecast_table, $matches);
+				
+				if($match == 1) {
+					$deg_part = $matches[0];
+					$match = preg_match('/(\d+)&deg;/', $deg_part, $matches);
+					if($match == 1) {
+						$high = $matches[1];
+					}
+				}
+
+				// low
+				$match = preg_match('/<td class="twc-col-'.$i.' twc-forecast-temperature" id="twc-wx-low'.$i.'">(.*)<\/td>/s', $forecast_table, $matches);
+				if($match == 1) {
+					$deg_part = $matches[0];
+					$match = preg_match('/(\d+)&deg;/', $deg_part, $matches);
+					if($match == 1) {
+						$low = $matches[1];
+					}
+				}
+				array_push($weather, array('image'=>$image, 'high'=>$high, 'low'=>$low));
+			}
+			set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
+		}
+	}
+
+	// Since this is the 10 day forcast, slice it down to just Monday through Friday
+	return array_slice($weather, get_next_monday_diff(), 5);
+}
+
+/**
  * Today's top story if ther is one
  *
  * @return post object
@@ -569,4 +652,90 @@ function get_valid_enclosure_types() {
 	return array('image/jpeg','image/png','image/jpg');
 }
 
+/**
+ * Which edition of the events should be displayed
+ *
+ * @return integer constant
+ * @author Chris Conover
+ **/
+function get_events_edition() {
+	$dw = date('w');
+	if($dw == 1) {
+		return EVENTS_WEEKDAY_EDITION;
+	} else if($dw == 5) {
+		return EVENTS_WEEKEND_EDITION;
+	} else {
+		return False;
+	}
+}
+
+/**
+ * Utilizes event_get_data to fetch the date range
+ * and events for the next weekday edition of the event
+ * version starting from the nearest monday going forward
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_weekday_events($options = array()) {
+	$events = array();
+
+	// Today might not be Monday
+	$day_diff = get_next_monday_diff();
+
+	// Fetch the events for Monday through Friday
+	$start_date = NULL;
+	$end_date   = NULL;
+	for($i = 0; $i < 5; $i++) { 
+		$date = date_add((new DateTime()), new DateInterval('P0Y'.($day_diff + $i).'DT0H0M'));
+		
+		if($i == 0) {
+			$start_date = $date;
+		} else if($i == 4) {
+			$end_date = $date;
+		}
+
+		$date_parts  = getdate($date->getTimestamp());
+		$options     = array_merge($options,array('y'=>$date_parts['year'], 'm'=>$date_parts['mon'], 'd'=>$date_parts['mday']));
+		array_push($events, get_event_data($options));
+	}
+	return array('events'=>$events, 'start_date'=>$start_date, 'end_date'=>$end_date);
+}
+
+/**
+ * Calculate the how mnay days ahead the next
+ * Monday is from today
+ *
+ * @return integer
+ * @author Chris Conover
+ **/
+ function get_next_monday_diff() {
+ 	$current_day = date('w');
+	$day_diff    = 0;
+
+	switch($current_day) {
+		case 0:
+			$day_diff = 1;
+			break;
+		case 1:
+			$day_diff = 0;
+			break;
+		case 2:
+			$day_diff = 6;
+			break;
+		case 3:
+			$day_diff = 5;
+			break;
+		case 4:
+			$day_diff = 4;
+			break;
+		case 5:
+			$day_diff = 3;
+			break;
+		case 6:
+			$day_diff = 2;
+			break;
+	}
+	return $day_diff;
+}
 ?>

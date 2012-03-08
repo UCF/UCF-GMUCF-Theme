@@ -60,8 +60,111 @@ switch($edition) {
 							<td style="width:235px;font-size:37px;font-weight:200;text-align:right;">
 								<?=date('n/j', $start_date->getTimestamp()).'-'.date('n/j', $end_date->getTimestamp())?>
 							</td>
+						</tr>
+					</table>
 				</td>
-
+			</tr>
+			<tr>
+				<? $weather = get_extended_weather(); ?>
+				<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
+						<tr>
+							<td style="width:120px;">
+								<table width="120" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 120px; margin:0; background-color:#FFF;">
+									<tr>
+										<td style="width:60px">
+											<span>TODAY</span>
+											<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[0]['image']?>.png" />
+										</td>
+										<td>
+											<?=$weather[0]['high']?>&deg;
+											<br />
+											High
+											<br />
+											<?=$weather[0]['low']?>&deg;
+											<br />
+											Low
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td style="width:120px;">
+								<table width="120" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 120px; margin:0; background-color:#FFF;">
+									<tr>
+										<td style="width:60px">
+											<span>TOMORROW</span>
+											<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[1]['image']?>.png" />
+										</td>
+										<td>
+											<?=$weather[1]['high']?>&deg;
+											<br />
+											High
+											<br />
+											<?=$weather[1]['low']?>&deg;
+											<br />
+											Low
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td style="width:120px;">
+								<table width="120" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 120px; margin:0; background-color:#FFF;">
+									<tr>
+										<td style="width:60px">
+											<span>WEDNESDAY</span>
+											<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[2]['image']?>.png" />
+										</td>
+										<td>
+											<?=$weather[2]['high']?>&deg;
+											<br />
+											High
+											<br />
+											<?=$weather[2]['low']?>&deg;
+											<br />
+											Low
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td style="width:120px;">
+								<table width="120" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 120px; margin:0; background-color:#FFF;">
+									<tr>
+										<td style="width:60px">
+											<span>THURSDAY</span>
+											<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[3]['image']?>.png" />
+										</td>
+										<td>
+											<?=$weather[3]['high']?>&deg;
+											<br />
+											High
+											<br />
+											<?=$weather[3]['low']?>&deg;
+											<br />
+											Low
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td style="width:120px;">
+								<table width="120" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 120px; margin:0; background-color:#FFF;">
+									<tr>
+										<td style="width:60px">
+											<span>FRIDAY</span>
+											<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[4]['image']?>.png" />
+										</td>
+										<td>
+											<?=$weather[4]['high']?>&deg;
+											<br />
+											High
+											<br />
+											<?=$weather[4]['low']?>&deg;
+											<br />
+											Low
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
 			</tr>
 		</table>
 	</body>
