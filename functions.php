@@ -251,9 +251,7 @@ function get_event_data($options = array())
 	
 	$cache_key = $cache_key_prefix.implode('', $options);
 
-	if(CLEAR_CACHE || ($events = get_transient($cache_key)) !== False) {
-		return $events;
-	} else {
+	if(CLEAR_CACHE || ($events = get_transient($cache_key)) === False) {
 		$events = array();
 		$context = stream_context_create(
 				array(
@@ -278,8 +276,8 @@ function get_event_data($options = array())
 		}
 
 		set_transient($cache_key, $events, EVENTS_CACHE_DURATION);
-		return $events;
 	}
+	return $events;
 }
 
 /**
@@ -678,7 +676,7 @@ function get_events_edition() {
  * @author Chris Conover
  **/
 function get_weekday_events($options = array()) {
-	$events = array();
+	$days = array();
 
 	// Today might not be Monday
 	$day_diff = get_next_monday_diff();
@@ -697,9 +695,36 @@ function get_weekday_events($options = array()) {
 
 		$date_parts  = getdate($date->getTimestamp());
 		$options     = array_merge($options,array('y'=>$date_parts['year'], 'm'=>$date_parts['mon'], 'd'=>$date_parts['mday']));
-		array_push($events, get_event_data($options));
+		array_push($days, get_event_data($options));
 	}
-	return array('events'=>$events, 'start_date'=>$start_date, 'end_date'=>$end_date);
+
+	// Organize the events by half our interval
+	$organized_days = array();
+	foreach($days as $day) {
+		$organized_day = array('morning'=>array(),'afternoon'=>array(),'evening'=>array());
+		foreach($day as $event) {
+			$start_timestamp = strtotime($event->starts);
+			$start_hour      = (int)date('G', $start_timestamp);
+
+			$part = date('g:i A', $start_timestamp);
+
+			if($start_hour < 12) {
+				$section = 'morning';	
+			} else if($start_hour >= 12 && $start_hour < 18) {
+				$section = 'afternoon'; 
+			} else if($start_hour >= 18) {
+				$section = 'evening';
+			}
+			
+			if(isset($organized_day[$section][$part])) {
+				array_push($organized_day[$section][$part], $event);
+			} else {
+				$organized_day[$section][$part] = array($event);
+			}
+		}
+		array_push($organized_days, $organized_day);
+	}
+	return array('days'=>$organized_days, 'start_date'=>$start_date, 'end_date'=>$end_date);
 }
 
 /**

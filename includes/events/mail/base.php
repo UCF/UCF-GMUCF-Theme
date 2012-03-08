@@ -170,9 +170,150 @@ switch($edition) {
 					<div class="clear">&nbsp;</div>
 				</td>
 			</tr>
+			<? for($i = 0; $i < count($days); $i++) { 
+					$day       = $days[$i];
+					$title     = 'Today';
+					$event_day = 'Monday';
+					switch($i) {
+						case 1:
+							$title     = 'Tomorrow';
+							$event_day = 'Tuesday';
+							break;
+						case 2:
+							$title = $event_day = 'Wednesday';
+							break;
+						case 3:
+							$title = $event_day = 'Thursday';
+							break;
+						case 4:
+							$title = $event_day = 'Friday';
+							break;
+					}
+					$title_date = date_add($start_date, new DateInterval('P0Y'.$i.'DT0H0M'));
+			?>
 			<tr>
-				<td style="border-top:1px solid #ddd;padding-top:35px;">
-					aaa
+				<td style="border-top:1px solid #ddd;padding-top:35px;padding-bottom:35px;">
+					<span style="font-size:25px;font-weight:500;padding-right:15px;"><?=$title?>, <?=date('n/j', $title_date->getTimestamp())?></span>  <a href="http://www.google.com" style="font-size:15px;color:#9d1a1a;">View all <?=$event_day?> events</a>
+					<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;padding-top:20px;">
+						<tr>
+							<td style="width:200px;border-right:1px solid #ddd;vertical-align:top;padding-right:15px;">
+								<span style="color:#1c658e;font-size:15px;font-weight:500;">MORNING</span><br />
+								<? if(count($day['morning']) == 0){ ?>
+								<p style="margin:0;padding-top:15px;">No Morning Events</p>
+								<? } else { ?>
+								<ul style="margin:0;padding:10px 0 0 0;width:100%;">
+									<? foreach($days[0]['morning'] as $section=>$events){ ?>
+									<li style="list-style-type:none;padding-bottom:15px;">
+										<span style="color:#9d1a1a;font-weight:bold;font-size:12px;"><?=$section?></span>
+										<ul style="padding:3px 0 0 0;margin:0;">
+											<? foreach($events as $event){ ?>
+											<li style="list-style-type:none;padding-bottom:15px;">
+												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;text-decoration:underline;">
+													<?=esc_html($event->title)?>
+												</a>
+											</li>
+											<? } ?>
+										</ul>
+									</li>
+									<? } ?>
+								</ul>
+								<? } ?>
+							</td>
+							<td style="width:200px;border-right:1px solid #ddd;padding-left:15px;vertical-align:top;padding-right:15px;">
+								<span style="color:#1c658e;font-size:15px;font-weight:500;">AFTERNOON</span><br />
+								<? if(count($day['afternoon']) == 0){ ?>
+								<p style="margin:0;padding-top:15px;">No Afternoon Events</p>
+								<? } else { ?>
+								<ul style="margin:0;padding:10px 0 0 0;width:100%;">
+									<? foreach($days[0]['afternoon'] as $section=>$events){ ?>
+									<li style="list-style-type:none;padding-bottom:15px;">
+										<span style="color:#9d1a1a;font-weight:bold;font-size:12px;"><?=$section?></span>
+										<ul style="padding:3px 0 0 0;margin:0;">
+											<? foreach($events as $event){ ?>
+											<li style="list-style-type:none;padding-bottom:15px;">
+												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;text-decoration:underline;">
+													<?=esc_html($event->title)?>
+												</a>
+											</li>
+											<? } ?>
+										</ul>
+									</li>
+									<? } ?>
+								</ul>
+								<? } ?>
+							</td>
+							<td style="width:200px;padding-left:15px;vertical-align:top;">
+								<span style="color:#1c658e;font-size:15px;font-weight:500;">EVENING</span><br  />
+								<? if(count($day['evening']) == 0){ ?>
+								<p style="margin:0;padding-top:15px;">No Evening Events</p>
+								<? } else { ?>
+								<ul style="margin:0;padding:10px 0 0 0;width:100%;">
+									<? foreach($day['evening'] as $section=>$events){ ?>
+									<li style="list-style-type:none;padding-bottom:15px;">
+										<span style="color:#9d1a1a;font-weight:bold;font-size:12px;"><?=$section?></span>
+										<ul style="padding:3px 0 0 0;margin:0;">
+											<? foreach($events as $event){ ?>
+											<li style="list-style-type:none;padding-bottom:15px;">
+												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;text-decoration:underline;">
+													<?=esc_html($event->title)?>
+												</a>
+											</li>
+											<? } ?>
+										</ul>
+									</li>
+									<? } ?>
+								</ul>
+								<? } ?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<? } ?>
+			<tr>
+				<td style="padding-top:30px;">
+					<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto; background-color:#FFF;padding-top:15px;border-top:1px solid #ddd;padding-bottom:15px;">
+						<tr>
+							<td style="width:360px;vertical-align:top;">
+								<table border="0" align="left" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="margin:0; background-color:#FFF;">
+									<tr>
+										<td colspan="3" style="font-size:22px;font-weight:100;padding-bottom:3px;">
+											Get Social:
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="http://www.facebook.com/ucf/" style="text-decoration:none;">
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/facebook.png" />
+											</a>
+										</td>
+										<td style="padding-left:10px;">
+											<a href="http://www.youtube.com/user/UCF/" style="text-decoration:none;">
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/youtube.png" />
+											</a>
+										</td>
+										<td style="padding-left:10px;">
+											<a href="http://www.twitter.com/UCF/" style="text-decoration:none;">
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/twitter.png" />
+											</a>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td style="width:230px;padding-left:40px;vertical-align:top;">
+								<a href="http://www.ucf.edu">
+									<img src="<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png" style="border:0"/>
+								</a>
+								<p style="line-height:1.4em;font-size:15px;margin:0;padding:0;">
+									4000 Central Florida Blvd.
+									<br />
+									Orlando, FL 32816
+									<br />
+									407 823 2000
+								</p>
+							</td>
+						</tr>
+					</table>
 				</td>
 			</tr>
 		</table>
