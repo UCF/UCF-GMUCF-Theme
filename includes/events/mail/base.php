@@ -202,7 +202,7 @@ switch($edition) {
 								<p style="margin:0;padding-top:15px;">No Morning Events</p>
 								<? } else { ?>
 								<ul style="margin:0;padding:10px 0 0 0;width:100%;">
-									<? foreach($days[0]['morning'] as $section=>$events){ ?>
+									<? foreach($day['morning'] as $section=>$events){ ?>
 									<li style="list-style-type:none;padding-bottom:15px;">
 										<span style="color:#9d1a1a;font-weight:bold;font-size:12px;"><?=$section?></span>
 										<ul style="padding:3px 0 0 0;margin:0;">
@@ -225,7 +225,7 @@ switch($edition) {
 								<p style="margin:0;padding-top:15px;">No Afternoon Events</p>
 								<? } else { ?>
 								<ul style="margin:0;padding:10px 0 0 0;width:100%;">
-									<? foreach($days[0]['afternoon'] as $section=>$events){ ?>
+									<? foreach($day['afternoon'] as $section=>$events){ ?>
 									<li style="list-style-type:none;padding-bottom:15px;">
 										<span style="color:#9d1a1a;font-weight:bold;font-size:12px;"><?=$section?></span>
 										<ul style="padding:3px 0 0 0;margin:0;">
