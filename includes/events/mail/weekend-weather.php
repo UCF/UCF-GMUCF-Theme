@@ -4,7 +4,7 @@
 		<? $weather = get_weekend_weather(); ?>
 		<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:auto; background-color:#FFF;">
 			<tr>
-				<td style="width:120px;;border-right:1px solid #ddd;">
+				<td style="width:120px;border-right:1px solid #ddd;padding-right:15px;">
 					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:90px">
@@ -23,7 +23,7 @@
 						</tr>
 					</table>
 				</td>
-				<td style="width:120px;;border-right:1px solid #ddd;padding-left:10px;">
+				<td style="width:120px;border-right:1px solid #ddd;padding-left:20px;padding-right:15px;">
 					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:90px">
@@ -42,7 +42,7 @@
 						</tr>
 					</table>
 				</td>
-				<td style="width:120px;;border-right:1px solid #ddd;padding-left:10px;">
+				<td style="width:120px;border-right:1px solid #ddd;padding-left:20px;padding-right:15px;">
 					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:90px">
@@ -61,7 +61,7 @@
 						</tr>
 					</table>
 				</td>
-				<td style="width:120px;;padding-left:10px;">
+				<td style="width:120px;padding-left:20px;">
 					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:90px">
