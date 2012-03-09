@@ -209,8 +209,8 @@ switch($edition) {
 												<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
 											</span>	
 											<? foreach($events as $event){ ?>
-											<div style="list-style-type:none;margin-bottom:15px;">
-												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#000000;text-decoration:underline;">
+											<div style="margin-bottom:15px;color:blue;">
+												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
 													<?=esc_html($event->title)?>
 												</a>
 											</div>
@@ -231,8 +231,8 @@ switch($edition) {
 												<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
 											</span>	
 											<? foreach($events as $event){ ?>
-											<div style="list-style-type:none;margin-bottom:15px;">
-												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#000000;text-decoration:underline;">
+											<div style="margin-bottom:15px;color:blue;">
+												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
 													<?=esc_html($event->title)?>
 												</a>
 											</div>
@@ -253,8 +253,8 @@ switch($edition) {
 												<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
 											</span>	
 											<? foreach($events as $event){ ?>
-											<div style="list-style-type:none;margin-bottom:15px;">
-												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#000000;text-decoration:underline;">
+											<div style="margin-bottom:15px;color:blue;">
+												<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
 													<?=esc_html($event->title)?>
 												</a>
 											</div>
