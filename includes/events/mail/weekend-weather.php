@@ -2,10 +2,10 @@
 	<td>
 		<div class="clear">&nbsp;</div>
 		<? $weather = get_weekend_weather(); ?>
-		<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
+		<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:auto; background-color:#FFF;">
 			<tr>
-				<td style="width:120px;;border-right:1px solid #ddd;padding-left:20px;">
-					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px;; margin:0; background-color:#FFF;">
+				<td style="width:120px;;border-right:1px solid #ddd;">
+					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:90px">
 								<span style="font-size:10px;font-weight:bold;">TODAY</span>
@@ -24,7 +24,7 @@
 					</table>
 				</td>
 				<td style="width:120px;;border-right:1px solid #ddd;padding-left:10px;">
-					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px;; margin:0; background-color:#FFF;">
+					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:90px">
 								<span style="font-size:10px;font-weight:bold;">TOMORROW</span>
@@ -43,7 +43,7 @@
 					</table>
 				</td>
 				<td style="width:120px;;border-right:1px solid #ddd;padding-left:10px;">
-					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px;; margin:0; background-color:#FFF;">
+					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:90px">
 								<span style="font-size:10px;font-weight:bold;">SUNDAY</span>
@@ -62,7 +62,7 @@
 					</table>
 				</td>
 				<td style="width:120px;;padding-left:10px;">
-					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px;; margin:0; background-color:#FFF;">
+					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:90px">
 								<span style="font-size:10px;font-weight:bold;">MONDAY</span>
