@@ -485,9 +485,29 @@ function get_extended_weather() {
 			set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
 		}
 	}
+	return $weather;
+}
 
-	// Since this is the 10 day forcast, slice it down to just Monday through Friday
-	return array_slice($weather, get_next_monday_diff(), 5);
+/**
+ * Wraps get_extended_weather to slice out the
+ * weekday weather
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_weekday_weather() {
+	return array_slice(get_extended_weather(), get_next_monday_diff(), 5);
+}
+
+/**
+ * Wraps get_extended_weather to slice out the
+ * weekend weather
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_weekend_weather() {
+	return array_slice(get_extended_weather(), get_next_friday_diff(), 4);
 }
 
 /**
@@ -728,6 +748,66 @@ function get_weekday_events($options = array()) {
 }
 
 /**
+ * Utilizes event_get_data to fetch the date range
+ * and events for the next weekend edition of the event
+ * version starting from the nearest monday going forward
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_weekend_events($options = array()) {
+	$days = array();
+
+	// Today might not be Friday
+	$day_diff = get_next_friday_diff();
+
+	// Fetch the events for Monday through Friday
+	$start_date = NULL;
+	$end_date   = NULL;
+	for($i = 0; $i < 4; $i++) { 
+		$date = date_add((new DateTime()), new DateInterval('P0Y'.($day_diff + $i).'DT0H0M'));
+		
+		if($i == 0) {
+			$start_date = $date;
+		} else if($i == 3) {
+			$end_date = $date;
+		}
+
+		$date_parts  = getdate($date->getTimestamp());
+		$options     = array_merge($options,array('y'=>$date_parts['year'], 'm'=>$date_parts['mon'], 'd'=>$date_parts['mday']));
+		array_push($days, get_event_data($options));
+	}
+
+	// Organize the events by half our interval
+	$organized_days = array();
+	foreach($days as $day) {
+		$organized_day = array('morning'=>array(),'afternoon'=>array(),'evening'=>array());
+		foreach($day as $event) {
+			$start_timestamp = strtotime($event->starts);
+			$start_hour      = (int)date('G', $start_timestamp);
+
+			$part = date('g:i A', $start_timestamp);
+
+			if($start_hour < 12) {
+				$section = 'morning';	
+			} else if($start_hour >= 12 && $start_hour < 18) {
+				$section = 'afternoon'; 
+			} else if($start_hour >= 18) {
+				$section = 'evening';
+			}
+			
+			if(isset($organized_day[$section][$part])) {
+				array_push($organized_day[$section][$part], $event);
+			} else {
+				$organized_day[$section][$part] = array($event);
+			}
+		}
+		array_push($organized_days, $organized_day);
+	}
+	return array('days'=>$organized_days, 'start_date'=>$start_date, 'end_date'=>$end_date);
+}
+
+/**
  * Calculate the how mnay days ahead the next
  * Monday is from today
  *
@@ -763,4 +843,42 @@ function get_weekday_events($options = array()) {
 	}
 	return $day_diff;
 }
+
+/**
+ * Calculate the how mnay days ahead the next
+ * Friday is from today
+ *
+ * @return integer
+ * @author Chris Conover
+ **/
+ function get_next_friday_diff() {
+ 	$current_day = date('w');
+	$day_diff    = 0;
+
+	switch($current_day) {
+		case 0:
+			$day_diff = 5;
+			break;
+		case 1:
+			$day_diff = 4;
+			break;
+		case 2:
+			$day_diff = 3;
+			break;
+		case 3:
+			$day_diff = 2;
+			break;
+		case 4:
+			$day_diff = 1;
+			break;
+		case 5:
+			$day_diff = 0;
+			break;
+		case 6:
+			$day_diff = 6;
+			break;
+	}
+	return $day_diff;
+}
+
 ?>
