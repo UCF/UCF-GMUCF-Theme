@@ -33,7 +33,7 @@
 						<? foreach($day['morning'] as $section=>$events){ ?>
 							<div style="list-style-type:none;margin-bottom:5px;">
 								<span style="color:#9d1a1a;font-weight:bold;font-size:12px;">
-									<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
+									<?=($section == '12:00 AM' ? 'All Day' : $section)?>
 								</span>	
 								<? foreach($events as $event){ ?>
 								<div style="margin-bottom:15px;color:blue;">
@@ -77,7 +77,7 @@
 						<? foreach($day['evening'] as $section=>$events){ ?>
 							<div style="list-style-type:none;margin-bottom:5px;">
 								<span style="color:#9d1a1a;font-weight:bold;font-size:12px;">
-									<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
+									<?=($section == '12:00 AM' ? 'All Day' : $section)?>
 								</span>	
 								<? foreach($events as $event){ ?>
 								<div style="margin-bottom:15px;color:blue;">
