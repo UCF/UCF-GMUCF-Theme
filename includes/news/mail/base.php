@@ -56,18 +56,18 @@
 							<tr>
 								<td style="padding-top:20px">
 									<? get_template_part('includes/news/mail/top-story'); ?>
-									<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto;background-color:#FFF;">
+									<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto;background-color:#FFF;">
 										<?=get_template_part('includes/news/mail/alert')?>
 										<tr>
-											<td style="width:330px;padding-top:20px;vertical-align:top;">
+											<td style="width:330px;padding-top:30px;vertical-align:top;">
 												<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
 													<tr>
-														<td style="border-bottom:1px solid #ddd;padding-bottom:20px;">
+														<td style="border-bottom:1px solid #ddd;padding-bottom:30px;">
 															<? get_template_part('includes/news/mail/featured-stories'); ?>
 														</td>
 													</tr>
 													<tr>
-														<td style="padding-top:20px;">
+														<td style="padding-top:30px;padding-bottom:30px;">
 															<? get_template_part('includes/news/mail/announcements'); ?>
 														<td>
 													</tr>
@@ -75,10 +75,7 @@
 											</td>
 										</tr>
 									</table>
-									<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto; background-color:#FFF;padding-top:45px;">
-
-									</table>
-									<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto; background-color:#FFF;padding-top:15px;border-top:1px solid #ddd;padding-bottom:15px;">
+									<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto; background-color:#FFF;padding-top:15px;border-top:1px solid #ddd;padding-bottom:15px;">
 										<tr>
 											<td style="width:330px;vertical-align:top;">
 												<table border="0" align="left" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="margin:0; background-color:#FFF;">

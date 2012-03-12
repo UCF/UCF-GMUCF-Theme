@@ -6,7 +6,7 @@
 		extract($details);
 		if($count == 2) break;
 	?>
-		<td style="vertical-align:top;width:260px;<?=($count == 0) ? ' padding-right:15px;': ''?>">
+		<td style="vertical-align:top;width:250px;<?=($count == 0) ? ' padding-right:25px;': ''?>">
 			<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
 				<tr>
 					<td style="width:85px;vertical-align:top;">

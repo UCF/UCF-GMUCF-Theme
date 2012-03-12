@@ -4,7 +4,7 @@ extract(get_top_story_details());
 <a href="<?=$read_more_uri?>" style="border:none;text-decoration:none;">
 	<img style="border:none;" src="<?=$thumbnail_src?>" />
 </a>
-<table width="560" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 560px; margin:0 auto;padding-top:20px; background-color:#FFF;border-bottom:1px solid #ddd;">
+<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:600px; margin:0 auto;padding-top:20px; background-color:#FFF;border-bottom:1px solid #ddd;">
 	<tr>
 		<td colspan="2" style="padding-bottom:15px;">
 			<a href="<?=$read_more_uri?>" style="color:#333;text-decoration:none;">
