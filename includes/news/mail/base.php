@@ -18,72 +18,40 @@
 			<table width="640" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 640px; margin:0; background-color:#FFF;">
 				<tr>
 					<td>
-						<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:20px auto 0 auto; background-color:#FFF;border-bottom:1px solid #ddd;">
-							<tr style="text-align:center;border-bottom:1px solid #ddd;">
-								<? $weather = get_weather(); ?>
-								<td style="font-weight:bold;border-right:1px solid #ddd;width:160px;">
-									<table style="padding-left:20px">
+						<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:20px auto 0 auto; background-color:#FFF;border-bottom:1px solid #ddd;padding-bottom:10px;">
+							<tr>
+								<td style="font-size:20px;border-right:1px solid #ddd;font-weight:100;width:180px;">
+									<?=date('l, F j')?>
+								</td>
+								<td style="width:180px;border-right:1px solid #ddd;padding-left:10px;">
+									<? $weather = get_weather(); ?>
+									<table>
 										<tr>
-											<td style="font-size:14px;">TODAY</td>
-											<td></td>
-										</tr>
-										<tr>
-											<td style="width:60px;"><img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" /></td>
+											<td style="width:30px;">
+												<img  src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" width="30" /> 
+											</td>
 											<td>
-												<span style="font-size:24px;position:relative;left:5px;">
-													<?=$weather['today']['temp']?>&deg;
-												</span>
-												<span style="font-size:18px;font-weight:100;display:block;">High</span>
+												High <strong><?= $weather['today']['temp']?></strong>&deg;
+											</td>
+											<td style="width:30px;padding-left:10px;">
+												<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" width="30" /> 
+											</td>
+											<td>
+												Low <strong><?= $weather['tonight']['temp']?></strong>&deg;
 											</td>
 										</tr>
 									</table>
 								</td>
-								<td style="font-weight:bold;border-right:1px solid #ddd;width:225px;">
-									<table style="margin-left:20px;">
-										<tr>
-											<td style="font-size:14px;">TONIGHT</td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td><img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['image']?>.png" /></td>
-											<td style="text-align:center;">
-												<span style="font-size:24px;position:relative;left:5px;">
-													<?=$weather['tonight']['temp']?>&deg;
-												</span>
-												<span style="font-size:18px;font-weight:100;display:block;">Low</span>
-											</td>
-											<td style="text-align:left;font-weight:100;padding-left:17px;">
-												<a style="color:#333;font-size:10px;text-decoration:underline;" href="<?=WEATHER_URL?>">
-													More<br />Weather
-												</a>
-											</td>
-										</tr>
-									</table>
-								</td>
-								<td style="border-right:1px solid #ddd;width:200px">
-									<span style="font-size:18px;letter-spacing:1px;display:block;margin-bottom:7px;">
-										<?=strtoupper(date('l'))?>
-									</span>
-									<span style="font-size:18px;letter-spacing:1.2px;font-weight:100;">
-										<?=date('F j')?>
-									</span>
-								</td>
-								<td style="text-align:left; padding-left:10px;width:65px;padding-right:20px;">
-									<a style="color:#333;font-size:12px;line-height:1.5em;display:block;text-decoration:underline;" href="http://www.history.com/this-day-in-history">
+								<td style="padding-left:20px;width:110px;">
+									<a style="font-size:15px;" href="http://www.history.com/this-day-in-history">
 										This Day in History
 									</a>
 								</td>
 							</tr>
-							<tr>
-								<td colspan="4">
-									&nbsp;
-								</td>
-							</tr>
 						</table>
-						<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto;padding-top:35px; background-color:#FFF;">
+						<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto;padding-top:25px; background-color:#FFF;">
 							<tr>
-								<td style="font-size:40px;font-weight:100;">Good Morning, !@!First Name!@!.</td>
+								<td style="font-size:35px;font-weight:100;">Good Morning, !@!First Name!@!.</td>
 							</tr>
 							<tr>
 								<td style="padding-top:20px">
@@ -104,9 +72,6 @@
 														<td>
 													</tr>
 												</table>
-											</td>
-											<td style="width:230px;padding-top:20px;padding-left:20px;vertical-align:top;">
-												<? get_template_part('includes/news/mail/events'); ?>
 											</td>
 										</tr>
 									</table>

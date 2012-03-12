@@ -601,7 +601,7 @@ function get_top_story_details() {
 function get_featured_stories_details() {
 	$stories = array();
 
-	$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=95');
+	$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=75');
 
 	if(!is_wp_error($rss)) {
 		$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));

@@ -1,27 +1,31 @@
-<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
+<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;padding-bottom:15px;">
+		<tr>
 <?
+	$count = 0;
 	foreach(get_featured_stories_details() as $details) {
 		extract($details);
+		if($count == 2) break;
 	?>
-		<tr>
-			<td style="vertical-align:top;padding-bottom:40px;">
-				<a style="color:#333;text-decoration:none;" href="<?=$permalink?>">
-					<img src="<?=$thumbnail_src?>" style="border:none;" />
-				</a>
-			</td>
-			<td style="padding-left:20px;padding-bottom:40px;">
-				<a style="font-size:16px;color:#333;text-decoration:none;font-weight:bold;" href="<?=$permalink?>"
-					<span style="line-height:1.3em;">
-						<?=$title?>
-					</span>
-					<p style="font-family:Georgia,serif;font-size:14px;margin:3px 0 0 0;font-weight:100;line-height:1.4em;">
-						<?=$description?>
-					</p>
-				</a>
-			</td>
-		</tr>
+		<td style="vertical-align:top;width:260px;<?=($count == 0) ? ' padding-right:15px;': ''?>">
+			<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
+				<tr>
+					<td style="width:85px;vertical-align:top;">
+						<a style="color:#333;text-decoration:none;" href="<?=$permalink?>">
+							<img src="<?=$thumbnail_src?>" style="border:none;" />
+						</a>
+					</td>
+					<td style="200px;vertical-align:top;">
+						<span style="font-weight:bold;font-size:14px;"><?=$title?></span>
+						<br />
+						<span style="font-weight:200;font-size:14px;"><?=truncate($description, 20)?></span>
+					</td>
+				</tr>
+			</table>
+		</td>
 		<?
+		$count++;
 	}
 ?>
+	</tr>
 </table>
-<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=FEATURED_STORIES_MORE_URL?>">More UCF Stories</a>
+<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;text-align:right;display:block;" href="<?=FEATURED_STORIES_MORE_URL?>">More UCF Stories</a>
