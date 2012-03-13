@@ -35,7 +35,7 @@ switch($edition) {
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="width=640" />
-		<title>Good Morning UCF - <?=date('F j')?></title>
+		<title>This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> at UCF</title>
 		<style type="text/css">
 			<!--
 			html, body { margin:0px; padding:0; background-color:#FFF; color:#333; font-family:"Helvetica Neue", Helvetica, sans-serif; }
