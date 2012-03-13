@@ -46,6 +46,11 @@ switch($edition) {
 	<body bgcolor="#FFF">
 		<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 			<tr>
+				<div style="background-color:beige;text-align:center;font-size:16px;border-left:1px solid #333;border-right:1px solid #333;border-bottom:1px solid #333;padding:10px;margin-left:">
+					Submit feedback to <a style="color:blue" href="mailto:webcom@ucf.edu?subject=GMUCF%20Feedback">webcom@ucf.edu</a>
+				</div>
+			</tr>
+			<tr>
 				<td style="padding-top:30px;font-size:25px;font-weight:200;">
 					!@!First Name!@!, check out:
 				</td>
