@@ -85,14 +85,31 @@
 						<tr>
 							<td style="width:60px">
 								<span style="font-size:10px;font-weight:bold;">FRIDAY</span>
-								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[4]['image']?>.png" />
+								<? if($weather[4]['img'] == '') {?>
+									<br />
+									<span style="font-size:15px;font-weight:bold;">???</span>
+								<? } else { ?>
+									<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[4]['image']?>.png" />
+								<? } ?>
 							</td>
 							<td>
-								<span style="font-size:18px;font-weight:bold"><?=$weather[4]['high']?>&deg;</span>
+								<span style="font-size:18px;font-weight:bold">
+									<? if($weather[4]['high'] == '') {?>
+										?
+									<? } else { ?>
+										<?=$weather[4]['high']?>&deg;
+									<? } ?>
+								</span>
 								<br />
 								<span style="font-size:12px;">High</span>
 								<br />
-								<span style="font-size:18px;font-weight:bold"><?=$weather[4]['low']?>&deg;</span>
+								<span style="font-size:18px;font-weight:bold">
+									<? if($weather[4]['low'] == '') {?>
+										?
+									<? } else { ?>
+										<?=$weather[4]['low']?>&deg;
+									<? } ?>
+								</span>
 								<br />
 								<span style="font-size:12px;">Low</span>
 							</td>
