@@ -37,6 +37,11 @@ define('WEATHER_CACHE_DURATION', 60 * 30); // weather
 define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
 
+define('WORD_OF_THE_DAY_URL', 'http://api.wordnik.com/v4/words.json/wordOfTheDay');
+define('WORD_OF_THE_DAY_API_KEY', $theme_options['wordnik_api_key']);
+
+define('HTTP_TIMEOUT', 3);
+
 # Custom Image Sizes
 add_image_size('top_story', 600, 308, True);
 
@@ -154,6 +159,15 @@ Config::$theme_settings = array(
 			'default'     => 10,
 			'value'       => $theme_options['search_per_page'],
 		)),
+	),
+	'Wordnik' => array(
+		new TextField(array(
+			'name'        => 'API Key',
+			'id'          => THEME_OPTIONS_NAME.'[wordnik_api_key]',
+			'description' => 'API Key for the Wordnik API',
+			'default'     => null,
+			'value'       => $theme_options['wordnik_api_key']
+		))
 	)
 );
 
@@ -601,7 +615,7 @@ function get_top_story_details() {
 function get_featured_stories_details() {
 	$stories = array();
 
-	$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=75');
+	$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=95');
 
 	if(!is_wp_error($rss)) {
 		$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
@@ -879,6 +893,38 @@ function get_weekend_events($options = array()) {
 			break;
 	}
 	return $day_diff;
+}
+
+/**
+ * Fetch word of the day
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_word_of_the_day() {
+	
+	$cache_key = 'wotd';
+
+	if(CLEAR_CACHE || ($wotd = get_transient($cache_key)) === False) {
+		$wotd = array();
+		$context = stream_context_create(
+				array(
+					'http' => array(
+							'method'  => 'GET',
+							'timeout' => HTTP_TIMEOUT
+						)
+				)
+			);
+		$params = array('api_key' => WORD_OF_THE_DAY_API_KEY);
+		if( ($raw_wotd = @file_get_contents(WORD_OF_THE_DAY_URL.'?'.http_build_query($params), false, $context)) !== FALSE ) {
+			if( !is_null($json_wotd = json_decode($raw_wotd)) ) {
+				$wotd = $json_wotd;
+			}
+		}
+
+		set_transient($cache_key, $wotd, WOTD_CACHE_DURATION);
+	}
+	return $wotd;
 }
 
 ?>

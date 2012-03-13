@@ -67,6 +67,27 @@
 														</td>
 													</tr>
 													<tr>
+														<td style="border-bottom:1px solid #ddd;padding-bottom:30px;padding-top:30px;">
+															<? $wotd = get_word_of_the_day(); ?>
+															<p style="font-size:22px;font-weight:100;display:block;">Word of the Day</p>
+															<span style="font-size:30px;font-weight:100;"><?=$wotd->word?></span>
+															<br />
+															<br />
+															<span style="font-size:15px;">
+																Definition:<br />
+																<? for($i = 1; $i <= count($wotd->definitions); $i++) {?>
+																	<?=$i.'. '.$wotd->definitions[$i - 1]->text?><br /><br />
+																<? } ?>
+																Examples:<br />
+															</span>
+															<span style="font-size:13px;">
+																<? for($i = 1; $i <= count($wotd->examples); $i++) {?>
+																	<?='- '.$wotd->examples[$i - 1]->text?> (<?=$wotd->examples[$i - 1]->title?>)<br /><br />
+																<? } ?>
+															</span>
+														</td>
+													</tr>
+													<tr>
 														<td style="padding-top:30px;padding-bottom:30px;">
 															<? get_template_part('includes/news/mail/announcements'); ?>
 														<td>
