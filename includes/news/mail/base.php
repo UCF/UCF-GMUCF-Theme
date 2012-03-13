@@ -3,7 +3,7 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="width=640" />
-		<title>Good Morning UCF - <?=date('F j')?></title>
+		<title>Good <?=(int)date('G') >= 12 ? 'Afternoon' : 'Morning'?> UCF - <?=date('F j')?></title>
 		<style type="text/css">
 			<!--
 			html, body { margin:0px; padding:0; background-color:#FFF; color:#333; font-family:Helvetica, sans-serif; }
@@ -56,7 +56,7 @@
 						</table>
 						<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto;padding-top:25px; background-color:#FFF;">
 							<tr>
-								<td style="font-size:35px;font-weight:100;">Good Morning, !@!First Name!@!.</td>
+								<td style="font-size:35px;font-weight:100;">Good <?=(int)date('G') >= 12 ? 'Afternoon' : 'Morning'?>, !@!First Name!@!.</td>
 							</tr>
 							<tr>
 								<td style="padding-top:20px">
