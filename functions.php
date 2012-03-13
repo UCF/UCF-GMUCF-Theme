@@ -22,7 +22,6 @@ define('CB_DOMAIN', $theme_options['cb_domain']);
 
 define('EVENTS_URL', 'http://events.ucf.edu');
 define('EVENTS_CALENDAR_ID', 1);
-define('EVENTS_FETCH_TIMEOUT', 3); // seconds
 define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
 define('FEATURED_STORIES_RSS_URL', 'http://today.ucf.edu/tag/main-site-stories/feed/');
@@ -40,7 +39,7 @@ define('EVENTS_WEEKDAY_EDITION', 1);
 define('WORD_OF_THE_DAY_URL', 'http://api.wordnik.com/v4/words.json/wordOfTheDay');
 define('WORD_OF_THE_DAY_API_KEY', $theme_options['wordnik_api_key']);
 
-define('HTTP_TIMEOUT', 3);
+define('HTTP_TIMEOUT', 3); //seconds
 
 # Custom Image Sizes
 add_image_size('top_story', 600, 308, True);
@@ -267,14 +266,7 @@ function get_event_data($options = array())
 
 	if(CLEAR_CACHE || ($events = get_transient($cache_key)) === False) {
 		$events = array();
-		$context = stream_context_create(
-				array(
-					'http' => array(
-							'method'  => 'GET',
-							'timeout' => EVENTS_FETCH_TIMEOUT
-						)
-				)
-			);
+		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
 		
 		if( ($raw_events = @file_get_contents(EVENTS_URL.'?'.http_build_query($options), false, $context)) !== FALSE ) {
 			if( !is_null($json_events = json_decode($raw_events)) ) {
@@ -342,7 +334,8 @@ function get_weather() {
 	);
 	
 	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
-		if( ($html = @file_get_contents(WEATHER_URL)) !== False) {
+		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
+		if( ($html = @file_get_contents(WEATHER_URL, false, $context)) !== False) {
 			$start_point = '<table class="twc-forecast-table twc-second">';
 			$start_point_index = stripos($html,$start_point);
 			$length = stripos($html, '</table>', $start_point_index) - ($start_point_index + strlen($start_point));
@@ -450,7 +443,8 @@ function get_extended_weather() {
 
 	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
 		$weather = array();
-		if( ($html = @file_get_contents(WEATHER_EXTENDED_URL)) !== False) {
+		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
+		if( ($html = @file_get_contents(WEATHER_EXTENDED_URL, false, $context)) !== False) {
 
 			$start_point = '<table class="twc-forecast-table twc-second">';
 			$start_point_index = stripos($html,$start_point);
@@ -906,16 +900,9 @@ function get_word_of_the_day() {
 	$cache_key = 'wotd';
 
 	if(CLEAR_CACHE || ($wotd = get_transient($cache_key)) === False) {
-		$wotd = array();
-		$context = stream_context_create(
-				array(
-					'http' => array(
-							'method'  => 'GET',
-							'timeout' => HTTP_TIMEOUT
-						)
-				)
-			);
-		$params = array('api_key' => WORD_OF_THE_DAY_API_KEY);
+		$wotd    = array();
+		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
+		$params  = array('api_key' => WORD_OF_THE_DAY_API_KEY);
 		if( ($raw_wotd = @file_get_contents(WORD_OF_THE_DAY_URL.'?'.http_build_query($params), false, $context)) !== FALSE ) {
 			if( !is_null($json_wotd = json_decode($raw_wotd)) ) {
 				$wotd = $json_wotd;
