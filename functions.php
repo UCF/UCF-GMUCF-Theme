@@ -568,10 +568,10 @@ function get_top_story_details() {
 		$thumbnail_id  = get_post_thumbnail_id($top_story->ID);
 		$image_details = wp_get_attachment_image_src($thumbnail_id, 'top_story');
 
-		$details['thumbnail_src']     = esc_html($image_details[0]);
+		$details['thumbnail_src']     = $image_details[0];
 		$details['story_title']       = esc_html($top_story->post_title);
 		$details['story_description'] = nl2br(esc_html($top_story->post_content));
-		$details['read_more_uri']     = esc_html(get_post_meta($top_story->ID, 'top_story_external_uri', True));
+		$details['read_more_uri']     = get_post_meta($top_story->ID, 'top_story_external_uri', True);
 
 	} else {
 		$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=600x308');
@@ -585,10 +585,10 @@ function get_top_story_details() {
 
 				if($enclosure && in_array($enclosure->get_type(),get_valid_enclosure_types())) {
 
-					$details['thumbnail_src']     = esc_html($enclosure->get_thumbnail());
+					$details['thumbnail_src']     = $enclosure->get_thumbnail();
 					$details['story_title']       = esc_html($rss_item->get_title());
 					$details['story_description'] = truncate(nl2br(esc_html($rss_item->get_description())));
-					$details['read_more_uri']     = esc_html($rss_item->get_permalink());
+					$details['read_more_uri']     = $rss_item->get_permalink();
 
 					if($details['thumbnail_src'] != '') {
 						set_transient('top_story_id', $rss_item->get_id());
@@ -634,7 +634,7 @@ function get_featured_stories_details() {
 				}
 				$story['title']       = esc_html($rss_item->get_title());
 				$story['description'] = truncate(esc_html($rss_item->get_description()));
-				$story['permalink']   = esc_html($rss_item->get_permalink());
+				$story['permalink']   = $rss_item->get_permalink();
 				array_push($stories, $story);
 				$count++;
 			}
@@ -661,7 +661,7 @@ function get_announcement_details() {
 				array(
 					'title'     => esc_html($rss_item->get_title()),
 					# MyOrg doesn't handle encoded ampersands correctly
-					'permalink' => str_replace('&amp;', '&', esc_html($rss_item->get_permalink()))
+					'permalink' => $rss_item->get_permalink()
 				)
 			);
 		}
