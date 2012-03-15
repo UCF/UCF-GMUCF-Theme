@@ -85,7 +85,7 @@
 						<tr>
 							<td style="width:60px">
 								<span style="font-size:10px;font-weight:bold;">FRIDAY</span>
-								<? if($weather[4]['img'] == '') {?>
+								<? if($weather[4]['image'] == '') {?>
 									<br />
 									<span style="font-size:15px;font-weight:bold;">???</span>
 								<? } else { ?>
