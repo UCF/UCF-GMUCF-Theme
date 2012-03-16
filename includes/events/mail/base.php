@@ -84,6 +84,15 @@ switch($edition) {
 			}
 			?>
 			<tr>
+				<td style="padding-top:30px;border-top:1px solid #dddddd;text-align:center;">
+					<span style="font-size:23px;font-weight:200;">
+						To see all upcoming events visit <a style="color:#a42929;text-decoration:none;border:none;" href="http://events.ucf.edu?upcoming=true">http://events.ucf.edu</a>
+					</span>
+					<br /><br />
+					<a style="font-size:14px;color:#a42929;text-decoration:none;border:none;" href="https://eventsadmin.smca.ucf.edu/">Submit an event to the UCF Events Calendar</a>
+				</td>
+			</tr>
+			<tr>
 				<td style="padding-top:30px;">
 					<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto; background-color:#FFF;padding-top:15px;border-top:1px solid #ddd;padding-bottom:15px;">
 						<tr>
