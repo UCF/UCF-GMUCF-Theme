@@ -14,13 +14,17 @@
 				$title = $event_day = 'Monday';
 				break;
 		}
-		$title_date           = date_add($start_date, new DateInterval('P0Y'.$i.'DT0H0M'));
+		# date_add modifies the passed object in place. want $start_date to stay the
+		# same so make a copy of it.
+		# http://www.php.net/manual/en/datetime.add.php#102193
+		$_start_date          = new DateTime(date('c', $start_date->getTimestamp()));
+		$title_date           = date_add($_start_date, new DateInterval('P'.$i.'D'));
 		$title_date_timestamp = $title_date->getTimestamp();
 		$all_events_link      = EVENTS_URL.'?y='.date('Y', $title_date_timestamp).'&m='.date('n',$title_date_timestamp).'&d='.date('j', $title_date_timestamp);
 ?>
 <tr>
 	<td style="border-top:1px solid #ddd;padding-top:35px;padding-bottom:35px;">
-		<span style="font-size:25px;font-weight:500;padding-right:15px;"><?=$title?>, <?=date('n/j', $title_date->getTimestamp())?></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?=$all_events_link?>" style="font-size:15px;color:#9d1a1a;">View all <?=$event_day?> events</a>
+		<span style="font-size:25px;font-weight:500;padding-right:15px;"><?=$title?>, <?=date('n/j', $title_date_timestamp)?></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?=$all_events_link?>" style="font-size:15px;color:#9d1a1a;">View all <?=$event_day?> events</a>
 		<br /><br />
 		<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 			<tr>
