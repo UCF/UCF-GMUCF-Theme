@@ -46,7 +46,7 @@ switch($edition) {
 	<body bgcolor="#FFF">
 		<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 			<tr>
-				<div style="background-color:beige;text-align:center;font-size:16px;border-left:1px solid #333;border-right:1px solid #333;border-bottom:1px solid #333;padding:10px;margin-left:">
+				<div style="text-align:center;font-size:16px;padding:10px;">
 					Submit feedback to <a style="color:blue" href="mailto:webcom@ucf.edu?subject=GMUCF%20<?=$edition == EVENTS_WEEKEND_EDITION ? 'Weekend' : 'Weekday'?>%20Events%20Feedback">webcom@ucf.edu</a>
 				</div>
 			</tr>
