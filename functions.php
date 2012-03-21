@@ -37,8 +37,7 @@ define('WEATHER_CACHE_DURATION', 60 * 30); // weather
 define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
 
-define('WORD_OF_THE_DAY_URL', 'http://api.wordnik.com/v4/words.json/wordOfTheDay');
-define('WORD_OF_THE_DAY_API_KEY', $theme_options['wordnik_api_key']);
+define('WORD_OF_THE_DAY_URL', 'http://www.merriam-webster.com/word/index.xml');
 
 define('HTTP_TIMEOUT', 3); //seconds
 
@@ -159,15 +158,6 @@ Config::$theme_settings = array(
 			'default'     => 10,
 			'value'       => $theme_options['search_per_page'],
 		)),
-	),
-	'Wordnik' => array(
-		new TextField(array(
-			'name'        => 'API Key',
-			'id'          => THEME_OPTIONS_NAME.'[wordnik_api_key]',
-			'description' => 'API Key for the Wordnik API',
-			'default'     => null,
-			'value'       => $theme_options['wordnik_api_key']
-		))
 	)
 );
 
@@ -898,19 +888,25 @@ function get_weekend_events($options = array()) {
  **/
 function get_word_of_the_day() {
 	
-	$cache_key = 'wotd';
-
-	if(CLEAR_CACHE || ($wotd = get_transient($cache_key)) === False) {
-		$wotd    = array();
-		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
-		$params  = array('api_key' => WORD_OF_THE_DAY_API_KEY);
-		if( ($raw_wotd = @file_get_contents(WORD_OF_THE_DAY_URL.'?'.http_build_query($params), false, $context)) !== FALSE ) {
-			if( !is_null($json_wotd = json_decode($raw_wotd)) ) {
-				$wotd = $json_wotd;
+	$wotd = array();
+	$rss = fetch_feed(WORD_OF_THE_DAY_URL);
+	if(!is_wp_error($rss)) {
+		$rss_items = $rss->get_items(0, $rss->get_item_quantity(4));
+		if(isset($rss_items[0])) {
+			$all_parts = explode('</p>', $rss_items[0]->get_description());
+			if(count($all_parts) >= 2) {
+				$word_parts = explode('<br />', $all_parts[1], 2);
+				if(count($word_parts) == 2) {
+					$wotd['word']       = strip_tags($word_parts[0]);
+					$wotd['definition'] = strip_tags($word_parts[1]);
+				} else {
+					$wotd['word'] = strip_tags($all_parts[1]);
+				}
+				$wotd['examples']     = isset($all_parts[2]) ? $all_parts[2] : '';
+				$wotd['did_you_know'] = isset($all_parts[3]) ? $all_parts[3] : '';
 			}
-		}
 
-		set_transient($cache_key, $wotd, WOTD_CACHE_DURATION);
+		}
 	}
 	return $wotd;
 }
