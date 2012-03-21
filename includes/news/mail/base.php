@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body bgcolor="#FFF">
-		<table width="640" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 640px; margin:0; padding:0; background-color:#FFF;">
+		<table width="640" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 640px; margin:0 auto; padding:0; background-color:#FFF;">
 			<tr>
 				<td style="text-align:center;font-size:16px;padding: 10px 10px 10px 10px;margin:0;">
 					Submit feedback to <a style="color:blue" href="mailto:webcom@ucf.edu?subject=GMUCF%20News%20Feedback">webcom@ucf.edu</a>
