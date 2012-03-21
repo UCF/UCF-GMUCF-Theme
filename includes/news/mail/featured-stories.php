@@ -17,7 +17,7 @@
 					<td style="200px;vertical-align:top;">
 						<span style="font-weight:bold;font-size:14px;"><?=$title?></span>
 						<br />
-						<span style="font-weight:200;font-size:14px;"><?=truncate($description, 20)?></span>
+						<span style="font-weight:200;font-size:14px;"><?=truncate($description, 25)?></span>
 					</td>
 				</tr>
 			</table>
@@ -28,4 +28,6 @@
 ?>
 	</tr>
 </table>
-<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;text-align:right;display:block;" href="<?=FEATURED_STORIES_MORE_URL?>">More UCF Stories</a>
+<div style="text-align:right">
+	<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=FEATURED_STORIES_MORE_URL?>">More UCF Stories</a>
+</div>
