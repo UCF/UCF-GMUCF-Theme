@@ -15,10 +15,13 @@
 						</a>
 					</td>
 					<td style="200px;vertical-align:top;">
+						<div style="margin-bottom:5px;">
+							<a href="<?=$permalink?>" style="color:#000000;text-decoration:none;">
+								<span style="font-weight:bold;font-size:14px;padding-bottom:5px;display:block;"><?=$title?></span>
+							</a>
+						</div>
 						<a href="<?=$permalink?>" style="color:#000000;text-decoration:none;">
-							<span style="font-weight:bold;font-size:14px;"><?=$title?></span>
-							<br />
-							<span style="font-weight:200;font-size:14px;"><?=truncate($description, 25)?></span>
+							<span style="font-weight:200;font-size:14px;line-height:1.4em"><?=truncate($description, 25)?></span>
 						</a>
 					</td>
 				</tr>
