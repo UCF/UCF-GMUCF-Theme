@@ -650,8 +650,8 @@ function get_announcement_details() {
 				$announcements,
 				array(
 					'title'     => esc_html($rss_item->get_title()),
-					# MyOrg doesn't handle encoded ampersands correctly
-					'permalink' => $rss_item->get_permalink()
+					# Permalinks come in encoded for some reason
+					'permalink' => html_entity_decode($rss_item->get_permalink())
 				)
 			);
 		}
