@@ -138,6 +138,11 @@ switch($edition) {
 					</table>
 				</td>
 			</tr>
+			<tr>
+				<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
+					!@!UNSUBSCRIBE!@! from this email.
+				</td>
+			</tr>
 		</table>
 	</body>
 </html>
