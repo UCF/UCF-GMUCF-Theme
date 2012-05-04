@@ -437,50 +437,29 @@ function get_extended_weather() {
 		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
 		if( ($html = @file_get_contents(WEATHER_EXTENDED_URL, false, $context)) !== False) {
 
-			$start_point = '<table class="twc-forecast-table twc-second">';
-			$start_point_index = stripos($html,$start_point);
-			$length = stripos($html, '</table>', $start_point_index) - ($start_point_index + strlen($start_point));
+			$start_point = '<div class="wx-24hour wx-module wx-grid3of6 wx-weather">';
+			$start_point_index = stripos($html, $start_point);
+
+			$length = stripos($html, '<div class="wx-module wx-mod1 wx-grid1of6 wx-media-top wx-top-stories wx-cool-tools">', $start_point_index) - ($start_point_index + strlen($start_point));
 
 			$forecast_table = substr($html, $start_point_index + strlen($start_point), $length);
 
-			for($i = 1; $i <= 10; $i++) {
-				$image = NULL;
-				$high  = NULL;
-				$low   = NULL;
+			# Images
+			preg_match_all('/http:\/\/s.imwx.com\/v.20120328.084252\/img\/wxicon\/70\/(\d+).png/', $forecast_table, $image_matches);
+			
+			# High
+			preg_match_all('/<p class="wx-temp">\s(\d{2,3})/', $forecast_table, $high_matches);
+			
+			# Lows
+			preg_match_all('/<p class="wx-temp-alt">\s(\d{2,3})/', $forecast_table, $low_matches);
 
-				// image ID
-				$match = preg_match('/<td class="twc-col-'.$i.' twc-forecast-icon " id="twc-wx-icon'.$i.'">(.*)<\/td>/', $forecast_table, $matches);
-				
-				if($match == 1) {
-					$img_part = $matches[0];
-					$match = preg_match('/\/(\d+)\.png/', $img_part, $matches);
-					if($match == 1) {
-						$image = $matches[1];
-					}
-				}
-
-				// high
-				$match = preg_match('/<td class="twc-col-'.$i.' twc-forecast-temperature" id="twc-wx-hi'.$i.'">(.*)<\/td>/s', $forecast_table, $matches);
-				
-				if($match == 1) {
-					$deg_part = $matches[0];
-					$match = preg_match('/(\d+)&deg;/', $deg_part, $matches);
-					if($match == 1) {
-						$high = $matches[1];
-					}
-				}
-
-				// low
-				$match = preg_match('/<td class="twc-col-'.$i.' twc-forecast-temperature" id="twc-wx-low'.$i.'">(.*)<\/td>/s', $forecast_table, $matches);
-				if($match == 1) {
-					$deg_part = $matches[0];
-					$match = preg_match('/(\d+)&deg;/', $deg_part, $matches);
-					if($match == 1) {
-						$low = $matches[1];
-					}
-				}
+			for($i = 0; $i < 10; $i++) {
+				$image = $image_matches[1][$i];
+				$high  = $high_matches[1][$i];
+				$low   = $low_matches[1][$i];
 				array_push($weather, array('image'=>$image, 'high'=>$high, 'low'=>$low));
 			}
+			
 			set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
 		}
 	}
