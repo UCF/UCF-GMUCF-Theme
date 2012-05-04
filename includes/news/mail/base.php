@@ -39,7 +39,7 @@
 											High <strong><?= $weather['today']['temp']?></strong>&deg;
 										</td>
 										<td>
-											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" width="30" /> 
+											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['image']?>.png" width="30" /> 
 										</td>
 										<td>
 											Low <strong><?= $weather['tonight']['temp']?></strong>&deg;
