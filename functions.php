@@ -372,8 +372,8 @@ function get_extended_weather() {
 
 			$start_point = '<div class="wx-24hour wx-module wx-grid3of6 wx-weather">';
 			$start_point_index = stripos($html, $start_point);
-
-			$length = stripos($html, '<div class="wx-module wx-mod1 wx-grid1of6 wx-media-top wx-top-stories wx-cool-tools">', $start_point_index) - ($start_point_index + strlen($start_point));
+			
+			$length = stripos($html, '<div class="wx-24hour wx-module wx-grid3of6 wx-weather">', $start_point_index) - ($start_point_index + strlen($start_point));
 
 			$forecast_table = substr($html, $start_point_index + strlen($start_point), $length);
 
