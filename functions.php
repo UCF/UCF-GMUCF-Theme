@@ -470,10 +470,10 @@ function get_top_story_details() {
 		$thumbnail_id  = get_post_thumbnail_id($top_story->ID);
 		$image_details = wp_get_attachment_image_src($thumbnail_id, 'top_story');
 
-		$details['thumbnail_src']     = $image_details[0];
-		$details['story_title']       = esc_html($top_story->post_title);
-		$details['story_description'] = nl2br(esc_html($top_story->post_content));
-		$details['read_more_uri']     = get_post_meta($top_story->ID, 'top_story_external_uri', True);
+		$details['thumbnail_src']     = remove_quotes($image_details[0]);
+		$details['story_title']       = sanitize_for_email($top_story->post_title);
+		$details['story_description'] = sanitize_for_email($top_story->post_content);
+		$details['read_more_uri']     = remove_quotes(get_post_meta($top_story->ID, 'top_story_external_uri', True));
 
 	} else {
 		$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=600x308');
@@ -487,10 +487,10 @@ function get_top_story_details() {
 
 				if($enclosure && in_array($enclosure->get_type(),get_valid_enclosure_types())) {
 
-					$details['thumbnail_src']     = $enclosure->get_thumbnail();
-					$details['story_title']       = esc_html($rss_item->get_title());
-					$details['story_description'] = truncate(nl2br(esc_html($rss_item->get_description())));
-					$details['read_more_uri']     = $rss_item->get_permalink();
+					$details['thumbnail_src']     = remove_quotes($enclosure->get_thumbnail());
+					$details['story_title']       = sanitize_for_email($rss_item->get_title());
+					$details['story_description'] = truncate(sanitize_for_email($rss_item->get_description()));
+					$details['read_more_uri']     = remove_quotes($rss_item->get_permalink());
 
 					if($details['thumbnail_src'] != '') {
 						set_transient('top_story_id', $rss_item->get_id());
@@ -530,13 +530,13 @@ function get_featured_stories_details() {
 				);
 				$enclosure = $rss_item->get_enclosure();
 				if($enclosure && in_array($enclosure->get_type(),get_valid_enclosure_types()) && ($thumbnail = $enclosure->get_thumbnail())) {
-					$story['thumbnail_src'] = $thumbnail;
+					$story['thumbnail_src'] = remove_quotes($thumbnail);
  				} else {
-					$story['thumbnail_src'] = get_bloginfo('stylesheet_directory', 'raw').'/static/img/no-photo.png';
+					$story['thumbnail_src'] = remove_quotes(get_bloginfo('stylesheet_directory', 'raw').'/static/img/no-photo.png');
 				}
-				$story['title']       = esc_html($rss_item->get_title());
-				$story['description'] = truncate(esc_html($rss_item->get_description()));
-				$story['permalink']   = $rss_item->get_permalink();
+				$story['title']       = sanitize_for_email($rss_item->get_title());
+				$story['description'] = truncate(sanitize_for_email($rss_item->get_description()));
+				$story['permalink']   = remove_quotes($rss_item->get_permalink());
 				array_push($stories, $story);
 				$count++;
 			}
@@ -561,9 +561,9 @@ function get_announcement_details() {
 			array_push(
 				$announcements,
 				array(
-					'title'     => esc_html($rss_item->get_title()),
+					'title'     => sanitize_for_email($rss_item->get_title()),
 					# Permalinks come in encoded for some reason
-					'permalink' => html_entity_decode($rss_item->get_permalink())
+					'permalink' => remove_quotes(html_entity_decode($rss_item->get_permalink()))
 				)
 			);
 		}
@@ -809,13 +809,13 @@ function get_word_of_the_day() {
 			if(count($all_parts) >= 2) {
 				$word_parts = explode('<br />', $all_parts[1], 2);
 				if(count($word_parts) == 2) {
-					$wotd['word']       = strip_tags($word_parts[0]);
-					$wotd['definition'] = strip_tags($word_parts[1]);
+					$wotd['word']       = sanitize_for_email($word_parts[0]);
+					$wotd['definition'] = sanitize_for_email($word_parts[1]);
 				} else {
-					$wotd['word'] = strip_tags($all_parts[1]);
+					$wotd['word'] = sanitize_for_email($all_parts[1]);
 				}
-				$wotd['examples']     = isset($all_parts[2]) ? $all_parts[2] : '';
-				$wotd['did_you_know'] = isset($all_parts[3]) ? $all_parts[3] : '';
+				$wotd['examples']     = isset($all_parts[2]) ? sanitize_for_email($all_parts[2]) : '';
+				$wotd['did_you_know'] = isset($all_parts[3]) ? sanitize_for_email($all_parts[3]) : '';
 			}
 
 		}
@@ -823,4 +823,37 @@ function get_word_of_the_day() {
 	return $wotd;
 }
 
+/**
+ * Sanitize a string for output in an email template
+ *
+ * @return string
+ * @author Chris Conover
+ **/
+function sanitize_for_email($s) {
+
+	# Approximate ASCII viewable
+	# Assume everything incoming is UTF-8.
+	# If it's not, it should be converted before it gets here.
+	$s = iconv('UTF-8', 'ASCII//TRANSLIT', $s);
+
+	# Convert any new lines to break tags
+	$s = nl2br($s);
+
+	# Strip any remaining HTML
+	$s = strip_tags($s, '<br>');
+
+	return $s;
+}
+
+/**
+ * Removes double quotes from a string. Used
+ * form incoming URLs so thay can't break out of 
+ * their HREF or SRC attributes
+ *
+ * @return string
+ * @author Chris Conover
+ */
+function remove_quotes($s) {
+	return str_replace('"', '', $s);
+}
 ?>
