@@ -52,7 +52,7 @@ switch($edition) {
 			</tr>
 			<tr>
 				<td style="padding-top:30px;font-size:25px;font-weight:200;">
-					!@!First Name!@!, check out:
+					!@!Preferred Name!@!, check out:
 				</td>
 			</tr>
 			<tr>

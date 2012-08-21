@@ -57,7 +57,7 @@
 					</table>
 					<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto;padding-top:25px; background-color:#FFF;">
 						<tr>
-							<td style="font-size:35px;font-weight:100;">Good <?=(int)date('G') >= 12 ? 'Afternoon' : 'Morning'?>, !@!First Name!@!.</td>
+							<td style="font-size:35px;font-weight:100;">Good <?=(int)date('G') >= 12 ? 'Afternoon' : 'Morning'?>, !@!Preferred Name!@!.</td>
 						</tr>
 						<tr>
 							<td style="padding-top:20px">
