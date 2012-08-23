@@ -92,7 +92,7 @@
 														<? } ?>
 														<? if(count($wotd['examples']) > 0) { ?>
 															<? foreach($wotd['examples'] as $example) { ?>
-															<p>&ldquo;<?=$example['quote']?>&rdquo;<br />&mdash;<?=$example['source']?>, <?=$example['author']?></p>
+															<p style="font-size:13px;">&ldquo;<?=$example['quote']?>&rdquo;<br />&mdash;<?=$example['source']?>, <?=$example['author']?></p>
 															<? } ?>
 														<? } ?>
 														<div style="text-align:right;">
