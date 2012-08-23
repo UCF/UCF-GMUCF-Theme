@@ -95,6 +95,11 @@
 															<p>&ldquo;<?=$example['quote']?>&rdquo;<br />&mdash;<?=$example['source']?>, <?=$example['author']?></p>
 															<? } ?>
 														<? } ?>
+														<div style="text-align:right;">
+															<a href="http://www.dictionary.com">
+																<img src="<?=bloginfo('stylesheet_directory')?>/static/img/dictionary.com-attribution.png" />
+															</a>
+														</div>
 													</td>
 												</tr>
 												<? } ?>
