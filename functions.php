@@ -736,14 +736,14 @@ function get_word_of_the_day() {
 
 			if( ($raw_xml = @file_get_contents($wotd_url, false, $context)) !== False && ($xml = simplexml_load_string($raw_xml)) !== False ) {
 				if(isset($xml->entry->word) && isset($xml->entry->partofspeech) && isset($xml->entry->pronunciation)) {
-					$wotd['word']          = $xml->entry->word;
-					$wotd['partofspeech']  = $xml->entry->partofspeech;
-					$wotd['pronunciation'] = $xml->entry->pronunciation;
+					$wotd['word']          = (string)$xml->entry->word;
+					$wotd['partofspeech']  = (string)$xml->entry->partofspeech;
+					$wotd['pronunciation'] = (string)$xml->entry->pronunciation;
 
 					if(isset($xml->entry->definitions)) {
 						foreach($xml->entry->definitions->definition as $definition) {
 							if(isset($definition->partofspeech) && isset($definition->data)) {
-								$wotd['definitions'][(string)$definition->partofspeech][] = $definition->data;
+								$wotd['definitions'][(string)$definition->partofspeech][] = (string)$definition->data;
 							}
 						}
 					}
@@ -763,41 +763,20 @@ function get_word_of_the_day() {
 							}
 						}
 					}
+					set_transient($cache_key, $wotd, WORD_OF_THE_DAY_CACHE_DURATION);
+					return $wotd;
 				} else {
 					return False;
 				}
 			} else {
 				return False;
 			}
-			#set_transient($cache_key, $wotd, WORD_OF_THE_DAY_CACHE_DURATION);
+		} else {
+			return $wotd;
 		}
-		return $wotd;
 	} else {
 		return False;
 	}
-
-
-	$wotd = array();
-	$rss = fetch_feed(WORD_OF_THE_DAY_URL);
-	if(!is_wp_error($rss)) {
-		$rss_items = $rss->get_items(0, $rss->get_item_quantity(4));
-		if(isset($rss_items[0])) {
-			$all_parts = explode('</p>', $rss_items[0]->get_description());
-			if(count($all_parts) >= 2) {
-				$word_parts = explode('<br />', $all_parts[1], 2);
-				if(count($word_parts) == 2) {
-					$wotd['word']       = sanitize_for_email($word_parts[0]);
-					$wotd['definition'] = sanitize_for_email($word_parts[1]);
-				} else {
-					$wotd['word'] = sanitize_for_email($all_parts[1]);
-				}
-				$wotd['examples']     = isset($all_parts[2]) ? sanitize_for_email($all_parts[2]) : '';
-				$wotd['did_you_know'] = isset($all_parts[3]) ? sanitize_for_email($all_parts[3]) : '';
-			}
-
-		}
-	}
-	return $wotd;
 }
 
 /**
