@@ -78,7 +78,7 @@
 													<td style="border-bottom:1px solid #ddd;padding-bottom:30px;padding-top:30px;">
 														
 														<p style="font-size:22px;font-weight:100;display:block;">Word of the Day</p>
-														<span style="font-size:20px;font-weight:100;"><strong><?=$wotd['word']?></strong> &bullet; \<?=$wotd['pronunciation']?>\ &bullet; <em><?=$wotd['partofspeech']?></em></span>
+														<span style="font-size:20px;font-weight:100;"><b><?=$wotd['word']?></b> • \<?=$wotd['pronunciation']?>\ • <em><?=$wotd['partofspeech']?></em></span>
 														<br />
 														<? foreach($wotd['definitions'] as $part=>$definitions) { ?>
 															<? if($part != $wotd['partofspeech']) { ?>
@@ -96,8 +96,8 @@
 															<? } ?>
 														<? } ?>
 														<div style="text-align:right;">
-															<a href="http://www.dictionary.com">
-																<img src="<?=bloginfo('stylesheet_directory')?>/static/img/dictionary.com-attribution.png" />
+															<a href="http://www.dictionary.com" style="border:0;">
+																<img src="<?=bloginfo('stylesheet_directory')?>/static/img/dictionary.com-attribution.png" style="border:0;" />
 															</a>
 														</div>
 													</td>
