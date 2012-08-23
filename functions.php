@@ -772,4 +772,21 @@ function sanitize_for_email($s) {
 function remove_quotes($s) {
 	return str_replace('"', '', $s);
 }
+
+/**
+ * Return a theme option value if it exists and isn't blank or NULL.
+ *
+ * @return string or NULL
+ * @author Chris Conover
+ **/
+function get_theme_option($name) {
+	global $theme_options;
+
+	if(isset($theme_options[$name]) && $theme_options[$name] != '') {
+		return $theme_options[$name];
+	} else {
+		return NULL;
+	}
+}
+
 ?>
