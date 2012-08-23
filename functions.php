@@ -37,7 +37,7 @@ define('WEATHER_CACHE_DURATION', 60 * 30); // weather
 define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
 
-define('WORD_OF_THE_DAY_URL', 'http://www.merriam-webster.com/word/index.xml');
+define('WORD_OF_THE_DAY_URL', 'http://api-pub.dictionary.com/v001?vid=%s&type=wotd');
 
 define('HTTP_TIMEOUT', 3); //seconds
 
@@ -66,97 +66,13 @@ Config::$body_classes = array('default',);
  * available fields. -- functions-base.php
  **/
 Config::$theme_settings = array(
-	'Webmaster Tools' => array(
+	'Word of the Day' => array(
 		new TextField(array(
-			'name'        => 'Google WebMaster Verification',
-			'id'          => THEME_OPTIONS_NAME.'[gw_verify]',
-			'description' => 'Example: <em>9Wsa3fspoaoRE8zx8COo48-GCMdi5Kd-1qFpQTTXSIw</em>',
+			'name'        => 'Dictionary.com API Key',
+			'id'          => THEME_OPTIONS_NAME.'[dictionary_api_key]',
+			'description' => '',
 			'default'     => null,
-			'value'       => $theme_options['gw_verify'],
-		)),
-		new TextField(array(
-			'name'        => 'Yahoo! Site Explorer',
-			'id'          => THEME_OPTIONS_NAME.'[yw_verify]',
-			'description' => 'Example: <em>3236dee82aabe064</em>',
-			'default'     => null,
-			'value'       => $theme_options['yw_verify'],
-		)),
-		new TextField(array(
-			'name'        => 'Bing Webmaster Center',
-			'id'          => THEME_OPTIONS_NAME.'[bw_verify]',
-			'description' => 'Example: <em>12C1203B5086AECE94EB3A3D9830B2E</em>',
-			'default'     => null,
-			'value'       => $theme_options['bw_verify'],
-		)),
-	),
-	'Analytics' => array(
-		new TextField(array(
-			'name'        => 'Google Analytics Account',
-			'id'          => THEME_OPTIONS_NAME.'[ga_account]',
-			'description' => 'Example: <em>UA-9876543-21</em>. Leave blank for development.',
-			'default'     => null,
-			'value'       => $theme_options['ga_account'],
-		)),
-		new TextField(array(
-			'name'        => 'Chartbeat UID',
-			'id'          => THEME_OPTIONS_NAME.'[cb_uid]',
-			'description' => 'Example: <em>1842</em>',
-			'default'     => null,
-			'value'       => $theme_options['cb_uid'],
-		)),
-		new TextField(array(
-			'name'        => 'Chartbeat Domain',
-			'id'          => THEME_OPTIONS_NAME.'[cb_domain]',
-			'description' => 'Example: <em>some.domain.com</em>',
-			'default'     => null,
-			'value'       => $theme_options['cb_domain'],
-		)),
-	),
-	'Facebook' => array(
-		new RadioField(array(
-			'name'        => 'Enable OpenGraph',
-			'id'          => THEME_OPTIONS_NAME.'[enable_og]',
-			'description' => 'Turn on the opengraph meta information used by Facebook.',
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-			'value'       => $theme_options['enable_og'],
-	    )),
-		new TextField(array(
-			'name'        => 'Facebook Admins',
-			'id'          => THEME_OPTIONS_NAME.'[fb_admins]',
-			'description' => 'Comma seperated facebook usernames or user ids of those responsible for administrating any facebook pages created from pages on this site. Example: <em>592952074, abe.lincoln</em>',
-			'default'     => null,
-			'value'       => $theme_options['fb_admins'],
-		)),
-	),
-	'Search' => array(
-		new RadioField(array(
-			'name'        => 'Enable Google Search',
-			'id'          => THEME_OPTIONS_NAME.'[enable_google]',
-			'description' => 'Enable to use the google search appliance to power the search functionality.',
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-			'value'       => $theme_options['enable_google'],
-	    )),
-		new TextField(array(
-			'name'        => 'Search Domain',
-			'id'          => THEME_OPTIONS_NAME.'[search_domain]',
-			'description' => 'Domain to use for the built-in google search.  Useful for development or if the site needs to search a domain other than the one it occupies. Example: <em>some.domain.com</em>',
-			'default'     => null,
-			'value'       => $theme_options['search_domain'],
-		)),
-		new TextField(array(
-			'name'        => 'Search Results Per Page',
-			'id'          => THEME_OPTIONS_NAME.'[search_per_page]',
-			'description' => 'Number of search results to show per page of results',
-			'default'     => 10,
-			'value'       => $theme_options['search_per_page'],
+			'value'       => $theme_options['dictionary_api_key'],
 		)),
 	)
 );
