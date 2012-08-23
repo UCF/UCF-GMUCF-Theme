@@ -72,26 +72,32 @@
 														<? get_template_part('includes/news/mail/featured-stories'); ?>
 													</td>
 												</tr>
+												<? $wotd = get_word_of_the_day(); ?>
+												<? if($wotd !== False) { ?>
 												<tr>
 													<td style="border-bottom:1px solid #ddd;padding-bottom:30px;padding-top:30px;">
-														<? $wotd = get_word_of_the_day(); ?>
+														
 														<p style="font-size:22px;font-weight:100;display:block;">Word of the Day</p>
-														<span style="font-size:20px;font-weight:100;"><?=$wotd['word']?></span>
+														<span style="font-size:20px;font-weight:100;"><strong><?=$wotd['word']?></strong> &bullet; \<?=$wotd['pronunciation']?>\ &bullet; <em><?=$wotd['partofspeech']?></em></span>
 														<br />
-														<br />
-														<? if($wotd['definition'] != '') { ?>
-														<span style="font-size:16px;">
-															<?=$wotd['definition']?>
-														</span>
+														<? foreach($wotd['definitions'] as $part=>$definitions) { ?>
+															<? if($part != $wotd['partofspeech']) { ?>
+																<p><em><?=$part?></em></p>
+															<? } ?>
+															<? $count = 1; ?>
+															<? foreach($definitions as $definition) { ?>
+																<p><?=$count?>. <?=$definition?></p>
+																<? $count++;?>
+															<? } ?>
 														<? } ?>
-														<? if($wotd['examples'] != '') { ?>
-														<br />
-														<span style="font-size:16px;">
-															<?=$wotd['examples']?>
-														</span>
+														<? if(count($wotd['examples']) > 0) { ?>
+															<? foreach($wotd['examples'] as $example) { ?>
+															<p>&ldquo;<?=$example['quote']?>&rdquo;<br />&mdash;<?=$example['source']?>, <?=$example['author']?></p>
+															<? } ?>
 														<? } ?>
 													</td>
 												</tr>
+												<? } ?>
 												<tr>
 													<td style="padding-top:30px;padding-bottom:30px;">
 														<? get_template_part('includes/news/mail/announcements'); ?>

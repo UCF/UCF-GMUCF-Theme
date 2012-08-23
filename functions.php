@@ -38,6 +38,7 @@ define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
 
 define('WORD_OF_THE_DAY_URL', 'http://api-pub.dictionary.com/v001?vid=%s&type=wotd');
+define('WORD_OF_THE_DAY_CACHE_DURATION', 60 * 60);
 
 define('HTTP_TIMEOUT', 3); //seconds
 
@@ -716,6 +717,66 @@ function get_weekend_events($options = array()) {
  **/
 function get_word_of_the_day() {
 	
+
+	$cache_key = 'wotd';
+
+	
+	if( !is_null($api_key = get_theme_option('dictionary_api_key')) ) {
+		$wotd_url = sprintf(WORD_OF_THE_DAY_URL, $api_key);
+		$context  = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
+
+		if(CLEAR_CACHE || ($wotd = get_transient($cache_key)) === False) {
+			$wotd = array(
+				'word'          => NULL,
+				'pronunciation' => NULL,
+				'partofspeech'  => NULL,
+				'definitions'   => array(),
+				'examples'      => array()
+			);
+
+			if( ($raw_xml = @file_get_contents($wotd_url, false, $context)) !== False && ($xml = simplexml_load_string($raw_xml)) !== False ) {
+				if(isset($xml->entry->word) && isset($xml->entry->partofspeech) && isset($xml->entry->pronunciation)) {
+					$wotd['word']          = $xml->entry->word;
+					$wotd['partofspeech']  = $xml->entry->partofspeech;
+					$wotd['pronunciation'] = $xml->entry->pronunciation;
+
+					if(isset($xml->entry->definitions)) {
+						foreach($xml->entry->definitions->definition as $definition) {
+							if(isset($definition->partofspeech) && isset($definition->data)) {
+								$wotd['definitions'][(string)$definition->partofspeech][] = $definition->data;
+							}
+						}
+					}
+					if(isset($xml->entry->examples)) {
+						foreach($xml->entry->examples->example as $example) {
+							if(isset($example->quote) && isset($example->source) && isset($example->author)) {
+								$quote  = (string)$example->quote;
+								$source = (string)$example->source;
+								$author = (string)$example->author;
+								if($quote != '' && $source != '' && $author != '') {
+									$wotd['examples'][] = array(
+										'quote'  => $quote,
+										'source' => $source,
+										'author' => $author
+									);
+								}
+							}
+						}
+					}
+				} else {
+					return False;
+				}
+			} else {
+				return False;
+			}
+			#set_transient($cache_key, $wotd, WORD_OF_THE_DAY_CACHE_DURATION);
+		}
+		return $wotd;
+	} else {
+		return False;
+	}
+
+
 	$wotd = array();
 	$rss = fetch_feed(WORD_OF_THE_DAY_URL);
 	if(!is_wp_error($rss)) {
