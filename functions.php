@@ -39,6 +39,7 @@ define('EVENTS_WEEKDAY_EDITION', 1);
 
 define('WORD_OF_THE_DAY_URL', 'http://api-pub.dictionary.com/v001?vid=%s&type=wotd');
 define('WORD_OF_THE_DAY_CACHE_DURATION', 60 * 60);
+define('WORD_OF_THE_DAY_HTTP_TIMEOUT', 25); // This service is so slow. PEDDLE FASTER, DICTIONARY.COM!
 
 define('HTTP_TIMEOUT', 3); //seconds
 
@@ -723,7 +724,7 @@ function get_word_of_the_day() {
 	
 	if( !is_null($api_key = get_theme_option('dictionary_api_key')) ) {
 		$wotd_url = sprintf(WORD_OF_THE_DAY_URL, $api_key);
-		$context  = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
+		$context  = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WORD_OF_THE_DAY_HTTP_TIMEOUT)));
 
 		if(CLEAR_CACHE || ($wotd = get_transient($cache_key)) === False) {
 			$wotd = array(
