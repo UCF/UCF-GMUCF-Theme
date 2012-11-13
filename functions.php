@@ -29,6 +29,7 @@ define('FEATURED_STORIES_RSS_URL', 'http://today.ucf.edu/tag/main-site-stories/f
 define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 
 define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/feeds/announcement/');
+define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/pls/CDWS/w4_bbs_announcements.main_disp_sel?p_role=all');
 
 define('WEATHER_URL', 'http://www.weather.com/weather/today/Orlando+FL+32816:4:US');
 define('WEATHER_EXTENDED_URL', 'http://www.weather.com/weather/tenday/32816');

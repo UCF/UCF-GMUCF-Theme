@@ -9,5 +9,9 @@ foreach(get_announcement_details() as $announcement) {
 		</a>
 	</p>
 	<br />
-<?
-}
+<? } ?>
+<div style="text-align:right">
+	<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=ANNOUNCEMENTS_MORE_URL?>">
+		More Announcements
+	</a>
+</div>
