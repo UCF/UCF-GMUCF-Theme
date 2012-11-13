@@ -78,7 +78,7 @@
 													<td style="border-bottom:1px solid #ddd;padding-bottom:30px;padding-top:30px;">
 														
 														<p style="font-size:22px;font-weight:100;display:block;">Word of the Day</p>
-														<span style="font-size:20px;font-weight:100;"><b><?=$wotd['word']?></b> • \<?=$wotd['pronunciation']?>\ • <em><?=$wotd['partofspeech']?></em></span>
+														<span style="font-size:20px;font-weight:100;"><b><?=$wotd['word']?></b> &bullet; \<?=$wotd['pronunciation']?>\ &bullet; <em><?=$wotd['partofspeech']?></em></span>
 														<br />
 														<? foreach($wotd['definitions'] as $part=>$definitions) { ?>
 															<? if($part != $wotd['partofspeech']) { ?>
