@@ -19,13 +19,6 @@
 			<p>The page you requested doesn't exist.  Sorry about that.</p>
 			<?php endif;?>
 		</div>
-		
-		<div id="sidebar" class="span-6 last">
-			<?=get_sidebar();?>
-		</div>
-		
-		<div class="clear"><!-- --></div>
-		<?php get_template_part('includes/below-the-fold'); ?>
 	</div>
 
 <?php get_footer();?>
