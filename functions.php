@@ -862,7 +862,7 @@ function gmucf_template_redirect() {
 			'events/weekend/'      => create_function('', '$_GET[\'edition\'] = \'weekend\';display_gmucf_template(\'includes/events/browser/base\');'));
 
 		foreach($mapping as $path => $func) {
-			if(stripos($request_path, $path) == 0) {
+			if(stripos($request_path, $path) === 0) {
 				call_user_func($func);
 			}
 		}
