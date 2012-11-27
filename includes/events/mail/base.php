@@ -60,7 +60,7 @@ switch($edition) {
 					<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:365px;font-size:37px;font-weight:200;">
-								This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> at <span style="color:#ffc907;font-weight:bold">UCF</span>
+								This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ <span style="color:#ffc907;font-weight:bold">UCF</span>
 							</td>
 							<td style="width:235px;font-size:37px;font-weight:200;text-align:right;">
 								<?=date('n/j', $start_date->getTimestamp()).'-'.date('n/j', $end_date->getTimestamp())?>
