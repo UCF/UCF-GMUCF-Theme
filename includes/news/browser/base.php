@@ -1,6 +1,6 @@
 <?=get_header()?>
 <div id="content">
-	<h1>Good Morning, Patrick.</h1>
+	<h1>Good Morning, UCF.</h1>
 	<?=get_template_part('includes/news/browser/top-story')?>
 	<div class="narrow">
 		<?=get_template_part('includes/news/browser/alert')?>
