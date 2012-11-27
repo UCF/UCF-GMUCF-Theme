@@ -31,22 +31,21 @@
 	<body class="<?=body_classes()?>">
 		<div id="blueprint-container" class="container">
 			<div id="header">
+				<div id="date">
+					<span id="day"><?=date('l')?>,</span> <span id="month"><?=date('F j')?></span>
+				</div>
 				<? $weather = get_weather(); ?>
 				<div class="weather" id="today">
-					<span class="when">TODAY</span>
-					<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" />
-					<span class="temp"><?=$weather['today']['temp']?>&deg;</span>
+					<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" />
 					<span class="type">High</span>
-				</div>
-				<div class="weather" id="tonight">
-					<span class="when">TONIGHT</span>
-					<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['image']?>.png" />
-					<span class="temp"><?=$weather['tonight']['temp']?>&deg;</span>
+					<span class="temp"><?=$weather['today']['temp']?>&deg;</span>
+					
+
+					<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['image']?>.png" />
 					<span class="type">Low</span>
+					<span class="temp"><?=$weather['tonight']['temp']?>&deg;</span>
+					
 				</div>
-				<div id="date">
-					<span id="day"><?=strtoupper(date('l'))?></span>
-					<span id="month"><?=date('F j')?></span>
-				</div>
-				<a href="http://www.history.com/this-day-in-history">This day in history</a>
+				<a href="http://www.history.com/this-day-in-history" class="ignore-external">This day in history</a>
 			</div>
+			<div style="clear:both">&nbsp;</div>

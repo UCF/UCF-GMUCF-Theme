@@ -6,7 +6,7 @@
 			extract($announcement);
 		?>
 			<li>
-				<a href="<?=$permalink?>">
+				<a href="<?=$permalink?>" class="ignore-external">
 					<?=$title?>
 				</a>
 			</li>

@@ -9,24 +9,28 @@ Version: v1.0.2
 html {background:none;}
 #blueprint-container {width:600px;margin:auto;}
 #UCFHBHeader {display:none;}
-.narrow {width:560px;margin:auto;}
+.narrow {}
 
 h1 {font-size:45px;font-weight:300;margin-bottom:20px;}
 
 /* Header */
-#header {margin-bottom:40px;border-bottom:1px solid #ddd;height:90px;}
+#header {border-bottom:1px solid #ddd;padding-bottom:20px;height:50px;}
 #header > div {float:left;}
-#header .weather {width:135px;}
+#header .weather {}
 #header .weather, 
-	#header #date {border-right:1px solid #CCC;padding:0 20px;}
-#header .weather .when {display:block;font-size:14px;}
+	#header #date {border-right:1px solid #CCC;padding:0 20px;height:60px;}
+#header .weather {font-size:16px;}
+#header .weather img {position:relative;top:10px;}
+#header .weather .temp {font-weight:bold;}
+/*
 #header .weather img {float:left;margin-right:15px;}
-#header .weather .temp {display:block;font-size:25px;margin-top:10px;text-align:center;}
-#header .weather .type {display:block;font-size:20px;font-weight:100;}
-#header #date {text-align:center;padding-top:20px;padding-bottom:20px;margin-right:20px;}
-#header #date #day {display:block;font-size:20px;}
-#header #date #month {display:block;font-size:21px;font-weight:100;}
-#header > a {font-weight:normal;display:block;padding-top:30px;}
+#header .weather .temp {font-size:25px;margin-top:10px;text-align:center;}
+#header .weather .type {font-size:20px;font-weight:100;}
+*/
+#header #date {padding-left:0;text-align:center;font-weight:200;font-size:20px;font-family:"Helvetica Neue",Helvetica,sans-serif;}
+#header #date #day {position:relative;top:20px;}
+#header #date #month {position:relative;top:20px;}
+#header a {float:left;font-weight:normal;display:block;padding-top:30px;padding-left:20px;}
 
 /* Top Story */
 #top_story h2 {margin-bottom:0;}
@@ -41,25 +45,18 @@ h1 {font-size:45px;font-weight:300;margin-bottom:20px;}
 	#bottom #ucf {width:225px;padding-left:15px;float:right;border-top:1px solid #ddd;padding-top:15px;}
 
 /* Featured Stories */
-#featured_stories {margin:0 0 15px 0;padding:0 0 15px 0;border-bottom:1px solid #ddd;}
-#featured_stories > li {list-style-type:none;}
-#featured_stories > li > img {float:left;}
-#featured_stories > li > h3 {padding-left:110px;margin-bottom:5px;font-size:16px;font-family:Helvetica,sans-serif;}
-#featured_stories > li > p {padding-left:110px;font-size:14px;line-height:1.4em;}
+.featured-story {width:300px;float:left;}
+.featured-story img {float:left;}
+.featured-story h3 {font-family: Helvetica, sans-serif;font-size:14px;margin-top:0;}
+.featured-story p {font-family: Helvetica, sans-serif;font-size:14px;margin-top:0;line-height:1.3em}
+.featured-story .content {font-size:14px;padding-left:110px;padding-right:10px;font-weight:100;}
 
-/* Events */
-#todays_events,
-	#tomorrows_events {}
-#todays_events {border-bottom:1px solid #ddd;padding-bottom:15px;margin-bottom:15px;}
-#tomorrows_events {margin-bottom:30px;}
-#todays_events h2,
-	#tomorrows_events h2 {font-weight:100;font-family:Helvetica,sans-serif;font-size:25px;margin-bottom:10px;padding-left:10px;}
-#todays_events h2 {margin-top:0;}
-.events {margin:0;padding:0 0 0 10px;}
-.events > li {list-style-type:none;}
-.events > li .date {color:#666;float:left;background-color:#fef7c8;border:1px solid #e1e1e1;text-align:center;width:55px;padding:5px 0;font-family:Helvetica,sans-serif;}
-.events > li > a {float:right;font-weight:normal;font-family:Helvetica,sans-serif;font-size:15px;width:142px;text-decoration:none;}
-#tomorrows_events > a {font-family:Helvetica,sans-serif;color:#9D1A1A;text-decoration:none;font-weight:normal;font-size:17px;}
+
+/* Word of the Day */
+#wotd h2 {font-family:Helvetica,sans-serif;font-size:22px;font-weight:100;display:block;}
+#wotd #credit-link {text-align: right;margin-bottom:15px;}
+#wotd .quote {font-size:13px;}
+#wotd #word {font-size:20px;font-weight:100;}
 
 /* Announcemnts */
 #announcements {}

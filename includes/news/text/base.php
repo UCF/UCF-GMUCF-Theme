@@ -20,30 +20,18 @@ Tonight's Low: <?=$weather['tonight']['temp']?><? $top_story_details = get_top_s
 
 <? } ?>
 
--- Today's Events
+<? $wotd = get_word_of_the_day(); ?>
+<? if($wotd !== False) { ?>
+-- Word of the Day
+<?=$wotd['word']?> - \<?=$wotd['pronunciation']?>\ - <?=$wotd['partofspeech']?>
 
-<? 	$count = 0;
-	foreach(get_todays_events() as $event) { 
-		if($count == 7) break;
-		$start_timestamp = strtotime($event->starts); ?>
-- <?=date('g:iA', $start_timestamp)?> - <?= strip_tags($event->title) ?>
+<? foreach($wotd['definitions'] as $part=>$definitions) { ?>
+<? if($part != $wotd['partofspeech']) { ?><?=$part?>
+<? } ?><? $count = 1; ?>
+<? foreach($definitions as $definition) { ?><?=$count?>. <?=$definition?><? $count++;?><? } ?>
+<? } ?>
+<? } ?>
 
-<? 		$count++;
-	} 
-?>
-
-
--- Tomorrows's Events
-
-<? 	$count = 0;
-	foreach(get_tomorrows_events() as $event) { 
-		if($count == 7) break;
-		$start_timestamp = strtotime($event->starts); ?>
-- <?=date('g:iA', $start_timestamp)?> - <?= strip_tags($event->title) ?>
-
-<? 		$count++;
-	} 
-?>
 
 -- Announcements
 

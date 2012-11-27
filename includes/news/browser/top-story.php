@@ -8,7 +8,7 @@ extract(get_top_story_details());
 		<p>
 			<a href="<?=$read_more_uri?>" class="ignore-external">
 				<?=$story_description?>
-			</a> <? if($read_more_uri != '') {?><a id="read_more" href="<?=$read_more_uri?>">Read More.</a><?}?>
+			</a> <? if($read_more_uri != '') {?><a id="read_more" href="<?=$read_more_uri?>" class="ignore-external">Read More.</a><?}?>
 		</p>
 	</div>
 </div>
