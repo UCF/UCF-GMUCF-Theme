@@ -158,6 +158,11 @@
 						</tr>
 						<tr>
 							<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
+								Having troubling viewing this email? See it in your <a style="color:blue;text-decoration:underline;" href="http://atucf.smca.ucf.edu/news/">browser</a>.
+							</td>
+						</tr>
+						<tr>
+							<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
 								!@!UNSUBSCRIBE!@! from this email.
 							</td>
 						</tr>

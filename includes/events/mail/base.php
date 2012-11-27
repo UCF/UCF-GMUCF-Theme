@@ -140,6 +140,23 @@ switch($edition) {
 			</tr>
 			<tr>
 				<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
+					Having troubling viewing this email? See it in your 
+					<?
+					// Use includes here instead of get_template_part
+					// to preserve scope.
+					switch($edition) {
+						case EVENTS_WEEKDAY_EDITION:
+							echo '<a style="color:blue;text-decoration:underline;" href="http://atucf.smca.ucf.edu/events/weekday/">browser</a>.';
+							break;
+						case EVENTS_WEEKEND_EDITION:
+							echo '<a style="color:blue;text-decoration:underline;" href="http://atucf.smca.ucf.edu/events/weekend/">browser</a>.';
+							break;
+					}
+					?>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
 					!@!UNSUBSCRIBE!@! from this email.
 				</td>
 			</tr>
