@@ -1,5 +1,5 @@
 <? header('Content-type: text/plain') ?>
-Good Morning UCF for <?=date('l, F j')?><? $weather = get_weather();?>
+Good <?=(int)date('G') >= 12 ? 'Afternoon' : 'Morning'?> UCF for <?=date('l, F j')?><? $weather = get_weather();?>
 
 Today's High: <?=$weather['today']['temp']?>
 
