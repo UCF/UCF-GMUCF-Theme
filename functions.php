@@ -861,7 +861,7 @@ function gmucf_template_redirect() {
 			'events/weekday/'      => create_function('', '$_GET[\'edition\'] = \'weekday\';display_gmucf_template(\'includes/events/browser/base\');'),
 			'events/weekend/mail/' => create_function('', '$_GET[\'edition\'] = \'weekend\';display_gmucf_template(\'includes/events/mail/base\');'),
 			'events/weekend/text/' => create_function('', '$_GET[\'edition\'] = \'weekend\';display_gmucf_template(\'includes/events/text/base\');'),
-			'events/weekend/'      => create_function('', '$_GET[\'edition\'] = \'weekend\';display_gmucf_template(\'includes/events/browser/base\');'));
+			'events/weekend/'      => create_function('', '$_GET[\'edition\'] = \'weekend\';display_gmucf_template(\'includes/events/browser/base\');'),);
 
 		foreach($mapping as $path => $func) {
 			if(stripos($request_path, $path) === 0) {
