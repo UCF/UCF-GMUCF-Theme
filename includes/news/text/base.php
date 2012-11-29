@@ -20,7 +20,7 @@ Tonight's Low: <?=$weather['tonight']['temp']?><? $top_story_details = get_top_s
 
 <? $wotd = get_word_of_the_day(); ?>
 <? if($wotd !== False) { ?>
--- Word of the Day
+-- Word of the Day, Provided by dictionary.com
 
 <?=$wotd['word']?> - \<?=$wotd['pronunciation']?>\ - <?=$wotd['partofspeech']?>
 
