@@ -1,5 +1,4 @@
-<? header('Content-type: text/plain') ?>
-Good <?=(int)date('G') >= 12 ? 'Afternoon' : 'Morning'?> UCF for <?=date('l, F j')?><? $weather = get_weather();?>
+Good Morning UCF for <?=date('l, F j')?><? $weather = get_weather();?>
 
 Today's High: <?=$weather['today']['temp']?>
 
@@ -12,7 +11,6 @@ Tonight's Low: <?=$weather['tonight']['temp']?><? $top_story_details = get_top_s
 
 <?= strip_tags($top_story_details['story_description']) ?>
 
-
 <? foreach(get_featured_stories_details() as $detail) {?> 
 - <?= strip_tags($detail['title']) ?>
 
@@ -23,6 +21,7 @@ Tonight's Low: <?=$weather['tonight']['temp']?><? $top_story_details = get_top_s
 <? $wotd = get_word_of_the_day(); ?>
 <? if($wotd !== False) { ?>
 -- Word of the Day
+
 <?=$wotd['word']?> - \<?=$wotd['pronunciation']?>\ - <?=$wotd['partofspeech']?>
 
 <? foreach($wotd['definitions'] as $part=>$definitions) { ?>
@@ -41,3 +40,11 @@ Tonight's Low: <?=$weather['tonight']['temp']?><? $top_story_details = get_top_s
 <? } ?>
 
 UCF Stands for Opportunity
+
+<?php 
+# Because of insanity, the fetch_feed function changes the Content-Type header
+# somehow. I didn't bother tracking it down because I don't care. Just force
+# the Content-Type down here instead of at the top.
+
+header('Content-Type: text/plain');
+?>
