@@ -30,7 +30,7 @@ h1 {font-size:45px;font-weight:300;margin-bottom:20px;}
 #header #date {padding-left:0;text-align:center;font-weight:200;font-size:20px;font-family:"Helvetica Neue",Helvetica,sans-serif;}
 #header #date #day {position:relative;top:20px;}
 #header #date #month {position:relative;top:20px;}
-#header a {float:left;font-weight:normal;display:block;padding-top:30px;padding-left:20px;}
+#header #this-day-in-history {width:90px;float:left;font-weight:normal;display:block;padding-top:20px;padding-left:15px;font-family:"Helvetica Neue",Helvetica,sans-serif;font-size:14px;text-decoration:none;}
 
 /* Top Story */
 #top_story h2 {margin-bottom:0;}

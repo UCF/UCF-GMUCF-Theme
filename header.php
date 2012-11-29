@@ -46,6 +46,6 @@
 					<span class="temp"><?=$weather['tonight']['temp']?>&deg;</span>
 					
 				</div>
-				<a href="http://www.history.com/this-day-in-history" class="ignore-external">This day in history</a>
+				<a href="http://www.history.com/this-day-in-history" class="ignore-external" id="this-day-in-history">This day in history</a>
 			</div>
 			<div style="clear:both">&nbsp;</div>
