@@ -240,7 +240,7 @@ function get_tomorrows_events($options = array()) {
  * @return int
  * @author Jo Greybill
  **/
-function wunderground_to_icon_num($condition) { 
+function wunderground_to_icon_num($condition, $night=false) { 
 	switch ($condition) {
 		case 'chanceflurries':
 		case 'flurries':
@@ -248,7 +248,7 @@ function wunderground_to_icon_num($condition) {
 			break;
 		case 'chancerain':
 		case 'rain':
-			$n = 11;
+			$night == false ? $n = 11 : $n = 45;
 			break;
 		case 'chancesleet':
 		case 'sleet':
@@ -256,15 +256,15 @@ function wunderground_to_icon_num($condition) {
 			break;
 		case 'chancesnow':
 		case 'snow':
-			$n = 16;
+			$night == false ? $n = 16 : $n = 46;
 			break;
 		case 'chancetstorms':
 		case 'tstorms':
-			$n = 4;
+			$night == false ? $n = 4 : $n = 47;
 			break;
 		case 'clear':
 		case 'sunny':
-			$n = 32;
+			$night == false ? $n = 32 : $n = 31;
 			break;
 		case 'cloudy':
 			$n = 26;
@@ -277,11 +277,11 @@ function wunderground_to_icon_num($condition) {
 			break;
 		case 'mostlycloudy':
 		case 'partlysunny':
-			$n = 28;
+			$night == false ? $n = 28 : $n = 27;
 			break;
 		case 'mostlysunny':
 		case 'partlycloudy':
-			$n = 30;
+			$night == false ? $n = 30 : $n = 29;
 			break;
 		case 'unknown':
 		default:
@@ -303,7 +303,6 @@ function get_weather() {
 
 	// Default weather
 	$weather = array();
-	
 	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
 		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WEATHER_HTTP_TIMEOUT)));
 		if( ($json = file_get_contents(WEATHER_URL, false, $context)) !== False) {
@@ -314,7 +313,7 @@ function get_weather() {
 			$temp_match_today			 = explode('F', $temp_match_today[1]);
 			$weather['today']['temp']    = (int)$temp_match_today[0];
 			// Tonight
-			$weather['tonight']['image'] = wunderground_to_icon_num($data['forecast']['txt_forecast']['forecastday'][1]['icon']);
+			$weather['tonight']['image'] = wunderground_to_icon_num($data['forecast']['txt_forecast']['forecastday'][1]['icon'], true);
 			$temp_match_tonight			 = explode('Low of ', $data['forecast']['txt_forecast']['forecastday'][1]['fcttext']);
 			$temp_match_tonight			 = explode('F', $temp_match_tonight[1]);
 			$weather['tonight']['temp']	 = (int)$temp_match_tonight[0];
