@@ -21,7 +21,7 @@
 	<div class="day">
 		<div class="day-image">
 			<h2>Tomorrow</h2>
-			<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[0]['image']?>.png" />
+			<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[1]['image']?>.png" />
 		</div>
 		<div class="temp">
 			<div class="high">
@@ -39,7 +39,7 @@
 	<div class="day">
 		<div class="day-image">
 			<h2>Wednesday</h2>
-			<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[0]['image']?>.png" />
+			<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[2]['image']?>.png" />
 		</div>
 		<div class="temp">
 			<div class="high">
@@ -57,7 +57,7 @@
 	<div class="day">
 		<div class="day-image">
 			<h2>Thursday</h2>
-			<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[0]['image']?>.png" />
+			<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[3]['image']?>.png" />
 		</div>
 		<div class="temp">
 			<div class="high">
@@ -75,7 +75,7 @@
 	<div class="day">
 		<div class="day-image">
 			<h2>Friday</h2>
-			<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[0]['image']?>.png" />
+			<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather[4]['image']?>.png" />
 		</div>
 		<div class="temp">
 			<div class="high">
