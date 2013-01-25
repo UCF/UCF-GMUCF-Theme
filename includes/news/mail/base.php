@@ -28,8 +28,11 @@
 								<?=date('l, F j')?>
 							</td>
 							<!-- 190 -->
+							<?php
+							$weather = get_weather(); 
+							if ($weather !== NULL) {
+							?>
 							<td style="border-right:1px solid #ddd;padding-left:20px;padding-right:10px;">
-								<? $weather = get_weather(); ?>
 								<table style="margin:auto;" align="center">
 									<tr>
 										<td>
@@ -47,6 +50,7 @@
 									</tr>
 								</table>
 							</td>
+							<?php } ?>
 							<!-- 130 -->
 							<td style="padding-left:10px;width:110px;">
 								<a style="font-size:13px;" href="http://www.history.com/this-day-in-history">

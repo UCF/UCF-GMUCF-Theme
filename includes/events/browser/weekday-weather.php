@@ -1,4 +1,7 @@
-<? $weather = get_weekday_weather(); ?>
+<?php
+$weather = get_weekday_weather();
+if ($weather !== NULL) {
+?>
 <div id="weekday-weather" class="weather">
 	<div class="day">
 		<div class="day-image">
@@ -92,3 +95,4 @@
 	</div>
 	<div class="clear">&nbsp;</div>
 </div>
+<?php } ?>

@@ -36,20 +36,22 @@ This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ UCF
 -- Weather
 
 <?php
-switch($edition) {
-	case EVENTS_WEEKDAY_EDITION:
-		echo 'Today:     '.$weather[0]['high'].' High, '.$weather[0]['low'].' Low'."\n";
-		echo 'Tomorrow:  '.$weather[1]['high'].' High, '.$weather[1]['low'].' Low'."\n";
-		echo 'Wednesday: '.$weather[2]['high'].' High, '.$weather[2]['low'].' Low'."\n";
-		echo 'Thursday:  '.$weather[3]['high'].' High, '.$weather[3]['low'].' Low'."\n";
-		echo 'Friday:    '.$weather[4]['high'].' High, '.$weather[4]['low'].' Low'."\n";
-		break;
-	case EVENTS_WEEKEND_EDITION:
-		echo 'Today:    '.$weather[0]['high'].' High, '.$weather[0]['low'].' Low'."\n";
-		echo 'Tomorrow: '.$weather[1]['high'].' High, '.$weather[1]['low'].' Low'."\n";
-		echo 'Sunday:   '.$weather[2]['high'].' High, '.$weather[2]['low'].' Low'."\n";
-		echo 'Monday:   '.$weather[3]['high'].' High, '.$weather[3]['low'].' Low'."\n";
-		break;
+if ($weather !== NULL) {
+	switch($edition) {
+		case EVENTS_WEEKDAY_EDITION:
+			echo 'Today:     '.$weather[0]['high'].' High, '.$weather[0]['low'].' Low'."\n";
+			echo 'Tomorrow:  '.$weather[1]['high'].' High, '.$weather[1]['low'].' Low'."\n";
+			echo 'Wednesday: '.$weather[2]['high'].' High, '.$weather[2]['low'].' Low'."\n";
+			echo 'Thursday:  '.$weather[3]['high'].' High, '.$weather[3]['low'].' Low'."\n";
+			echo 'Friday:    '.$weather[4]['high'].' High, '.$weather[4]['low'].' Low'."\n";
+			break;
+		case EVENTS_WEEKEND_EDITION:
+			echo 'Today:    '.$weather[0]['high'].' High, '.$weather[0]['low'].' Low'."\n";
+			echo 'Tomorrow: '.$weather[1]['high'].' High, '.$weather[1]['low'].' Low'."\n";
+			echo 'Sunday:   '.$weather[2]['high'].' High, '.$weather[2]['low'].' Low'."\n";
+			echo 'Monday:   '.$weather[3]['high'].' High, '.$weather[3]['low'].' Low'."\n";
+			break;
+	}
 }
 ?>
 

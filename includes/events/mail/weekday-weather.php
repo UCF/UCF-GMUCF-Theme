@@ -1,7 +1,10 @@
+<? 
+$weather = get_weekday_weather(); 
+if ($weather !== NULL) {
+?>
 <tr>
 	<td>
 		<div class="clear">&nbsp;</div>
-		<? $weather = get_weekday_weather(); ?>
 		<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 			<tr>
 				<td style="width:110px;border-right:1px solid #ddd;padding-left:10px;">
@@ -121,3 +124,4 @@
 		<div class="clear">&nbsp;</div>
 	</td>
 </tr>
+<?php } ?>

@@ -1,9 +1,9 @@
-Good Morning UCF for <?=date('l, F j')?><? $weather = get_weather();?>
+Good Morning UCF for <?=date('l, F j')?><? $weather = get_weather(); if ($weather !== NULL) { ?>
 
 Today's High: <?=$weather['today']['temp']?>
 
 Tonight's Low: <?=$weather['tonight']['temp']?><? $top_story_details = get_top_story_details()?>
-
+<?php } ?>
 
 -- Today's Top Stories
 
