@@ -126,7 +126,7 @@ switch($edition) {
 				include('weekday-weather.php');
 				break;
 			case EVENTS_WEEKEND_EDITION:
-				include('weekday-weather.php');
+				include('weekend-weather.php');
 				break;
 		}
 		?>
