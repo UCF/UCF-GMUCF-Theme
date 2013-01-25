@@ -233,6 +233,65 @@ function get_tomorrows_events($options = array()) {
 }
 
 /**
+ * Convert Wunderground condition codes to Weather.com
+ * icon number values. Returns empty string on an unknown or
+ * bad condition.
+ *
+ * @return int
+ * @author Jo Greybill
+ **/
+function wunderground_to_icon_num($condition) { 
+	switch ($condition) {
+		case 'chanceflurries':
+		case 'flurries':
+			$n = 13;
+			break;
+		case 'chancerain':
+		case 'rain':
+			$n = 11;
+			break;
+		case 'chancesleet':
+		case 'sleet':
+			$n = 18;
+			break;
+		case 'chancesnow':
+		case 'snow':
+			$n = 16;
+			break;
+		case 'chancetstorms':
+		case 'tstorms':
+			$n = 4;
+			break;
+		case 'clear':
+		case 'sunny':
+			$n = 32;
+			break;
+		case 'cloudy':
+			$n = 26;
+			break;
+		case 'fog':
+			$n = 20;
+			break;
+		case 'hazy':
+			$n = 21;
+			break;
+		case 'mostlycloudy':
+		case 'partlysunny':
+			$n = 28;
+			break;
+		case 'mostlysunny':
+		case 'partlycloudy':
+			$n = 30;
+			break;
+		case 'unknown':
+		default:
+			$n = '';
+			break;
+	} 
+	return $n;
+}
+
+/**
  * Fetches weather.com image ID and temp for today and tonight
  *
  * @return array
@@ -291,54 +350,7 @@ function get_extended_weather() {
 			foreach ($data['forecast']['simpleforecast']['forecastday'] as $day) {
 				// Images
 				$day['icon'] !== '' ? $condition = $day['icon'] : $condition = '';
-				switch ($condition) {
-					// Convert wunderground's icon codes to match our icon set (weather.com codes)...
-					case 'chanceflurries':
-					case 'flurries':
-						$weather[$count]['image'] = 13;
-						break;
-					case 'chancerain':
-					case 'rain':
-						$weather[$count]['image'] = 11;
-						break;
-					case 'chancesleet':
-					case 'sleet':
-						$weather[$count]['image'] = 18;
-						break;
-					case 'chancesnow':
-					case 'snow':
-						$weather[$count]['image'] = 16;
-						break;
-					case 'chancetstorms':
-					case 'tstorms':
-						$weather[$count]['image'] = 4;
-						break;
-					case 'clear':
-					case 'sunny':
-						$weather[$count]['image'] = 32;
-						break;
-					case 'cloudy':
-						$weather[$count]['image'] = 26;
-						break;
-					case 'fog':
-						$weather[$count]['image'] = 20;
-						break;
-					case 'hazy':
-						$weather[$count]['image'] = 21;
-						break;
-					case 'mostlycloudy':
-					case 'partlysunny':
-						$weather[$count]['image'] = 28;
-						break;
-					case 'mostlysunny':
-					case 'partlycloudy':
-						$weather[$count]['image'] = 30;
-						break;
-					case 'unknown':
-					default:
-						$weather[$count]['image'] = '';
-						break;
-				}
+				$weather[$count]['image'] = wunderground_to_icon_num($condition);
 				
 				// Highs
 				$day['high']['fahrenheit'] !== '' 	? $weather[$count]['high'] = (int)$day['high']['fahrenheit'] : $weather[$count]['high'] = '';
