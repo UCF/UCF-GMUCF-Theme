@@ -31,9 +31,11 @@ define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/feeds/announcement/');
 define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/pls/CDWS/w4_bbs_announcements.main_disp_sel?p_role=all');
 
-define('WEATHER_URL', 'http://www.weather.com/weather/today/Orlando+FL+32816:4:US');
-define('WEATHER_EXTENDED_URL', 'http://www.weather.com/weather/tenday/32816');
-define('WEATHER_CACHE_DURATION', 60 * 30); // weather
+define('WEATHER_API_KEY', $theme_options['wunderground_api_key']);
+define('WEATHER_URL', 'http://api.wunderground.com/api/'.WEATHER_API_KEY.'/forecast/q/32816.json');
+define('WEATHER_EXTENDED_URL', 'http://api.wunderground.com/api/'.WEATHER_API_KEY.'/forecast10day/q/32816.json');
+define('WEATHER_CACHE_DURATION', 60 * 30); // seconds
+define('WEATHER_HTTP_TIMEOUT', 10); // wunderground needs more than 3 seconds
 
 define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
@@ -77,7 +79,16 @@ Config::$theme_settings = array(
 			'default'     => null,
 			'value'       => $theme_options['dictionary_api_key'],
 		)),
-	)
+	),
+	'Wunderground'	  => array(
+		new TextField(array(
+			'name'        => 'Wunderground.com API Key',
+			'id'          => THEME_OPTIONS_NAME.'[wunderground_api_key]',
+			'description' => '',
+			'default'     => null,
+			'value'       => $theme_options['wunderground_api_key'],
+		)),
+	),
 );
 
 Config::$links = array(
@@ -270,53 +281,89 @@ function get_weather() {
 function get_extended_weather() {
 
 	$cache_key = 'extended-weather';
-
-	$weather = array(
-		array('image'=>30, 'high'=>75, 'low'=>65),
-		array('image'=>30, 'high'=>75, 'low'=>65),
-		array('image'=>30, 'high'=>75, 'low'=>65),
-		array('image'=>30, 'high'=>75, 'low'=>65),
-		array('image'=>30, 'high'=>75, 'low'=>65),
-		array('image'=>30, 'high'=>75, 'low'=>65),
-		array('image'=>30, 'high'=>75, 'low'=>65),
-		array('image'=>30, 'high'=>75, 'low'=>65),
-		array('image'=>30, 'high'=>75, 'low'=>65),
-		array('image'=>30, 'high'=>75, 'low'=>65),
-	);
-
+	$weather = array();
+	
 	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
-		$weather = array();
-		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
-		if( ($html = @file_get_contents(WEATHER_EXTENDED_URL, false, $context)) !== False) {
-
-			$start_point = '<div class="wx-24hour wx-module wx-grid3of6 wx-weather">';
-			$start_point_index = stripos($html, $start_point);
+		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WEATHER_HTTP_TIMEOUT)));
+		if( ($json = file_get_contents(WEATHER_EXTENDED_URL, false, $context)) !== False) {
+			$data = json_decode($json, true); // Arrays seem to play more nicely than objects for whatever reason
+			$count = 0;
+			foreach ($data['forecast']['simpleforecast']['forecastday'] as $day) {
+				// Images
+				$day['icon'] !== '' ? $condition = $day['icon'] : $condition = '';
+				switch ($condition) {
+					// Convert wunderground's icon codes to match our icon set (weather.com codes)...
+					case 'chanceflurries':
+					case 'flurries':
+						$weather[$count]['image'] = 13;
+						break;
+					case 'chancerain':
+					case 'rain':
+						$weather[$count]['image'] = 11;
+						break;
+					case 'chancesleet':
+					case 'sleet':
+						$weather[$count]['image'] = 18;
+						break;
+					case 'chancesnow':
+					case 'snow':
+						$weather[$count]['image'] = 16;
+						break;
+					case 'chancetstorms':
+					case 'tstorms':
+						$weather[$count]['image'] = 4;
+						break;
+					case 'clear':
+					case 'sunny':
+						$weather[$count]['image'] = 32;
+						break;
+					case 'cloudy':
+						$weather[$count]['image'] = 26;
+						break;
+					case 'fog':
+						$weather[$count]['image'] = 20;
+						break;
+					case 'hazy':
+						$weather[$count]['image'] = 21;
+						break;
+					case 'mostlycloudy':
+					case 'partlysunny':
+						$weather[$count]['image'] = 28;
+						break;
+					case 'mostlysunny':
+					case 'partlycloudy':
+						$weather[$count]['image'] = 30;
+						break;
+					case 'unknown':
+					default:
+						$weather[$count]['image'] = '';
+						break;
+				}
+				
+				// Highs
+				$day['high']['fahrenheit'] !== '' 	? $weather[$count]['high'] = (int)$day['high']['fahrenheit'] : $weather[$count]['high'] = '';
+				
+				// Lows
+				$day['low']['fahrenheit'] !== '' 	? $weather[$count]['low'] = (int)$day['low']['fahrenheit'] 	 : $weather[$count]['low'] = '';
+				
+				$count++;
+			}
 			
-			$length = stripos($html, '<div class="wx-24hour wx-module wx-grid3of6 wx-weather">', $start_point_index) - ($start_point_index + strlen($start_point));
-
-			$forecast_table = substr($html, $start_point_index + strlen($start_point), $length);
-
-			# Images
-			preg_match_all('/http:\/\/s.imwx.com\/v.20120328.084252\/img\/wxicon\/70\/(\d+).png/', $forecast_table, $image_matches);
-			
-			# High
-			preg_match_all('/<p class="wx-temp">\s(\d{2,3})/', $forecast_table, $high_matches);
-			
-			# Lows
-			preg_match_all('/<p class="wx-temp-alt">\s(\d{2,3})/', $forecast_table, $low_matches);
-
-			for($i = 0; $i < 10; $i++) {
-				$image = $image_matches[1][$i];
-				$high  = $high_matches[1][$i];
-				$low   = $low_matches[1][$i];
-				array_push($weather, array('image'=>$image, 'high'=>$high, 'low'=>$low));
+			// If an empty value in the array is found,
+			// consider the feed fetch a failure
+			if (array_search('', $weather) !== false) {
+				$weather = NULL;
 			}
 			
 			set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
 		}
+		else { 
+			$weather = NULL;
+		}
 	}
 	return $weather;
 }
+
 
 /**
  * Wraps get_extended_weather to slice out the
@@ -875,4 +922,5 @@ function gmucf_template_redirect() {
 	}
 }
 add_action('template_redirect', 'gmucf_template_redirect', 1);
+
 ?>
