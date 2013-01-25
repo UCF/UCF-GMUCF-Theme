@@ -150,4 +150,10 @@ for($i = 0; $i < count($days); $i++) {
 }
 ?>
 
+
 Please submit your comments and feedback to feedback@ucf.edu
+
+
+
+Weather data provided by wunderground.com.
+

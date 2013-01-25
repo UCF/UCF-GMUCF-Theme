@@ -50,6 +50,12 @@
 			<br />
 			407.823.2000
 		</a>
+		<div style="clear:both;"><br/>
+			<a class="ignore-external" href="http://www.wunderground.com/?apiref=360d941adbeaa2a1">
+			<span style="font-size: 10px;color:#000000;font-family:Helvetica, serif;font-weight:normal;">Weather data provided by wunderground.com</span><br/>
+			<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather-logo.gif" alt="Wunderground.com" title="Wunderground.com" />
+			</a>
+		</div>
 	</div>
 </div>
 <?=get_footer()?>

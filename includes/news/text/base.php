@@ -39,7 +39,13 @@ Tonight's Low: <?=$weather['tonight']['temp']?><? $top_story_details = get_top_s
 
 <? } ?>
 
+
 Please submit your comments and feedback to feedback@ucf.edu
+
+
+
+Weather data provided by wunderground.com.
+
 
 <?php 
 # Because of insanity, the fetch_feed function changes the Content-Type header
