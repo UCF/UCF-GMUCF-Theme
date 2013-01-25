@@ -332,9 +332,6 @@ function get_weather() {
 	return $weather;
 }
 
-var_dump(get_weather());
-
-
 
 /**
  * Fetches weather.com image ID and temp for today and tonight
