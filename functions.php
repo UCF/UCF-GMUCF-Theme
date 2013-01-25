@@ -302,33 +302,41 @@ function get_weather() {
 	$cache_key = 'weather';
 
 	// Default weather
-	$weather = array(
-		'today' => array(
-				'image' =>30,
-				'temp'  =>75
-		),
-		'tonight'=> array(
-			'image' =>30,
-			'temp'  =>65
-		)
-	);
+	$weather = array();
+	
+	delete_transient($cache_key);
 	
 	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
-		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
-		if( ($html = @file_get_contents(WEATHER_URL, false, $context)) !== False) {
-			preg_match_all('/http:\/\/s\.imwx\.com\/v\.20120328\.084208\/img\/wxicon\/120\/(\d+)\.png/', $html, $image_matches);
-			preg_match_all('/<p class="wx-temp">\s(\d{2,3})/', $html, $temp_matches);
+		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WEATHER_HTTP_TIMEOUT)));
+		if( ($json = file_get_contents(WEATHER_URL, false, $context)) !== False) {
+			$data = json_decode($json, true);
+			// Today
+			$weather['today']['image']   = wunderground_to_icon_num($data['forecast']['txt_forecast']['forecastday'][0]['icon']);
+			$temp_match_today			 = explode('High of ', $data['forecast']['txt_forecast']['forecastday'][0]['fcttext']);
+			$temp_match_today			 = explode('F', $temp_match_today[1]);
+			$weather['today']['temp']    = (int)$temp_match_today[0];
+			// Tonight
+			$weather['tonight']['image'] = wunderground_to_icon_num($data['forecast']['txt_forecast']['forecastday'][1]['icon']);
+			$temp_match_tonight			 = explode('Low of ', $data['forecast']['txt_forecast']['forecastday'][1]['fcttext']);
+			$temp_match_tonight			 = explode('F', $temp_match_tonight[1]);
+			$weather['tonight']['temp']	 = (int)$temp_match_tonight[0];
 			
-			$weather['today']['image']   = $image_matches[1][0];
-			$weather['today']['temp']    = $temp_matches[1][0];
-			$weather['tonight']['image'] = $image_matches[1][1];
-			$weather['tonight']['temp']  = $temp_matches[1][1];
+			// If an empty value in the array is found,
+			// consider the feed fetch a failure
+			if (array_search('', $weather) !== false) {
+				$weather = NULL;
+			}
 		}
-
+		else { 
+			$weather = NULL;
+		}
 		set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
 	}
 	return $weather;
 }
+
+var_dump(get_weather());
+
 
 
 /**
@@ -349,8 +357,7 @@ function get_extended_weather() {
 			$count = 0;
 			foreach ($data['forecast']['simpleforecast']['forecastday'] as $day) {
 				// Images
-				$day['icon'] !== '' ? $condition = $day['icon'] : $condition = '';
-				$weather[$count]['image'] = wunderground_to_icon_num($condition);
+				$weather[$count]['image'] = wunderground_to_icon_num($day['icon']);
 				
 				// Highs
 				$day['high']['fahrenheit'] !== '' 	? $weather[$count]['high'] = (int)$day['high']['fahrenheit'] : $weather[$count]['high'] = '';
@@ -366,12 +373,11 @@ function get_extended_weather() {
 			if (array_search('', $weather) !== false) {
 				$weather = NULL;
 			}
-			
-			set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
 		}
 		else { 
 			$weather = NULL;
 		}
+		set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
 	}
 	return $weather;
 }
