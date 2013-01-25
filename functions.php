@@ -304,8 +304,6 @@ function get_weather() {
 	// Default weather
 	$weather = array();
 	
-	delete_transient($cache_key);
-	
 	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
 		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WEATHER_HTTP_TIMEOUT)));
 		if( ($json = file_get_contents(WEATHER_URL, false, $context)) !== False) {
