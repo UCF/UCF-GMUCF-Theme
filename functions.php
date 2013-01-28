@@ -307,16 +307,14 @@ function get_weather() {
 		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WEATHER_HTTP_TIMEOUT)));
 		if( ($json = file_get_contents(WEATHER_URL, false, $context)) !== False) {
 			$data = json_decode($json, true);
-			// Today
+			
+			// Today (txt_forecast is separated by day/night and provides a more accurate icon value for that time period)
 			$weather['today']['image']   = wunderground_to_icon_num($data['forecast']['txt_forecast']['forecastday'][0]['icon']);
-			$temp_match_today			 = explode('High of ', $data['forecast']['txt_forecast']['forecastday'][0]['fcttext']);
-			$temp_match_today			 = explode('F', $temp_match_today[1]);
-			$weather['today']['temp']    = (int)$temp_match_today[0];
+			$weather['today']['temp']	 = $data['forecast']['simpleforecast']['forecastday'][0]['high']['fahrenheit'];
+			
 			// Tonight
 			$weather['tonight']['image'] = wunderground_to_icon_num($data['forecast']['txt_forecast']['forecastday'][1]['icon'], true);
-			$temp_match_tonight			 = explode('Low of ', $data['forecast']['txt_forecast']['forecastday'][1]['fcttext']);
-			$temp_match_tonight			 = explode('F', $temp_match_tonight[1]);
-			$weather['tonight']['temp']	 = (int)$temp_match_tonight[0];
+			$weather['tonight']['temp']	 = $data['forecast']['simpleforecast']['forecastday'][0]['low']['fahrenheit'];			
 			
 			// If an empty value in the array is found,
 			// consider the feed fetch a failure
