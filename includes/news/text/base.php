@@ -1,4 +1,4 @@
-Good Morning UCF for <?=date('l, F j')?><? $weather = get_weather(); if ($weather !== NULL) { ?>
+Good Morning UCF for <?=date('l, F j')?><? $weather = get_weather(); if (!empty($weather)) { ?>
 
 Today's High: <?=$weather['today']['temp']?>
 

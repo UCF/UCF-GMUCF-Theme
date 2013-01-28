@@ -30,7 +30,7 @@
 							<!-- 190 -->
 							<?php
 							$weather = get_weather(); 
-							if ($weather !== NULL) {
+							if (!empty($weather)) {
 							?>
 							<td style="border-right:1px solid #ddd;padding-left:20px;padding-right:10px;">
 								<table style="margin:auto;" align="center">

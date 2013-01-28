@@ -234,7 +234,7 @@ function get_tomorrows_events($options = array()) {
 
 /**
  * Convert Wunderground condition codes to Weather.com
- * icon number values. Returns empty string on an unknown or
+ * icon number values. Returns NULL on an unknown or
  * bad condition.
  *
  * @return int
@@ -285,7 +285,7 @@ function wunderground_to_icon_num($condition, $night=false) {
 			break;
 		case 'unknown':
 		default:
-			$n = '';
+			$n = NULL;
 			break;
 	} 
 	return $n;
@@ -300,13 +300,12 @@ function wunderground_to_icon_num($condition, $night=false) {
 function get_weather() {
 	
 	$cache_key = 'weather';
-
-	// Default weather
 	$weather = array();
+	
 	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
 		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WEATHER_HTTP_TIMEOUT)));
 		if( ($json = file_get_contents(WEATHER_URL, false, $context)) !== False) {
-			$data = json_decode($json, true);
+			$data = json_decode($json, true); // Convert to array
 			
 			// Today (txt_forecast is separated by day/night and provides a more accurate icon value for that time period)
 			$weather['today']['image']   = wunderground_to_icon_num($data['forecast']['txt_forecast']['forecastday'][0]['icon']);
@@ -314,11 +313,11 @@ function get_weather() {
 			
 			// Tonight
 			$weather['tonight']['image'] = wunderground_to_icon_num($data['forecast']['txt_forecast']['forecastday'][1]['icon'], true);
-			$weather['tonight']['temp']	 = $data['forecast']['simpleforecast']['forecastday'][0]['low']['fahrenheit'];			
+			$weather['tonight']['temp']	 = $data['forecast']['simpleforecast']['forecastday'][0]['low']['fahrenheit'];				
 			
 			// If an empty value in the array is found,
 			// consider the feed fetch a failure
-			if (array_search('', $weather) !== false) {
+			if ( (array_search(NULL, $weather['today']) !== false) || (array_search(NULL, $weather['tonight']) !== false) ) {
 				$weather = NULL;
 			}
 		}
@@ -345,25 +344,29 @@ function get_extended_weather() {
 	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
 		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WEATHER_HTTP_TIMEOUT)));
 		if( ($json = file_get_contents(WEATHER_EXTENDED_URL, false, $context)) !== False) {
-			$data = json_decode($json, true); // Arrays seem to play more nicely than objects for whatever reason
+			$data = json_decode($json, true); // Convert to array
 			$count = 0;
-			foreach ($data['forecast']['simpleforecast']['forecastday'] as $day) {
-				// Images
-				$weather[$count]['image'] = wunderground_to_icon_num($day['icon']);
-				
-				// Highs
-				$day['high']['fahrenheit'] !== '' 	? $weather[$count]['high'] = (int)$day['high']['fahrenheit'] : $weather[$count]['high'] = '';
-				
-				// Lows
-				$day['low']['fahrenheit'] !== '' 	? $weather[$count]['low'] = (int)$day['low']['fahrenheit'] 	 : $weather[$count]['low'] = '';
-				
-				$count++;
+			if (is_array($data)) {
+				foreach ($data['forecast']['simpleforecast']['forecastday'] as $day) {
+					// Images
+					$weather[$count]['image'] = wunderground_to_icon_num($day['icon']);
+					
+					// Highs
+					$day['high']['fahrenheit'] !== '' 	? $weather[$count]['high'] = (int)$day['high']['fahrenheit'] : $weather[$count]['high'] = NULL;
+					
+					// Lows
+					$day['low']['fahrenheit'] !== '' 	? $weather[$count]['low'] = (int)$day['low']['fahrenheit'] 	 : $weather[$count]['low'] = NULL;
+					
+					$count++;
+				}
 			}
 			
 			// If an empty value in the array is found,
 			// consider the feed fetch a failure
-			if (array_search('', $weather) !== false) {
-				$weather = NULL;
+			foreach ($weather as $day) {
+				if ( ($day['image'] == NULL) || ($day['high'] == NULL) || ($day['low'] == NULL) ) {
+					$weather = NULL;
+				}
 			}
 		}
 		else { 
@@ -383,7 +386,11 @@ function get_extended_weather() {
  * @author Chris Conover
  **/
 function get_weekday_weather() {
-	return array_slice(get_extended_weather(), get_next_monday_diff(), 5);
+	$weather = get_extended_weather();
+	if (!empty($weather)) {
+		return array_slice($weather, get_next_monday_diff(), 5);
+	}
+	else { return NULL; }
 }
 
 /**
@@ -394,7 +401,11 @@ function get_weekday_weather() {
  * @author Chris Conover
  **/
 function get_weekend_weather() {
-	return array_slice(get_extended_weather(), get_next_friday_diff(), 4);
+	$weather = get_extended_weather();
+	if (!empty($weather)) {
+		return array_slice($weather, get_next_friday_diff(), 4);
+	}
+	else { return NULL; }
 }
 
 /**

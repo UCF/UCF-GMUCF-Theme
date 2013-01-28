@@ -34,7 +34,10 @@
 				<div id="date">
 					<span id="day"><?=date('l')?>,</span> <span id="month"><?=date('F j')?></span>
 				</div>
-				<? $weather = get_weather(); ?>
+				<?php 
+				$weather = get_weather(); 
+				if (!empty($weather)) { 
+				?>
 				<div class="weather" id="today">
 					<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" />
 					<span class="type">High</span>
@@ -46,6 +49,7 @@
 					<span class="temp"><?=$weather['tonight']['temp']?>&deg;</span>
 					
 				</div>
+				<?php } ?>
 				<a href="http://www.history.com/this-day-in-history" class="ignore-external" id="this-day-in-history">This day in history</a>
 			</div>
 			<div style="clear:both">&nbsp;</div>

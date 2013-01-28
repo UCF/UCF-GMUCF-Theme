@@ -1,6 +1,6 @@
 <?php
 $weather = get_weekday_weather();
-if ($weather !== NULL) {
+if (!empty($weather)) {
 ?>
 <div id="weekday-weather" class="weather">
 	<div class="day">

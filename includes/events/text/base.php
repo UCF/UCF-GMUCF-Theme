@@ -36,7 +36,7 @@ This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ UCF
 -- Weather
 
 <?php
-if ($weather !== NULL) {
+if (!empty($weather)) {
 	switch($edition) {
 		case EVENTS_WEEKDAY_EDITION:
 			echo 'Today:     '.$weather[0]['high'].' High, '.$weather[0]['low'].' Low'."\n";

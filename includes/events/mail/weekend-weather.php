@@ -1,6 +1,6 @@
 <? 
 $weather = get_weekend_weather(); 
-if ($weather !== NULL) {
+if (!empty($weather)) {
 ?>
 <tr>
 	<td>
