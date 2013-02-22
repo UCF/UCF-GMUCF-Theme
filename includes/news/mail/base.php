@@ -15,11 +15,6 @@
 	<body bgcolor="#FFF">
 		<table width="640" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 640px; margin:0 auto; padding:0; background-color:#FFF;">
 			<tr>
-				<td style="text-align:center;font-size:16px;padding: 10px 10px 10px 10px;margin:0;">
-					Send us your <a style="color:blue;text-decoration:underline;" href="http://atucf.smca.ucf.edu/feedback">comments &amp; feedback</a>
-				</td>
-			</tr>
-			<tr>
 				<td>
 					<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto; background-color:#FFF;border-bottom:1px solid #ddd;padding-bottom:10px;">
 						<tr>

@@ -110,7 +110,6 @@ switch($edition) {
 		</script>
 	</head>
 	<body>
-		<div id="feedback">Send us your <a href="http://atucf.smca.ucf.edu/feedback">comments &amp; feedback</a></div>
 		<div id="shoutout">UCF, check out:</div>
 		<h1>
 			This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ <span class="highlight">UCF</span>

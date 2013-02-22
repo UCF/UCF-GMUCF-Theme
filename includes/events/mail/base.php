@@ -46,11 +46,6 @@ switch($edition) {
 	<body bgcolor="#FFF">
 		<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 			<tr>
-				<div style="text-align:center;font-size:16px;padding:10px;">
-					Send us your <a style="color:blue;text-decoration:underline;" href="http://atucf.smca.ucf.edu/feedback">comments &amp; feedback</a>
-				</div>
-			</tr>
-			<tr>
 				<td style="padding-top:30px;font-size:25px;font-weight:200;">
 					!@!Preferred Name!@!, check out:
 				</td>
