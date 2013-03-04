@@ -28,8 +28,8 @@ define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 define('FEATURED_STORIES_RSS_URL', 'http://today.ucf.edu/tag/main-site-stories/feed/');
 define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 
-define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/feeds/announcement/');
-define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/pls/CDWS/w4_bbs_announcements.main_disp_sel?p_role=all');
+define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0');
+define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/feeds/announcement/');
 
 define('WEATHER_API_KEY', $theme_options['wunderground_api_key']);
 define('WEATHER_URL', 'http://api.wunderground.com/api/'.WEATHER_API_KEY.'/forecast/q/32816.json');
