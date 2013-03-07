@@ -12,5 +12,5 @@
 			</li>
 	<?	} ?>
 	</ul>
-	<p><a href="<?=ANNOUNCEMENTS_MORE_URL?>">More Announcements</a></p>
+	<p><a class="ignore_external" href="<?=ANNOUNCEMENTS_MORE_URL?>">More Announcements</a></p>
 </div>
