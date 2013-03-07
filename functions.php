@@ -29,7 +29,7 @@ define('FEATURED_STORIES_RSS_URL', 'http://today.ucf.edu/tag/main-site-stories/f
 define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 
 define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0');
-define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/feeds/announcement/');
+define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/announcements/');
 
 define('WEATHER_API_KEY', $theme_options['wunderground_api_key']);
 define('WEATHER_URL', 'http://api.wunderground.com/api/'.WEATHER_API_KEY.'/forecast/q/32816.json');
