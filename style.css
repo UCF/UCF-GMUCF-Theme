@@ -64,6 +64,8 @@ h1 {font-size:45px;font-weight:300;margin-bottom:20px;}
 #announcements > ul {margin:0;padding:0;}
 #announcements > ul > li {list-style-type:none;}
 #announcements > ul > li > a {color:#9D1A1A;font-weight:100;font-family:Helvetica,sans-serif;}
+#announcements > p { text-align: right; }
+#announcements > p  > a { text-decoration: underline; color:#9D1A1A;font-weight:100;font-family:Helvetica,sans-serif; }
 
 /* Bottom */
 #bottom {clear:both;margin-top:40px;border-top:1px solid #ddd;padding-top:15px;margin-bottom:30px;}
