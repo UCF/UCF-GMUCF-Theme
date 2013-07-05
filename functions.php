@@ -360,8 +360,6 @@ function get_extended_weather() {
 					$count++;
 				}
 			}
-
-			var_dump($weather);
 			
 			// If an empty value in the array is found,
 			// consider the feed fetch a failure.
