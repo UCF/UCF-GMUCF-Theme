@@ -360,11 +360,15 @@ function get_extended_weather() {
 					$count++;
 				}
 			}
+
+			var_dump($weather);
 			
 			// If an empty value in the array is found,
-			// consider the feed fetch a failure
-			foreach ($weather as $day) {
-				if ( ($day['image'] == NULL) || ($day['high'] == NULL) || ($day['low'] == NULL) ) {
+			// consider the feed fetch a failure.
+			// Note: wunderground sometimes throws an empty 
+			// LOW value in the last day's forecast
+			foreach ($weather as $key => $day) {
+				if ( ($day['image'] == NULL) || ($day['high'] == NULL) || (($key !== 9) && ($day['low'] == NULL)) ) {
 					$weather = NULL;
 				}
 			}
