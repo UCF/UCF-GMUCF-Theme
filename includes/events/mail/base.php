@@ -143,7 +143,7 @@ switch($edition) {
 			</tr>
 			<tr>
 				<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
-					Having troubling viewing this email? See it in your 
+					Having trouble viewing this email? See it in your 
 					<?
 					// Use includes here instead of get_template_part
 					// to preserve scope.
