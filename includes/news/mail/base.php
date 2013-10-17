@@ -24,23 +24,23 @@
 							</td>
 							<!-- 190 -->
 							<?php
-							$weather = get_weather(); 
+							$weather = get_weather('weather'); 
 							if (!empty($weather)) {
 							?>
 							<td style="border-right:1px solid #ddd;padding-left:20px;padding-right:10px;">
 								<table style="margin:auto;" align="center">
 									<tr>
 										<td>
-											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['image']?>.png" width="30" /> 
+											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['imgCode']?>.png" width="30" /> 
 										</td>
 										<td>
-											High <strong><?= $weather['today']['temp']?></strong>&deg;
+											High <strong><?= $weather['today']['temp']?></strong>
 										</td>
 										<td>
-											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['image']?>.png" width="30" /> 
+											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['imgCode']?>.png" width="30" /> 
 										</td>
 										<td>
-											Low <strong><?= $weather['tonight']['temp']?></strong>&deg;
+											Low <strong><?= $weather['tonight']['temp']?></strong>
 										</td>
 									</tr>
 								</table>

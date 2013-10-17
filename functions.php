@@ -31,11 +31,10 @@ define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0');
 define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/announcements/');
 
-define('WEATHER_API_KEY', $theme_options['wunderground_api_key']);
-define('WEATHER_URL', 'http://api.wunderground.com/api/'.WEATHER_API_KEY.'/forecast/q/32816.json');
-define('WEATHER_EXTENDED_URL', 'http://api.wunderground.com/api/'.WEATHER_API_KEY.'/forecast10day/q/32816.json');
-define('WEATHER_CACHE_DURATION', 60 * 30); // seconds
-define('WEATHER_HTTP_TIMEOUT', 10); // wunderground needs more than 3 seconds
+define('WEATHER_URL', 'http://webcom.dev.smca.ucf.edu/sandbox/weather-data/?data=forecastToday');
+define('WEATHER_URL_EXTENDED', 'http://webcom.dev.smca.ucf.edu/sandbox/weather-data/?data=forecastExtended');
+define('WEATHER_CACHE_DURATION', 60 * 15); // seconds
+define('WEATHER_HTTP_TIMEOUT', 8);
 
 define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
@@ -232,92 +231,37 @@ function get_tomorrows_events($options = array()) {
 	return get_event_data($options);
 }
 
-/**
- * Convert Wunderground condition codes to Weather.com
- * icon number values. Returns NULL on an unknown or
- * bad condition.
- *
- * @return int
- * @author Jo Greybill
- **/
-function wunderground_to_icon_num($condition, $night=false) { 
-	switch ($condition) {
-		case 'chanceflurries':
-		case 'flurries':
-			$n = 13;
-			break;
-		case 'chancerain':
-		case 'rain':
-			$night == false ? $n = 11 : $n = 45;
-			break;
-		case 'chancesleet':
-		case 'sleet':
-			$n = 18;
-			break;
-		case 'chancesnow':
-		case 'snow':
-			$night == false ? $n = 16 : $n = 46;
-			break;
-		case 'chancetstorms':
-		case 'tstorms':
-			$night == false ? $n = 4 : $n = 47;
-			break;
-		case 'clear':
-		case 'sunny':
-			$night == false ? $n = 32 : $n = 31;
-			break;
-		case 'cloudy':
-			$n = 26;
-			break;
-		case 'fog':
-			$n = 20;
-			break;
-		case 'hazy':
-			$n = 21;
-			break;
-		case 'mostlycloudy':
-		case 'partlysunny':
-			$night == false ? $n = 28 : $n = 27;
-			break;
-		case 'mostlysunny':
-		case 'partlycloudy':
-			$night == false ? $n = 30 : $n = 29;
-			break;
-		case 'unknown':
-		default:
-			$n = NULL;
-			break;
-	} 
-	return $n;
-}
 
 /**
- * Fetches weather.com image ID and temp for today and tonight
+ * Fetches today/tonight weather, extended weather and stores 
+ * it as transient data.
  *
  * @return array
- * @author Chris Conover
+ * @author Jo Dickson
  **/
-function get_weather() {
-	
-	$cache_key = 'weather';
+function get_weather($cache_key) {
 	$weather = array();
 	
 	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
 		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WEATHER_HTTP_TIMEOUT)));
-		if( ($json = file_get_contents(WEATHER_URL, false, $context)) !== False) {
-			$data = json_decode($json, true); // Convert to array
-			
-			// Today (txt_forecast is separated by day/night and provides a more accurate icon value for that time period)
-			$weather['today']['image']   = wunderground_to_icon_num($data['forecast']['txt_forecast']['forecastday'][0]['icon']);
-			$weather['today']['temp']	 = $data['forecast']['simpleforecast']['forecastday'][0]['high']['fahrenheit'];
-			
-			// Tonight
-			$weather['tonight']['image'] = wunderground_to_icon_num($data['forecast']['txt_forecast']['forecastday'][1]['icon'], true);
-			$weather['tonight']['temp']	 = $data['forecast']['simpleforecast']['forecastday'][0]['low']['fahrenheit'];				
-			
-			// If an empty value in the array is found,
-			// consider the feed fetch a failure
-			if ( (array_search(NULL, $weather['today']) !== false) || (array_search(NULL, $weather['tonight']) !== false) ) {
+		switch ($cache_key) {
+			case 'weather-extended':
+				$json_url = WEATHER_URL_EXTENDED;
+				break;
+			case 'weather':
+			default:
+				$json_url = WEATHER_URL;
+				break;
+		}
+		if( ($json = file_get_contents($json_url, false, $context)) !== False) {
+			$json = json_decode($json, true); // Convert to array
+			if ($cache_key == 'extended-weather') {
+				$weather = $json['days'];
+			}
+			else {
+				$weather = $json;
+			}
+			if ($weather['successfulFetch'] == 'no') {
 				$weather = NULL;
 			}
 		}
@@ -331,87 +275,7 @@ function get_weather() {
 
 
 /**
- * Fetches weather.com image ID and temp for today and tonight
- *
- * @return array
- * @author Chris Conover
- **/
-function get_extended_weather() {
-
-	$cache_key = 'extended-weather';
-	$weather = array();
-	
-	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
-		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WEATHER_HTTP_TIMEOUT)));
-		if( ($json = file_get_contents(WEATHER_EXTENDED_URL, false, $context)) !== False) {
-			$data = json_decode($json, true); // Convert to array
-			$count = 0;
-			if (is_array($data)) {
-				foreach ($data['forecast']['simpleforecast']['forecastday'] as $day) {
-					// Images
-					$weather[$count]['image'] = wunderground_to_icon_num($day['icon']);
-					
-					// Highs
-					$day['high']['fahrenheit'] !== '' 	? $weather[$count]['high'] = (int)$day['high']['fahrenheit'] : $weather[$count]['high'] = NULL;
-					
-					// Lows
-					$day['low']['fahrenheit'] !== '' 	? $weather[$count]['low'] = (int)$day['low']['fahrenheit'] 	 : $weather[$count]['low'] = NULL;
-					
-					$count++;
-				}
-			}
-			
-			// If an empty value in the array is found,
-			// consider the feed fetch a failure.
-			// Note: wunderground sometimes throws an empty 
-			// LOW value in the last day's forecast
-			foreach ($weather as $key => $day) {
-				if ( ($day['image'] == NULL) || ($day['high'] == NULL) || (($key !== 9) && ($day['low'] == NULL)) ) {
-					$weather = NULL;
-				}
-			}
-		}
-		else { 
-			$weather = NULL;
-		}
-		set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
-	}
-	return $weather;
-}
-
-
-/**
- * Wraps get_extended_weather to slice out the
- * weekday weather
- *
- * @return array
- * @author Chris Conover
- **/
-function get_weekday_weather() {
-	$weather = get_extended_weather();
-	if (!empty($weather)) {
-		return array_slice($weather, get_next_monday_diff(), 5);
-	}
-	else { return NULL; }
-}
-
-/**
- * Wraps get_extended_weather to slice out the
- * weekend weather
- *
- * @return array
- * @author Chris Conover
- **/
-function get_weekend_weather() {
-	$weather = get_extended_weather();
-	if (!empty($weather)) {
-		return array_slice($weather, get_next_friday_diff(), 4);
-	}
-	else { return NULL; }
-}
-
-/**
- * Today's top story if ther is one
+ * Today's top story if there is one
  *
  * @return post object
  * @author Chris Conover
