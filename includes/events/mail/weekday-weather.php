@@ -49,7 +49,7 @@ if (!empty($weather)) {
 					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:60px">
-								<span style="font-size:10px;font-weight:bold;">WEDNESDAY</span>
+								<span style="font-size:10px;font-weight:bold;"><?=strtoupper(date('l', strtotime($weather['day3']['date'])))?></span>
 								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day3']['imgCode']?>.png" />
 							</td>
 							<td>
@@ -68,7 +68,7 @@ if (!empty($weather)) {
 					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:60px">
-								<span style="font-size:10px;font-weight:bold;">THURSDAY</span>
+								<span style="font-size:10px;font-weight:bold;"><?=strtoupper(date('l', strtotime($weather['day4']['date'])))?></span>
 								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day4']['imgCode']?>.png" />
 							</td>
 							<td>
@@ -87,7 +87,7 @@ if (!empty($weather)) {
 					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
 						<tr>
 							<td style="width:60px">
-								<span style="font-size:10px;font-weight:bold;">FRIDAY</span>
+								<span style="font-size:10px;font-weight:bold;"><?=strtoupper(date('l', strtotime($weather['day5']['date'])))?></span>
 								<? if($weather['day5']['imgCode'] == '') {?>
 									<br />
 									<span style="font-size:15px;font-weight:bold;">???</span>
