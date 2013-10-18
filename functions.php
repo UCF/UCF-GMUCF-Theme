@@ -31,8 +31,8 @@ define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0');
 define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/announcements/');
 
-define('WEATHER_URL', 'http://webcom.dev.smca.ucf.edu/sandbox/weather-data/?data=forecastToday');
-define('WEATHER_URL_EXTENDED', 'http://webcom.dev.smca.ucf.edu/sandbox/weather-data/?data=forecastExtended');
+define('WEATHER_URL', 'http://weather.smca.ucf.edu/?data=forecastToday');
+define('WEATHER_URL_EXTENDED', 'http://weather.smca.ucf.edu/?data=forecastExtended');
 define('WEATHER_CACHE_DURATION', 60 * 15); // seconds
 define('WEATHER_HTTP_TIMEOUT', 8);
 
@@ -77,15 +77,6 @@ Config::$theme_settings = array(
 			'description' => '',
 			'default'     => null,
 			'value'       => $theme_options['dictionary_api_key'],
-		)),
-	),
-	'Wunderground'	  => array(
-		new TextField(array(
-			'name'        => 'Wunderground.com API Key',
-			'id'          => THEME_OPTIONS_NAME.'[wunderground_api_key]',
-			'description' => '',
-			'default'     => null,
-			'value'       => $theme_options['wunderground_api_key'],
 		)),
 	),
 );
@@ -248,14 +239,14 @@ function get_weather($cache_key) {
 			case 'weather-extended':
 				$json_url = WEATHER_URL_EXTENDED;
 				break;
-			case 'weather':
+			case 'weather-today':
 			default:
 				$json_url = WEATHER_URL;
 				break;
 		}
 		if( ($json = file_get_contents($json_url, false, $context)) !== False) {
 			$json = json_decode($json, true); // Convert to array
-			if ($cache_key == 'extended-weather') {
+			if ($cache_key == 'weather-extended') {
 				$weather = $json['days'];
 			}
 			else {

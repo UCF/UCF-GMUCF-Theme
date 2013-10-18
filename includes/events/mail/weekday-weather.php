@@ -1,5 +1,5 @@
 <? 
-$weather = get_weekday_weather(); 
+$weather = get_weather('weather-extended'); 
 if (!empty($weather)) {
 ?>
 <tr>
@@ -15,11 +15,11 @@ if (!empty($weather)) {
 								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day1']['imgCode']?>.png" />
 							</td>
 							<td>
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day1']['tempMax']?>&deg;</span>
+								<span style="font-size:18px;font-weight:bold"><?=$weather['day1']['tempMaxN']?>&deg;</span>
 								<br />
 								<span style="font-size:12px;">High</span>
 								<br />
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day1']['tempMin']?>&deg;</span>
+								<span style="font-size:18px;font-weight:bold"><?=$weather['day1']['tempMinN']?>&deg;</span>
 								<br />
 								<span style="font-size:12px;">Low</span>
 							</td>
@@ -34,11 +34,11 @@ if (!empty($weather)) {
 								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day2']['imgCode']?>.png" />
 							</td>
 							<td>
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day2']['tempMax']?>&deg;</span>
+								<span style="font-size:18px;font-weight:bold"><?=$weather['day2']['tempMaxN']?>&deg;</span>
 								<br />
 								<span style="font-size:12px;">High</span>
 								<br />
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day2']['tempMin']?>&deg;</span>
+								<span style="font-size:18px;font-weight:bold"><?=$weather['day2']['tempMinN']?>&deg;</span>
 								<br />
 								<span style="font-size:12px;">Low</span>
 							</td>
@@ -53,11 +53,11 @@ if (!empty($weather)) {
 								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day3']['imgCode']?>.png" />
 							</td>
 							<td>
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day3']['tempMax']?>&deg;</span>
+								<span style="font-size:18px;font-weight:bold"><?=$weather['day3']['tempMaxN']?>&deg;</span>
 								<br />
 								<span style="font-size:12px;">High</span>
 								<br />
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day3']['tempMin']?>&deg;</span>
+								<span style="font-size:18px;font-weight:bold"><?=$weather['day3']['tempMinN']?>&deg;</span>
 								<br />
 								<span style="font-size:12px;">Low</span>
 							</td>
@@ -72,11 +72,11 @@ if (!empty($weather)) {
 								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day4']['imgCode']?>.png" />
 							</td>
 							<td>
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day4']['tempMax']?>&deg;</span>
+								<span style="font-size:18px;font-weight:bold"><?=$weather['day4']['tempMaxN']?>&deg;</span>
 								<br />
 								<span style="font-size:12px;">High</span>
 								<br />
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day4']['tempMin']?>&deg;</span>
+								<span style="font-size:18px;font-weight:bold"><?=$weather['day4']['tempMinN']?>&deg;</span>
 								<br />
 								<span style="font-size:12px;">Low</span>
 							</td>
@@ -88,7 +88,7 @@ if (!empty($weather)) {
 						<tr>
 							<td style="width:60px">
 								<span style="font-size:10px;font-weight:bold;">FRIDAY</span>
-								<? if($weather['day5']['image'] == '') {?>
+								<? if($weather['day5']['imgCode'] == '') {?>
 									<br />
 									<span style="font-size:15px;font-weight:bold;">???</span>
 								<? } else { ?>
@@ -97,20 +97,20 @@ if (!empty($weather)) {
 							</td>
 							<td>
 								<span style="font-size:18px;font-weight:bold">
-									<? if($weather['day5']['tempMax'] == '') {?>
+									<? if($weather['day5']['tempMaxN'] == '') {?>
 										?
 									<? } else { ?>
-										<?=$weather['day5']['tempMax']?>&deg;
+										<span style="font-size:18px;font-weight:bold"><?=$weather['day5']['tempMaxN']?>&deg;</span>
 									<? } ?>
 								</span>
 								<br />
 								<span style="font-size:12px;">High</span>
 								<br />
 								<span style="font-size:18px;font-weight:bold">
-									<? if($weather['day5']['tempMin'] == '') {?>
+									<? if($weather['day5']['tempMinN'] == '') {?>
 										?
 									<? } else { ?>
-										<?=$weather['day5']['tempMin']?>&deg;
+										<span style="font-size:18px;font-weight:bold"><?=$weather['day5']['tempMinN']?>&deg;</span>
 									<? } ?>
 								</span>
 								<br />

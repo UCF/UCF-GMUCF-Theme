@@ -24,7 +24,7 @@
 							</td>
 							<!-- 190 -->
 							<?php
-							$weather = get_weather('weather'); 
+							$weather = get_weather('weather-today'); 
 							if (!empty($weather)) {
 							?>
 							<td style="border-right:1px solid #ddd;padding-left:20px;padding-right:10px;">
@@ -34,13 +34,13 @@
 											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['imgCode']?>.png" width="30" /> 
 										</td>
 										<td>
-											High <strong><?= $weather['today']['temp']?></strong>
+											High <strong><?= $weather['today']['tempN']?>&deg;</strong>
 										</td>
 										<td>
 											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['imgCode']?>.png" width="30" /> 
 										</td>
 										<td>
-											Low <strong><?= $weather['tonight']['temp']?></strong>
+											Low <strong><?= $weather['tonight']['tempN']?>&deg;</strong>
 										</td>
 									</tr>
 								</table>
@@ -150,14 +150,6 @@
 												<br />
 												407 823 2000
 											</p>
-										</td>
-									</tr>
-									<tr>
-										<td style="width:360px;vertical-align:top;" colspan="2">
-											<a href="http://www.wunderground.com/?apiref=360d941adbeaa2a1">
-											<span style="font-size: 10px;color:#000000;">Weather data provided by wunderground.com</span><br/>
-											<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather-logo.gif" alt="Wunderground.com" title="Wunderground.com" style="border:0;" />
-											</a>
 										</td>
 									</tr>
 								</table>

@@ -35,18 +35,18 @@
 					<span id="day"><?=date('l')?>,</span> <span id="month"><?=date('F j')?></span>
 				</div>
 				<?php 
-				$weather = get_weather('weather');
+				$weather = get_weather('weather-today');
 				if (!empty($weather)) { 
 				?>
 				<div class="weather" id="today">
 					<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['imgCode']?>.png" />
 					<span class="type">High</span>
-					<span class="temp"><?=$weather['today']['temp']?></span>
+					<span class="temp"><?=$weather['today']['tempN']?>&deg;</span>
 					
 
 					<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['imgCode']?>.png" />
 					<span class="type">Low</span>
-					<span class="temp"><?=$weather['tonight']['temp']?></span>
+					<span class="temp"><?=$weather['tonight']['tempN']?>&deg;</span>
 					
 				</div>
 				<?php } ?>

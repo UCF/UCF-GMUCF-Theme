@@ -1,5 +1,5 @@
 <?php
-$weather = get_weather('extended-weather');
+$weather = get_weather('weather-extended');
 if (!empty($weather)) {
 ?>
 <div id="weekday-weather" class="weather">
@@ -10,12 +10,12 @@ if (!empty($weather)) {
 		</div>
 		<div class="temp">
 			<div class="high">
-				<strong><?=$weather['day1']['tempMax']?></strong>
+				<strong><?=$weather['day1']['tempMaxN']?>&deg;</strong>
 				<br />
 				High
 			</div>
 			<div class="low">
-				<strong><?=$weather['day1']['tempMin']?></strong>
+				<strong><?=$weather['day1']['tempMinN']?>&deg;</strong>
 				<br />
 				Low
 			</div>
@@ -28,12 +28,12 @@ if (!empty($weather)) {
 		</div>
 		<div class="temp">
 			<div class="high">
-				<strong><?=$weather['day2']['tempMax']?></strong>
+				<strong><?=$weather['day2']['tempMaxN']?>&deg;</strong>
 				<br />
 				High
 			</div>
 			<div class="low">
-				<strong><?=$weather['day2']['tempMin']?></strong>
+				<strong><?=$weather['day2']['tempMinN']?>&deg;</strong>
 				<br />
 				Low
 			</div>
@@ -46,12 +46,12 @@ if (!empty($weather)) {
 		</div>
 		<div class="temp">
 			<div class="high">
-				<strong><?=$weather['day3']['tempMax']?></strong>
+				<strong><?=$weather['day3']['tempMaxN']?>&deg;</strong>
 				<br />
 				High
 			</div>
 			<div class="low">
-				<strong><?=$weather['day3']['tempMin']?></strong>
+				<strong><?=$weather['day3']['tempMinN']?>&deg;</strong>
 				<br />
 				Low
 			</div>
@@ -64,12 +64,12 @@ if (!empty($weather)) {
 		</div>
 		<div class="temp">
 			<div class="high">
-				<strong><?=$weather['day4']['tempMax']?></strong>
+				<strong><?=$weather['day4']['tempMaxN']?>&deg;</strong>
 				<br />
 				High
 			</div>
 			<div class="low">
-				<strong><?=$weather['day4']['tempMin']?></strong>
+				<strong><?=$weather['day4']['tempMinN']?>&deg;</strong>
 				<br />
 				Low
 			</div>
@@ -82,12 +82,12 @@ if (!empty($weather)) {
 		</div>
 		<div class="temp">
 			<div class="high">
-				<strong><?=$weather['day5']['tempMax']?></strong>
+				<strong><?=$weather['day5']['tempMaxN']?>&deg;</strong>
 				<br />
 				High
 			</div>
 			<div class="low">
-				<strong><?=$weather['day5']['tempMin']?></strong>
+				<strong><?=$weather['day5']['tempMinN']?>&deg;</strong>
 				<br />
 				Low
 			</div>

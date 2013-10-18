@@ -1,8 +1,8 @@
-Good Morning UCF for <?=date('l, F j')?><? $weather = get_weather('weather'); if (!empty($weather)) { ?>
+Good Morning UCF for <?=date('l, F j')?><? $weather = get_weather('weather-today'); if (!empty($weather)) { ?>
 
-Today's High: <?=$weather['today']['temp']?>
+Today's High: <?=$weather['today']['tempN']?>
 
-Tonight's Low: <?=$weather['tonight']['temp']?><? $top_story_details = get_top_story_details()?>
+Tonight's Low: <?=$weather['tonight']['tempN']?><? $top_story_details = get_top_story_details()?>
 <?php } ?>
 
 -- Today's Top Stories
@@ -38,12 +38,6 @@ Tonight's Low: <?=$weather['tonight']['temp']?><? $top_story_details = get_top_s
 - <?=strip_tags($announcement['title'])?>
 
 <? } ?>
-
-
-
-
-
-Weather data provided by wunderground.com.
 
 
 <?php 

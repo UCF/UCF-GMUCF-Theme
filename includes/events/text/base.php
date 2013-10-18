@@ -19,7 +19,16 @@ if($edition === False) {
 	die();
 }
 
-$weather = get_weekend_weather('extended-weather');
+switch($edition) {
+	case EVENTS_WEEKDAY_EDITION:
+		extract(get_weekday_events());
+		break;
+	case EVENTS_WEEKEND_EDITION:
+		extract(get_weekend_events());
+		break;
+}
+
+$weather = get_weather('weather-extended');
 header('Content-type: text/plain');
 ?>
 This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ UCF
@@ -30,17 +39,17 @@ This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ UCF
 if (!empty($weather)) {
 	switch($edition) {
 		case EVENTS_WEEKDAY_EDITION:
-			echo 'Today:     '.$weather['day1']['tempMax'].' High, '.$weather['day1']['tempMin'].' Low'."\n";
-			echo 'Tomorrow:  '.$weather['day2']['tempMax'].' High, '.$weather['day2']['tempMin'].' Low'."\n";
-			echo date('l', strtotime($weather['day3']['date'])).': '.$weather['day3']['tempMax'].' High, '.$weather['day3']['tempMin'].' Low'."\n";
-			echo date('l', strtotime($weather['day4']['date'])).': '.$weather['day4']['tempMax'].' High, '.$weather['day4']['tempMin'].' Low'."\n";
-			echo date('l', strtotime($weather['day5']['date'])).': '.$weather['day5']['tempMax'].' High, '.$weather['day5']['tempMin'].' Low'."\n";
+			echo 'Today:     '.$weather['day1']['tempMaxN'].' High, '.$weather['day1']['tempMinN'].' Low'."\n";
+			echo 'Tomorrow:  '.$weather['day2']['tempMaxN'].' High, '.$weather['day2']['tempMinN'].' Low'."\n";
+			echo date('l', strtotime($weather['day3']['date'])).': '.$weather['day3']['tempMaxN'].' High, '.$weather['day3']['tempMinN'].' Low'."\n";
+			echo date('l', strtotime($weather['day4']['date'])).': '.$weather['day4']['tempMaxN'].' High, '.$weather['day4']['tempMinN'].' Low'."\n";
+			echo date('l', strtotime($weather['day5']['date'])).': '.$weather['day5']['tempMaxN'].' High, '.$weather['day5']['tempMinN'].' Low'."\n";
 			break;
 		case EVENTS_WEEKEND_EDITION:
-			echo 'Today:     '.$weather['day1']['tempMax'].' High, '.$weather['day1']['tempMin'].' Low'."\n";
-			echo 'Tomorrow:  '.$weather['day2']['tempMax'].' High, '.$weather['day2']['tempMin'].' Low'."\n";
-			echo date('l', strtotime($weather['day3']['date'])).': '.$weather['day3']['tempMax'].' High, '.$weather['day3']['tempMin'].' Low'."\n";
-			echo date('l', strtotime($weather['day4']['date'])).': '.$weather['day4']['tempMax'].' High, '.$weather['day4']['tempMin'].' Low'."\n";
+			echo 'Today:     '.$weather['day1']['tempMaxN'].' High, '.$weather['day1']['tempMinN'].' Low'."\n";
+			echo 'Tomorrow:  '.$weather['day2']['tempMaxN'].' High, '.$weather['day2']['tempMinN'].' Low'."\n";
+			echo date('l', strtotime($weather['day3']['date'])).': '.$weather['day3']['tempMaxN'].' High, '.$weather['day3']['tempMinN'].' Low'."\n";
+			echo date('l', strtotime($weather['day4']['date'])).': '.$weather['day4']['tempMaxN'].' High, '.$weather['day4']['tempMinN'].' Low'."\n";
 			break;
 	}
 }
