@@ -31,10 +31,10 @@ define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0');
 define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/announcements/');
 
-define('WEATHER_URL', 'http://weather.smca.ucf.edu/?data=forecastToday');
-define('WEATHER_URL_EXTENDED', 'http://weather.smca.ucf.edu/?data=forecastExtended');
+define('WEATHER_URL', 'http://webcom.dev.smca.ucf.edu/Weather-Data/?data=forecastToday');
+define('WEATHER_URL_EXTENDED', 'http://webcom.dev.smca.ucf.edu/Weather-Data/?data=forecastExtended');
 define('WEATHER_CACHE_DURATION', 60 * 15); // seconds
-define('WEATHER_HTTP_TIMEOUT', 8);
+define('WEATHER_HTTP_TIMEOUT', 10);
 
 define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
