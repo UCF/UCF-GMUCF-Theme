@@ -31,10 +31,10 @@ define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0');
 define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/announcements/');
 
-define('WEATHER_URL', 'http://webcom.dev.smca.ucf.edu/Weather-Data/?data=forecastToday');
-define('WEATHER_URL_EXTENDED', 'http://webcom.dev.smca.ucf.edu/Weather-Data/?data=forecastExtended');
+define('WEATHER_URL', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastToday' : 'http://weather.smca.ucf.edu/?data=forecastToday');
+define('WEATHER_URL_EXTENDED', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastExtended' : 'http://weather.smca.ucf.edu/?data=forecastExtended');
 define('WEATHER_CACHE_DURATION', 60 * 15); // seconds
-define('WEATHER_HTTP_TIMEOUT', 10);
+define('WEATHER_HTTP_TIMEOUT', !empty($theme_options['weather_service_timeout']) ? (int)$theme_options['weather_service_timeout'] : 10);
 
 define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
@@ -77,6 +77,22 @@ Config::$theme_settings = array(
 			'description' => '',
 			'default'     => null,
 			'value'       => $theme_options['dictionary_api_key'],
+		)),
+	),
+	'Weather Service' => array(
+		new TextField(array(
+			'name'        => 'Weather Service URL',
+			'id'          => THEME_OPTIONS_NAME.'[weather_service_url]',
+			'description' => 'URL to the SMCA weather service used to grab weather data.  Useful for development when testing the weather service on different environments.  Defaults to weather.smca.ucf.edu (do not specify a custom feed--this is done for you.)',
+			'default'     => 'http://weather.smca.ucf.edu/',
+			'value'       => $theme_options['weather_service_url'],
+		)),
+		new TextField(array(
+			'name'        => 'Weather Service Timeout',
+			'id'          => THEME_OPTIONS_NAME.'[weather_service_timeout]',
+			'description' => 'Number of seconds to wait before timing out a weather service request.  Default is 10 seconds.',
+			'default'     => 10,
+			'value'       => $theme_options['weather_service_timeout'],
 		)),
 	),
 );
