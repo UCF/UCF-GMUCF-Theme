@@ -25,10 +25,10 @@ define('EVENTS_URL', 'http://events.ucf.edu');
 define('EVENTS_CALENDAR_ID', 1);
 define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
-define('FEATURED_STORIES_RSS_URL', 'http://today.ucf.edu/tag/main-site-stories/feed/');
+define('FEATURED_STORIES_RSS_URL', !empty($theme_options['featured_stories_url']) ? $theme_options['featured_stories_url'] : 'http://today.ucf.edu/tag/main-site-stories/feed/');
 define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 
-define('ANNOUNCEMENTS_RSS_URL', 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0');
+define('ANNOUNCEMENTS_RSS_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0');
 define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/announcements/');
 
 define('WEATHER_URL', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastToday' : 'http://weather.smca.ucf.edu/?data=forecastToday');
@@ -95,6 +95,24 @@ Config::$theme_settings = array(
 			'value'       => $theme_options['weather_service_timeout'],
 		)),
 	),
+	'UCF Today Featured Stories Feed' => array(
+		new TextField(array(
+			'name'        => 'Featured Stories Feed URL',
+			'id'          => THEME_OPTIONS_NAME.'[featured_stories_url]',
+			'description' => 'URL to the UCF Today Main Site Stories feed.  Useful for development when testing on different environments.  Defaults to http://today.ucf.edu/tag/main-site-stories/feed/',
+			'default'     => 'http://today.ucf.edu/tag/main-site-stories/feed/',
+			'value'       => $theme_options['featured_stories_url'],
+		)),
+	),
+	'UCF Announcements Feed' => array(
+		new TextField(array(
+			'name'        => 'Announcements Feed URL',
+			'id'          => THEME_OPTIONS_NAME.'[announcements_url]',
+			'description' => 'URL to the UCF Announcements feed.  Useful for development when testing on different environments.  Defaults to http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0',
+			'default'     => 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0',
+			'value'       => $theme_options['announcements_url'],
+		)),
+	),
 );
 
 Config::$links = array(
@@ -115,8 +133,8 @@ Config::$styles = array(
 
 Config::$scripts = array(
 	array('admin' => True, 'src' => THEME_JS_URL.'/admin.js',),
-	'http://universityheader.ucf.edu/bar/js/university-header.js',
-	array('name' => 'jquery', 'src' => 'http://code.jquery.com/jquery-1.6.1.min.js',),
+	'//universityheader.ucf.edu/bar/js/university-header.js',
+	array('name' => 'jquery', 'src' => '//code.jquery.com/jquery-1.6.1.min.js',),
 	THEME_JS_URL.'/jquery-extras.js',
 	array('name' => 'base-script',  'src' => THEME_JS_URL.'/webcom-base.js',),
 	array('name' => 'theme-script', 'src' => THEME_JS_URL.'/script.js',),
