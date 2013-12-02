@@ -266,8 +266,14 @@ function get_tomorrows_events($options = array()) {
  **/
 function get_weather($cache_key) {
 	$weather = array();
-	
-	if(CLEAR_CACHE || ($weather = get_transient($cache_key)) === False) {
+	$transient = get_transient($cache_key);
+
+	// Always attempt to re-fetch weather if CLEAR_CACHE is set or if
+	// previously stored transient data is bad
+	if (!CLEAR_CACHE && !empty($transient)) { // empty() catches NULL or FALSE
+		$weather = $transient;
+	}
+	else {
 		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WEATHER_HTTP_TIMEOUT)));
 		switch ($cache_key) {
 			case 'weather-extended':
@@ -280,21 +286,24 @@ function get_weather($cache_key) {
 		}
 		if( ($json = file_get_contents($json_url, false, $context)) !== False) {
 			$json = json_decode($json, true); // Convert to array
-			if ($cache_key == 'weather-extended') {
-				$weather = $json['days'];
-			}
-			else {
-				$weather = $json;
-			}
-			if ($weather['successfulFetch'] == 'no') {
+			if (!$json['successfulFetch'] || $json['successfulFetch'] !== 'yes') {
 				$weather = NULL;
 			}
+			else {
+				if ($cache_key == 'weather-extended') {
+					$weather = $json['days'];
+				}
+				else {
+					$weather = $json;
+				}
+			}
 		}
-		else { 
+		else {
 			$weather = NULL;
 		}
 		set_transient($cache_key, $weather, WEATHER_CACHE_DURATION);
 	}
+
 	return $weather;
 }
 
