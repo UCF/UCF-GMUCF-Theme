@@ -6,15 +6,15 @@
 		extract($details);
 		if($count == 2) break;
 	?>
-		<td style="vertical-align:top;width:250px;<?=($count == 0) ? ' padding-right:25px;': ''?>">
+		<td class="<?=($count == 0) ? 'ccollapse100pb': 'ccollapse100'?>" style="vertical-align:top;width:250px;<?=($count == 0) ? ' padding-right:25px;': ''?>">
 			<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
 				<tr>
-					<td style="width:110px;vertical-align:top;">
+					<td class="featuredimgwrap" style="width:110px;vertical-align:top;">
 						<a style="color:#333;text-decoration:none;" href="<?=$permalink?>">
-							<img src="<?=$thumbnail_src?>" style="border:none;" />
+							<img class="featuredimg" src="<?=$thumbnail_src?>" style="border:none;" />
 						</a>
 					</td>
-					<td style="200px;vertical-align:top;">
+					<td class="featuredtext" style="width:200px;vertical-align:top;">
 						<div style="margin-bottom:5px;">
 							<a href="<?=$permalink?>" style="color:#000001;text-decoration:none;">
 								<span style="font-weight:bold;font-size:14px;padding-bottom:5px;display:block;color:#000001"><?=$title?></span>
