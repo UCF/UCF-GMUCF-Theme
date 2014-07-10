@@ -55,7 +55,7 @@
 					margin-right: 0 !important;
 					padding-left: 0 !important;
 					padding-right: 0 !important;
-					padding-bottom: 10px !important;
+					padding-bottom: 20px !important;
 					border-left: 0px solid transparent !important;
 					border-right: 0px solid transparent !important;
 				}
@@ -70,7 +70,7 @@
 					margin-right: 0 !important;
 					padding-left: 0 !important;
 					padding-right: 0 !important;
-					padding-top: 10px !important;
+					padding-top: 20px !important;
 					border-left: 0px solid transparent !important;
 					border-right: 0px solid transparent !important;
 				}
@@ -155,6 +155,16 @@
 					display: inline !important;
 					width: auto !important;
 				}
+
+				/* Fix spacing between WOTD, announcements */
+				td[id="wotdwrap"] {
+					padding-top: 5px !important;
+					padding-bottom: 20px !important;
+				}
+				td[id="announcementswrap"] {
+					padding-top: 5px !important;
+					padding-bottom: 20px !important;
+				}
 			}
 		</style>
 	</head>
@@ -220,7 +230,7 @@
 												<? $wotd = get_word_of_the_day(); ?>
 												<? if($wotd !== False) { ?>
 												<tr>
-													<td style="border-bottom:1px solid #ddd;padding-bottom:30px;padding-top:30px;">
+													<td id="wotdwrap" style="border-bottom:1px solid #ddd;padding-bottom:30px;padding-top:30px;">
 														
 														<p style="font-size:22px;font-weight:100;display:block;">Word of the Day</p>
 														<span style="font-size:20px;font-weight:100;"><b><?=$wotd['word']?></b> <strong>-</strong> \<?=$wotd['pronunciation']?>\ <strong>-</strong> <em><?=$wotd['partofspeech']?></em></span>
@@ -249,7 +259,7 @@
 												</tr>
 												<? } ?>
 												<tr>
-													<td style="padding-top:30px;padding-bottom:30px;">
+													<td id="announcementswrap" style="padding-top:30px;padding-bottom:30px;">
 														<? get_template_part('includes/news/mail/announcements'); ?>
 													<td>
 												</tr>
@@ -285,7 +295,7 @@
 												</tr>
 											</table>
 										</td>
-										<td class="ccollapse100pt" style="width:230px;padding-left:40px;vertical-align:top;">
+										<td class="ccollapse100" style="width:230px;padding-left:40px;vertical-align:top;">
 											<a href="http://www.ucf.edu">
 												<img src="<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png" style="border:0"/>
 											</a>
