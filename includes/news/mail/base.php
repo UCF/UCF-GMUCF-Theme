@@ -11,8 +11,8 @@
 			html, body { margin:0; padding:0; background-color:#FFF; color:#333; font-family:Helvetica, sans-serif; }
 			-->
 			/* CSS Resets */
-			.ReadMsgBody { width: 100%; background-color: #ebebeb;}
-			.ExternalClass {width: 100%; background-color: #ebebeb;}
+			.ReadMsgBody { width: 100%; background-color: #ffffff;}
+			.ExternalClass {width: 100%; background-color: #ffffff;}
 			.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height:100%;}
 			body {-webkit-text-size-adjust:none; -ms-text-size-adjust:none;}
 			body {margin:0; padding:0;}
