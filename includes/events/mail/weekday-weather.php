@@ -5,116 +5,112 @@ if (!empty($weather)) {
 <tr>
 	<td>
 		<div class="clear">&nbsp;</div>
-		<table width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
+		<table class="t600" id="weather" width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 			<tr>
-				<td style="width:110px;border-right:1px solid #ddd;padding-left:10px;">
-					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
+				<td class="ccollapse100pbs" style="width:110px;border-right:1px solid #ddd;padding-left:10px;">
+					<table class="weather-col" width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
 						<tr>
-							<td style="width:60px">
-								<span style="font-size:10px;font-weight:bold;">TODAY</span>
-								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day1']['imgCode']?>.png" />
+							<td class="weather-icon-date" style="width:60px">
+								<span class="weather-date" style="font-size:10px;font-weight:bold;">TODAY</span>
+								<img class="weather-icon" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day1']['imgCode']?>.png" />
 							</td>
-							<td>
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day1']['tempMaxN']?>&deg;</span>
-								<br />
-								<span style="font-size:12px;">High</span>
-								<br />
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day1']['tempMinN']?>&deg;</span>
-								<br />
-								<span style="font-size:12px;">Low</span>
+							<td class="weather-temps">
+								<span class="temp" style="font-size:18px;font-weight:bold"><?=$weather['day1']['tempMaxN']?>&deg;</span>
+								<br class="linebreak" />
+								<span class="highlow" style="font-size:12px;">High</span>
+								<br class="linebreak" />
+								<span class="temp" style="font-size:18px;font-weight:bold"><?=$weather['day1']['tempMinN']?>&deg;</span>
+								<br class="linebreak" />
+								<span class="highlow" style="font-size:12px;">Low</span>
 							</td>
 						</tr>
 					</table>
 				</td>
-				<td style="width:110px;border-right:1px solid #ddd;padding-left:10px;">
-					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
+				<td class="ccollapse100pbs" style="width:110px;border-right:1px solid #ddd;padding-left:10px;">
+					<table class="weather-col" width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
 						<tr>
-							<td style="width:60px">
-								<span style="font-size:10px;font-weight:bold;">TOMORROW</span>
-								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day2']['imgCode']?>.png" />
+							<td class="weather-icon-date" style="width:60px">
+								<span class="weather-date" style="font-size:10px;font-weight:bold;">TOMORROW</span>
+								<img class="weather-icon" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day2']['imgCode']?>.png" />
 							</td>
-							<td>
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day2']['tempMaxN']?>&deg;</span>
-								<br />
-								<span style="font-size:12px;">High</span>
-								<br />
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day2']['tempMinN']?>&deg;</span>
-								<br />
-								<span style="font-size:12px;">Low</span>
+							<td class="weather-temps">
+								<span class="temp" style="font-size:18px;font-weight:bold"><?=$weather['day2']['tempMaxN']?>&deg;</span>
+								<br class="linebreak" />
+								<span class="highlow" style="font-size:12px;">High</span>
+								<br class="linebreak" />
+								<span class="temp" style="font-size:18px;font-weight:bold"><?=$weather['day2']['tempMinN']?>&deg;</span>
+								<br class="linebreak" />
+								<span class="highlow" style="font-size:12px;">Low</span>
 							</td>
 						</tr>
 					</table>
 				</td>
-				<td style="width:110px;border-right:1px solid #ddd;padding-left:10px;">
-					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
+				<td class="ccollapse100pbs" style="width:110px;border-right:1px solid #ddd;padding-left:10px;">
+					<table class="weather-col" width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
 						<tr>
-							<td style="width:60px">
-								<span style="font-size:10px;font-weight:bold;"><?=strtoupper(date('l', strtotime($weather['day3']['date'])))?></span>
-								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day3']['imgCode']?>.png" />
+							<td class="weather-icon-date" style="width:60px">
+								<span class="weather-date" style="font-size:10px;font-weight:bold;"><?=strtoupper(date('l', strtotime($weather['day3']['date'])))?></span>
+								<img class="weather-icon" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day3']['imgCode']?>.png" />
 							</td>
-							<td>
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day3']['tempMaxN']?>&deg;</span>
-								<br />
-								<span style="font-size:12px;">High</span>
-								<br />
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day3']['tempMinN']?>&deg;</span>
-								<br />
-								<span style="font-size:12px;">Low</span>
+							<td class="weather-temps">
+								<span class="temp" style="font-size:18px;font-weight:bold"><?=$weather['day3']['tempMaxN']?>&deg;</span>
+								<br class="linebreak" />
+								<span class="highlow" style="font-size:12px;">High</span>
+								<br class="linebreak" />
+								<span class="temp" style="font-size:18px;font-weight:bold"><?=$weather['day3']['tempMinN']?>&deg;</span>
+								<br class="linebreak" />
+								<span class="highlow" style="font-size:12px;">Low</span>
 							</td>
 						</tr>
 					</table>
 				</td>
-				<td style="width:110px;border-right:1px solid #ddd;padding-left:10px;">
-					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
+				<td class="ccollapse100pbs" style="width:110px;border-right:1px solid #ddd;padding-left:10px;">
+					<table class="weather-col" width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
 						<tr>
-							<td style="width:60px">
-								<span style="font-size:10px;font-weight:bold;"><?=strtoupper(date('l', strtotime($weather['day4']['date'])))?></span>
-								<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day4']['imgCode']?>.png" />
+							<td class="weather-icon-date" style="width:60px">
+								<span class="weather-date" style="font-size:10px;font-weight:bold;"><?=strtoupper(date('l', strtotime($weather['day4']['date'])))?></span>
+								<img class="weather-icon" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day4']['imgCode']?>.png" />
 							</td>
-							<td>
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day4']['tempMaxN']?>&deg;</span>
-								<br />
-								<span style="font-size:12px;">High</span>
-								<br />
-								<span style="font-size:18px;font-weight:bold"><?=$weather['day4']['tempMinN']?>&deg;</span>
-								<br />
-								<span style="font-size:12px;">Low</span>
+							<td class="weather-temps">
+								<span class="temp" style="font-size:18px;font-weight:bold"><?=$weather['day4']['tempMaxN']?>&deg;</span>
+								<br class="linebreak" />
+								<span class="highlow" style="font-size:12px;">High</span>
+								<br class="linebreak" />
+								<span class="temp" style="font-size:18px;font-weight:bold"><?=$weather['day4']['tempMinN']?>&deg;</span>
+								<br class="linebreak" />
+								<span class="highlow" style="font-size:12px;">Low</span>
 							</td>
 						</tr>
 					</table>
 				</td>
-				<td style="width:110px;padding-left:10px;">
-					<table width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
+				<td class="ccollapse100" style="width:110px;padding-left:10px;">
+					<table class="weather-col" width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 110px; margin:0; background-color:#FFF;">
 						<tr>
-							<td style="width:60px">
-								<span style="font-size:10px;font-weight:bold;"><?=strtoupper(date('l', strtotime($weather['day5']['date'])))?></span>
+							<td class="weather-icon-date" style="width:60px">
+								<span class="weather-date" style="font-size:10px;font-weight:bold;"><?=strtoupper(date('l', strtotime($weather['day5']['date'])))?></span>
 								<? if($weather['day5']['imgCode'] == '') {?>
-									<br />
-									<span style="font-size:15px;font-weight:bold;">???</span>
+									<br class="linebreak" />
+									<span class="weather-icon" style="font-size:15px;font-weight:bold;">???</span>
 								<? } else { ?>
-									<img src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day5']['imgCode']?>.png" />
+									<img class="weather-icon" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['day5']['imgCode']?>.png" />
 								<? } ?>
 							</td>
-							<td>
-								<span style="font-size:18px;font-weight:bold">
-									<? if($weather['day5']['tempMaxN'] == '') {?>
-										?
-									<? } else { ?>
-										<span style="font-size:18px;font-weight:bold"><?=$weather['day5']['tempMaxN']?>&deg;</span>
-									<? } ?>
-								</span>
-								<br />
-								<span style="font-size:12px;">High</span>
-								<br />
-								<span style="font-size:18px;font-weight:bold">
-									<? if($weather['day5']['tempMinN'] == '') {?>
-										?
-									<? } else { ?>
-										<span style="font-size:18px;font-weight:bold"><?=$weather['day5']['tempMinN']?>&deg;</span>
-									<? } ?>
-								</span>
-								<br />
-								<span style="font-size:12px;">Low</span>
+							<td class="weather-temps">
+								<? if($weather['day5']['tempMaxN'] == '') {?>
+									<span class="temp" style="font-size:18px;font-weight:bold">?</span>
+								<? } else { ?>
+									<span class="temp" style="font-size:18px;font-weight:bold"><?=$weather['day5']['tempMaxN']?>&deg;</span>
+								<? } ?>
+								<br class="linebreak" />
+								<span class="highlow" style="font-size:12px;">High</span>
+								<br class="linebreak" />
+								<? if($weather['day5']['tempMinN'] == '') {?>
+									<span class="temp" style="font-size:18px;font-weight:bold">?</span>
+								<? } else { ?>
+									<span class="temp" style="font-size:18px;font-weight:bold"><?=$weather['day5']['tempMinN']?>&deg;</span>
+								<? } ?>
+								<br class="linebreak" />
+								<span class="highlow" style="font-size:12px;">Low</span>
 							</td>
 						</tr>
 					</table>
