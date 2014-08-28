@@ -204,15 +204,15 @@ function get_event_data($options = array())
 	$default_options = array(
 		'calendar_id' => EVENTS_CALENDAR_ID,
 		'format'      => 'json');
-	
+
 	$options = array_merge($default_options, $options);
-	
+
 	$cache_key = $cache_key_prefix.implode('', $options);
 
 	if(CLEAR_CACHE || ($events = get_transient($cache_key)) === False) {
 		$events = array();
 		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
-		
+
 		if( ($raw_events = @file_get_contents(EVENTS_URL.'?'.http_build_query($options), false, $context)) !== FALSE ) {
 			if( !is_null($json_events = json_decode($raw_events)) ) {
 				$events = $json_events;
@@ -258,7 +258,7 @@ function get_tomorrows_events($options = array()) {
 
 
 /**
- * Fetches today/tonight weather, extended weather and stores 
+ * Fetches today/tonight weather, extended weather and stores
  * it as transient data.
  *
  * @return array
@@ -328,7 +328,7 @@ function get_weather($cache_key) {
  * @author Chris Conover
  **/
  function get_todays_top_story() {
- 	
+
  	$today  = getdate();
  	$params = array(
  		'year'       => $today['year'],
@@ -515,9 +515,9 @@ function get_weekday_events($options = array()) {
 	// Fetch the events for Monday through Friday
 	$start_date = NULL;
 	$end_date   = NULL;
-	for($i = 0; $i < 5; $i++) { 
+	for($i = 0; $i < 5; $i++) {
 		$date = date_add((new DateTime()), new DateInterval('P0Y'.($day_diff + $i).'DT0H0M'));
-		
+
 		if($i == 0) {
 			$start_date = $date;
 		} else if($i == 4) {
@@ -540,13 +540,13 @@ function get_weekday_events($options = array()) {
 			$part = date('g:i A', $start_timestamp);
 
 			if($start_hour < 12) {
-				$section = 'morning';	
+				$section = 'morning';
 			} else if($start_hour >= 12 && $start_hour < 18) {
-				$section = 'afternoon'; 
+				$section = 'afternoon';
 			} else if($start_hour >= 18) {
 				$section = 'evening';
 			}
-			
+
 			if(isset($organized_day[$section][$part])) {
 				array_push($organized_day[$section][$part], $event);
 			} else {
@@ -575,9 +575,9 @@ function get_weekend_events($options = array()) {
 	// Fetch the events for Monday through Friday
 	$start_date = NULL;
 	$end_date   = NULL;
-	for($i = 0; $i < 4; $i++) { 
+	for($i = 0; $i < 4; $i++) {
 		$date = date_add((new DateTime()), new DateInterval('P0Y'.($day_diff + $i).'DT0H0M'));
-		
+
 		if($i == 0) {
 			$start_date = $date;
 		} else if($i == 3) {
@@ -600,13 +600,13 @@ function get_weekend_events($options = array()) {
 			$part = date('g:i A', $start_timestamp);
 
 			if($start_hour < 12) {
-				$section = 'morning';	
+				$section = 'morning';
 			} else if($start_hour >= 12 && $start_hour < 18) {
-				$section = 'afternoon'; 
+				$section = 'afternoon';
 			} else if($start_hour >= 18) {
 				$section = 'evening';
 			}
-			
+
 			if(isset($organized_day[$section][$part])) {
 				array_push($organized_day[$section][$part], $event);
 			} else {
@@ -699,11 +699,11 @@ function get_weekend_events($options = array()) {
  * @author Chris Conover
  **/
 function get_word_of_the_day() {
-	
+
 
 	$cache_key = 'wotd';
 
-	
+
 	if( !is_null($api_key = get_theme_option('dictionary_api_key')) ) {
 		$wotd_url = sprintf(WORD_OF_THE_DAY_URL, $api_key);
 		$context  = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WORD_OF_THE_DAY_HTTP_TIMEOUT)));
@@ -786,7 +786,7 @@ function sanitize_for_email($s) {
 
 /**
  * Removes double quotes from a string. Used
- * form incoming URLs so thay can't break out of 
+ * form incoming URLs so thay can't break out of
  * their HREF or SRC attributes
  *
  * @return string
@@ -813,7 +813,7 @@ function get_theme_option($name) {
 }
 
 /**
- * Convenience template redirects 
+ * Convenience template redirects
  *
  * @author Chris Conover
  **/
