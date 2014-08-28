@@ -398,6 +398,9 @@ function get_top_story_details() {
 					}
 				}
 			}
+		} else {
+			$error_string = $rss->get_error_message();
+			error_log("GMUCF - get_top_story_details() - " . $error_string);
 		}
 	}
 	return $details;
@@ -441,6 +444,9 @@ function get_featured_stories_details() {
 				$count++;
 			}
 		}
+	} else {
+		$error_string = $rss->get_error_message();
+		error_log("GMUCF - get_featured_stories_details() - " . $error_string);
 	}
 	return $stories;
 }
@@ -467,6 +473,9 @@ function get_announcement_details() {
 				)
 			);
 		}
+	} else {
+		$error_string = $rss->get_error_message();
+		error_log("GMUCF - get_announcement_details() - " . $error_string);
 	}
 	return $announcements;
 }
