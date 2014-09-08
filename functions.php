@@ -27,6 +27,7 @@ define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
 define('FEATURED_STORIES_RSS_URL', !empty($theme_options['featured_stories_url']) ? $theme_options['featured_stories_url'] : 'http://today.ucf.edu/tag/main-site-stories/feed/');
 define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
+define('FEATURED_STORIES_TIMEOUT', 15); // seconds
 
 define('ANNOUNCEMENTS_RSS_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0');
 define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/announcements/');
@@ -171,6 +172,42 @@ if(isset($_GET['no_cache'])) {
 } else {
 	define('CLEAR_CACHE', FALSE);
 }
+
+
+/**
+ * Custom fetch_feed, but with timeouts!  Literally identical to fetch_feed besides
+ * the set_timeout() line.
+ *
+ * @return WP_Error|SimplePie WP_Error object on failure or SimplePie object on success
+ */
+function custom_fetch_feed( $url, $timeout=10 ) {
+	require_once( ABSPATH . WPINC . '/class-feed.php' );
+
+	$feed = new SimplePie();
+
+	$feed->set_sanitize_class( 'WP_SimplePie_Sanitize_KSES' );
+	// We must manually overwrite $feed->sanitize because SimplePie's
+	// constructor sets it before we have a chance to set the sanitization class
+	$feed->sanitize = new WP_SimplePie_Sanitize_KSES();
+
+	$feed->set_cache_class( 'WP_Feed_Cache' );
+	$feed->set_file_class( 'WP_SimplePie_File' );
+
+	$feed->set_timeout($timeout);
+
+	$feed->set_feed_url( $url );
+	$feed->set_cache_duration( apply_filters( 'wp_feed_cache_transient_lifetime', 12 * HOUR_IN_SECONDS, $url ) );
+	do_action_ref_array( 'wp_feed_options', array( &$feed, $url ) );
+	$feed->init();
+	$feed->handle_content_type();
+
+	if ( $feed->error() )
+		return new WP_Error( 'simplepie-error', $feed->error() );
+
+	return $feed;
+}
+
+
 
 /**
  * Compare events based on start time
@@ -376,7 +413,7 @@ function get_top_story_details() {
 		$details['read_more_uri']     = remove_quotes(get_post_meta($top_story->ID, 'top_story_external_uri', True));
 
 	} else {
-		$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=gmucf_top_story');
+		$rss = custom_fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=gmucf_top_story', FEATURED_STORIES_TIMEOUT);
 		if(!is_wp_error($rss)) {
 			$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
 			$rss_item = $rss_items[0];
@@ -415,7 +452,7 @@ function get_top_story_details() {
 function get_featured_stories_details() {
 	$stories = array();
 
-	$rss = fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=gmucf_featured_story');
+	$rss = custom_fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=gmucf_featured_story', FEATURED_STORIES_TIMEOUT);
 
 	if(!is_wp_error($rss)) {
 		$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
@@ -460,7 +497,7 @@ function get_featured_stories_details() {
 function get_announcement_details() {
 	$announcements = array();
 
-	$rss = fetch_feed(ANNOUNCEMENTS_RSS_URL);
+	$rss = custom_fetch_feed(ANNOUNCEMENTS_RSS_URL);
 	if(!is_wp_error($rss)) {
 		$rss_items = $rss->get_items(0, $rss->get_item_quantity(4));
 		foreach($rss_items as $rss_item) {
