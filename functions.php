@@ -176,7 +176,7 @@ if(isset($_GET['no_cache'])) {
 
 /**
  * Custom fetch_feed, but with timeouts!  Literally identical to fetch_feed besides
- * the set_timeout() line.
+ * the set_timeout() line (and CLEAR_CACHE handling).
  *
  * @return WP_Error|SimplePie WP_Error object on failure or SimplePie object on success
  */
@@ -196,7 +196,12 @@ function custom_fetch_feed( $url, $timeout=10 ) {
 	$feed->set_timeout($timeout);
 
 	$feed->set_feed_url( $url );
-	$feed->set_cache_duration( apply_filters( 'wp_feed_cache_transient_lifetime', 12 * HOUR_IN_SECONDS, $url ) );
+	if(CLEAR_CACHE) {
+		$feed->set_cache_duration(0);
+	}
+	else {
+		$feed->set_cache_duration( apply_filters( 'wp_feed_cache_transient_lifetime', 12 * HOUR_IN_SECONDS, $url ) );
+	}
 	do_action_ref_array( 'wp_feed_options', array( &$feed, $url ) );
 	$feed->init();
 	$feed->handle_content_type();
