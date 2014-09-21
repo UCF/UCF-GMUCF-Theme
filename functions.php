@@ -255,7 +255,7 @@ function get_event_data($options = array())
 		$events = array();
 		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
 
-		if( ($raw_events = @file_get_contents(EVENTS_URL.'?'.http_build_query($options), false, $context)) !== FALSE ) {
+		if( ($raw_events = @file_get_contents(EVENTS_URL.'/'.$options['y'].'/'.$options['m'].'/'.$options['d'].'/', false, $context)) !== FALSE ) {
 			if( !is_null($json_events = json_decode($raw_events)) ) {
 				$events = $json_events;
 			}
