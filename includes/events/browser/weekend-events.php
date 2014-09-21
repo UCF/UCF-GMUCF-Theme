@@ -1,4 +1,4 @@
-<? for($i = 0; $i < count($days); $i++) { 
+<? for($i = 0; $i < count($days); $i++) {
 		$day       = $days[$i];
 		$title     = 'Today';
 		$event_day = 'Friday';
@@ -20,7 +20,7 @@
 		$_start_date          = new DateTime(date('c', $start_date->getTimestamp()));
 		$title_date           = date_add($_start_date, new DateInterval('P'.$i.'D'));
 		$title_date_timestamp = $title_date->getTimestamp();
-		$all_events_link      = EVENTS_URL.'?y='.date('Y', $title_date_timestamp).'&m='.date('n',$title_date_timestamp).'&d='.date('j', $title_date_timestamp);
+		$all_events_link      = EVENTS_URL.'/'.date('Y', $title_date_timestamp).'/'.date('n',$title_date_timestamp).'/'.date('j', $title_date_timestamp).'/';
 ?>
 <div class="day">
 	<h2><?=$title?>, <?=date('n/j', $title_date_timestamp)?> <a href="<?=$all_events_link?>" style="font-size:15px;color:#9d1a1a;">View all <?=$event_day?> events</a></h2>
@@ -33,7 +33,7 @@
 				<div style="list-style-type:none;margin-bottom:5px;">
 					<span style="color:#9d1a1a;font-weight:bold;font-size:12px;">
 						<?=($section == '12:00 AM' ? 'All Day' : $section)?>
-					</span>	
+					</span>
 					<? foreach($events as $event){ ?>
 					<div style="margin-bottom:15px;color:blue;">
 						<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
@@ -54,7 +54,7 @@
 				<div style="list-style-type:none;margin-bottom:5px;">
 					<span style="color:#9d1a1a;font-weight:bold;font-size:12px;">
 						<?=($section == '12:00 AM' ? 'All Day' : $section)?>
-					</span>	
+					</span>
 					<? foreach($events as $event){ ?>
 					<div style="margin-bottom:15px;color:blue;">
 						<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
@@ -75,7 +75,7 @@
 				<div style="list-style-type:none;margin-bottom:5px;">
 					<span style="color:#9d1a1a;font-weight:bold;font-size:12px;">
 						<?=($section == '12:00 AM' ? 'Ongoing' : $section)?>
-					</span>	
+					</span>
 					<? foreach($events as $event){ ?>
 					<div style="margin-bottom:15px;color:blue;">
 						<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
