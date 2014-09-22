@@ -44,7 +44,7 @@ define('WORD_OF_THE_DAY_URL', 'http://api-pub.dictionary.com/v001?vid=%s&type=wo
 define('WORD_OF_THE_DAY_CACHE_DURATION', 60 * 60);
 define('WORD_OF_THE_DAY_HTTP_TIMEOUT', 25); // This service is so slow. PEDDLE FASTER, DICTIONARY.COM!
 
-define('HTTP_TIMEOUT', 3); //seconds
+define('HTTP_TIMEOUT', 5); //seconds
 
 # Custom Image Sizes
 add_image_size('top_story', 600, 308, True);
@@ -225,8 +225,8 @@ function compare_event_starts($a, $b) {
 	// Otherwise events that are ongoing would be put in front.
 	$a_parts = explode(' ', $a->starts);
 	$b_parts = explode(' ', $b->starts);
-	$a_start = strtotime($a_parts[1]);
-	$b_start = strtotime($b_parts[1]);
+	$a_start = strtotime($a_parts[4]);
+	$b_start = strtotime($b_parts[4]);
 	if($a_start == $b_start) {
 		return 0;
 	} else {
@@ -253,13 +253,26 @@ function get_event_data($options = array())
 
 	if(CLEAR_CACHE || ($events = get_transient($cache_key)) === False) {
 		$events = array();
-		$context = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => HTTP_TIMEOUT)));
 
-		if( ($raw_events = @file_get_contents(EVENTS_URL.'/'.$options['y'].'/'.$options['m'].'/'.$options['d'].'/feed.json', false, $context)) !== FALSE ) {
+		$url = EVENTS_URL.'/'.$options['y'].'/'.$options['m'].'/'.$options['d'].'/feed.json';
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_TIMEOUT, HTTP_TIMEOUT);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+
+		$raw_events = curl_exec($ch);
+
+		if( $raw_events !== FALSE ) {
 			if( !is_null($json_events = json_decode($raw_events)) ) {
 				$events = $json_events;
 			}
+		} else {
+			error_log('Curl error in GMUCF theme - get_event_data ('.$url.'): '.curl_error($ch), 0);
 		}
+
+		curl_close($ch);
 
 		// Events aren't neccessarily sorted from earliest to latest start time
 		usort($events, 'compare_event_starts');
@@ -371,13 +384,13 @@ function get_weather($cache_key) {
  **/
  function get_todays_top_story() {
 
- 	$today  = getdate();
- 	$params = array(
- 		'year'       => $today['year'],
- 		'monthnum'   => $today['mon'],
- 		'day'        => $today['mday'],
- 		'post_status'=> 'publish',
- 		'post_type'  => 'top_story'
+	$today  = getdate();
+	$params = array(
+		'year'       => $today['year'],
+		'monthnum'   => $today['mon'],
+		'day'        => $today['mday'],
+		'post_status'=> 'publish',
+		'post_type'  => 'top_story'
 	);
 
 	$query = new WP_Query(http_build_query($params));
@@ -476,7 +489,7 @@ function get_featured_stories_details() {
 				$enclosure = $rss_item->get_enclosure();
 				if($enclosure && in_array($enclosure->get_type(),get_valid_enclosure_types()) && ($thumbnail = $enclosure->get_thumbnail())) {
 					$story['thumbnail_src'] = remove_quotes($thumbnail);
- 				} else {
+				} else {
 					$story['thumbnail_src'] = remove_quotes(get_bloginfo('stylesheet_directory', 'raw').'/static/img/no-photo.png');
 				}
 				$story['title']       = sanitize_for_email($rss_item->get_title());
@@ -677,7 +690,7 @@ function get_weekend_events($options = array()) {
  * @author Chris Conover
  **/
  function get_next_monday_diff() {
- 	$current_day = date('w');
+	$current_day = date('w');
 	$day_diff    = 0;
 
 	switch($current_day) {
@@ -714,7 +727,7 @@ function get_weekend_events($options = array()) {
  * @author Chris Conover
  **/
  function get_next_friday_diff() {
- 	$current_day = date('w');
+	$current_day = date('w');
 	$day_diff    = 0;
 
 	switch($current_day) {
