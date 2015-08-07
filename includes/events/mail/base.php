@@ -382,10 +382,10 @@ switch($edition) {
 					// to preserve scope.
 					switch($edition) {
 						case EVENTS_WEEKDAY_EDITION:
-							echo '<a style="color:blue;text-decoration:underline;" href="http://atucf.smca.ucf.edu/events/weekday/">browser</a>.';
+							echo '<a style="color:blue;text-decoration:underline;" href="http://gmucf.cms.smca.ucf.edu/events/weekday/">browser</a>.';
 							break;
 						case EVENTS_WEEKEND_EDITION:
-							echo '<a style="color:blue;text-decoration:underline;" href="http://atucf.smca.ucf.edu/events/weekend/">browser</a>.';
+							echo '<a style="color:blue;text-decoration:underline;" href="http://gmucf.cms.smca.ucf.edu/events/weekend/">browser</a>.';
 							break;
 					}
 					?>
