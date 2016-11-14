@@ -156,11 +156,7 @@
 					width: auto !important;
 				}
 
-				/* Fix spacing between WOTD, announcements */
-				td[id="wotdwrap"] {
-					padding-top: 5px !important;
-					padding-bottom: 20px !important;
-				}
+				/* Fix spacing between announcements */
 				td[id="announcementswrap"] {
 					padding-top: 5px !important;
 					padding-bottom: 20px !important;
@@ -180,20 +176,20 @@
 							</td>
 							<!-- 190 -->
 							<?php
-							$weather = get_weather('weather-today'); 
+							$weather = get_weather('weather-today');
 							if (!empty($weather)) {
 							?>
 							<td id="weatherwrap" style="border-right:1px solid #ddd;padding-left:20px;padding-right:10px;">
 								<table id="weather" style="margin:auto;" align="center">
 									<tr>
 										<td>
-											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['imgCode']?>.png" width="30" /> 
+											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['today']['imgCode']?>.png" width="30" />
 										</td>
 										<td class="temp">
 											High <strong><?= $weather['today']['tempN']?>&deg;</strong>
 										</td>
 										<td>
-											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['imgCode']?>.png" width="30" /> 
+											<img height="36" width="36" src="<?=bloginfo('stylesheet_directory')?>/static/img/weather/<?=$weather['tonight']['imgCode']?>.png" width="30" />
 										</td>
 										<td class="temp">
 											Low <strong><?= $weather['tonight']['tempN']?>&deg;</strong>
@@ -227,37 +223,6 @@
 														<? get_template_part('includes/news/mail/featured-stories'); ?>
 													</td>
 												</tr>
-												<? $wotd = get_word_of_the_day(); ?>
-												<? if($wotd !== False) { ?>
-												<tr>
-													<td id="wotdwrap" style="border-bottom:1px solid #ddd;padding-bottom:30px;padding-top:30px;">
-														
-														<p style="font-size:22px;font-weight:100;display:block;">Word of the Day</p>
-														<span style="font-size:20px;font-weight:100;"><b><?=$wotd['word']?></b> <strong>-</strong> \<?=$wotd['pronunciation']?>\ <strong>-</strong> <em><?=$wotd['partofspeech']?></em></span>
-														<br />
-														<? foreach($wotd['definitions'] as $part=>$definitions) { ?>
-															<? if($part != $wotd['partofspeech']) { ?>
-																<p><em><?=$part?></em></p>
-															<? } ?>
-															<? $count = 1; ?>
-															<? foreach($definitions as $definition) { ?>
-																<p><?=$count?>. <?=$definition?></p>
-																<? $count++;?>
-															<? } ?>
-														<? } ?>
-														<? if(count($wotd['examples']) > 0) { ?>
-															<? foreach($wotd['examples'] as $example) { ?>
-															<p style="font-size:13px;">&ldquo;<?=$example['quote']?>&rdquo;<br />&mdash;<?=$example['source']?>, <?=$example['author']?></p>
-															<? } ?>
-														<? } ?>
-														<div style="text-align:right;">
-															<a href="http://www.dictionary.com" style="border:0;">
-																<img src="<?=bloginfo('stylesheet_directory')?>/static/img/dictionary.com-attribution.png" style="border:0;" />
-															</a>
-														</div>
-													</td>
-												</tr>
-												<? } ?>
 												<tr>
 													<td id="announcementswrap" style="padding-top:30px;padding-bottom:30px;">
 														<? get_template_part('includes/news/mail/announcements'); ?>

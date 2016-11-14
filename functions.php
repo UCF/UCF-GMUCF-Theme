@@ -40,10 +40,6 @@ define('WEATHER_HTTP_TIMEOUT', !empty($theme_options['weather_service_timeout'])
 define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
 
-define('WORD_OF_THE_DAY_URL', 'http://api-pub.dictionary.com/v001?vid=%s&type=wotd');
-define('WORD_OF_THE_DAY_CACHE_DURATION', 60 * 60);
-define('WORD_OF_THE_DAY_HTTP_TIMEOUT', 25); // This service is so slow. PEDDLE FASTER, DICTIONARY.COM!
-
 define('HTTP_TIMEOUT', 5); //seconds
 
 # Custom Image Sizes
@@ -71,15 +67,6 @@ Config::$body_classes = array('default',);
  * available fields. -- functions-base.php
  **/
 Config::$theme_settings = array(
-	'Word of the Day' => array(
-		new TextField(array(
-			'name'        => 'Dictionary.com API Key',
-			'id'          => THEME_OPTIONS_NAME.'[dictionary_api_key]',
-			'description' => '',
-			'default'     => null,
-			'value'       => $theme_options['dictionary_api_key'],
-		)),
-	),
 	'Weather Service' => array(
 		new TextField(array(
 			'name'        => 'Weather Service URL',
@@ -754,76 +741,6 @@ function get_weekend_events($options = array()) {
 			break;
 	}
 	return $day_diff;
-}
-
-/**
- * Fetch word of the day
- *
- * @return array
- * @author Chris Conover
- **/
-function get_word_of_the_day() {
-
-
-	$cache_key = 'wotd';
-
-
-	if( !is_null($api_key = get_theme_option('dictionary_api_key')) ) {
-		$wotd_url = sprintf(WORD_OF_THE_DAY_URL, $api_key);
-		$context  = stream_context_create(array('http' => array('method'  => 'GET', 'timeout' => WORD_OF_THE_DAY_HTTP_TIMEOUT)));
-
-		if(CLEAR_CACHE || ($wotd = get_transient($cache_key)) === False) {
-			$wotd = array(
-				'word'          => NULL,
-				'pronunciation' => NULL,
-				'partofspeech'  => NULL,
-				'definitions'   => array(),
-				'examples'      => array()
-			);
-
-			if( ($raw_xml = @file_get_contents($wotd_url, false, $context)) !== False && ($xml = simplexml_load_string($raw_xml)) !== False ) {
-				if(isset($xml->entry->word) && isset($xml->entry->partofspeech) && isset($xml->entry->pronunciation)) {
-					$wotd['word']          = (string)$xml->entry->word;
-					$wotd['partofspeech']  = (string)$xml->entry->partofspeech;
-					$wotd['pronunciation'] = (string)$xml->entry->pronunciation;
-
-					if(isset($xml->entry->definitions)) {
-						foreach($xml->entry->definitions->definition as $definition) {
-							if(isset($definition->partofspeech) && isset($definition->data)) {
-								$wotd['definitions'][(string)$definition->partofspeech][] = (string)$definition->data;
-							}
-						}
-					}
-					if(isset($xml->entry->examples)) {
-						foreach($xml->entry->examples->example as $example) {
-							if(isset($example->quote) && isset($example->source) && isset($example->author)) {
-								$quote  = (string)$example->quote;
-								$source = (string)$example->source;
-								$author = (string)$example->author;
-								if($quote != '' && $source != '' && $author != '') {
-									$wotd['examples'][] = array(
-										'quote'  => $quote,
-										'source' => $source,
-										'author' => $author
-									);
-								}
-							}
-						}
-					}
-					set_transient($cache_key, $wotd, WORD_OF_THE_DAY_CACHE_DURATION);
-					return $wotd;
-				} else {
-					return False;
-				}
-			} else {
-				return False;
-			}
-		} else {
-			return $wotd;
-		}
-	} else {
-		return False;
-	}
 }
 
 /**
