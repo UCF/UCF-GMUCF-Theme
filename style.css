@@ -51,13 +51,6 @@ h1 {font-size:45px;font-weight:300;margin-bottom:20px;}
 .featured-story p {font-family: Helvetica, sans-serif;font-size:14px;margin-top:0;line-height:1.3em}
 .featured-story .content {font-size:14px;padding-left:110px;padding-right:10px;font-weight:100;}
 
-
-/* Word of the Day */
-#wotd h2 {font-family:Helvetica,sans-serif;font-size:22px;font-weight:100;display:block;}
-#wotd #credit-link {text-align: right;margin-bottom:15px;}
-#wotd .quote {font-size:13px;}
-#wotd #word {font-size:20px;font-weight:100;}
-
 /* Announcemnts */
 #announcements {}
 #announcements h2 {font-weight:100;font-family:Helvetica,sans-serif;}
