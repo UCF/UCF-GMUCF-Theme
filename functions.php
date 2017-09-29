@@ -29,7 +29,7 @@ define('FEATURED_STORIES_RSS_URL', !empty($theme_options['featured_stories_url']
 define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 define('FEATURED_STORIES_TIMEOUT', 15); // seconds
 
-define('ANNOUNCEMENTS_RSS_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0');
+define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'http://www.ucf.edu/announcements/?time=thisweek&exclude_ongoing=True&format=json');
 define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/announcements/');
 
 define('WEATHER_URL', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastToday' : 'http://weather.smca.ucf.edu/?data=forecastToday');
@@ -502,24 +502,24 @@ function get_featured_stories_details() {
 function get_announcement_details() {
 	$announcements = array();
 
-	$rss = custom_fetch_feed(ANNOUNCEMENTS_RSS_URL);
-	if(!is_wp_error($rss)) {
-		$rss_items = $rss->get_items(0, $rss->get_item_quantity(4));
-		foreach($rss_items as $rss_item) {
+	$response = wp_remote_get( ANNOUNCEMENTS_JSON_URL );
+
+	if( is_array( $response ) ) {
+		$items = json_decode( wp_remote_retrieve_body( $response ) );
+		foreach($items as $item) {
 			array_push(
 				$announcements,
 				array(
-					'title'     => sanitize_for_email($rss_item->get_title()),
-					# Permalinks come in encoded for some reason
-					'permalink' => remove_quotes(html_entity_decode($rss_item->get_permalink()))
+					'title'     => sanitize_for_email( $item->title ),
+					'permalink' => ANNOUNCEMENTS_MORE_URL . $item->slug
 				)
 			);
 		}
 	} else {
-		$error_string = $rss->get_error_message();
+		$error_string = $response['error'];
 		error_log("GMUCF - get_announcement_details() - " . $error_string);
 	}
-	return $announcements;
+	return array_slice( $announcements, 0, 3 );
 }
 
 /**
