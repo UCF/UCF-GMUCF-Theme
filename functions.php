@@ -511,7 +511,6 @@ function get_announcement_details() {
 				$announcements,
 				array(
 					'title'     => sanitize_for_email( $item->title ),
-					# Permalinks come in encoded for some reason
 					'permalink' => ANNOUNCEMENTS_MORE_URL . $item->slug
 				)
 			);
