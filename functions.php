@@ -29,7 +29,7 @@ define('FEATURED_STORIES_RSS_URL', !empty($theme_options['featured_stories_url']
 define('FEATURED_STORIES_MORE_URL', 'http://today.ucf.edu/');
 define('FEATURED_STORIES_TIMEOUT', 15); // seconds
 
-define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'http://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&format=json');
+define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'http://www.ucf.edu/announcements/?time=thisweek&exclude_ongoing=True&format=json');
 define('ANNOUNCEMENTS_MORE_URL', 'http://www.ucf.edu/announcements/');
 
 define('WEATHER_URL', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastToday' : 'http://weather.smca.ucf.edu/?data=forecastToday');
@@ -512,7 +512,7 @@ function get_announcement_details() {
 				array(
 					'title'     => sanitize_for_email( $item->title ),
 					# Permalinks come in encoded for some reason
-					'permalink' => $item->url
+					'permalink' => ANNOUNCEMENTS_MORE_URL . $item->slug
 				)
 			);
 		}
