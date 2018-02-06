@@ -346,11 +346,6 @@ switch($edition) {
 											</a>
 										</td>
 										<td style="padding-left:10px;">
-											<a href="http://www.youtube.com/user/UCF/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/youtube.png" />
-											</a>
-										</td>
-										<td style="padding-left:10px;">
 											<a href="http://www.twitter.com/UCF/" style="text-decoration:none;">
 												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/twitter.png" />
 											</a>
@@ -361,8 +356,8 @@ switch($edition) {
 											</a>
 										</td>
 										<td style="padding-left:10px;">
-											<a href="https://www.linkedin.com/school/166632/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/linkedin.png" />
+											<a href="http://www.youtube.com/user/UCF/" style="text-decoration:none;">
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/youtube.png" />
 											</a>
 										</td>
 									</tr>
