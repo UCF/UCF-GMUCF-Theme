@@ -35,11 +35,11 @@ switch($edition) {
 		<title>This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ UCF</title>
 		<style type="text/css">
 			body {width:600px;margin:15px auto;font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
-			
+
 			#feedback {text-align: center;margin-bottom:25px;}
-			
+
 			#shoutout {font-size:30px;}
-			
+
 			h1 {font-weight:200;font-size:37px;border-bottom:1px solid #ddd;}
 			h1 .highlight {color:#FFC907;font-weight:bold;}
 			h1 .range {float:right;}
@@ -74,10 +74,12 @@ switch($edition) {
 				#bottom #ucf {border:none;padding:0;}
 			#bottom #social {float:left;}
 			#bottom #social h2 {font-family:Helvetica,sans-serif;font-weight:100;margin-bottom:5px;}
-			#bottom #social a {text-indent:-300em;width:51px;height:51px;display:block;float:left;margin-left:10px;}
-			#bottom #social #facebook {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/facebook.png') no-repeat center center;margin-left:0;}
-			#bottom #social #youtube {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/youtube.png') no-repeat center center;}
-			#bottom #social #twitter {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/twitter.png') no-repeat center center;}
+			#bottom #social a {text-indent:-300em;width:32px;height:32px;display:block;float:left;margin-left:10px;}
+			#bottom #social #facebook {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/social/facebook.png') no-repeat center center;margin-left:0;}
+			#bottom #social #youtube {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/social/youtube.png') no-repeat center center;}
+			#bottom #social #twitter {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/social/twitter.png') no-repeat center center;}
+			#bottom #social #instagram {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/social/instagram.png') no-repeat center center;}
+			#bottom #social #linkedin {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/social/linkedin.png') no-repeat center center;}
 			#bottom #ucf {
 				display:block;
 				background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png') no-repeat top left;
@@ -87,6 +89,7 @@ switch($edition) {
 				margin-top:20px;
 				line-height: 1.5em;
 				font-size:13px;
+				min-width: 152px;
 			}
 
 			/* Footer */
@@ -153,6 +156,8 @@ switch($edition) {
 				<a id="facebook" class="ignore-external" href="http://www.facebook.com/ucf/">UCF on Facebook</a>
 				<a id="youtube" class="ignore-external" href="http://www.youtube.com/user/UCF/">UCF on Youtube</a>
 				<a id="twitter" class="ignore-external" href="http://www.twitter.com/UCF/">UCF on Twitter</a>
+				<a id="instagram" class="ignore-external" href="http://www.instagram.com/ucf.edu">UCF on Instagram</a>
+				<a id="linkedin" class="ignore-external" href="https://www.linkedin.com/school/166632/">UCF on LinkedIn</a>
 			</div>
 			<a id="ucf" href="http://www.ucf.edu" class="ignore-external">
 				4000 Central Florida Blvd.
