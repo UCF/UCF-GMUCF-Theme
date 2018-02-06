@@ -342,17 +342,22 @@ switch($edition) {
 									<tr>
 										<td>
 											<a href="http://www.facebook.com/ucf/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/facebook.png" />
-											</a>
-										</td>
-										<td style="padding-left:10px;">
-											<a href="http://www.youtube.com/user/UCF/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/youtube.png" />
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/facebook.png" />
 											</a>
 										</td>
 										<td style="padding-left:10px;">
 											<a href="http://www.twitter.com/UCF/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/twitter.png" />
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/twitter.png" />
+											</a>
+										</td>
+										<td style="padding-left:10px;">
+											<a href="http://www.instagram.com/ucf.edu" style="text-decoration:none;">
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/instagram.png" />
+											</a>
+										</td>
+										<td style="padding-left:10px;">
+											<a href="http://www.youtube.com/user/UCF/" style="text-decoration:none;">
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/youtube.png" />
 											</a>
 										</td>
 									</tr>
@@ -376,7 +381,7 @@ switch($edition) {
 			</tr>
 			<tr>
 				<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
-					Having trouble viewing this email? See it in your 
+					Having trouble viewing this email? See it in your
 					<?
 					// Use includes here instead of get_template_part
 					// to preserve scope.
