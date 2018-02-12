@@ -283,7 +283,7 @@
 						</tr>
 						<tr>
 							<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
-								Having trouble viewing this email? See it in your <a style="color:blue;text-decoration:underline;" href="http://gmucf.cms.smca.ucf.edu/news/">browser</a>.
+								Having trouble viewing this email? See it in your <a style="color:blue;text-decoration:underline;" href="http://gmucf.smca.ucf.edu/news/">browser</a>.
 							</td>
 						</tr>
 						<tr>
