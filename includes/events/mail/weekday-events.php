@@ -44,7 +44,7 @@
 								</span>
 								<? foreach($events as $event){ ?>
 								<div class="event" style="margin-bottom:15px;color:blue;">
-									<a class="event-link" href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
+									<a class="event-link" href="<?=$event->url?>" style="font-size:15px;color:#222222;text-decoration:underline;">
 										<?=esc_html($event->title)?>
 									</a>
 								</div>
@@ -66,7 +66,7 @@
 								</span>
 								<? foreach($events as $event){ ?>
 								<div class="event" style="margin-bottom:15px;color:blue;">
-									<a class="event-link" href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
+									<a class="event-link" href="<?=$event->url?>" style="font-size:15px;color:#222222;text-decoration:underline;">
 										<?=esc_html($event->title)?>
 									</a>
 								</div>
@@ -88,7 +88,7 @@
 								</span>
 								<? foreach($events as $event){ ?>
 								<div class="event" style="margin-bottom:15px;color:blue;">
-									<a class="event-link" href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
+									<a class="event-link" href="<?=$event->url?>" style="font-size:15px;color:#222222;text-decoration:underline;">
 										<?=esc_html($event->title)?>
 									</a>
 								</div>

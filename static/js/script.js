@@ -4,8 +4,7 @@ if (typeof jQuery != 'undefined'){
 		Webcom.chartbeat($);
 		Webcom.analytics($);
 		Webcom.handleExternalLinks($);
-		Webcom.loadMoreSearchResults($);
-		
+
 		/* Theme Specific Code Here */
 	});
 }else{console.log('jQuery dependancy failed to load');}
