@@ -5,7 +5,7 @@
 				Today @ UCF
 			</p>
 			<table border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;">
-			<? 
+			<?
 			$todays_events = get_todays_events();
 			if(count($todays_events) == 0) { ?>
 				<p>There are no events today.</p>
@@ -30,7 +30,7 @@
 							</table>
 						</td>
 						<td style="padding-left:10px;vertical-align:top;">
-							<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="color:#333;font-weight:100;font-size:15px;">
+							<a href="<?=$event->url?>" style="color:#333;font-weight:100;font-size:15px;">
 								<?=esc_html($event->title)?>
 							</a>
 						</td>
@@ -38,7 +38,7 @@
 					<tr>
 						<td colspan="2" style="height:10px;">&nbsp;</td>
 					</tr>
-				<? 
+				<?
 				$count++;
 				}
 			} ?>
@@ -56,13 +56,13 @@
 				Tomorrow @ UCF
 			</p>
 			<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0 0 20px 0; background-color:#FFF;">
-				<? 
+				<?
 				$tomorrows_events = get_tomorrows_events();
 				if(count($tomorrows_events) == 0) { ?>
-					<p>There are no events tomrorow.</p>	
+					<p>There are no events tomrorow.</p>
 				<?} else {
 					$count = 0;
-					foreach($tomorrows_events as $event) { 
+					foreach($tomorrows_events as $event) {
 						if($count == 7) break;
 						$start_timestamp = strtotime($event->starts);
 					?>
@@ -81,7 +81,7 @@
 							</table>
 						</td>
 						<td style="padding-left:10px;vertical-align:top;">
-							<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="color:#333;font-weight:100;font-size:15px;">
+							<a href="<?=$event->url?>" style="color:#333;font-weight:100;font-size:15px;">
 								<?=esc_html($event->title)?>
 							</a>
 						</td>
@@ -90,12 +90,12 @@
 						<td colspan="2" style="height:10px;">&nbsp;</td>
 					</tr>
 				<? 		$count++;
-					} 
+					}
 			} ?>
 			</table>
-			<? if((count($tomorrows_events) - 7) > 0) { 
+			<? if((count($tomorrows_events) - 7) > 0) {
 				$tomorrow = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
-				$tomorrow_event_url = EVENTS_URL.'?y='.date('Y', $tomorrow).'&m='.date('n',$tomorrow).'&d='.date('j', $tomorrow);
+				$tomorrow_event_url = EVENTS_URL.'/'.date('Y', $tomorrow).'/'.date('n',$tomorrow).'/'.date('j', $tomorrow);
 				?>
 			<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=$tomorrow_event_url?>">
 				<?= count($tomorrows_events) - 7 ?> More Event<?= count($todays_events) == 1 ? '' : 's' ?> Tomorrow

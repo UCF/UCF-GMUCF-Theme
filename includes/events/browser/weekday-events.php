@@ -39,7 +39,7 @@
 					</span>
 					<? foreach($events as $event){ ?>
 					<div style="margin-bottom:15px;color:blue;">
-						<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
+						<a href="<?=$event->url?>" style="font-size:15px;color:#222222;text-decoration:underline;">
 							<?=esc_html($event->title)?>
 						</a>
 					</div>
@@ -60,7 +60,7 @@
 					</span>
 					<? foreach($events as $event){ ?>
 					<div style="margin-bottom:15px;color:blue;">
-						<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
+						<a href="<?=$event->url?>" style="font-size:15px;color:#222222;text-decoration:underline;">
 							<?=esc_html($event->title)?>
 						</a>
 					</div>
@@ -81,7 +81,7 @@
 					</span>
 					<? foreach($events as $event){ ?>
 					<div style="margin-bottom:15px;color:blue;">
-						<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>" style="font-size:15px;color:#222222;text-decoration:underline;">
+						<a href="<?=$event->url?>" style="font-size:15px;color:#222222;text-decoration:underline;">
 							<?=esc_html($event->title)?>
 						</a>
 					</div>

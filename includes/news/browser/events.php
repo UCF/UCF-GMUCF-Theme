@@ -17,7 +17,7 @@
 					<br />
 					<?=date('A', $start_timestamp)?>
 				</div>
-				<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>">
+				<a href="<?=$event->url?>">
 					<?=esc_html($event->title)?>
 				</a>
 			</li>
@@ -47,7 +47,7 @@
 					<br />
 					<?=date('A', $start_timestamp)?>
 				</div>
-				<a href="<?=EVENTS_URL.'?eventdatetime_id='.$event->id?>">
+				<a href="<?=$event->url?>">
 					<?=esc_html($event->title)?>
 				</a>
 			</li>
