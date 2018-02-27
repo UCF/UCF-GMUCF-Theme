@@ -322,10 +322,10 @@ switch($edition) {
 			<tr>
 				<td style="padding-top:30px;border-top:1px solid #dddddd;text-align:center;">
 					<span id="more-events" style="font-size:23px;font-weight:200;">
-						To see all upcoming events visit <a style="color:#a42929;text-decoration:none;border:none;" href="http://events.ucf.edu?upcoming=true">http://events.ucf.edu</a>
+						To see all upcoming events visit <a style="color:#a42929;text-decoration:none;border:none;" href="https://events.ucf.edu/upcoming/">https://events.ucf.edu</a>
 					</span>
 					<br /><br />
-					<a style="font-size:14px;color:#a42929;text-decoration:none;border:none;" href="https://eventsadmin.smca.ucf.edu/">Submit an event to the UCF Events Calendar</a>
+					<a style="font-size:14px;color:#a42929;text-decoration:none;border:none;" href="https://events.ucf.edu/manager/">Submit an event to the UCF Events Calendar</a>
 				</td>
 			</tr>
 			<tr>
@@ -341,22 +341,22 @@ switch($edition) {
 									</tr>
 									<tr>
 										<td>
-											<a href="http://www.facebook.com/ucf/" style="text-decoration:none;">
+											<a href="https://www.facebook.com/ucf/" style="text-decoration:none;">
 												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/facebook.png" />
 											</a>
 										</td>
 										<td style="padding-left:10px;">
-											<a href="http://www.twitter.com/UCF/" style="text-decoration:none;">
+											<a href="https://www.twitter.com/UCF/" style="text-decoration:none;">
 												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/twitter.png" />
 											</a>
 										</td>
 										<td style="padding-left:10px;">
-											<a href="http://www.instagram.com/ucf.edu" style="text-decoration:none;">
+											<a href="https://www.instagram.com/ucf.edu" style="text-decoration:none;">
 												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/instagram.png" />
 											</a>
 										</td>
 										<td style="padding-left:10px;">
-											<a href="http://www.youtube.com/user/UCF/" style="text-decoration:none;">
+											<a href="https://www.youtube.com/user/UCF/" style="text-decoration:none;">
 												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/youtube.png" />
 											</a>
 										</td>
@@ -364,7 +364,7 @@ switch($edition) {
 								</table>
 							</td>
 							<td class="ccollapse100" style="width:230px;padding-left:40px;vertical-align:top;">
-								<a href="http://www.ucf.edu">
+								<a href="https://www.ucf.edu">
 									<img src="<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png" style="border:0"/>
 								</a>
 								<p style="line-height:1.4em;font-size:15px;margin:0;padding:0;">
@@ -387,10 +387,10 @@ switch($edition) {
 					// to preserve scope.
 					switch($edition) {
 						case EVENTS_WEEKDAY_EDITION:
-							echo '<a style="color:blue;text-decoration:underline;" href="http://gmucf.smca.ucf.edu/events/weekday/">browser</a>.';
+							echo '<a style="color:blue;text-decoration:underline;" href="https://gmucf.smca.ucf.edu/events/weekday/">browser</a>.';
 							break;
 						case EVENTS_WEEKEND_EDITION:
-							echo '<a style="color:blue;text-decoration:underline;" href="http://gmucf.smca.ucf.edu/events/weekend/">browser</a>.';
+							echo '<a style="color:blue;text-decoration:underline;" href="https://gmucf.smca.ucf.edu/events/weekend/">browser</a>.';
 							break;
 					}
 					?>

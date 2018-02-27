@@ -57,5 +57,5 @@
 	?>
 	</ul>
 	<div class="clear">&nbsp;</div>
-	<a href="http://events.ucf.edu">More Events</a>
+	<a href="https://events.ucf.edu">More Events</a>
 </div>

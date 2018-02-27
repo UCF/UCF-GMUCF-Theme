@@ -146,18 +146,18 @@ switch($edition) {
 		?>
 		</div>
 		<div id="upcoming-submit">
-			To see all upcoming events visit <a href="http://events.ucf.edu/?upcoming=true">http://events.ucf.edu</a><br />
-			<a href="https://eventsadmin.smca.ucf.edu/">Submit an event to the UCF Events Calendar</a>
+			To see all upcoming events visit <a href="https://events.ucf.edu/upcoming/">https://events.ucf.edu</a><br />
+			<a href="https://events.ucf.edu/manager/">Submit an event to the UCF Events Calendar</a>
 		</div>
 		<div id="bottom">
 			<div id="social">
 				<h2>Get Social</h2>
-				<a id="facebook" class="ignore-external" href="http://www.facebook.com/ucf/">UCF on Facebook</a>
-				<a id="twitter" class="ignore-external" href="http://www.twitter.com/UCF/">UCF on Twitter</a>
-				<a id="instagram" class="ignore-external" href="http://www.instagram.com/ucf.edu">UCF on Instagram</a>
-				<a id="youtube" class="ignore-external" href="http://www.youtube.com/user/UCF/">UCF on Youtube</a>
+				<a id="facebook" class="ignore-external" href="https://www.facebook.com/ucf/">UCF on Facebook</a>
+				<a id="twitter" class="ignore-external" href="https://www.twitter.com/UCF/">UCF on Twitter</a>
+				<a id="instagram" class="ignore-external" href="https://www.instagram.com/ucf.edu">UCF on Instagram</a>
+				<a id="youtube" class="ignore-external" href="https://www.youtube.com/user/UCF/">UCF on Youtube</a>
 			</div>
-			<a id="ucf" href="http://www.ucf.edu" class="ignore-external">
+			<a id="ucf" href="https://www.ucf.edu" class="ignore-external">
 				4000 Central Florida Blvd.
 				<br />
 				Orlando, FL 32816

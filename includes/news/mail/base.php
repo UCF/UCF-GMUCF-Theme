@@ -200,7 +200,7 @@
 							<?php } ?>
 							<!-- 130 -->
 							<td id="history" style="padding-left:10px;width:110px;">
-								<a id="historylink" style="font-size:13px;" href="http://www.history.com/this-day-in-history">
+								<a id="historylink" style="font-size:13px;" href="https://www.history.com/this-day-in-history">
 									This Day in History
 								</a>
 							</td>
@@ -243,22 +243,22 @@
 												</tr>
 												<tr>
 													<td>
-														<a href="http://www.facebook.com/ucf/" style="text-decoration:none;">
+														<a href="https://www.facebook.com/ucf/" style="text-decoration:none;">
 															<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/facebook.png" />
 														</a>
 													</td>
 													<td style="padding-left:10px;">
-														<a href="http://www.twitter.com/UCF/" style="text-decoration:none;">
+														<a href="https://www.twitter.com/UCF/" style="text-decoration:none;">
 															<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/twitter.png" />
 														</a>
 													</td>
 													<td style="padding-left:10px;">
-														<a href="http://www.instagram.com/ucf.edu" style="text-decoration:none;">
+														<a href="https://www.instagram.com/ucf.edu" style="text-decoration:none;">
 															<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/instagram.png" />
 														</a>
 													</td>
 													<td style="padding-left:10px;">
-														<a href="http://www.youtube.com/user/UCF/" style="text-decoration:none;">
+														<a href="https://www.youtube.com/user/UCF/" style="text-decoration:none;">
 															<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/youtube.png" />
 														</a>
 													</td>
@@ -266,7 +266,7 @@
 											</table>
 										</td>
 										<td class="ccollapse100" style="width:230px;padding-left:40px;vertical-align:top;">
-											<a href="http://www.ucf.edu">
+											<a href="https://www.ucf.edu">
 												<img src="<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png" style="border:0"/>
 											</a>
 											<p style="line-height:1.4em;font-size:15px;margin:0;padding:0;">
@@ -283,7 +283,7 @@
 						</tr>
 						<tr>
 							<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
-								Having trouble viewing this email? See it in your <a style="color:blue;text-decoration:underline;" href="http://gmucf.smca.ucf.edu/news/">browser</a>.
+								Having trouble viewing this email? See it in your <a style="color:blue;text-decoration:underline;" href="https://gmucf.smca.ucf.edu/news/">browser</a>.
 							</td>
 						</tr>
 						<tr>
