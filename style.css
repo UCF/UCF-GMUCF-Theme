@@ -39,10 +39,8 @@ h1 {font-size:45px;font-weight:300;margin-bottom:20px;}
 #top_story p a:first-child {text-decoration:none;color:#333;}
 
 
-#left,
-	#bottom #social {width:320px;float:left;border-top:1px solid #ddd;padding-top:15px;}
-#right,
-	#bottom #ucf {width:225px;padding-left:15px;float:right;border-top:1px solid #ddd;padding-top:15px;}
+#bottom #ucf {width:330px;padding-left:15px;float:left;border-top:1px solid #ddd;padding-top:15px;}
+#bottom #social {width:185px;float:right;border-top:1px solid #ddd;padding-top:15px;margin-top:7px;}
 
 /* Featured Stories */
 .featured-story {width:300px;float:left;}

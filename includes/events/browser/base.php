@@ -72,7 +72,7 @@ switch($edition) {
 			#bottom {clear:both;border-top:1px solid #ddd;}
 			#bottom #social,
 				#bottom #ucf {border:none;padding:0;}
-			#bottom #social {float:left;}
+			#bottom #social {float:right;margin-top:20px;}
 			#bottom #social h2 {font-family:Helvetica,sans-serif;font-weight:100;margin-bottom:5px;}
 			#bottom #social a {text-indent:-300em;width:32px;height:32px;display:block;float:left;margin-left:10px;}
 			#bottom #social #facebook {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/social/facebook.png') no-repeat center center;margin-left:0;}
@@ -83,7 +83,7 @@ switch($edition) {
 				display:block;
 				background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png') no-repeat top left;
 				text-decoration:none;padding-top:61px;
-				float:right;
+				float:left;
 				color:#333;
 				margin-top:20px;
 				line-height: 1.5em;
@@ -150,13 +150,6 @@ switch($edition) {
 			<a href="https://eventsadmin.smca.ucf.edu/">Submit an event to the UCF Events Calendar</a>
 		</div>
 		<div id="bottom">
-			<div id="social">
-				<h2>Get Social</h2>
-				<a id="facebook" class="ignore-external" href="http://www.facebook.com/ucf/">UCF on Facebook</a>
-				<a id="twitter" class="ignore-external" href="http://www.twitter.com/UCF/">UCF on Twitter</a>
-				<a id="instagram" class="ignore-external" href="http://www.instagram.com/ucf.edu">UCF on Instagram</a>
-				<a id="youtube" class="ignore-external" href="http://www.youtube.com/user/UCF/">UCF on Youtube</a>
-			</div>
 			<a id="ucf" href="http://www.ucf.edu" class="ignore-external">
 				4000 Central Florida Blvd.
 				<br />
@@ -164,6 +157,13 @@ switch($edition) {
 				<br />
 				407.823.2000
 			</a>
+			<div id="social">
+				<h2>Get Social</h2>
+				<a id="facebook" class="ignore-external" href="http://www.facebook.com/ucf/">UCF on Facebook</a>
+				<a id="twitter" class="ignore-external" href="http://www.twitter.com/UCF/">UCF on Twitter</a>
+				<a id="instagram" class="ignore-external" href="http://www.instagram.com/ucf.edu">UCF on Instagram</a>
+				<a id="youtube" class="ignore-external" href="http://www.youtube.com/user/UCF/">UCF on Youtube</a>
+			</div>
 		</div>
 	</body>
 </html>
