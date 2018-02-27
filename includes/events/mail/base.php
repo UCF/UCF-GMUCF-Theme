@@ -332,7 +332,19 @@ switch($edition) {
 				<td style="padding-top:30px;">
 					<table id="footer" class="t600" width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto; background-color:#FFF;padding-top:15px;border-top:1px solid #ddd;padding-bottom:15px;">
 						<tr>
-							<td class="ccollapse100pb" style="width:360px;vertical-align:top;">
+							<td class="ccollapse100pb" style="width:330px;vertical-align:top;">
+								<a href="http://www.ucf.edu">
+									<img src="<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png" style="border:0"/>
+								</a>
+								<p style="line-height:1.4em;font-size:15px;margin:0;padding:0;">
+									4000 Central Florida Blvd.
+									<br />
+									Orlando, FL 32816
+									<br />
+									407 823 2000
+								</p>
+							</td>
+							<td class="ccollapse100" style="width:145px;padding-left:40px;padding-top:20px;vertical-align:top;">
 								<table border="0" align="left" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="margin:0; background-color:#FFF;">
 									<tr>
 										<td colspan="3" style="font-size:22px;font-weight:100;padding-bottom:3px;">
@@ -362,18 +374,6 @@ switch($edition) {
 										</td>
 									</tr>
 								</table>
-							</td>
-							<td class="ccollapse100" style="width:230px;padding-left:40px;vertical-align:top;">
-								<a href="http://www.ucf.edu">
-									<img src="<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png" style="border:0"/>
-								</a>
-								<p style="line-height:1.4em;font-size:15px;margin:0;padding:0;">
-									4000 Central Florida Blvd.
-									<br />
-									Orlando, FL 32816
-									<br />
-									407 823 2000
-								</p>
 							</td>
 						</tr>
 					</table>
