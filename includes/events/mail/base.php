@@ -322,44 +322,18 @@ switch($edition) {
 			<tr>
 				<td style="padding-top:30px;border-top:1px solid #dddddd;text-align:center;">
 					<span id="more-events" style="font-size:23px;font-weight:200;">
-						To see all upcoming events visit <a style="color:#a42929;text-decoration:none;border:none;" href="http://events.ucf.edu?upcoming=true">http://events.ucf.edu</a>
+						To see all upcoming events visit <a style="color:#a42929;text-decoration:none;border:none;" href="https://events.ucf.edu/upcoming/">https://events.ucf.edu</a>
 					</span>
 					<br /><br />
-					<a style="font-size:14px;color:#a42929;text-decoration:none;border:none;" href="https://eventsadmin.smca.ucf.edu/">Submit an event to the UCF Events Calendar</a>
+					<a style="font-size:14px;color:#a42929;text-decoration:none;border:none;" href="https://events.ucf.edu/manager/">Submit an event to the UCF Events Calendar</a>
 				</td>
 			</tr>
 			<tr>
 				<td style="padding-top:30px;">
 					<table id="footer" class="t600" width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0 auto; background-color:#FFF;padding-top:15px;border-top:1px solid #ddd;padding-bottom:15px;">
 						<tr>
-							<td class="ccollapse100pb" style="width:360px;vertical-align:top;">
-								<table border="0" align="left" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="margin:0; background-color:#FFF;">
-									<tr>
-										<td colspan="3" style="font-size:22px;font-weight:100;padding-bottom:3px;">
-											Get Social:
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<a href="http://www.facebook.com/ucf/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/facebook.png" />
-											</a>
-										</td>
-										<td style="padding-left:10px;">
-											<a href="http://www.youtube.com/user/UCF/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/youtube.png" />
-											</a>
-										</td>
-										<td style="padding-left:10px;">
-											<a href="http://www.twitter.com/UCF/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/twitter.png" />
-											</a>
-										</td>
-									</tr>
-								</table>
-							</td>
-							<td class="ccollapse100" style="width:230px;padding-left:40px;vertical-align:top;">
-								<a href="http://www.ucf.edu">
+							<td class="ccollapse100pb" style="width:330px;vertical-align:top;">
+								<a href="https://www.ucf.edu">
 									<img src="<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png" style="border:0"/>
 								</a>
 								<p style="line-height:1.4em;font-size:15px;margin:0;padding:0;">
@@ -370,22 +344,53 @@ switch($edition) {
 									407 823 2000
 								</p>
 							</td>
+							<td class="ccollapse100" style="width:145px;padding-left:40px;padding-top:20px;vertical-align:top;">
+								<table border="0" align="left" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="margin:0; background-color:#FFF;">
+									<tr>
+										<td colspan="3" style="font-size:22px;font-weight:100;padding-bottom:3px;">
+											Get Social:
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="https://www.facebook.com/ucf/" style="text-decoration:none;">
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/facebook.png" />
+											</a>
+										</td>
+										<td style="padding-left:10px;">
+											<a href="https://www.twitter.com/UCF/" style="text-decoration:none;">
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/twitter.png" />
+											</a>
+										</td>
+										<td style="padding-left:10px;">
+											<a href="https://www.instagram.com/ucf.edu" style="text-decoration:none;">
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/instagram.png" />
+											</a>
+										</td>
+										<td style="padding-left:10px;">
+											<a href="https://www.youtube.com/user/UCF/" style="text-decoration:none;">
+												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/youtube.png" />
+											</a>
+										</td>
+									</tr>
+								</table>
+							</td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr>
 				<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
-					Having trouble viewing this email? See it in your 
+					Having trouble viewing this email? See it in your
 					<?
 					// Use includes here instead of get_template_part
 					// to preserve scope.
 					switch($edition) {
 						case EVENTS_WEEKDAY_EDITION:
-							echo '<a style="color:blue;text-decoration:underline;" href="http://gmucf.cms.smca.ucf.edu/events/weekday/">browser</a>.';
+							echo '<a style="color:blue;text-decoration:underline;" href="https://gmucf.smca.ucf.edu/events/weekday/">browser</a>.';
 							break;
 						case EVENTS_WEEKEND_EDITION:
-							echo '<a style="color:blue;text-decoration:underline;" href="http://gmucf.cms.smca.ucf.edu/events/weekend/">browser</a>.';
+							echo '<a style="color:blue;text-decoration:underline;" href="https://gmucf.smca.ucf.edu/events/weekend/">browser</a>.';
 							break;
 					}
 					?>

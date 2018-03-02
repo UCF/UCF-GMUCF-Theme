@@ -35,11 +35,11 @@ switch($edition) {
 		<title>This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ UCF</title>
 		<style type="text/css">
 			body {width:600px;margin:15px auto;font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
-			
+
 			#feedback {text-align: center;margin-bottom:25px;}
-			
+
 			#shoutout {font-size:30px;}
-			
+
 			h1 {font-weight:200;font-size:37px;border-bottom:1px solid #ddd;}
 			h1 .highlight {color:#FFC907;font-weight:bold;}
 			h1 .range {float:right;}
@@ -72,21 +72,23 @@ switch($edition) {
 			#bottom {clear:both;border-top:1px solid #ddd;}
 			#bottom #social,
 				#bottom #ucf {border:none;padding:0;}
-			#bottom #social {float:left;}
+			#bottom #social {float:right;margin-top:20px;}
 			#bottom #social h2 {font-family:Helvetica,sans-serif;font-weight:100;margin-bottom:5px;}
-			#bottom #social a {text-indent:-300em;width:51px;height:51px;display:block;float:left;margin-left:10px;}
-			#bottom #social #facebook {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/facebook.png') no-repeat center center;margin-left:0;}
-			#bottom #social #youtube {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/youtube.png') no-repeat center center;}
-			#bottom #social #twitter {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/twitter.png') no-repeat center center;}
+			#bottom #social a {text-indent:-300em;width:32px;height:32px;display:block;float:left;margin-left:10px;}
+			#bottom #social #facebook {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/social/facebook.png') no-repeat center center;margin-left:0;}
+			#bottom #social #youtube {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/social/youtube.png') no-repeat center center;}
+			#bottom #social #twitter {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/social/twitter.png') no-repeat center center;}
+			#bottom #social #instagram {background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/social/instagram.png') no-repeat center center;}
 			#bottom #ucf {
 				display:block;
 				background:#FFF url('<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png') no-repeat top left;
 				text-decoration:none;padding-top:61px;
-				float:right;
+				float:left;
 				color:#333;
 				margin-top:20px;
 				line-height: 1.5em;
 				font-size:13px;
+				min-width: 152px;
 			}
 
 			/* Footer */
@@ -144,23 +146,24 @@ switch($edition) {
 		?>
 		</div>
 		<div id="upcoming-submit">
-			To see all upcoming events visit <a href="http://events.ucf.edu/?upcoming=true">http://events.ucf.edu</a><br />
-			<a href="https://eventsadmin.smca.ucf.edu/">Submit an event to the UCF Events Calendar</a>
+			To see all upcoming events visit <a href="https://events.ucf.edu/upcoming/">https://events.ucf.edu</a><br />
+			<a href="https://events.ucf.edu/manager/">Submit an event to the UCF Events Calendar</a>
 		</div>
 		<div id="bottom">
-			<div id="social">
-				<h2>Get Social</h2>
-				<a id="facebook" class="ignore-external" href="http://www.facebook.com/ucf/">UCF on Facebook</a>
-				<a id="youtube" class="ignore-external" href="http://www.youtube.com/user/UCF/">UCF on Youtube</a>
-				<a id="twitter" class="ignore-external" href="http://www.twitter.com/UCF/">UCF on Twitter</a>
-			</div>
-			<a id="ucf" href="http://www.ucf.edu" class="ignore-external">
+			<a id="ucf" href="https://www.ucf.edu" class="ignore-external">
 				4000 Central Florida Blvd.
 				<br />
 				Orlando, FL 32816
 				<br />
 				407.823.2000
 			</a>
+			<div id="social">
+				<h2>Get Social</h2>
+				<a id="facebook" class="ignore-external" href="https://www.facebook.com/ucf/">UCF on Facebook</a>
+				<a id="twitter" class="ignore-external" href="https://www.twitter.com/UCF/">UCF on Twitter</a>
+				<a id="instagram" class="ignore-external" href="https://www.instagram.com/ucf.edu">UCF on Instagram</a>
+				<a id="youtube" class="ignore-external" href="https://www.youtube.com/user/UCF/">UCF on Youtube</a>
+			</div>
 		</div>
 	</body>
 </html>

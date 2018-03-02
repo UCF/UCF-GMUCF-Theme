@@ -57,8 +57,8 @@ if (!empty($weather)) {
 
 -- Events
 
-<? 
-for($i = 0; $i < count($days); $i++) { 
+<?
+for($i = 0; $i < count($days); $i++) {
 	$day       = $days[$i];
 	$title     = 'Today';
 
@@ -103,7 +103,7 @@ for($i = 0; $i < count($days); $i++) {
 	$_start_date          = new DateTime(date('c', $start_date->getTimestamp()));
 	$title_date           = date_add($_start_date, new DateInterval('P'.$i.'D'));
 	$title_date_timestamp = $title_date->getTimestamp();
-	$all_events_link      = EVENTS_URL.'?y='.date('Y', $title_date_timestamp).'&m='.date('n',$title_date_timestamp).'&d='.date('j', $title_date_timestamp);
+	$all_events_link      = EVENTS_URL.'/'.date('Y', $title_date_timestamp).'/'.date('n',$title_date_timestamp).'/'.date('j', $title_date_timestamp);
 
 	if($i > 0) {
 		echo "\n\n\n";
@@ -117,7 +117,7 @@ for($i = 0; $i < count($days); $i++) {
 		foreach($day['morning'] as $section=>$events) {
 			echo '   - '.($section == '12:00 AM' ? 'All Day' : $section)."\n";
 			foreach($events as $event){
-				echo '    '.strip_tags($event->title).' - '.(EVENTS_URL.'?eventdatetime_id='.$event->id)."\n";
+				echo '    '.strip_tags($event->title).' - '.($event->url)."\n";
 			}
 		}
 	}
@@ -130,7 +130,7 @@ for($i = 0; $i < count($days); $i++) {
 		foreach($day['afternoon'] as $section=>$events) {
 			echo '   - '.($section == '12:00 AM' ? 'All Day' : $section)."\n";
 			foreach($events as $event){
-				echo '    '.strip_tags($event->title).' - '.(EVENTS_URL.'?eventdatetime_id='.$event->id)."\n";
+				echo '    '.strip_tags($event->title).' - '.($event->url)."\n";
 			}
 		}
 	}
@@ -143,7 +143,7 @@ for($i = 0; $i < count($days); $i++) {
 		foreach($day['evening'] as $section=>$events) {
 			echo '   - '.($section == '12:00 AM' ? 'All Day' : $section)."\n";
 			foreach($events as $event){
-				echo '    '.strip_tags($event->title).' - '.(EVENTS_URL.'?eventdatetime_id='.$event->id)."\n";
+				echo '    '.strip_tags($event->title).' - '.($event->url)."\n";
 			}
 		}
 	}
