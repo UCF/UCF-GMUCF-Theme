@@ -21,7 +21,7 @@
 							</a>
 						</div>
 						<a href="<?=$permalink?>" style="color:#000001;text-decoration:none;">
-							<span style="font-weight:200;font-size:14px;line-height:1.4em;color:#000001;"><?=truncate($description, 25)?></span>
+							<span style="font-weight:200;font-size:14px;line-height:1.4em;color:#000001;"><?=$description?></span>
 						</a>
 					</td>
 				</tr>

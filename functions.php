@@ -431,7 +431,7 @@ function get_top_story_details() {
 
 					$details['thumbnail_src']     = remove_quotes($enclosure->get_thumbnail());
 					$details['story_title']       = sanitize_for_email($rss_item->get_title());
-					$details['story_description'] = truncate(sanitize_for_email($rss_item->get_description()));
+					$details['story_description'] = sanitize_for_email($rss_item->get_description());
 					$details['read_more_uri']     = remove_quotes($rss_item->get_permalink());
 
 					if($details['thumbnail_src'] != '') {
@@ -480,7 +480,7 @@ function get_featured_stories_details() {
 					$story['thumbnail_src'] = remove_quotes(get_bloginfo('stylesheet_directory', 'raw').'/static/img/no-photo.png');
 				}
 				$story['title']       = sanitize_for_email($rss_item->get_title());
-				$story['description'] = truncate(sanitize_for_email($rss_item->get_description()));
+				$story['description'] = sanitize_for_email($rss_item->get_description());
 				$story['permalink']   = remove_quotes($rss_item->get_permalink());
 				array_push($stories, $story);
 				$count++;
