@@ -113,7 +113,7 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Events Limit',
 			'id'          => THEME_OPTIONS_NAME.'[events_limit]',
-			'description' => 'The number of events to include in the events email. Defaults to 25.',
+			'description' => 'The number of events to include, per day, in the events email. Defaults to 25. The events system accepts a value from 1 to 100.',
 			'default'     => 25,
 			'value'       => $theme_options['events_limit'],
 		))
