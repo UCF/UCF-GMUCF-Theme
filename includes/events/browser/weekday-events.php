@@ -23,7 +23,7 @@
 		$_start_date          = new DateTime(date('c', $start_date->getTimestamp()));
 		$title_date           = date_add($_start_date, new DateInterval('P'.$i.'D'));
 		$title_date_timestamp = $title_date->getTimestamp();
-		$all_events_link      = EVENTS_URL.'/'.date('Y', $title_date_timestamp).'/'.date('n',$title_date_timestamp).'/'.date('j', $title_date_timestamp).'/';
+		$all_events_link      = EVENTS_URL.date('Y', $title_date_timestamp).'/'.date('n',$title_date_timestamp).'/'.date('j', $title_date_timestamp).'/';
 ?>
 <div class="day">
 	<h2><?=$title?>, <?=date('n/j', $title_date_timestamp)?> <a href="<?=$all_events_link?>" style="font-size:15px;color:#9d1a1a;">View all <?=$event_day?> events</a></h2>

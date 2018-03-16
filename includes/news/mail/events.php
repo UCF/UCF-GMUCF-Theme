@@ -95,7 +95,7 @@
 			</table>
 			<? if((count($tomorrows_events) - 7) > 0) {
 				$tomorrow = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
-				$tomorrow_event_url = EVENTS_URL.'/'.date('Y', $tomorrow).'/'.date('n',$tomorrow).'/'.date('j', $tomorrow);
+				$tomorrow_event_url = EVENTS_URL.date('Y', $tomorrow).'/'.date('n',$tomorrow).'/'.date('j', $tomorrow);
 				?>
 			<a style="font-weight:100;color:#9d1a1a;font-size:16px;text-decoration:underline;" href="<?=$tomorrow_event_url?>">
 				<?= count($tomorrows_events) - 7 ?> More Event<?= count($todays_events) == 1 ? '' : 's' ?> Tomorrow
