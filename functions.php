@@ -21,8 +21,9 @@ define('GA_ACCOUNT', $theme_options['ga_account']);
 define('CB_UID', $theme_options['cb_uid']);
 define('CB_DOMAIN', $theme_options['cb_domain']);
 
-define('EVENTS_URL', 'https://events.ucf.edu');
+define('EVENTS_URL', !empty($theme_options['events_url']) ? trailingslashit($theme_options['events_url']) : 'https://events.ucf.edu');
 define('EVENTS_CALENDAR_ID', 1);
+define('EVENTS_LIMIT', !empty($theme_options['events_limit']) ? $theme_options['events_limit'] : 25);
 define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
 define('FEATURED_STORIES_RSS_URL', !empty($theme_options['featured_stories_url']) ? $theme_options['featured_stories_url'] : 'https://today.ucf.edu/tag/main-site-stories/feed/');
@@ -101,6 +102,22 @@ Config::$theme_settings = array(
 			'value'       => $theme_options['announcements_url'],
 		)),
 	),
+	'UCF Events Feed' => array(
+		new TextField(array(
+			'name'        => 'Events Feed URL',
+			'id'          => THEME_OPTIONS_NAME.'[events_url]',
+			'description' => 'URL to the UCF Events feed. Useful for development when testing on different environments. Defaults to https://events.ucf.edu/',
+			'default'     => 'https://events.ucf.edu/',
+			'value'       => $theme_options['events_url'],
+		)),
+		new TextField(array(
+			'name'        => 'Events Limit',
+			'id'          => THEME_OPTIONS_NAME.'[events_limit]',
+			'description' => 'The number of events to include, per day, in the events email. Defaults to 25. The events system accepts a value from 1 to 100.',
+			'default'     => 25,
+			'value'       => $theme_options['events_limit'],
+		))
+	)
 );
 
 Config::$links = array(
@@ -232,6 +249,7 @@ function get_event_data($options = array())
 	$cache_key_prefix = 'events-';
 	$default_options = array(
 		'calendar_id' => EVENTS_CALENDAR_ID,
+		'per_page'    => EVENTS_LIMIT,
 		'format'      => 'json');
 
 	$options = array_merge($default_options, $options);
@@ -241,7 +259,14 @@ function get_event_data($options = array())
 	if(CLEAR_CACHE || ($events = get_transient($cache_key)) === False) {
 		$events = array();
 
-		$url = EVENTS_URL.'/'.$options['y'].'/'.$options['m'].'/'.$options['d'].'/feed.json';
+		$url = EVENTS_URL.$options['y'].'/'.$options['m'].'/'.$options['d'].'/feed.json';
+
+		$params = array(
+			'per_page' => $options['per_page']
+		);
+
+		$url .= '?' . http_build_query( $params );
+
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
