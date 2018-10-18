@@ -844,6 +844,7 @@ function gmucf_template_redirect() {
 
 		# Most to least specific
 		$mapping = array(
+			'news/v2/'             => create_function('', 'display_gmucf_template(\'includes/news/v2/mail/base\');'),
 			'news/mail/'           => create_function('', 'display_gmucf_template(\'includes/news/mail/base\');'),
 			'news/text/'           => create_function('', 'display_gmucf_template(\'includes/news/text/base\');'),
 			'news/'                => create_function('', 'display_gmucf_template(\'includes/news/browser/base\');'),
