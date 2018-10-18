@@ -1,5 +1,5 @@
 <h1>UCF Today</h1>
-<h2>Good afternoon, Stephen.</h2>
+<h2>Good <?php echo (int)date('G') >= 12 ? 'Afternoon' : 'Morning'; ?>, !@!Preferred Name!@!.</h2>
 <?php
 echo date('l, F j, Y');
 
