@@ -101,6 +101,13 @@
 							</tr>
 						</tbody>
 					</table>
+					<table class="spacer float-center">
+						<tbody>
+							<tr>
+								<td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
+							</tr>
+						</tbody>
+					</table>
 				</center>
 			</td>
 		</tr>
