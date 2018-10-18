@@ -50,7 +50,7 @@
 		<tr>
 			<th class="small-12 large-12 columns first last float-center" align="center">
 				<center>
-					<strong>University of Centra Florida</strong><br>
+					<strong>University of Central Florida</strong><br>
 					4000 Central Florida Blvd.<br>
 					Orlando, FL 32816<br>
 					407-823-2000<br>
