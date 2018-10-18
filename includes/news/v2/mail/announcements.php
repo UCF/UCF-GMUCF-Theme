@@ -1,6 +1,5 @@
 <h2>Announcements</h1>
 
-<ul>
 <?php
 $announcements = get_announcement_details();
 
@@ -8,6 +7,9 @@ if(count($announcements) == 0) { ?>
 	<p>No announcements found for today.</p>
 <?php
 } else {
+	?>
+	<ul>
+	<?php
 	foreach($announcements as $announcement) :
 		extract($announcement);
 	?>
@@ -18,9 +20,11 @@ if(count($announcements) == 0) { ?>
 		</li>
 	<?php
 	endforeach;
+	?>
+	</ul>
+	<?php
 }
 ?>
-</ul>
 
 <a href="<?php echo ANNOUNCEMENTS_MORE_URL; ?>">
 	More Announcements
