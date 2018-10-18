@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<table class="body">
+	<table class="body" width="640">
 		<tr>
 			<td class="float-center" align="center" valign="top">
 				<center>
