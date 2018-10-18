@@ -325,8 +325,7 @@ function get_tomorrows_events($options = array()) {
 
 
 /**
- * Fetches today/tonight weather, extended weather and stores
- * it as transient data.
+ * Returns the events HTML
  *
  * @return string
  * @author RJ Bruneel
