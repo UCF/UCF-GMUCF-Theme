@@ -90,9 +90,7 @@
 										<tbody>
 											<tr>
 												<th class="small-12 large-12 columns first last">
-													<table>
-														<?php echo get_template_part('includes/news/v2/mail/footer'); ?>
-													</table>
+													<?php echo get_template_part('includes/news/v2/mail/footer'); ?>
 												</th>
 											</tr>
 										</tbody>
