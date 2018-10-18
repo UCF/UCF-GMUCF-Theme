@@ -38,7 +38,7 @@
 		<tr>
 			<th class="small-12 large-12 columns first last float-center" align="center">
 				<center>
-					<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/ucf-tab.png" width="150" height="202" alt="UCF Tab" align="center" class="float-center">
+					<a href="https://www.ucf.edu"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/ucf-tab.png" width="150" height="202" alt="UCF Tab" align="center" class="float-center"></a>
 				</center>
 			</th>
 		</tr>
