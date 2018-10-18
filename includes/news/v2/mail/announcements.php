@@ -3,19 +3,19 @@
 <?php
 $announcements = get_announcement_details();
 
-if(count($announcements) == 0) { ?>
+if( count( $announcements ) == 0 ) { ?>
 	<p>No announcements found for today.</p>
 <?php
 } else {
 	?>
 	<ul>
 	<?php
-	foreach($announcements as $announcement) :
-		extract($announcement);
+	foreach( $announcements as $announcement ) :
+		extract( $announcement );
 	?>
 		<li>
-			<a href="<?=$permalink?>">
-				<?=$title?>
+			<a href="<?php echo $permalink; ?>">
+				<?php echo $title;?>
 			</a>
 		</li>
 	<?php
