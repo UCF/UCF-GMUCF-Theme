@@ -97,8 +97,8 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Announcements Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[announcements_url]',
-			'description' => 'URL to the UCF Announcements feed.  Useful for development when testing on different environments.  Defaults to https://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0',
-			'default'     => 'https://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0',
+			'description' => 'URL to the UCF Announcements feed.  Useful for development when testing on different environments.  Defaults to https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json',
+			'default'     => 'https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json',
 			'value'       => $theme_options['announcements_url'],
 		)),
 	),
@@ -321,6 +321,38 @@ function get_tomorrows_events($options = array()) {
 	$date = getdate($tomorrow->getTimestamp());
 	$options = array_merge($options,array('y'=>$date['year'], 'm'=>$date['mon'], 'd'=>$date['mday']));
 	return get_event_data($options);
+}
+
+
+/**
+ * Returns the events HTML
+ *
+ * @return string
+ * @author RJ Bruneel
+ **/
+function display_events($events) {
+	$count = 0;
+	ob_start();
+		?>
+		<ul>
+		<?php
+		foreach($events as $event) :
+			if($count == 7) break;
+			$start_timestamp = strtotime($event->starts);
+		?>
+			<li>
+				<?php echo date('g:i', $start_timestamp) . date('A', $start_timestamp); ?>
+				<a href="<?php echo $event->url?>">
+					<?php echo esc_html($event->title); ?>
+				</a>
+			</li>
+		<?
+			$count++;
+		endforeach;
+		?>
+		</ul>
+		<?php
+	return ob_end_flush();
 }
 
 
