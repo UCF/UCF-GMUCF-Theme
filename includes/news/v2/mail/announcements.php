@@ -2,17 +2,26 @@
 
 <ul>
 <?php
-foreach(get_announcement_details() as $announcement) :
-	extract($announcement);
+$announcements = get_announcement_details();
+
+if(count($announcements) == 0) { ?>
+	<p>No announcements found for today.</p>
+<?php
+} else {
+	foreach($announcements as $announcement) :
+		extract($announcement);
+	?>
+		<li>
+			<a href="<?=$permalink?>">
+				<?=$title?>
+			</a>
+		</li>
+	<?php
+	endforeach;
+}
 ?>
-	<li>
-		<a href="<?=$permalink?>">
-			<?=$title?>
-		</a>
-	</li>
-<?php endforeach; ?>
 </ul>
 
-<a href="<?=ANNOUNCEMENTS_MORE_URL?>">
+<a href="<?php echo ANNOUNCEMENTS_MORE_URL; ?>">
 	More Announcements
 </a>
