@@ -18,17 +18,13 @@
     <tbody>
       <tr>
         <td align="center" style="padding: 0;">
-          <table class="wrapperOuter" width="640" align="center" style="width: 640px; border: 1px solid #aaa; border-spacing: 0; border-collapse: collapse;">
+          <table class="wrapperOuter" width="640" align="center" style="width: 640px; margin-top: 20px; margin-bottom: 20px; border-spacing: 0; border-collapse: collapse;">
             <tbody>
               <tr>
                 <td align="center" style="padding: 0;">
                   <table class="wrapperInner" width="600" align="center" style="border-spacing: 0; border-collapse: collapse;">
                     <tbody>
-                      <tr>
-                        <td style="padding-bottom: 20px; padding-left: 0; padding-right: 0; padding-top: 0; text-align: center;">
-                          <?php echo get_template_part('includes/news/v2/mail/header'); ?>
-                        </td>
-                      </tr>
+                      <?php echo get_template_part('includes/news/v2/mail/header'); ?>
 
                       <tr>
                         <td style="padding: 0;">
