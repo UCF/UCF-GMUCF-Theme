@@ -5,10 +5,24 @@
 </tr>
 
 <tr>
-	<td class="montserratsemibold" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; padding-left: 0; padding-right: 0; padding-top: 0; color: #848484; text-align: center; padding-bottom: 0; line-height: 1; text-transform: uppercase; letter-spacing: 1.25px;">
+	<td class="montserratsemibold" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; padding-left: 0; padding-right: 0; padding-top: 0; color: #848484; text-align: center; padding-bottom: 15px; line-height: 1; text-transform: uppercase; letter-spacing: 1.25px;">
 		<?php echo date('l, F j, Y'); ?>
 	</td>
 </tr>
+
+<?php
+$weather = get_weather( 'weather-today' );
+if (!empty($weather)) :
+?>
+	<tr>
+		<td style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; padding-left: 0; padding-right: 0; padding-top: 0; color: #848484; text-align: center; padding-bottom: 0; line-height: 1;" align="center">
+			<img height="36" width="36" src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/weather/<?php echo $weather['today']['imgCode']; ?>.png" width="30" />
+			High <strong><?php echo $weather['today']['tempN']; ?>&deg;</strong>
+			<img height="36" width="36" src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/weather/<?php echo $weather['tonight']['imgCode']; ?>.png" width="30" />
+			Low <strong><?php echo $weather['tonight']['tempN']; ?>&deg;</strong>
+		</td>
+	</tr>
+<?php endif; ?>
 
 <tr>
 	<td class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding-bottom: 30px; padding-top: 30px; padding-left: 0; padding-right: 0; text-align: left;" align="left">
