@@ -33,8 +33,9 @@ define('FEATURED_STORIES_TIMEOUT', 15); // seconds
 define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'https://www.ucf.edu/announcements/?time=thisweek&exclude_ongoing=True&format=json');
 define('ANNOUNCEMENTS_MORE_URL', 'https://www.ucf.edu/announcements/');
 
-define('IN_THE_NEWS_RSS_URL', !empty($theme_options['in_the_news_url']) ? $theme_options['in_the_news_url'] : 'https://today.ucf.edu/feed/?post_type=externalstory');
-define('IN_THE_NEWS_TIMEOUT', 15); //seconds
+define('IN_THE_NEWS_JSON_URL', !empty($theme_options['in_the_news_url']) ? $theme_options['in_the_news_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/');
+define('IN_THE_NEWS_ITEM_COUNT', !empty($theme_options['in_the_news_item_count']) ? $theme_options['in_the_news_item_count'] : 5);
+define('IN_THE_NEWS_JSON_TIMEOUT', 15); //seconds
 
 define('WEATHER_URL', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastToday' : 'https://weather.smca.ucf.edu/?data=forecastToday');
 define('WEATHER_URL_EXTENDED', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastExtended' : 'https://weather.smca.ucf.edu/?data=forecastExtended');
@@ -103,6 +104,22 @@ Config::$theme_settings = array(
 			'description' => 'URL to the UCF Announcements feed.  Useful for development when testing on different environments.  Defaults to https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json',
 			'default'     => 'https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json',
 			'value'       => $theme_options['announcements_url'],
+		)),
+	),
+	'UCF In The News Feed' => array(
+		new TextField(array(
+			'name'        => 'In The News JSON URL',
+			'id'          => THEME_OPTIONS_NAME.'[in_the_news_url]',
+			'description' => 'URL of the external-stories feed on UCF Today.',
+			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
+			'value'       => $theme_options['in_the_news_url']
+		)),
+		new TextField(array(
+			'name'        => 'In the News Story Count',
+			'id'          => THEME_OPTIONS_NAME.'[in_the_news_item_count]',
+			'description' => 'The number of external stories to retrieve.',
+			'default'     => 5,
+			'value'       => $theme_options['in_the_news_item_count']
 		)),
 	),
 	'UCF Events Feed' => array(
@@ -585,25 +602,23 @@ function get_announcement_details() {
 function get_in_the_news_stories() {
 	$stories = array();
 
-	$rss = custom_fetch_feed( IN_THE_NEWS_RSS_URL, IN_THE_NEWS_RSS_TIMEOUT );
+	$args = array(
+		'limit' => IN_THE_NEWS_ITEM_COUNT
+	);
 
-	if( ! is_wp_error( $rss ) ) {
-		$rss_items = $rss->get_items( 0, $rss->get_item_quantity(5) );
+	$arg_string = '?' . http_build_query( $args );
 
-		foreach( $rss_items as $item ) {
-			$story = array(
-				'title'     => '',
-				'permalink' => ''
-			);
+	$response = wp_remote_get( IN_THE_NEWS_JSON_URL . $arg_string, array( 'timeout' => IN_THE_NEWS_JSON_TIMEOUT ) );
 
-			$story['title']     = sanitize_for_email( $rss_item->get_title() );
-			$story['permalink'] = remove_quotes( $rss_item->get_permalink() );
+	if ( is_array( $response ) ) {
+		$items = json_decode( wp_remote_retrieve_body( $response ) );
 
-			array_push( $stories, $story );
+		if ( $items ) {
+			$stories = $items;
 		}
 	} else {
-		$error_string = $rss->get_error_message();
-		error_log("GMUCF - get_featured_stories_details() - " . $error_string);
+		$error_string = $response->error;
+		error_log( "GMUCF - get_in_the_news_stories() - " . $error_string );
 	}
 
 	return $stories;
