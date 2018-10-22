@@ -1,6 +1,6 @@
 <tr>
   <td class="montserratbold" style="padding-top: 20px; padding-bottom: 2px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #000; text-transform: uppercase;" align="left">
-	<a style="text-decoration: none; color: #000;" href="https://www.ucf.edu/announcements/">UCF In the News</a>
+	<a style="text-decoration: none; color: #000;">UCF In the News</a>
 	<div style="width: 35px; border-top: 3px solid #fc0; margin-top: 5px;"></div>
   </td>
 </tr>
