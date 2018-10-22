@@ -35,10 +35,14 @@
                                   <?php echo get_template_part('includes/news/v2/mail/top-story'); ?>
                                 </td>
                               </tr>
-                              <!-- In the news goes here -->
                               <tr>
                                 <td style="padding-bottom: 20px; padding-top: 20px; padding-left: 0; padding-right: 0; border-bottom: 1px solid #aaa;">
                                   <?php echo get_template_part('includes/news/v2/mail/featured-stories'); ?>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 0 solid #aaa;">
+                                  <?php echo get_template_part('includes/news/v2/mail/in-the-news'); ?>
                                 </td>
                               </tr>
                               <tr>
