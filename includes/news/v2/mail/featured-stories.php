@@ -1,13 +1,16 @@
-<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#FFF;padding-bottom:15px;">
+<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 		<tr>
 <?
-	$count = 0;
-	foreach(get_featured_stories_details() as $details) {
-		extract($details);
-		if($count == 2) break;
+	$featured_stories = get_featured_stories_details();
+	$total = count( $featured_stories );
+	$limit = 4;
+
+	foreach( $featured_stories as $index => $details ) {
+		extract( $details );
+		if( $$index == $limit ) break;
 	?>
 		<tr>
-			<td style="padding-bottom: 20px; padding-top: 20px; padding-left: 0; padding-right: 0;">
+			<td style="padding-bottom: 30px; padding-top: 30px; padding-left: 0; padding-right: 0;<?php if( $index < $total - 1 && $index < $limit ) echo " border-bottom: solid 1px #aaa;"; ?>">
 				<table class="tableCollapse" width="600" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
 					<tbody>
 						<tr>
@@ -25,7 +28,7 @@
 						<tr>
 							<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.4; color: #000; text-align: left;" align="left">
 							<?php echo $description; ?>
-							<a href="<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;"></br>Read More.</a>
+							<a href="<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;"><br>Read More.</a>
 							</td>
 						</tr>
 					</tbody>
@@ -33,7 +36,6 @@
 			</td>
 		</tr>
 		<?
-		$count++;
 	}
 ?>
 	</tr>
