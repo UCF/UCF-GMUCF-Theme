@@ -7,7 +7,7 @@
 		if($count == 2) break;
 	?>
 		<tr>
-			<td style="padding-bottom: 20px; padding-top: 20px; padding-left: 0; padding-right: 0; border-bottom: 1px solid #aaa;">
+			<td style="padding-bottom: 20px; padding-top: 20px; padding-left: 0; padding-right: 0;">
 				<table class="tableCollapse" width="600" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
 					<tbody>
 						<tr>
@@ -38,6 +38,6 @@
 ?>
 	</tr>
 </table>
-<div style="text-align:right">
+<div style="text-align:right; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
 	<a href="<?php echo FEATURED_STORIES_MORE_URL?>">More UCF Stories</a>
 </div>
