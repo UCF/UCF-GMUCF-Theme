@@ -33,6 +33,9 @@ define('FEATURED_STORIES_TIMEOUT', 15); // seconds
 define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'https://www.ucf.edu/announcements/?time=thisweek&exclude_ongoing=True&format=json');
 define('ANNOUNCEMENTS_MORE_URL', 'https://www.ucf.edu/announcements/');
 
+define('IN_THE_NEWS_RSS_URL', !empty($theme_options['in_the_news_url']) ? $theme_options['in_the_news_url'] : 'https://today.ucf.edu/feed/?post_type=externalstory');
+define('IN_THE_NEWS_TIMEOUT', 15); //seconds
+
 define('WEATHER_URL', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastToday' : 'https://weather.smca.ucf.edu/?data=forecastToday');
 define('WEATHER_URL_EXTENDED', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastExtended' : 'https://weather.smca.ucf.edu/?data=forecastExtended');
 define('WEATHER_CACHE_DURATION', 60 * 15); // seconds
@@ -577,6 +580,33 @@ function get_announcement_details() {
 		error_log("GMUCF - get_announcement_details() - " . $error_string);
 	}
 	return array_slice( $announcements, 0, 3 );
+}
+
+function get_in_the_news_stories() {
+	$stories = array();
+
+	$rss = custom_fetch_feed( IN_THE_NEWS_RSS_URL, IN_THE_NEWS_RSS_TIMEOUT );
+
+	if( ! is_wp_error( $rss ) ) {
+		$rss_items = $rss->get_items( 0, $rss->get_item_quantity(5) );
+
+		foreach( $rss_items as $item ) {
+			$story = array(
+				'title'     => '',
+				'permalink' => ''
+			);
+
+			$story['title']     = sanitize_for_email( $rss_item->get_title() );
+			$story['permalink'] = remove_quotes( $rss_item->get_permalink() );
+
+			array_push( $stories, $story );
+		}
+	} else {
+		$error_string = $rss->get_error_message();
+		error_log("GMUCF - get_featured_stories_details() - " . $error_string);
+	}
+
+	return $stories;
 }
 
 /**
