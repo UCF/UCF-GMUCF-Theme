@@ -1,5 +1,5 @@
 <tr>
-	<td style="padding-bottom: 20px; padding-top: 40px; padding-left: 0; padding-right: 0; text-align: center" align="center">
+	<td style="padding-bottom: 20px; padding-top: 40px; padding-left: 0; padding-right: 0; text-align: center;" align="center">
 		<a href="https://www.instagram.com/ucf.edu">
 			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/instagram.png" alt="Instagram" align="center" class="float-center"
 				alt="UCF Tab" align="center" class="float-center" style="display:inline-block" width="32" height="32"></a>
@@ -46,8 +46,8 @@
 </tr>
 
 <tr>
-	<td class="montserratbold" style="text-align: center; padding-bottom: 20px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; color: #000;" align="center">
-		<a href="#">Suggest a Story</a> | <a href="#">Tell Us What You Think</a>
+	<td class="montserratbold" style="text-align: center; padding-bottom: 20px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; color: #000; text-transform: uppercase;" align="center">
+		<a href="#">Suggest a Story</a> <span style="color: #aaa; font-weight: normal; padding-left: 5px; padding-right: 5px;"> | </span> <a href="#">Tell Us What You Think</a>
 	</td>
 </tr>
 
