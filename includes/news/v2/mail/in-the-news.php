@@ -19,7 +19,7 @@
 			<?php
 			foreach( $external as $story ) :
 			?>
-				<li align="left">
+				<li style="padding-top: 8px; padding-bottom: 8px;" align="left">
                     <table>
                         <tbody>
                         <tr><td style="padding-bottom: 4px;">
