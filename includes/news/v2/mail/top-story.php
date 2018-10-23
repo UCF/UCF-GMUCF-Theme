@@ -3,7 +3,7 @@ extract(get_top_story_details());
 ?>
 
 <tr>
-    <td style="padding-bottom: 20px; padding-top: 20px; padding-left: 0; padding-right: 0; border-bottom: 1px solid #aaa;">
+    <td style="padding-bottom: 30px; padding-top: 30px; padding-left: 0; padding-right: 0; border-bottom: 1px solid #aaa;">
         <table class="tableCollapse" width="600" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
             <tbody>
                 <tr>
@@ -20,7 +20,7 @@ extract(get_top_story_details());
                 </tr>
                 <tr>
                     <td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.4; color: #000; text-align: left;" align="left">
-                    <?php echo $story_description; ?> 
+                    <?php echo $story_description; ?>
                     <a href="<?php echo $read_more_uri; ?>" style="color: #006699; text-decoration: underline;"></br>Read More.</a>
                     </td>
                 </tr>

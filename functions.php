@@ -552,9 +552,11 @@ function get_featured_stories_details() {
 				);
 				$enclosure = $rss_item->get_enclosure();
 				if($enclosure && in_array($enclosure->get_type(),get_valid_enclosure_types()) && ($thumbnail = $enclosure->get_thumbnail())) {
-					$story['thumbnail_src'] = remove_quotes($thumbnail);
+					$image = $enclosure->get_link();
+					$story['image'] = remove_quotes( $image );
+					$story['thumbnail_src'] = remove_quotes( $thumbnail );
 				} else {
-					$story['thumbnail_src'] = remove_quotes(get_bloginfo('stylesheet_directory', 'raw').'/static/img/no-photo.png');
+					$story['thumbnail_src'] = remove_quotes( get_bloginfo( 'stylesheet_directory', 'raw' ).'/static/img/no-photo.png' );
 				}
 				$story['title']       = sanitize_for_email($rss_item->get_title());
 				$story['description'] = sanitize_for_email($rss_item->get_description());
