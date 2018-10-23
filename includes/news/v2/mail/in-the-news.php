@@ -19,16 +19,16 @@
 			<?php
 			foreach( $external as $story ) :
 			?>
-				<li style="padding-top: 8px; padding-bottom: 8px;font-family: Helvetica, Arial, sans-serif; color: #000;" align="left">
+				<li align="left">
                     <table>
                         <tbody>
                         <tr><td style="padding-bottom: 4px;">
-                            <a style="font-family: Helvetica, Arial, sans-serif; font-size: 20px; color: #000; font-weight: 100; letter-spacing: 1px; text-decoration: none;" href="<?php echo $story->url; ?>">
+                            <a class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000; font-weight: 100; letter-spacing: 1px; text-decoration: none;" href="<?php echo $story->url; ?>">
                                 <?php echo $story->link_text;?>
                             </a>
                         </td></tr>
                         <tr><td style="padding-bottom: 4px;">
-                            <a class="montserratbold" style="font-family: Helvetica, Arial, sans-serif; color: #888; text-decoration: none; text-transform: uppercase;" href="<?php echo $story->url; ?>">
+                            <a class="montserratbold" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #888; text-decoration: none; text-transform: uppercase;" href="<?php echo $story->url; ?>">
                                 <?php echo $story->source; ?>
                             </a>
                         </td></tr>
