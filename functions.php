@@ -179,7 +179,7 @@ if ( GW_VERIFY ) {
 		'content' => GW_VERIFY,
 	);
 }
-if (YW_VERIFY ) {
+if ( YW_VERIFY ) {
 	Config::$metas[] = array(
 		'name'    => 'y_key',
 		'content' => YW_VERIFY,

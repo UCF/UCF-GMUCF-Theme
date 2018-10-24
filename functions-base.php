@@ -1068,7 +1068,7 @@ function opengraph_setup(){
 
 
 	# Include admins if available
-	$admins = !empty( $options['fb_admins'] ) ? trim($options['fb_admins']) : NULL;
+	$admins = !empty( $options['fb_admins'] ) ? trim( $options['fb_admins'] ) : NULL;
 	if ( strlen( $admins) > 0 ) {
 		$metas[] = array( 'property' => 'fb:admins', 'content' => $admins );
 	}
