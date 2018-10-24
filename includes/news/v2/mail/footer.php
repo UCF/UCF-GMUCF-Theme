@@ -1,17 +1,20 @@
 <tr>
 	<td style="padding-bottom: 20px; padding-top: 40px; padding-left: 0; padding-right: 0; text-align: center;" align="center">
-		<a href="https://www.instagram.com/ucf.edu">
-			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/instagram.png" alt="Instagram" align="center" class="float-center"
-				alt="UCF Tab" align="center" class="float-center" style="display:inline-block" width="32" height="32"></a>
-		<a href="https://www.twitter.com/UCF/">
-			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/twitter.png" alt="Twitter" align="center" class="float-center"
-				alt="UCF Tab" align="center" class="float-center" style="display:inline-block" width="32" height="32"></a>
 		<a href="https://www.facebook.com/ucf/">
 			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/facebook.png" alt="Facebook" align="center" class="float-center"
-				alt="UCF Tab" align="center" class="float-center" style="display:inline-block" width="32" height="32"></a>
+				alt="UCF Tab" align="center" class="float-center" style="display:inline-block" width="42" height="42"></a>
+		<a href="https://www.twitter.com/UCF/">
+			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/twitter.png" alt="Twitter" align="center" class="float-center"
+				alt="UCF Tab" align="center" class="float-center" style="display:inline-block" width="42" height="42"></a>
+		<a href="https://www.instagram.com/ucf.edu">
+			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/instagram.png" alt="Instagram" align="center" class="float-center"
+				alt="UCF Tab" align="center" class="float-center" style="display:inline-block" width="42" height="42"></a>
+		<a href="https://www.linkedin.com/edu/university-of-central-florida-18118">
+			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/linkedin.png" alt="LinkedIn" align="center" class="float-center"
+				alt="UCF Tab" align="center" class="float-center" style="display:inline-block" width="42" height="42"></a>
 		<a href="https://www.youtube.com/user/UCF/">
 			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/youtube.png" alt="YouTube" align="center" class="float-center"
-				alt="UCF Tab" align="center" class="float-center" style="display:inline-block" width="32" height="32"></a>
+				alt="UCF Tab" align="center" class="float-center" style="display:inline-block" width="42" height="42"></a>
 	</td>
 </tr>
 
