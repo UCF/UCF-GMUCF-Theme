@@ -7,7 +7,7 @@
 
 	foreach( $featured_stories as $index => $details ) {
 		extract( $details );
-		if( $$index == $limit ) break;
+		if( $index == $limit ) break;
 	?>
 		<tr>
 			<td style="padding-bottom: 30px; padding-top: 30px; padding-left: 0; padding-right: 0;<?php if( $index < $total - 1 && $index < $limit ) echo " border-bottom: solid 1px #aaa;"; ?>">
