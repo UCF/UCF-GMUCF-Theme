@@ -16,10 +16,11 @@ define('THEME_OPTIONS_GROUP', 'settings');
 define('THEME_OPTIONS_NAME', 'theme');
 define('THEME_OPTIONS_PAGE_TITLE', 'Theme Options');
 
-$theme_options = get_option(THEME_OPTIONS_NAME);
-define('GA_ACCOUNT', $theme_options['ga_account']);
-define('CB_UID', $theme_options['cb_uid']);
-define('CB_DOMAIN', $theme_options['cb_domain']);
+$theme_options = get_option( THEME_OPTIONS_NAME );
+
+define( 'GA_ACCOUNT', !empty( $theme_options['ga_account'] ) ? $theme_options['ga_account'] : "" );
+define( 'CB_UID', !empty( $theme_options['cb_uid'] ) ? $theme_options['cb_uid'] : "" );
+define( 'CB_DOMAIN', !empty( $theme_options['cb_domain'] ) ? $theme_options['cb_domain'] : "" );
 
 define('EVENTS_URL', !empty($theme_options['events_url']) ? trailingslashit($theme_options['events_url']) : 'https://events.ucf.edu');
 define('EVENTS_CALENDAR_ID', 1);
@@ -41,6 +42,10 @@ define('WEATHER_URL', !empty($theme_options['weather_service_url']) ? $theme_opt
 define('WEATHER_URL_EXTENDED', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastExtended' : 'https://weather.smca.ucf.edu/?data=forecastExtended');
 define('WEATHER_CACHE_DURATION', 60 * 15); // seconds
 define('WEATHER_HTTP_TIMEOUT', !empty($theme_options['weather_service_timeout']) ? (int)$theme_options['weather_service_timeout'] : 10);
+
+define( 'GW_VERIFY', !empty( $theme_options['gw_verify'] ) ? htmlentities( $theme_options['gw_verify'] ) : NULL );
+define( 'YW_VERIFY', !empty( $theme_options['yw_verify'] ) ? htmlentities( $theme_options['yw_verify'] ) : NULL );
+define( 'BW_VERIFY', !empty( $theme_options['bw_verify'] ) ? htmlentities( $theme_options['bw_verify'] ) : NULL );
 
 define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
@@ -112,14 +117,14 @@ Config::$theme_settings = array(
 			'id'          => THEME_OPTIONS_NAME.'[in_the_news_url]',
 			'description' => 'URL of the external-stories feed on UCF Today.',
 			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
-			'value'       => $theme_options['in_the_news_url']
+			'value'       => IN_THE_NEWS_JSON_URL
 		)),
 		new TextField(array(
 			'name'        => 'In the News Story Count',
 			'id'          => THEME_OPTIONS_NAME.'[in_the_news_item_count]',
 			'description' => 'The number of external stories to retrieve.',
 			'default'     => 5,
-			'value'       => $theme_options['in_the_news_item_count']
+			'value'       => IN_THE_NEWS_ITEM_COUNT
 		)),
 	),
 	'UCF Events Feed' => array(
@@ -168,22 +173,22 @@ Config::$scripts = array(
 Config::$metas = array(
 	array('charset' => 'utf-8',),
 );
-if ($theme_options['gw_verify']){
+if ( GW_VERIFY ) {
 	Config::$metas[] = array(
 		'name'    => 'google-site-verification',
-		'content' => htmlentities($theme_options['gw_verify']),
+		'content' => GW_VERIFY,
 	);
 }
-if ($theme_options['yw_verify']){
+if ( YW_VERIFY ) {
 	Config::$metas[] = array(
 		'name'    => 'y_key',
-		'content' => htmlentities($theme_options['yw_verify']),
+		'content' => YW_VERIFY,
 	);
 }
-if ($theme_options['bw_verify']){
+if ( BW_VERIFY ) {
 	Config::$metas[] = array(
 		'name'    => 'msvalidate.01',
-		'content' => htmlentities($theme_options['bw_verify']),
+		'content' => BW_VERIFY,
 	);
 }
 
@@ -205,35 +210,21 @@ if(isset($_GET['no_cache'])) {
  * @return WP_Error|SimplePie WP_Error object on failure or SimplePie object on success
  */
 function custom_fetch_feed( $url, $timeout=10 ) {
-	require_once( ABSPATH . WPINC . '/class-feed.php' );
+	require_once( ABSPATH . WPINC . '/feed.php' );
 
-	$feed = new SimplePie();
-
-	$feed->set_sanitize_class( 'WP_SimplePie_Sanitize_KSES' );
-	// We must manually overwrite $feed->sanitize because SimplePie's
-	// constructor sets it before we have a chance to set the sanitization class
-	$feed->sanitize = new WP_SimplePie_Sanitize_KSES();
-
-	$feed->set_cache_class( 'WP_Feed_Cache' );
-	$feed->set_file_class( 'WP_SimplePie_File' );
-
-	$feed->set_timeout($timeout);
-
-	$feed->set_feed_url( $url );
-	if(CLEAR_CACHE) {
-		$feed->set_cache_duration(0);
+	if( CLEAR_CACHE ) {
+		apply_filters( 'wp_feed_cache_transient_lifetime', 0, $url );
+	} else {
+		apply_filters( 'wp_feed_cache_transient_lifetime', 12 * HOUR_IN_SECONDS, $url );
 	}
-	else {
-		$feed->set_cache_duration( apply_filters( 'wp_feed_cache_transient_lifetime', 12 * HOUR_IN_SECONDS, $url ) );
-	}
-	do_action_ref_array( 'wp_feed_options', array( &$feed, $url ) );
-	$feed->init();
-	$feed->handle_content_type();
 
-	if ( $feed->error() )
-		return new WP_Error( 'simplepie-error', $feed->error() );
+	$rss = fetch_feed( $url );
 
-	return $feed;
+	if ( is_wp_error( $rss ) ) : // Checks that the object is created correctly
+		return new WP_Error( 'simplepie-error', $rss->error() );
+	endif;
+
+	return $rss;
 }
 
 

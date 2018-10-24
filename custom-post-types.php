@@ -1,7 +1,7 @@
 <?php
 
 abstract class CustomPostType{
-	public 
+	public
 		$name           = 'custom_post_type',
 		$plural_name    = 'Custom Posts',
 		$singular_name  = 'Custom Post',
@@ -19,8 +19,8 @@ abstract class CustomPostType{
 		$use_metabox    = False, # Enable if you have custom fields to display in admin
 		$use_shortcode  = False; # Auto generate a shortcode for the post type
 		                         # (see also objectsToHTML and toHTML methods)
-	
-	
+
+
 	/**
 	 * Wrapper for get_posts function, that predefines post_type for this
 	 * custom post type.  Any options valid in get_posts can be passed as an
@@ -37,8 +37,8 @@ abstract class CustomPostType{
 		$objects = get_posts($options);
 		return $objects;
 	}
-	
-	
+
+
 	/**
 	 * Similar to get_objects, but returns array of key values mapping post
 	 * title to id if available, otherwise it defaults to id=>id.
@@ -58,8 +58,8 @@ abstract class CustomPostType{
 		}
 		return $opt;
 	}
-	
-	
+
+
 	/**
 	 * Return the instances values defined by $key.
 	 **/
@@ -67,8 +67,8 @@ abstract class CustomPostType{
 		$vars = get_object_vars($this);
 		return $vars[$key];
 	}
-	
-	
+
+
 	/**
 	 * Additional fields on a custom post type may be defined by overriding this
 	 * method on an descendant object.
@@ -76,8 +76,8 @@ abstract class CustomPostType{
 	public function fields(){
 		return array();
 	}
-	
-	
+
+
 	/**
 	 * Using instance variables defined, returns an array defining what this
 	 * custom post type supports.
@@ -102,8 +102,8 @@ abstract class CustomPostType{
 		}
 		return $supports;
 	}
-	
-	
+
+
 	/**
 	 * Creates labels array, defining names for admin panel.
 	 **/
@@ -116,8 +116,8 @@ abstract class CustomPostType{
 			'new_item'      => __($this->options('new_item')),
 		);
 	}
-	
-	
+
+
 	/**
 	 * Creates metabox array for custom post type. Override method in
 	 * descendants to add or modify metaboxes.
@@ -135,8 +135,8 @@ abstract class CustomPostType{
 		}
 		return null;
 	}
-	
-	
+
+
 	/**
 	 * Registers metaboxes defined for custom post type.
 	 **/
@@ -153,8 +153,8 @@ abstract class CustomPostType{
 			);
 		}
 	}
-	
-	
+
+
 	/**
 	 * Registers the custom post type and any other ancillary actions that are
 	 * required for the post to function properly.
@@ -165,27 +165,27 @@ abstract class CustomPostType{
 			'supports' => $this->supports(),
 			'public'   => $this->options('public'),
 		);
-		
+
 		if ($this->options('use_order')){
 			$regisration = array_merge($registration, array('hierarchical' => True,));
 		}
-		
+
 		register_post_type($this->options('name'), $registration);
-		
+
 		if ($this->options('use_categories')){
 			register_taxonomy_for_object_type('category', $this->options('name'));
 		}
-		
+
 		if ($this->options('use_tags')){
 			register_taxonomy_for_object_type('post_tag', $this->options('name'));
 		}
-		
+
 		if ($this->options('use_shortcode')){
 			add_shortcode($this->options('name').'-list', array($this, 'shortcode'));
 		}
 	}
-	
-	
+
+
 	/**
 	 * Shortcode for this custom post type.  Can be overridden for descendants.
 	 * Defaults to just outputting a list of objects outputted as defined by
@@ -202,20 +202,20 @@ abstract class CustomPostType{
 		}
 		return sc_object_list($attr);
 	}
-	
-	
+
+
 	/**
 	 * Handles output for a list of objects, can be overridden for descendants.
 	 * If you want to override how a list of objects are outputted, override
 	 * this, if you just want to override how a single object is outputted, see
 	 * the toHTML method.
 	 **/
-	public function objectsToHTML($objects, $css_classes){
+	public function objectsToHTML( $objects, $css_classes ) {
 		if (count($objects) < 1){ return '';}
-		
+
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		ob_start();
 		?>
 		<ul class="<?php if($css_classes):?><?=$css_classes?><?php else:?><?=$class->options('name')?>-list<?php endif;?>">
@@ -229,8 +229,8 @@ abstract class CustomPostType{
 		$html = ob_get_clean();
 		return $html;
 	}
-	
-	
+
+
 	/**
 	 * Outputs this item in HTML.  Can be overridden for descendants.
 	 **/
@@ -242,7 +242,7 @@ abstract class CustomPostType{
 
 
 class Example extends CustomPostType{
-	public 
+	public
 		$name           = 'example',
 		$plural_name    = 'Examples',
 		$singular_name  = 'Example',
@@ -257,26 +257,26 @@ class Example extends CustomPostType{
 		$use_title      = True,
 		$use_shortcode  = True,
 		$use_metabox    = True;
-	
-	
-	public function objectsToHTML($objects){
+
+
+	public function objectsToHTML( $objects, $css_classes ) {
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		$outputs = array();
 		foreach($objects as $o){
 			$outputs[] = $class->toHTML($o);
 		}
-		
+
 		return implode(', ', $outputs);
 	}
-	
-	
+
+
 	public function toHTML($object){
 		return $object->post_title;
 	}
-	
-	
+
+
 	public function fields(){
 		return array(
 			array(
@@ -324,7 +324,7 @@ class Example extends CustomPostType{
 
 
 class Alert extends CustomPostType{
-	public 
+	public
 		$name           = 'alert',
 		$plural_name    = 'Alerts',
 		$singular_name  = 'Alert',
@@ -339,26 +339,26 @@ class Alert extends CustomPostType{
 		$use_title      = True,
 		$use_shortcode  = False,
 		$use_metabox    = True;
-	
-	
-	public function objectsToHTML($objects){
+
+
+	public function objectsToHTML( $objects, $css_classes ) {
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		$outputs = array();
 		foreach($objects as $o){
 			$outputs[] = $class->toHTML($o);
 		}
-		
+
 		return implode(', ', $outputs);
 	}
-	
-	
+
+
 	public function toHTML($object){
 		return $object->post_title;
 	}
-	
-	
+
+
 	public function fields(){
 		return array(
 			array(
@@ -372,7 +372,7 @@ class Alert extends CustomPostType{
 }
 
 class TopStory extends CustomPostType {
-		public 
+		public
 		$name           = 'top_story',
 		$plural_name    = 'Top Stories',
 		$singular_name  = 'Top Story',
@@ -387,26 +387,26 @@ class TopStory extends CustomPostType {
 		$use_title      = True,
 		$use_shortcode  = False,
 		$use_metabox    = True;
-	
-	
-	public function objectsToHTML($objects){
+
+
+	public function objectsToHTML( $objects, $css_classes ) {
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		$outputs = array();
 		foreach($objects as $o){
 			$outputs[] = $class->toHTML($o);
 		}
-		
+
 		return implode(', ', $outputs);
 	}
-	
-	
+
+
 	public function toHTML($object){
 		return $object->post_title;
 	}
-	
-	
+
+
 	public function fields(){
 		return array(
 			array(

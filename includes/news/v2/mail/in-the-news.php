@@ -1,7 +1,6 @@
 <tr>
   <td class="montserratbold" style="padding-top: 20px; padding-bottom: 2px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #000; text-transform: uppercase;" align="left">
 	UCF In the News
-	<div style="width: 35px; border-top: 3px solid #fc0; margin-top: 5px;"></div>
   </td>
 </tr>
 
@@ -24,7 +23,7 @@
                         <tbody>
                         <tr><td style="padding-bottom: 4px;">
                             <a class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000; font-weight: 100; letter-spacing: 1px; text-decoration: none;" href="<?php echo $story->url; ?>">
-                                <?php echo $story->link_text;?>
+                                <?php echo $story->link_text; ?>
                             </a>
                         </td></tr>
                         <tr><td style="padding-bottom: 4px;">

@@ -18,7 +18,7 @@ if (is_admin()){
 function login_scripts(){
 	ob_start();?>
 	<link rel="stylesheet" href="<?=THEME_CSS_URL?>/admin.css" type="text/css" media="screen" charset="utf-8" />
-	<?php 
+	<?php
 	$out = ob_get_clean();
 	print $out;
 }
@@ -42,7 +42,7 @@ function init_theme_options(){
  * @author Jared Lang
  **/
 function create_theme_options_page() {
-	add_utility_page(
+	add_menu_page(
 		__(THEME_OPTIONS_PAGE_TITLE),
 		__(THEME_OPTIONS_PAGE_TITLE),
 		'edit_theme_options',

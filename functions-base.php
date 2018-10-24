@@ -115,6 +115,15 @@ class Config{
 	}
 }
 
+function enqueue_scripts() {
+	foreach( Config::$styles as $style ) { Config::add_css( $style ); }
+	foreach( Config::$scripts as $script ) { Config::add_script( $script ); }
+
+	wp_deregister_script('l10n');
+}
+
+add_action( 'wp_enqueue_scripts', 'enqueue_scripts' );
+
 /**
  * Abstracted field class, all form fields should inherit from this.
  *
@@ -739,13 +748,9 @@ function __init__(){
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
 	));
-	foreach(Config::$styles as $style){Config::add_css($style);}
-	foreach(Config::$scripts as $script){Config::add_script($script);}
 
 	global $timer;
 	$timer = Timer::start();
-
-	wp_deregister_script('l10n');
 }
 add_action('after_setup_theme', '__init__');
 
@@ -1009,7 +1014,6 @@ function header_($tabs=2){
 function opengraph_setup(){
 	$options = get_option(THEME_OPTIONS_NAME);
 
-	if (!(bool)$options['enable_og']){return;}
 	if (is_search()){return;}
 
 	global $post, $page;
@@ -1064,9 +1068,9 @@ function opengraph_setup(){
 
 
 	# Include admins if available
-	$admins = trim($options['fb_admins']);
-	if (strlen($admins) > 0){
-		$metas[] = array('property' => 'fb:admins', 'content' => $admins);
+	$admins = !empty( $options['fb_admins'] ) ? trim( $options['fb_admins'] ) : NULL;
+	if ( strlen( $admins) > 0 ) {
+		$metas[] = array( 'property' => 'fb:admins', 'content' => $admins );
 	}
 
 	Config::$metas = array_merge(Config::$metas, $metas);
