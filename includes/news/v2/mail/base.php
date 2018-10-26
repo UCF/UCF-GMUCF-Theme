@@ -41,12 +41,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td style="padding-top: 30px; padding-bottom: 10px; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 3px solid #fc0;">
+													<td style="padding-top: 30px; padding-bottom: 10px; padding-left: 0; padding-right: 0; border-bottom: 3px solid #fc0;">
 														<?php echo get_template_part('includes/news/v2/mail/in-the-news'); ?>
 													</td>
 												</tr>
 												<tr>
-													<td style="padding-top: 30px; padding-bottom: 30px; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 3px solid #fc0;">
+													<td style="padding-top: 30px; padding-bottom: 30px; padding-left: 0; padding-right: 0; border-bottom: 3px solid #fc0;">
 														<?php echo get_template_part('includes/news/v2/mail/announcements'); ?>
 													</td>
 												</tr>
