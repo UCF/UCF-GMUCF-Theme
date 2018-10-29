@@ -1,8 +1,8 @@
 <table width="100%" border="0" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 	<tr>
-	<td class="montserratbold" style="padding-top: 0; padding-bottom: 2px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #000; text-transform: uppercase;" align="left">
-		<a style="text-decoration: none; color: #000;" href="https://www.ucf.edu/announcements/">Announcements</a>
-	</td>
+		<td class="montserratbold" style="padding-top: 0; padding-bottom: 2px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #000; text-transform: uppercase;" align="left">
+			<a style="text-decoration: none; color: #000;" href="https://www.ucf.edu/announcements/">Announcements</a>
+		</td>
 	</tr>
 
 	<tr>
