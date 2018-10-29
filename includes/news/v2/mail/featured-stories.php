@@ -1,4 +1,4 @@
-<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
+<table class="tableCollapse" width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 <?
 	$featured_stories = get_featured_stories_details();
 	$total = count( $featured_stories );
@@ -28,7 +28,7 @@
 						<tr>
 							<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.4; color: #000; text-align: left;" align="left">
 							<?php echo $description; ?>
-							<a href="<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;">Read More...</a>
+							<a href="<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;">Read More</a>
 							</td>
 						</tr>
 					</tbody>

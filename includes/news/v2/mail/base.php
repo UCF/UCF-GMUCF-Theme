@@ -23,39 +23,42 @@
               <tr>
                 <td align="center" style="padding: 0;">
 					<table class="wrapperInner" width="600" align="center" style="border-spacing: 0; border-collapse: collapse;">
-							<tbody>
-								<?php echo get_template_part('includes/news/v2/mail/header'); ?>
-
-								<tr>
-									<td style="padding: 0;">
-										<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
-											<tbody>
-												<tr>
-													<td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 0 solid #aaa;">
-														<?php echo get_template_part('includes/news/v2/mail/top-story'); ?>
-													</td>
-												</tr>
-												<tr>
-													<td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 3px solid #fc0;">
-														<?php echo get_template_part('includes/news/v2/mail/featured-stories'); ?>
-													</td>
-												</tr>
-												<tr>
-													<td style="padding-top: 30px; padding-bottom: 10px; padding-left: 0; padding-right: 0; border-bottom: 3px solid #fc0;">
-														<?php echo get_template_part('includes/news/v2/mail/in-the-news'); ?>
-													</td>
-												</tr>
-												<tr>
-													<td style="padding-top: 30px; padding-bottom: 30px; padding-left: 0; padding-right: 0; border-bottom: 3px solid #fc0;">
-														<?php echo get_template_part('includes/news/v2/mail/announcements'); ?>
-													</td>
-												</tr>
-												<?php echo get_template_part('includes/news/v2/mail/footer'); ?>
-											</tbody>
-										</table>
-									</td>
-								</tr>
-							</tbody>
+						<tbody>
+							<tr>
+								<td style="padding: 0;">
+									<?php echo get_template_part('includes/news/v2/mail/header'); ?>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 0;">
+									<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
+										<tbody>
+											<tr>
+												<td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 0 solid #aaa;">
+													<?php echo get_template_part('includes/news/v2/mail/top-story'); ?>
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 3px solid #fc0;">
+													<?php echo get_template_part('includes/news/v2/mail/featured-stories'); ?>
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-top: 30px; padding-bottom: 10px; padding-left: 0; padding-right: 0; border-bottom: 3px solid #fc0;">
+													<?php echo get_template_part('includes/news/v2/mail/in-the-news'); ?>
+												</td>
+											</tr>
+											<tr>
+												<td style="padding-top: 30px; padding-bottom: 30px; padding-left: 0; padding-right: 0; border-bottom: 3px solid #fc0;">
+													<?php echo get_template_part('includes/news/v2/mail/announcements'); ?>
+												</td>
+											</tr>
+											<?php echo get_template_part('includes/news/v2/mail/footer'); ?>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
 					</table>
                 </td>
               </tr>
