@@ -21,7 +21,7 @@ extract(get_top_story_details());
                 <tr>
                     <td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.4; color: #000; text-align: left;" align="left">
                     <?php echo $story_description; ?>
-                    <a href="<?php echo $read_more_uri; ?>" style="color: #006699; text-decoration: underline;"></br>Read More...</a>
+                    <a href="<?php echo $read_more_uri; ?>" style="color: #006699; text-decoration: underline;"> Read More</a>
                     </td>
                 </tr>
             </tbody>
