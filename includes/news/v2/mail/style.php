@@ -48,6 +48,18 @@ td[class="givedesc"] {
 	font-family: 'montserratsemi_bold', Helvetica, Arial, sans-serif !important;
 }
 
+@media all and (min-width: 640px) {
+	*[class="showmobile"] {
+		display: none;
+		font-size: 0;
+		line-height: 0;
+		max-height: 0;
+		mso-hide: all; /* hide elements in Outlook 2007-2013 */
+		overflow: hidden;
+		width: 0;
+	}
+}
+
 
 @media all and (max-width: 640px) {
 	table {
