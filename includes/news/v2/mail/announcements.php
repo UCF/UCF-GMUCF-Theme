@@ -22,7 +22,7 @@
 				?>
 					<li class="montserratlight" style="padding-top: 8px; padding-bottom: 8px; font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000;" align="left">
 						<a href="<?php echo $permalink; ?>">
-							<?php echo $title;?>
+							<?php echo $title; ?>
 						</a>
 					</li>
 				<?php
@@ -38,8 +38,8 @@
 	<tr>
 		<td style="text-align: right; padding-bottom: 0; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
 			<a href="<?php echo ANNOUNCEMENTS_MORE_URL; ?>">
-				More Announcements
-			</a>
+				More Announcements</a>
+			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/external-icon.png" alt="" border="0" width="17" height="14">
 		</td>
 	</tr>
 </table>
