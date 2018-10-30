@@ -33,7 +33,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.4; color: #000; text-align: left;" align="left">
+									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.4; color: #000; text-align: left;" align="left">
 										<?php echo $description; ?>
 										<a href="<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;">Read More</a>
 									</td>
@@ -55,8 +55,9 @@
 	<tr>
 		<td style="text-align: right; padding-top: 30px; padding-bottom: 30px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
 			<a href="<?php echo FEATURED_STORIES_MORE_URL; ?>">
-				More UCF Stories</a>
-			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/external-icon.png" alt="" border="0" width="17" height="14">
+				More UCF Stories<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/external-icon.png" alt="" border="0" width="17" height="14" style="padding-left: 5px;">
+			</a>
+
 		</td>
 	</tr>
 </table>

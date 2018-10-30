@@ -522,7 +522,7 @@ function get_top_story_details() {
  * @return array
  * @author Chris Conover
  **/
-function get_featured_stories_details( $limit = 3 ) {
+function get_featured_stories_details( $limit = 2 ) {
 	$stories = array();
 
 	$rss = custom_fetch_feed( FEATURED_STORIES_RSS_URL.'?thumb=gmucf_featured_story', FEATURED_STORIES_TIMEOUT );
