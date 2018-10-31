@@ -28,12 +28,12 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="montserratbold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: bold; padding-top: 15px; padding-bottom: 4px; line-height: 1.1; color: #000; text-align: left;" align="left">
+									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding-top: 10px; padding-bottom: 4px; line-height: 1.2; color: #000; text-align: left;" align="left">
 										<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;"><?php echo $title; ?></a>
 									</td>
 								</tr>
 								<tr>
-									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.4; color: #000; text-align: left;" align="left">
+									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.4; color: #000; text-align: left;" align="left">
 										<?php echo $description; ?>
 										<a href="<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;">Read More</a>
 									</td>
