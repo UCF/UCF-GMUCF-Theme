@@ -49,7 +49,7 @@
 	</tr>
 
 	<tr>
-		<td class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding-bottom: 10px; padding-top: 20px; padding-left: 0; padding-right: 0; text-align: center;" align="center">
+		<td class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding-bottom: 0; padding-top: 25px; padding-left: 0; padding-right: 0; text-align: center;" align="center">
 			<h2 style="margin-top: 0; margin-bottom: 0; font-weight: normal;">Good <?php echo (int)date('G') >= 12 ? 'Afternoon' : 'Morning'; ?>, !@!Preferred Name!@!.</h2>
 		</td>
 	</tr>
