@@ -916,6 +916,7 @@ function gmucf_template_redirect() {
 		$mapping = array(
 			'news/v2/'             => create_function('', 'display_gmucf_template(\'includes/news/v2/mail/base\');'),
 			'news/mail/'           => create_function('', 'display_gmucf_template(\'includes/news/mail/base\');'),
+			'news/text/v2/'        => create_function('', 'display_gmucf_template(\'includes/news/v2/text/base\');'),
 			'news/text/'           => create_function('', 'display_gmucf_template(\'includes/news/text/base\');'),
 			'news/'                => create_function('', 'display_gmucf_template(\'includes/news/browser/base\');'),
 			'events/weekday/mail/' => create_function('', '$_GET[\'edition\'] = \'weekday\';display_gmucf_template(\'includes/events/mail/base\');'),
