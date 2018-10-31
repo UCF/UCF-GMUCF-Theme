@@ -611,19 +611,19 @@ function get_top_story_details() {
  * @return array
  * @author Chris Conover
  **/
-function get_featured_stories_details() {
+function get_featured_stories_details( $limit = 2 ) {
 	$stories = array();
 
-	$rss = custom_fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=gmucf_featured_story', FEATURED_STORIES_TIMEOUT);
+	$rss = custom_fetch_feed( FEATURED_STORIES_RSS_URL.'?thumb=gmucf_featured_story', FEATURED_STORIES_TIMEOUT );
 
-	if(!is_wp_error($rss)) {
-		$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
+	if( !is_wp_error( $rss ) ) {
+		$rss_items = $rss->get_items( 0, $rss->get_item_quantity( 15 ) );
 
 		$count = 0;
-		$top_story_id = get_transient('top_story_id');
-		foreach($rss_items as $rss_item) {
-			if($count == 3) break;
-			if($top_story_id !== $rss_item->get_id()) {
+		$top_story_id = get_transient( 'top_story_id' );
+		foreach( $rss_items as $rss_item ) {
+			if( $count == $limit ) break;
+			if( $top_story_id !== $rss_item->get_id() ) {
 				$story = array(
 					'thumbnail_src' => '',
 					'title'         => '',
@@ -631,23 +631,23 @@ function get_featured_stories_details() {
 					'permalink'     => ''
 				);
 				$enclosure = $rss_item->get_enclosure();
-				if($enclosure && in_array($enclosure->get_type(),get_valid_enclosure_types()) && ($thumbnail = $enclosure->get_thumbnail())) {
+				if( $enclosure && in_array( $enclosure->get_type(),get_valid_enclosure_types() ) && ( $thumbnail = $enclosure->get_thumbnail() ) ) {
 					$image = $enclosure->get_link();
 					$story['image'] = remove_quotes( $image );
 					$story['thumbnail_src'] = remove_quotes( $thumbnail );
 				} else {
 					$story['thumbnail_src'] = remove_quotes( get_bloginfo( 'stylesheet_directory', 'raw' ).'/static/img/no-photo.png' );
 				}
-				$story['title']       = sanitize_for_email($rss_item->get_title());
-				$story['description'] = sanitize_for_email($rss_item->get_description());
-				$story['permalink']   = remove_quotes($rss_item->get_permalink());
-				array_push($stories, $story);
+				$story['title']       = sanitize_for_email( $rss_item->get_title() );
+				$story['description'] = sanitize_for_email( $rss_item->get_description() );
+				$story['permalink']   = remove_quotes( $rss_item->get_permalink() );
+				array_push( $stories, $story );
 				$count++;
 			}
 		}
 	} else {
 		$error_string = $rss->get_error_message();
-		error_log("GMUCF - get_featured_stories_details() - " . $error_string);
+		error_log( "GMUCF - get_featured_stories_details() - " . $error_string );
 	}
 	return $stories;
 }
