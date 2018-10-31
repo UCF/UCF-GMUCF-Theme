@@ -28,7 +28,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding-top: 10px; padding-bottom: 4px; line-height: 1.2; color: #000; text-align: left;" align="left">
+									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 500; padding-top: 10px; padding-bottom: 4px; line-height: 1.2; color: #000; text-align: left;" align="left">
 										<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;"><?php echo $title; ?></a>
 									</td>
 								</tr>

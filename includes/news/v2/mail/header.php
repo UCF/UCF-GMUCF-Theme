@@ -12,7 +12,7 @@
 					<th class="columnCollapse" align="left" width="290" style="font-family: Helvetica, Arial, sans-serif; color: #848484; text-transform: uppercase; padding-left: 0; padding-right: 0; padding-top: 10px; padding-bottom: 0; vertical-align: middle; text-align: center;">
 						<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
 							<tr>
-								<td class="montserratlight">
+								<td class="montserratlight" style="font-weight: 400;">
 									<?php echo date('l, F j, Y'); ?>
 								</td>
 							</tr>
@@ -31,13 +31,13 @@
 									<img height="25" width="25" src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/weather/<?php echo $today_icon; ?>.png" />
 								</td>
 								<td valign="middle" style="text-align: left; padding-left: 6px;">
-									<p style="margin-top: 0; margin-bottom: 0;"><span class="montserratlight">High</span> <span class="montserratsemibold" ><?php echo $weather['today']['tempN']; ?>&deg;</span></p>
+									<p style="margin-top: 0; margin-bottom: 0;"><span class="montserratlight" style="font-weight: 400;">High</span> <span class="montserratsemibold" style="font-weight: 500;"><?php echo $weather['today']['tempN']; ?>&deg;</span></p>
 								</td>
 								<td valign="middle" style="text-align: right;">
 									<img height="25" width="25" src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/weather/<?php echo $tonight_icon; ?>.png" />
 								</td>
 								<td valign="middle" style="text-align: left; padding-left: 6px;">
-									<p style="margin-top: 0; margin-bottom: 0;"><span class="montserratlight">Low</span> <span class="montserratsemibold" ><?php echo $weather['tonight']['tempN']; ?>&deg;</span></p>
+									<p style="margin-top: 0; margin-bottom: 0;"><span class="montserratlight" style="font-weight: 400;">Low</span> <span class="montserratsemibold" style="font-weight: 500;"><?php echo $weather['tonight']['tempN']; ?>&deg;</span></p>
 								</td>
 							<?php endif; ?>
 							</tr>

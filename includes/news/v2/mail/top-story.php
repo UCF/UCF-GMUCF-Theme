@@ -14,7 +14,7 @@ extract(get_top_story_details());
 						</td>
 					</tr>
 					<tr>
-						<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: bold; padding-top: 15px; padding-bottom: 10px; line-height: 1.1; color: #000; text-align: left;" align="left">
+						<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 500; padding-top: 15px; padding-bottom: 10px; line-height: 1.1; color: #000; text-align: left;" align="left">
 						<a href="<?php echo $read_more_uri; ?>" style="color: #000; text-decoration: none;"><?php echo $story_title; ?></a>
 						</td>
 					</tr>
