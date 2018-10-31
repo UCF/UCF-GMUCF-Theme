@@ -22,7 +22,7 @@
 						<table>
 							<tbody>
 							<tr><td style="padding-bottom: 4px;">
-								<a class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; letter-spacing: 1px;" href="<?php echo $story->url; ?>">
+								<a class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px;" href="<?php echo $story->url; ?>">
 									<?php echo $story->link_text; ?>
 								</a>
 							</td></tr>
