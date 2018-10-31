@@ -432,6 +432,95 @@ function get_weather($cache_key) {
 
 
 /**
+ * Translates the weather conditions from our feed
+ * to a weather icon.
+ * @author Jim Barnes
+ * @since 1.2.0
+ * @param $condition string | The weather condition
+ * @return string | The css icon classes.
+ **/
+function get_weather_icon( $condition, $night=false ) {
+	$icon_name = null;
+	$icons_to_conditions = array(
+		'day-sunny' => array(
+			'fair',
+			'default'
+		),
+		'hot' => array(
+			'hot',
+			'haze'
+		),
+		'cloudy' => array(
+			'overcast',
+			'partly cloudy',
+			'mostly cloudy'
+		),
+		'snowflake-cold' => array(
+			'blowing snow',
+			'cold',
+			'snow'
+		),
+		'showers' => array(
+			'showers',
+			'drizzle',
+			'mixed rain/sleet',
+			'mixed rain/hail',
+			'mixed snow/sleet',
+			'hail',
+			'freezing drizzle'
+		),
+		'cloudy-gusts' => array(
+			'windy'
+		),
+		'fog' => array(
+			'dust',
+			'smoke',
+			'foggy'
+		),
+		'storm-showers' => array(
+			'scattered thunderstorms',
+			'scattered thundershowers',
+			'scattered showers',
+			'freezing rain',
+			'isolated thunderstorms',
+			'isolated thundershowers'
+		),
+		'lightning' => array(
+			'tornado',
+			'severe thunderstorms'
+		)
+	);
+
+	$night_icons = array(
+		'day-sunny' => 'night-clear',
+		'hot' => 'night-clear',
+		'cloudy' => 'night-cloudy',
+		'snowflake-cold' => 'night-snow',
+		'showers' => 'night-showers',
+		'cloudy-gusts' => 'night-cloudy-gusts',
+		'fog' => 'night-fog',
+		'storm-showers' => 'night-storm-showers',
+		'lightning' => 'night-lightning'
+	);
+
+	$condition = strtolower( $condition );
+
+	foreach( $icons_to_conditions as $icon => $condition_array ) {
+		if ( in_array( $condition, $condition_array ) ) {
+			$icon_name = $icon;
+		}
+	}
+
+	$icon_name = $icon_name ? $icon_name : 'day-sunny';
+
+	if ( $night ) {
+		return $night_icons[$icon_name];
+	}
+
+	return $icon_name;
+}
+
+/**
  * Today's top story if there is one
  *
  * @return post object

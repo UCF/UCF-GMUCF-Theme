@@ -3,7 +3,7 @@ extract(get_top_story_details());
 ?>
 <table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 	<tr>
-		<td style="padding-bottom: 30px; padding-top: 30px; padding-left: 0; padding-right: 0; border-bottom: 1px solid #aaa;">
+		<td style="padding-bottom: 20px; padding-top: 30px; padding-left: 0; padding-right: 0; border: 0;">
 			<table class="tableCollapse" width="600" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
 				<tbody>
 					<tr>
@@ -14,7 +14,7 @@ extract(get_top_story_details());
 						</td>
 					</tr>
 					<tr>
-						<td class="montserratbold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: bold; padding-top: 15px; padding-bottom: 4px; line-height: 1.1; color: #000; text-align: left;" align="left">
+						<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 500; padding-top: 15px; padding-bottom: 10px; line-height: 1.1; color: #000; text-align: left;" align="left">
 						<a href="<?php echo $read_more_uri; ?>" style="color: #000; text-decoration: none;"><?php echo $story_title; ?></a>
 						</td>
 					</tr>
