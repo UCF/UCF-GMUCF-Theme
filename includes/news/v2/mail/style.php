@@ -48,6 +48,18 @@ td[class="givedesc"] {
 	font-family: 'montserratsemi_bold', Helvetica, Arial, sans-serif !important;
 }
 
+@media all and (min-width: 640px) {
+	td[class="text-right-desktop"],
+	th[class="text-right-desktop"] {
+		text-align: right !important;
+	}
+
+	td[class="text-left-desktop"],
+	th[class="text-left-desktop"] {
+		text-align: left !important;
+	}
+}
+
 
 @media all and (max-width: 640px) {
 	table {
