@@ -38,16 +38,7 @@
 										<a href="<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;">Read More</a>
 									</td>
 								</tr>
-								<tr>
-									<td class="montserratlight" style="padding-top: 10px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.4; color: #000; text-align: center;" align="center">
-										<a href="<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;">
-											<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/instagram.png" alt="Instagram" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
-										<a href="https://twitter.com/intent/tweet?text=<?php echo urlencode( $title ); ?>&url=<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;">
-											<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/twitter.png" alt="Twitter" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
-										<a href="http://www.facebook.com/sharer.php?u=<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;">
-											<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/facebook.png" alt="Facebook" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
-									</td>
-								</tr>
+								<?php echo displaySocialShare( $permalink, $title ); ?>
 							</tbody>
 						</table>
 					</td>
