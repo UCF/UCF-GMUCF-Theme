@@ -1,5 +1,5 @@
 <?php
-extract(get_top_story_details());
+extract( get_top_story_details() );
 ?>
 <table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 	<tr>

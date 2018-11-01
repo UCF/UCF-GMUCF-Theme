@@ -17,7 +17,7 @@
 										<tbody>
 											<tr>
 												<td class="montserratlight" style="font-weight: 400;">
-													<?php echo date('l, F j, Y'); ?>
+													<?php echo date( 'l, F j, Y' ); ?>
 												</td>
 											</tr>
 										</tbody>
@@ -64,7 +64,7 @@
 
 	<tr>
 		<td class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding-bottom: 0; padding-top: 25px; padding-left: 0; padding-right: 0; text-align: center;" align="center">
-			<h2 style="margin-top: 0; margin-bottom: 0; font-weight: normal;">Good <?php echo (int)date('G') >= 12 ? 'Afternoon' : 'Morning'; ?>, !@!Preferred Name!@!.</h2>
+			<h2 style="margin-top: 0; margin-bottom: 0; font-weight: normal;">Good <?php echo (int)date( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?>, !@!Preferred Name!@!.</h2>
 		</td>
 	</tr>
 </table>
