@@ -53,7 +53,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="text-align: right; padding-top: 30px; padding-bottom: 30px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
+		<td class="montserratbold" style="text-align: right; padding-top: 30px; padding-bottom: 30px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
 			<a href="<?php echo FEATURED_STORIES_MORE_URL; ?>">
 				More UCF Stories<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/external-icon.png" alt="" border="0" width="17" height="14" style="padding-left: 5px;">
 			</a>
