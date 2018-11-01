@@ -11,7 +11,7 @@
 			$announcements = get_announcement_details();
 
 			if( count( $announcements ) == 0 ) { ?>
-				<p>No announcements found for today.</p>
+				<p class="montserratlight" style="margin: 0; font-family: Helvetica, Arial, sans-serif; font-weight: 400; padding-top: 10px; padding-bottom: 10px;">No announcements found for today.</p>
 			<?php
 			} else {
 				?>
