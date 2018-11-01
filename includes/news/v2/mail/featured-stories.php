@@ -38,7 +38,7 @@
 										<a href="<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;">Read More</a>
 									</td>
 								</tr>
-								<?php echo displaySocialShare( $permalink, $title ); ?>
+								<?php echo display_social_sShare( $permalink, $title ); ?>
 							</tbody>
 						</table>
 					</td>

@@ -24,7 +24,7 @@ extract(get_top_story_details());
 						<a href="<?php echo $read_more_uri; ?>" style="color: #006699; text-decoration: underline;"> Read More</a>
 						</td>
 					</tr>
-					<?php echo displaySocialShare( $read_more_uri, $story_title ); ?>
+					<?php echo display_social_sShare( $read_more_uri, $story_title ); ?>
 				</tbody>
 			</table>
 		</td>
