@@ -44,6 +44,12 @@
 </tr>
 
 <tr>
+	<td class="montserratbold" style="text-align: center; padding-bottom: 20px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; color: #000; text-transform: uppercase;" align="center">
+		<a href="#">Suggest a Story</a> <span style="color: #aaa; font-weight: normal; padding-left: 5px; padding-right: 5px;"> | </span> <a href="#">Tell Us What You Think</a>
+	</td>
+</tr>
+
+<tr>
 	<td class="montserratlight" style="text-align: center; padding-bottom: 20px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: #000;" align="center">
 		!@!UNSUBSCRIBE!@! from this email.
 	</td>
