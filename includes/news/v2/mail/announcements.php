@@ -8,31 +8,25 @@
 
 		<tr>
 			<td>
-				<?php
-				$announcements = get_announcement_details();
+			<?php
+			$announcements = get_announcement_details();
 
-				if( count( $announcements ) == 0 ) { ?>
-					<p class="montserratlight" style="margin: 0; font-family: Helvetica, Arial, sans-serif; font-weight: 400; padding-top: 10px; padding-bottom: 10px;">No announcements found for today.</p>
+			if ( count( $announcements ) == 0 ) : ?>
+				<p class="montserratlight" style="margin: 0; font-family: Helvetica, Arial, sans-serif; font-weight: 400; padding-top: 10px; padding-bottom: 10px;">No announcements found for today.</p>
+			<?php else : ?>
+				<ul style="list-style: none; padding-left: 0;">
 				<?php
-				} else {
-					?>
-					<ul style="list-style: none; padding-left: 0;">
-					<?php
-					foreach( $announcements as $announcement ) :
-						extract( $announcement );
-					?>
-						<li class="montserratlight" style="padding-top: 8px; padding-bottom: 8px; font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000;" align="left">
-							<a href="<?php echo $permalink; ?>">
-								<?php echo $title; ?>
-							</a>
-						</li>
-					<?php
-					endforeach;
-					?>
-					</ul>
-					<?php
-				}
+				foreach ( $announcements as $announcement ) :
+					extract( $announcement );
 				?>
+					<li class="montserratlight" style="padding-top: 8px; padding-bottom: 8px; font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000;" align="left">
+						<a href="<?php echo $permalink; ?>">
+							<?php echo $title; ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+				</ul>
+				<?php endif; ?>
 			</td>
 		</tr>
 
