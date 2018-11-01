@@ -1024,7 +1024,7 @@ function gmucf_template_redirect() {
 }
 add_action('template_redirect', 'gmucf_template_redirect', 1);
 
-function display_social_sShare( $permalink, $title ) {
+function display_social_share( $permalink, $title ) {
 	ob_start();
 	$title = urlencode( $title );
 	?>
