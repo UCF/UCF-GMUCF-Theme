@@ -9,14 +9,14 @@
 		<td style="padding-top: 0; padding-left: 0; padding-right: 0;">
 			<table align="center" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
 				<tr>
-					<th class="columnCollapse" align="left" width="290" style="font-family: Helvetica, Arial, sans-serif; color: #848484; text-transform: uppercase; padding-left: 0; padding-right: 0; padding-top: 10px; padding-bottom: 0; vertical-align: middle;">
+					<th class="columnCollapse" align="left" width="290" style="font-family: Helvetica, Arial, sans-serif; color: #848484; text-transform: uppercase; padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 0; vertical-align: middle;">
 						<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
 							<tr>
 								<th class="text-left-desktop" style="text-align: center;">
 									<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
 										<tbody>
 											<tr>
-												<td class="montserratlight" style="font-weight: 400;">
+												<td class="montserratlight" style="font-weight: 400; font-size: 14px; line-height: 20px;">
 													<?php echo date( 'l, F j, Y' ); ?>
 												</td>
 											</tr>
@@ -26,7 +26,7 @@
 							</tr>
 						</table>
 					</th>
-					<th class="columnCollapse" align="right" width="290" style="font-family: Helvetica, Arial, sans-serif; color: #848484; padding-left: 0; padding-right: 0; padding-top: 10px; padding-bottom: 0; vertical-align: middle; text-align: center;">
+					<th class="columnCollapse" align="right" width="290" style="font-family: Helvetica, Arial, sans-serif; color: #848484; padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 0; vertical-align: middle; text-align: center;">
 						<?php
 						$weather = get_weather( 'weather-today' );
 						if ( ! empty( $weather ) ) :
@@ -39,13 +39,13 @@
 										<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
 											<tbody>
 												<tr>
-													<td valign="middle">
-														<span style="margin-top: 0; margin-bottom: 0; line-height: 25px; vertical-align: middle;">
-															<img align="top" height="25" width="25" src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/weather/<?php echo $today_icon; ?>.png" />
+													<td valign="middle" style="font-size: 14px;">
+														<span style="margin-top: 0; margin-bottom: 0; line-height: 20px; vertical-align: middle;">
+															<img align="top" height="20" width="20" src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/weather/<?php echo $today_icon; ?>.png" />
 															<span class="montserratlight" style="font-weight: 400;">High</span> <span class="montserratsemibold" style="font-weight: 500;"><?php echo $weather['today']['tempN']; ?>&deg;</span>
 														</span>
-														<span style="margin-top: 0; margin-bottom: 0; line-height: 25px; vertical-align: middle; padding-left: 10px;">
-															<img align="top" height="25" width="25" src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/weather/<?php echo $tonight_icon; ?>.png" />
+														<span style="margin-top: 0; margin-bottom: 0; line-height: 20px; vertical-align: middle; padding-left: 10px;">
+															<img align="top" height="20" width="20" src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/weather/<?php echo $tonight_icon; ?>.png" />
 															<span class="montserratlight" style="font-weight: 400;">Low</span> <span class="montserratsemibold" style="font-weight: 500;"><?php echo $weather['tonight']['tempN']; ?>&deg;</span>
 														</span>
 													</td>
