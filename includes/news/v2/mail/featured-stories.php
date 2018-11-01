@@ -41,6 +41,7 @@
 						</a>
 					</td>
 				</tr>
+				<?php echo display_social_share( $permalink, $title ); ?>
 			</table>
 		</th>
 	<?php

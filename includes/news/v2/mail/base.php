@@ -42,7 +42,7 @@
 									<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
 										<tbody>
 											<tr>
-												<td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center;">
+												<td style="padding-bottom: 10px; padding-left: 0; padding-right: 0; text-align: center;">
 													<?php echo get_template_part( 'includes/news/v2/mail/top-story' ); ?>
 												</td>
 											</tr>

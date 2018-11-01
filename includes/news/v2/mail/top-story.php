@@ -3,7 +3,7 @@ extract( get_top_story_details() );
 ?>
 <table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 	<tr>
-		<td style="padding-bottom: 20px; padding-top: 15px; padding-left: 0; padding-right: 0; border: 0;">
+		<td style="padding-bottom: 0; padding-top: 15px; padding-left: 0; padding-right: 0; border: 0;">
 			<a href="<?php echo $read_more_uri; ?>" style="color: #000; text-decoration: none;">
 				<table class="tableCollapse" width="600" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
 					<tbody>
@@ -27,4 +27,5 @@ extract( get_top_story_details() );
 			</a>
 		</td>
 	</tr>
+	<?php echo display_social_share( $read_more_uri, $story_title ); ?>
 </table>
