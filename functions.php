@@ -115,14 +115,14 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'In The News JSON URL',
 			'id'          => THEME_OPTIONS_NAME.'[in_the_news_url]',
-			'description' => 'URL of the external-stories feed on UCF Today.',
+			'description' => 'URL of the external-stories feed on UCF Today. Defaults to https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
 			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
 			'value'       => IN_THE_NEWS_JSON_URL
 		)),
 		new TextField(array(
 			'name'        => 'In the News Story Count',
 			'id'          => THEME_OPTIONS_NAME.'[in_the_news_item_count]',
-			'description' => 'The number of external stories to retrieve.',
+			'description' => 'The number of external stories to retrieve. Defaults to 4.',
 			'default'     => 4,
 			'value'       => IN_THE_NEWS_ITEM_COUNT
 		)),
