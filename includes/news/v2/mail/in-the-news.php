@@ -11,7 +11,7 @@
 				$external = get_in_the_news_stories();
 
 				if( count( $external ) == 0 ) { ?>
-					<p>No stories found for today.</p>
+					<p class="montserratlight" style="margin: 0; font-family: Helvetica, Arial, sans-serif; font-weight: 400; padding-top: 10px; padding-bottom: 10px;">No stories found for today.</p>
 				<?php
 				} else {
 					?>
