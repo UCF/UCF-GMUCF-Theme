@@ -33,7 +33,7 @@
 									</tr>
 									<tr>
 										<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.4; color: #000; text-align: left;" align="left">
-											<?php echo $description; ?>
+											<?php echo strip_tags( $description ); ?>
 										</td>
 									</tr>
 								</tbody>

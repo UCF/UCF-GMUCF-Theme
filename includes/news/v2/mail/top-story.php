@@ -19,7 +19,7 @@ extract( get_top_story_details() );
 						</tr>
 						<tr>
 							<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.4; color: #000; text-align: left;" align="left">
-							<?php echo $story_description; ?>
+							<?php echo strip_tags( $story_description ); ?>
 							</td>
 						</tr>
 					</tbody>
