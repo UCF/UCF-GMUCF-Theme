@@ -123,7 +123,7 @@ Config::$theme_settings = array(
 			'name'        => 'In the News Story Count',
 			'id'          => THEME_OPTIONS_NAME.'[in_the_news_item_count]',
 			'description' => 'The number of external stories to retrieve. Defaults to 4.',
-			'default'     => 4,
+			'default'     => IN_THE_NEWS_ITEM_COUNT,
 			'value'       => IN_THE_NEWS_ITEM_COUNT
 		)),
 	),
