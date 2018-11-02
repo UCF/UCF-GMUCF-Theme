@@ -35,7 +35,7 @@ define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $
 define('ANNOUNCEMENTS_MORE_URL', 'https://www.ucf.edu/announcements/');
 
 define('IN_THE_NEWS_JSON_URL', !empty($theme_options['in_the_news_url']) ? $theme_options['in_the_news_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/');
-define('IN_THE_NEWS_ITEM_COUNT', !empty($theme_options['in_the_news_item_count']) ? $theme_options['in_the_news_item_count'] : 5);
+define('IN_THE_NEWS_ITEM_COUNT', !empty($theme_options['in_the_news_item_count']) ? $theme_options['in_the_news_item_count'] : 4);
 define('IN_THE_NEWS_JSON_TIMEOUT', 15); //seconds
 
 define('WEATHER_URL', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastToday' : 'https://weather.smca.ucf.edu/?data=forecastToday');
@@ -115,15 +115,15 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'In The News JSON URL',
 			'id'          => THEME_OPTIONS_NAME.'[in_the_news_url]',
-			'description' => 'URL of the external-stories feed on UCF Today.',
+			'description' => 'URL of the external-stories feed on UCF Today. Defaults to https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
 			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
 			'value'       => IN_THE_NEWS_JSON_URL
 		)),
 		new TextField(array(
 			'name'        => 'In the News Story Count',
 			'id'          => THEME_OPTIONS_NAME.'[in_the_news_item_count]',
-			'description' => 'The number of external stories to retrieve.',
-			'default'     => 5,
+			'description' => 'The number of external stories to retrieve. Defaults to 4.',
+			'default'     => IN_THE_NEWS_ITEM_COUNT,
 			'value'       => IN_THE_NEWS_ITEM_COUNT
 		)),
 	),

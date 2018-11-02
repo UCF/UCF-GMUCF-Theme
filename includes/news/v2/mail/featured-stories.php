@@ -18,31 +18,30 @@
 			<table class="tableCollapse" width="100%" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
 				<tr>
 					<td>
-						<table width="100%" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
-							<tbody>
-								<tr>
-									<td style="padding-left: 0; padding-right: 0;">
-										<a href="<?php echo $permalink; ?>">
+						<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;">
+							<table width="100%" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
+								<tbody>
+									<tr>
+										<td style="padding-left: 0; padding-right: 0;">
 											<img class="responsiveimg" border="0" width="290" style="border:none;" src="<?php echo $image; ?>" />
-										</a>
-									</td>
-								</tr>
-								<tr>
-									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 500; padding-top: 10px; padding-bottom: 4px; line-height: 1.2; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;"><?php echo $title; ?></a>
-									</td>
-								</tr>
-								<tr>
-									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.4; color: #000; text-align: left;" align="left">
-										<?php echo $description; ?>
-										<a href="<?php echo $permalink; ?>" style="color: #006699; text-decoration: underline;">Read More</a>
-									</td>
-								</tr>
-								<?php echo display_social_share( $permalink, $title ); ?>
-							</tbody>
-						</table>
+										</td>
+									</tr>
+									<tr>
+										<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 500; padding-top: 10px; padding-bottom: 4px; line-height: 1.2; color: #000; text-align: left;" align="left">
+											<?php echo $title; ?>
+										</td>
+									</tr>
+									<tr>
+										<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.4; color: #000; text-align: left;" align="left">
+											<?php echo strip_tags( $description ); ?>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</a>
 					</td>
 				</tr>
+				<?php echo display_social_share( $permalink, $title ); ?>
 			</table>
 		</th>
 	<?php
@@ -54,7 +53,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="text-align: right; padding-top: 30px; padding-bottom: 30px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
+		<td class="montserratbold" style="text-align: right; padding-top: 30px; padding-bottom: 30px; padding-right: 10px; padding-left: 10px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
 			<a href="<?php echo FEATURED_STORIES_MORE_URL; ?>">
 				More UCF Stories<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/external-icon.png" alt="" border="0" width="17" height="14" style="padding-left: 5px;">
 			</a>
