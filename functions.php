@@ -1029,11 +1029,11 @@ function display_social_share( $permalink, $title ) {
 	$title = urlencode( $title );
 	?>
 	<tr>
-		<td class="montserratlight" style="padding-top: 10px; padding-left: 0; padding-right: 0; text-align: right;" align="right">
-			<span>Share: </span>
-			<a href="http://www.facebook.com/sharer.php?u=<?php echo $permalink; ?>"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/facebook-share.png" alt="Share on Facebook" width="20" height="20"></a>
-			<a href="https://twitter.com/intent/tweet?text=<?php echo $title; ?>&url=<?php echo $permalink; ?>"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/twitter-share.png" alt="Share on Twitter" width="20" height="20"></a>
-			<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo $permalink; ?>&title=<?php echo $title; ?>&source=today.ucf.edu"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/linkedin-share.png" alt="Share on LinkedIn" width="20" height="20"></a>
+		<td class="montserratlight" style="padding-top: 10px; padding-left: 10px; padding-right: 10px; text-align: right;" align="right">
+			<span class="montserratsemibold" style="color: #757575; font-family: Helvetica, Arial, sans-serif; font-weight: 500; font-size: 16px; line-height: 21px; vertical-align: top; padding-right: 5px;">Share: </span>
+			<a href="http://www.facebook.com/sharer.php?u=<?php echo $permalink; ?>" style="display: inline-block; height: 20px; width: 20px; padding-right: 3px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/facebook-share.png" alt="Share on Facebook" width="20" height="20"></a>
+			<a href="https://twitter.com/intent/tweet?text=<?php echo $title; ?>&url=<?php echo $permalink; ?>" style="display: inline-block; height: 20px; width: 20px; padding-right: 3px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/twitter-share.png" alt="Share on Twitter" width="20" height="20"></a>
+			<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo $permalink; ?>&title=<?php echo $title; ?>&source=today.ucf.edu" style="display: inline-block; height: 20px; width: 20px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/linkedin-share.png" alt="Share on LinkedIn" width="20" height="20"></a>
 		</td>
 	</tr>
 	<?php
