@@ -21,5 +21,5 @@ These plugins *must* be activated for the theme to function properly.
 
 ### Instructions
 1. Clone the GMUCF repo into your development environment, within your WordPress installation's `themes/` directory: `git clone https://github.com/UCF/GMUCF.git`
-4. If you haven't already done so, create a new WordPress site on your development environment, install the required plugins listed above, and set the GMUCF Theme as the active theme.
-5. Make sure you've done all the steps listed under "Configuration" above.
+2. If you haven't already done so, create a new WordPress site on your development environment, install the required plugins listed above, and set the GMUCF Theme as the active theme.
+3. Make sure you've done all the steps listed under "Configuration" above.
