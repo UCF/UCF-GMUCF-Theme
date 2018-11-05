@@ -13,7 +13,7 @@ These plugins *must* be activated for the theme to function properly.
 
 ## Configuration
 
-* The "Theme Options" in the admin contain several fields to set the feed URLs for Weather, News, Announcements and Events feeds used for the emails.
+* The "Theme Options" section of the admin contains several fields to set the feed URLs for Weather, News, Announcements and Events feeds used for the emails.
 
 ## Development
 
