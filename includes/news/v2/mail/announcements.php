@@ -37,9 +37,9 @@
 		</tr>
 
 		<tr>
-			<td class="montserratbold" style="text-align: right; padding-bottom: 30px; padding-right: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
+			<td class="montserratbold" style="text-align: right; padding-top: 26px; padding-bottom: 20px; padding-right: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
 				<a href="<?php echo ANNOUNCEMENTS_MORE_URL; ?>">
-					More Announcements<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/external-icon.png" alt="" border="0" width="17" height="14" style="padding-left: 5px;">
+					More Announcements
 				</a>
 			</td>
 		</tr>
