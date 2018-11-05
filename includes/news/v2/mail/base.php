@@ -17,7 +17,7 @@
     <tbody>
       <tr>
         <td align="center" style="padding: 0;">
-          <table class="wrapperOuter" width="640" align="center" style="background-color: #ffffff; width: 640px; margin-top: 20px; margin-bottom: 20px; border-spacing: 0; border-collapse: collapse;">
+          <table class="wrapperOuter" width="640" align="center" style="background-color: #ffffff; width: 640px; margin-top: 0 !important; margin-bottom: 0; border-spacing: 0; border-collapse: collapse;">
             <tbody>
               <tr>
                 <td align="center" style="padding: 0;">
