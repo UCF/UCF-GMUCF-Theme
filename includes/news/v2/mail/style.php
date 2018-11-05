@@ -47,9 +47,8 @@ ul {
 	font-style: normal;
 	letter-spacing: 1px;
 }
-</style>
 
-<style type="text/css">
+
 /* CSS Resets */
 .ReadMsgBody {width: 100%; background-color: #ffffff;}
 .ExternalClass {width: 100%; background-color: #ffffff;}
