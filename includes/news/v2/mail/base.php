@@ -5,7 +5,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" type="text/css" href="https://s3.amazonaws.com/web.ucf.edu/email/common-assets/stylesheet.css">
 	<title>Good
 		<?php echo (int)date( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?> UCF -
 		<?php echo date( 'F j' ); ?>
