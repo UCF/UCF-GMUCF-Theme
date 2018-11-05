@@ -9,6 +9,46 @@ ul {
 <![endif]-->
 
 <style type="text/css">
+@font-face {
+	font-family: 'montserratbold';
+	src: url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-bold-webfont.eot');
+	src: url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-bold-webfont.woff2') format('woff2'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-bold-webfont.woff') format('woff'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-bold-webfont.ttf') format('truetype'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-bold-webfont.svg#montserratbold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: 1px;
+}
+
+@font-face {
+	font-family: 'montserratlight';
+	src: url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-light-webfont.eot');
+	src: url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-light-webfont.eot?#iefix') format('embedded-opentype'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-light-webfont.woff2') format('woff2'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-light-webfont.woff') format('woff'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-light-webfont.ttf') format('truetype'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-light-webfont.svg#montserratlight') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: 1px;
+}
+
+@font-face {
+	font-family: 'montserratsemi_bold';
+	src: url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-semibold-webfont.eot');
+	src: url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-semibold-webfont.woff2') format('woff2'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-semibold-webfont.woff') format('woff'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-semibold-webfont.ttf') format('truetype'),
+	url('https://s3.amazonaws.com/web.ucf.edu/email/common-assets/fonts/montserrat-semibold-webfont.svg#montserratsemi_bold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: 1px;
+}
+
+
 /* CSS Resets */
 .ReadMsgBody {width: 100%; background-color: #ffffff;}
 .ExternalClass {width: 100%; background-color: #ffffff;}
