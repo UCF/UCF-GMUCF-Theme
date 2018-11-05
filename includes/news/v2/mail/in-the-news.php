@@ -28,7 +28,7 @@
 									</a>
 								</td></tr>
 								<tr><td style="padding-bottom: 4px;">
-									<a class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; color: #888; text-decoration: none; text-transform: uppercase;" href="<?php echo $story->url; ?>">
+									<a class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; color: #757575; text-decoration: none; text-transform: uppercase;" href="<?php echo $story->url; ?>">
 										<?php echo $story->source; ?>
 									</a>
 								</td></tr>

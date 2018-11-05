@@ -27,5 +27,13 @@ extract( get_top_story_details() );
 			</a>
 		</td>
 	</tr>
-	<?php echo display_social_share( $read_more_uri, $story_title ); ?>
+	<tr>
+		<td style="padding-bottom: 0; padding-top: 0; padding-left: 0; padding-right: 0; border: 0;">
+			<table class="tableCollapse" width="600" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
+				<tbody>
+					<?php echo display_social_share( $read_more_uri, $story_title ); ?>
+				</tbody>
+			</table>
+		</td>
+	</tr>
 </table>
