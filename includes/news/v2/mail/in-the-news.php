@@ -44,5 +44,12 @@
 				?>
 			</td>
 		</tr>
+		<tr>
+			<td class="montserratbold" style="text-align: right; padding-bottom: 30px; padding-right: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
+				<a href="<?php echo IN_THE_NEWS_MORE_URL; ?>">
+					More UCF In The News<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/external-icon.png" alt="" border="0" width="17" height="14" style="padding-left: 5px;">
+				</a>
+			</td>
+		</tr>
 	</tbody>
 </table>

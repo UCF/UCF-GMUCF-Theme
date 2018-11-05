@@ -35,6 +35,7 @@ define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $
 define('ANNOUNCEMENTS_MORE_URL', 'https://www.ucf.edu/announcements/');
 
 define('IN_THE_NEWS_JSON_URL', !empty($theme_options['in_the_news_url']) ? $theme_options['in_the_news_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/');
+define('IN_THE_NEWS_MORE_URL', 'https://today.ucf.edu/in-the-news/');
 define('IN_THE_NEWS_ITEM_COUNT', !empty($theme_options['in_the_news_item_count']) ? $theme_options['in_the_news_item_count'] : 4);
 define('IN_THE_NEWS_JSON_TIMEOUT', 15); //seconds
 
