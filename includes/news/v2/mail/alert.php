@@ -17,13 +17,13 @@ if ( count( $alerts ) > 0 ) :
 										</td>
 									</tr>
 									<tr>
-										<td class="montserratlight" style="padding-left: 20px; padding-right: 20px; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #000; text-align: left;" align="left">
+										<td class="montserratlight" style="padding-left: 20px; padding-right: 20px; padding-bottom: 20px; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #000; text-align: left;" align="left">
 										<?php echo nl2br( esc_html( $alert->post_content ) ); ?>
 										</td>
 									</tr>
 									<?php if ( ( $alert_uri = get_post_meta( $alert->ID, 'alert_external_uri', True ) ) !== '' ) : ?>
 										<tr>
-											<td class="montserratlight" style="padding-top: 10px; padding-left: 20px; padding-right: 20px; padding-bottom: 20px; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #000; text-align: right;" align="left">
+											<td class="montserratlight" style="padding-left: 20px; padding-right: 20px; padding-bottom: 20px; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #000; text-align: right;" align="left">
 												<a href="<?php echo esc_html( $alert_uri ); ?>" style="color: #000;">Get more information</a>
 											</td>
 										</tr>
