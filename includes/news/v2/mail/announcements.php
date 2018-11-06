@@ -21,10 +21,18 @@
 					foreach( $announcements as $announcement ) :
 						extract( $announcement );
 					?>
-						<li class="montserratlight" style="padding-bottom: 30px; font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000;" align="left">
-							<a class="montserratsemibold" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000000; font-weight: 500;" href="<?php echo $permalink; ?>">
-								<?php echo $title; ?>
-							</a>
+						<li style="padding-bottom: 30px;" align="left">
+							<table>
+								<tbody>
+								<tr>
+									<td style="padding-bottom: 4px;">
+										<a class="montserratsemibold" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000000; font-weight: 500;" href="<?php echo $permalink; ?>">
+											<?php echo $title; ?>
+										</a>
+									</td>
+								</tr>
+								</tbody>
+							</table>
 						</li>
 					<?php
 					endforeach;
