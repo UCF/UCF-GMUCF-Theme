@@ -1,7 +1,7 @@
 <table class="tableCollapse" width="600" border="0" align="center" style="border-bottom: 3px solid #fc0; border-spacing: 0; border-collapse: collapse;">
 	<tbody>
 		<tr>
-			<td class="montserratbold" style="padding-top: 0; padding-bottom: 40px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: bold; color: #006699; text-transform: uppercase; letter-spacing: 1.3px;" align="left">
+			<td class="montserratbold" style="padding-top: 0; padding-bottom: 30px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: bold; color: #006699; text-transform: uppercase; letter-spacing: 1.3px;" align="left">
 				<a href="<?php echo ANNOUNCEMENTS_MORE_URL; ?>" style="text-decoration: none;">Announcements</a>
 			</td>
 		</tr>
