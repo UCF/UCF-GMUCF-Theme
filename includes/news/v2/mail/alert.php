@@ -5,7 +5,7 @@ if ( count( $alerts ) > 0 ) :
 ?>
 	<tr>
 		<td style="padding-top: 50px; padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center;">
-			<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0;">
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="background-color: #ffffff; width:100%; margin:0;">
 				<tr>
 					<td style="padding-bottom: 0; padding-top: 0; padding-left: 0; padding-right: 0; border: 0;">
 						<a href="<?php echo $read_more_uri; ?>" style="color: #000; text-decoration: none;">
