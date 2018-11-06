@@ -56,7 +56,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td style="padding-top: 30px; padding-bottom: 0; padding-left: 0; padding-right: 0;">
+												<td style="padding-top: 40px; padding-bottom: 0; padding-left: 0; padding-right: 0;">
 													<?php echo get_template_part( 'includes/news/v2/mail/announcements' ); ?>
 												</td>
 											</tr>

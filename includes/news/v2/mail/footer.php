@@ -1,5 +1,5 @@
 <tr>
-	<td style="padding-bottom: 20px; padding-top: 40px; padding-left: 0; padding-right: 0; text-align: center;" align="center">
+	<td style="padding-bottom: 20px; padding-top: 60px; padding-left: 0; padding-right: 0; text-align: center;" align="center">
 		<a href="https://www.facebook.com/ucf/">
 			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/facebook.png" alt="Facebook" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
 		<a href="https://www.twitter.com/UCF/">

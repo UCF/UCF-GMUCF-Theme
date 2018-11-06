@@ -13,12 +13,12 @@ extract( get_top_story_details() );
 							</td>
 						</tr>
 						<tr>
-							<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 500; padding-top: 20px; padding-bottom: 10px; line-height: 1.3; color: #000; text-align: left;" align="left">
+							<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.5; color: #000; text-align: left;" align="left">
 							<?php echo $story_title; ?>
 							</td>
 						</tr>
 						<tr>
-							<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.4; color: #000; text-align: left;" align="left">
+							<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #000; text-align: left;" align="left">
 							<?php echo strip_tags( $story_description ); ?>
 							</td>
 						</tr>
