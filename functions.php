@@ -16,10 +16,11 @@ define('THEME_OPTIONS_GROUP', 'settings');
 define('THEME_OPTIONS_NAME', 'theme');
 define('THEME_OPTIONS_PAGE_TITLE', 'Theme Options');
 
-$theme_options = get_option(THEME_OPTIONS_NAME);
-define('GA_ACCOUNT', $theme_options['ga_account']);
-define('CB_UID', $theme_options['cb_uid']);
-define('CB_DOMAIN', $theme_options['cb_domain']);
+$theme_options = get_option( THEME_OPTIONS_NAME );
+
+define( 'GA_ACCOUNT', !empty( $theme_options['ga_account'] ) ? $theme_options['ga_account'] : "" );
+define( 'CB_UID', !empty( $theme_options['cb_uid'] ) ? $theme_options['cb_uid'] : "" );
+define( 'CB_DOMAIN', !empty( $theme_options['cb_domain'] ) ? $theme_options['cb_domain'] : "" );
 
 define('EVENTS_URL', !empty($theme_options['events_url']) ? trailingslashit($theme_options['events_url']) : 'https://events.ucf.edu');
 define('EVENTS_CALENDAR_ID', 1);
@@ -33,10 +34,19 @@ define('FEATURED_STORIES_TIMEOUT', 15); // seconds
 define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'https://www.ucf.edu/announcements/?time=thisweek&exclude_ongoing=True&format=json');
 define('ANNOUNCEMENTS_MORE_URL', 'https://www.ucf.edu/announcements/');
 
+define('IN_THE_NEWS_JSON_URL', !empty($theme_options['in_the_news_url']) ? $theme_options['in_the_news_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/');
+define('IN_THE_NEWS_MORE_URL', 'https://today.ucf.edu/in-the-news/');
+define('IN_THE_NEWS_ITEM_COUNT', !empty($theme_options['in_the_news_item_count']) ? $theme_options['in_the_news_item_count'] : 4);
+define('IN_THE_NEWS_JSON_TIMEOUT', 15); //seconds
+
 define('WEATHER_URL', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastToday' : 'https://weather.smca.ucf.edu/?data=forecastToday');
 define('WEATHER_URL_EXTENDED', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'].'?data=forecastExtended' : 'https://weather.smca.ucf.edu/?data=forecastExtended');
 define('WEATHER_CACHE_DURATION', 60 * 15); // seconds
 define('WEATHER_HTTP_TIMEOUT', !empty($theme_options['weather_service_timeout']) ? (int)$theme_options['weather_service_timeout'] : 10);
+
+define( 'GW_VERIFY', !empty( $theme_options['gw_verify'] ) ? htmlentities( $theme_options['gw_verify'] ) : NULL );
+define( 'YW_VERIFY', !empty( $theme_options['yw_verify'] ) ? htmlentities( $theme_options['yw_verify'] ) : NULL );
+define( 'BW_VERIFY', !empty( $theme_options['bw_verify'] ) ? htmlentities( $theme_options['bw_verify'] ) : NULL );
 
 define('EVENTS_WEEKEND_EDITION', 0);
 define('EVENTS_WEEKDAY_EDITION', 1);
@@ -97,9 +107,25 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Announcements Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[announcements_url]',
-			'description' => 'URL to the UCF Announcements feed.  Useful for development when testing on different environments.  Defaults to https://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0',
-			'default'     => 'https://www.ucf.edu/announcements/?role=all&keyword=&time=thisweek&output=rss&include_ongoing=0',
+			'description' => 'URL to the UCF Announcements feed.  Useful for development when testing on different environments.  Defaults to https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json',
+			'default'     => 'https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json',
 			'value'       => $theme_options['announcements_url'],
+		)),
+	),
+	'UCF In The News Feed' => array(
+		new TextField(array(
+			'name'        => 'In The News JSON URL',
+			'id'          => THEME_OPTIONS_NAME.'[in_the_news_url]',
+			'description' => 'URL of the external-stories feed on UCF Today. Defaults to https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
+			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
+			'value'       => IN_THE_NEWS_JSON_URL
+		)),
+		new TextField(array(
+			'name'        => 'In the News Story Count',
+			'id'          => THEME_OPTIONS_NAME.'[in_the_news_item_count]',
+			'description' => 'The number of external stories to retrieve. Defaults to 4.',
+			'default'     => IN_THE_NEWS_ITEM_COUNT,
+			'value'       => IN_THE_NEWS_ITEM_COUNT
 		)),
 	),
 	'UCF Events Feed' => array(
@@ -148,22 +174,22 @@ Config::$scripts = array(
 Config::$metas = array(
 	array('charset' => 'utf-8',),
 );
-if ($theme_options['gw_verify']){
+if ( GW_VERIFY ) {
 	Config::$metas[] = array(
 		'name'    => 'google-site-verification',
-		'content' => htmlentities($theme_options['gw_verify']),
+		'content' => GW_VERIFY,
 	);
 }
-if ($theme_options['yw_verify']){
+if ( YW_VERIFY ) {
 	Config::$metas[] = array(
 		'name'    => 'y_key',
-		'content' => htmlentities($theme_options['yw_verify']),
+		'content' => YW_VERIFY,
 	);
 }
-if ($theme_options['bw_verify']){
+if ( BW_VERIFY ) {
 	Config::$metas[] = array(
 		'name'    => 'msvalidate.01',
-		'content' => htmlentities($theme_options['bw_verify']),
+		'content' => BW_VERIFY,
 	);
 }
 
@@ -185,35 +211,21 @@ if(isset($_GET['no_cache'])) {
  * @return WP_Error|SimplePie WP_Error object on failure or SimplePie object on success
  */
 function custom_fetch_feed( $url, $timeout=10 ) {
-	require_once( ABSPATH . WPINC . '/class-feed.php' );
+	require_once( ABSPATH . WPINC . '/feed.php' );
 
-	$feed = new SimplePie();
-
-	$feed->set_sanitize_class( 'WP_SimplePie_Sanitize_KSES' );
-	// We must manually overwrite $feed->sanitize because SimplePie's
-	// constructor sets it before we have a chance to set the sanitization class
-	$feed->sanitize = new WP_SimplePie_Sanitize_KSES();
-
-	$feed->set_cache_class( 'WP_Feed_Cache' );
-	$feed->set_file_class( 'WP_SimplePie_File' );
-
-	$feed->set_timeout($timeout);
-
-	$feed->set_feed_url( $url );
-	if(CLEAR_CACHE) {
-		$feed->set_cache_duration(0);
+	if( CLEAR_CACHE ) {
+		apply_filters( 'wp_feed_cache_transient_lifetime', 0, $url );
+	} else {
+		apply_filters( 'wp_feed_cache_transient_lifetime', 12 * HOUR_IN_SECONDS, $url );
 	}
-	else {
-		$feed->set_cache_duration( apply_filters( 'wp_feed_cache_transient_lifetime', 12 * HOUR_IN_SECONDS, $url ) );
-	}
-	do_action_ref_array( 'wp_feed_options', array( &$feed, $url ) );
-	$feed->init();
-	$feed->handle_content_type();
 
-	if ( $feed->error() )
-		return new WP_Error( 'simplepie-error', $feed->error() );
+	$rss = fetch_feed( $url );
 
-	return $feed;
+	if ( is_wp_error( $rss ) ) : // Checks that the object is created correctly
+		return new WP_Error( 'simplepie-error', $rss->error() );
+	endif;
+
+	return $rss;
 }
 
 
@@ -325,6 +337,38 @@ function get_tomorrows_events($options = array()) {
 
 
 /**
+ * Returns the events HTML
+ *
+ * @return string
+ * @author RJ Bruneel
+ **/
+function display_events($events) {
+	$count = 0;
+	ob_start();
+		?>
+		<ul>
+		<?php
+		foreach($events as $event) :
+			if($count == 7) break;
+			$start_timestamp = strtotime($event->starts);
+		?>
+			<li>
+				<?php echo date('g:i', $start_timestamp) . date('A', $start_timestamp); ?>
+				<a href="<?php echo $event->url?>">
+					<?php echo esc_html($event->title); ?>
+				</a>
+			</li>
+		<?
+			$count++;
+		endforeach;
+		?>
+		</ul>
+		<?php
+	return ob_end_flush();
+}
+
+
+/**
  * Fetches today/tonight weather, extended weather and stores
  * it as transient data.
  *
@@ -387,6 +431,95 @@ function get_weather($cache_key) {
 	return $weather;
 }
 
+
+/**
+ * Translates the weather conditions from our feed
+ * to a weather icon.
+ * @author Jim Barnes
+ * @since 1.2.0
+ * @param $condition string | The weather condition
+ * @return string | The css icon classes.
+ **/
+function get_weather_icon( $condition, $night=false ) {
+	$icon_name = null;
+	$icons_to_conditions = array(
+		'day-sunny' => array(
+			'fair',
+			'default'
+		),
+		'hot' => array(
+			'hot',
+			'haze'
+		),
+		'cloudy' => array(
+			'overcast',
+			'partly cloudy',
+			'mostly cloudy'
+		),
+		'snowflake-cold' => array(
+			'blowing snow',
+			'cold',
+			'snow'
+		),
+		'showers' => array(
+			'showers',
+			'drizzle',
+			'mixed rain/sleet',
+			'mixed rain/hail',
+			'mixed snow/sleet',
+			'hail',
+			'freezing drizzle'
+		),
+		'cloudy-gusts' => array(
+			'windy'
+		),
+		'fog' => array(
+			'dust',
+			'smoke',
+			'foggy'
+		),
+		'storm-showers' => array(
+			'scattered thunderstorms',
+			'scattered thundershowers',
+			'scattered showers',
+			'freezing rain',
+			'isolated thunderstorms',
+			'isolated thundershowers'
+		),
+		'lightning' => array(
+			'tornado',
+			'severe thunderstorms'
+		)
+	);
+
+	$night_icons = array(
+		'day-sunny' => 'night-clear',
+		'hot' => 'night-clear',
+		'cloudy' => 'night-cloudy',
+		'snowflake-cold' => 'night-snow',
+		'showers' => 'night-showers',
+		'cloudy-gusts' => 'night-cloudy-gusts',
+		'fog' => 'night-fog',
+		'storm-showers' => 'night-storm-showers',
+		'lightning' => 'night-lightning'
+	);
+
+	$condition = strtolower( $condition );
+
+	foreach( $icons_to_conditions as $icon => $condition_array ) {
+		if ( in_array( $condition, $condition_array ) ) {
+			$icon_name = $icon;
+		}
+	}
+
+	$icon_name = $icon_name ? $icon_name : 'day-sunny';
+
+	if ( $night ) {
+		return $night_icons[$icon_name];
+	}
+
+	return $icon_name;
+}
 
 /**
  * Today's top story if there is one
@@ -479,19 +612,19 @@ function get_top_story_details() {
  * @return array
  * @author Chris Conover
  **/
-function get_featured_stories_details() {
+function get_featured_stories_details( $limit = 2 ) {
 	$stories = array();
 
-	$rss = custom_fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=gmucf_featured_story', FEATURED_STORIES_TIMEOUT);
+	$rss = custom_fetch_feed( FEATURED_STORIES_RSS_URL.'?thumb=gmucf_featured_story', FEATURED_STORIES_TIMEOUT );
 
-	if(!is_wp_error($rss)) {
-		$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
+	if( !is_wp_error( $rss ) ) {
+		$rss_items = $rss->get_items( 0, $rss->get_item_quantity( 15 ) );
 
 		$count = 0;
-		$top_story_id = get_transient('top_story_id');
-		foreach($rss_items as $rss_item) {
-			if($count == 3) break;
-			if($top_story_id !== $rss_item->get_id()) {
+		$top_story_id = get_transient( 'top_story_id' );
+		foreach( $rss_items as $rss_item ) {
+			if( $count == $limit ) break;
+			if( $top_story_id !== $rss_item->get_id() ) {
 				$story = array(
 					'thumbnail_src' => '',
 					'title'         => '',
@@ -499,21 +632,23 @@ function get_featured_stories_details() {
 					'permalink'     => ''
 				);
 				$enclosure = $rss_item->get_enclosure();
-				if($enclosure && in_array($enclosure->get_type(),get_valid_enclosure_types()) && ($thumbnail = $enclosure->get_thumbnail())) {
-					$story['thumbnail_src'] = remove_quotes($thumbnail);
+				if( $enclosure && in_array( $enclosure->get_type(),get_valid_enclosure_types() ) && ( $thumbnail = $enclosure->get_thumbnail() ) ) {
+					$image = $enclosure->get_link();
+					$story['image'] = remove_quotes( $image );
+					$story['thumbnail_src'] = remove_quotes( $thumbnail );
 				} else {
-					$story['thumbnail_src'] = remove_quotes(get_bloginfo('stylesheet_directory', 'raw').'/static/img/no-photo.png');
+					$story['thumbnail_src'] = remove_quotes( get_bloginfo( 'stylesheet_directory', 'raw' ).'/static/img/no-photo.png' );
 				}
-				$story['title']       = sanitize_for_email($rss_item->get_title());
-				$story['description'] = sanitize_for_email($rss_item->get_description());
-				$story['permalink']   = remove_quotes($rss_item->get_permalink());
-				array_push($stories, $story);
+				$story['title']       = sanitize_for_email( $rss_item->get_title() );
+				$story['description'] = sanitize_for_email( $rss_item->get_description() );
+				$story['permalink']   = remove_quotes( $rss_item->get_permalink() );
+				array_push( $stories, $story );
 				$count++;
 			}
 		}
 	} else {
 		$error_string = $rss->get_error_message();
-		error_log("GMUCF - get_featured_stories_details() - " . $error_string);
+		error_log( "GMUCF - get_featured_stories_details() - " . $error_string );
 	}
 	return $stories;
 }
@@ -545,6 +680,31 @@ function get_announcement_details() {
 		error_log("GMUCF - get_announcement_details() - " . $error_string);
 	}
 	return array_slice( $announcements, 0, 3 );
+}
+
+function get_in_the_news_stories() {
+	$stories = array();
+
+	$args = array(
+		'limit' => IN_THE_NEWS_ITEM_COUNT
+	);
+
+	$arg_string = '?' . http_build_query( $args );
+
+	$response = wp_remote_get( IN_THE_NEWS_JSON_URL . $arg_string, array( 'timeout' => IN_THE_NEWS_JSON_TIMEOUT ) );
+
+	if ( is_array( $response ) ) {
+		$items = json_decode( wp_remote_retrieve_body( $response ) );
+
+		if ( $items ) {
+			$stories = $items;
+		}
+	} else {
+		$error_string = $response->error;
+		error_log( "GMUCF - get_in_the_news_stories() - " . $error_string );
+	}
+
+	return $stories;
 }
 
 /**
@@ -844,7 +1004,9 @@ function gmucf_template_redirect() {
 
 		# Most to least specific
 		$mapping = array(
+			'news/v2/'             => create_function('', 'display_gmucf_template(\'includes/news/v2/mail/base\');'),
 			'news/mail/'           => create_function('', 'display_gmucf_template(\'includes/news/mail/base\');'),
+			'news/text/v2/'        => create_function('', 'display_gmucf_template(\'includes/news/v2/text/base\');'),
 			'news/text/'           => create_function('', 'display_gmucf_template(\'includes/news/text/base\');'),
 			'news/'                => create_function('', 'display_gmucf_template(\'includes/news/browser/base\');'),
 			'events/weekday/mail/' => create_function('', '$_GET[\'edition\'] = \'weekday\';display_gmucf_template(\'includes/events/mail/base\');'),
@@ -862,5 +1024,21 @@ function gmucf_template_redirect() {
 	}
 }
 add_action('template_redirect', 'gmucf_template_redirect', 1);
+
+function display_social_share( $permalink, $title ) {
+	ob_start();
+	$title = urlencode( $title );
+	?>
+	<tr>
+		<td class="montserratlight" style="padding-top: 25px; padding-left: 0; padding-right: 0; text-align: right;" align="right">
+			<span class="montserratlight" style="color: #757575; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px; line-height: 21px; vertical-align: top; padding-right: 6px;">Share: </span>
+			<a href="http://www.facebook.com/sharer.php?u=<?php echo $permalink; ?>" style="display: inline-block; height: 20px; width: 20px; padding-right: 6px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/facebook-share.png" alt="Share on Facebook" width="20" height="20"></a>
+			<a href="https://twitter.com/intent/tweet?text=<?php echo $title; ?>&url=<?php echo $permalink; ?>" style="display: inline-block; height: 20px; width: 20px; padding-right: 6px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/twitter-share.png" alt="Share on Twitter" width="20" height="20"></a>
+			<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo $permalink; ?>&title=<?php echo $title; ?>&source=today.ucf.edu" style="display: inline-block; height: 20px; width: 20px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/linkedin-share.png" alt="Share on LinkedIn" width="20" height="20"></a>
+		</td>
+	</tr>
+	<?php
+	return ob_get_clean();
+}
 
 ?>
