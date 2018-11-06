@@ -12,12 +12,12 @@
 	<?php echo get_template_part( 'includes/news/v2/mail/style' ); ?>
 </head>
 
-<body>
+<body style="background-color: #f1f1f1;">
   <table width="100%" align="center" style="width: 100% !important; table-layout: fixed;">
     <tbody>
       <tr>
         <td align="center" style="padding: 0;">
-          <table class="wrapperOuter" width="640" align="center" style="width: 640px; margin-top: 20px; margin-bottom: 20px; border-spacing: 0; border-collapse: collapse;">
+          <table class="wrapperOuter" width="640" align="center" style="background-color: #ffffff; width: 640px; margin-top: 0 !important; margin-bottom: 0; border-spacing: 0; border-collapse: collapse;">
             <tbody>
               <tr>
                 <td align="center" style="padding: 0;">
@@ -56,7 +56,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td style="padding-top: 30px; padding-bottom: 0; padding-left: 0; padding-right: 0;">
+												<td style="padding-top: 40px; padding-bottom: 0; padding-left: 0; padding-right: 0;">
 													<?php echo get_template_part( 'includes/news/v2/mail/announcements' ); ?>
 												</td>
 											</tr>

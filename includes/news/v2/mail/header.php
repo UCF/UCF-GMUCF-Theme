@@ -1,6 +1,6 @@
 <table class="tableCollapse" width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 	<tr>
-		<td style="padding-top: 0; padding-bottom: 20px; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 3px solid #fc0;">
+		<td style="padding-top: 20px; padding-bottom: 20px; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 3px solid #fc0;">
 			<a href="https://today.ucf.edu"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/logo-today.png" alt="UCF Today" border="0" width="250" height="34"></a>
 		</td>
 	</tr>
@@ -63,7 +63,7 @@
 	</tr>
 
 	<tr>
-		<td class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding-bottom: 0; padding-top: 25px; padding-left: 0; padding-right: 0; text-align: left;" align="left">
+		<td class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding-bottom: 5px; padding-top: 30px; padding-left: 0; padding-right: 0; text-align: left;" align="left">
 			<h2 style="margin-top: 0; margin-bottom: 0; font-weight: normal;">Good <?php echo (int)date( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?>, !@!Preferred Name!@!.</h2>
 		</td>
 	</tr>
