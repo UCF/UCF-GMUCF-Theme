@@ -27,7 +27,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.4; color: #000; text-align: left;" align="left">
+										<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.3; color: #000; text-align: left;" align="left">
 											<?php echo $title; ?>
 										</td>
 									</tr>
