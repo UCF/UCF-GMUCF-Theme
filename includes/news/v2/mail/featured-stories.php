@@ -18,27 +18,31 @@
 			<table class="tableCollapse" width="100%" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
 				<tr>
 					<td>
-						<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;">
-							<table width="100%" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
-								<tbody>
-									<tr>
-										<td style="padding-left: 0; padding-right: 0;">
+						<table width="100%" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
+							<tbody>
+								<tr>
+									<td style="padding-left: 0; padding-right: 0;">
+										<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;">
 											<img class="responsiveimg" border="0" width="290" style="border:none;" src="<?php echo $image; ?>" />
-										</td>
-									</tr>
-									<tr>
-										<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.3; color: #000; text-align: left;" align="left">
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.3; color: #000; text-align: left;" align="left">
+										<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;">
 											<?php echo $title; ?>
-										</td>
-									</tr>
-									<tr>
-										<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.6; color: #000; text-align: left;" align="left">
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.6; color: #000; text-align: left;" align="left">
+										<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;">
 											<?php echo strip_tags( $description ); ?>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</a>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</td>
 				</tr>
 				<?php echo display_social_share( $permalink, $title ); ?>
