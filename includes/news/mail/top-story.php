@@ -1,25 +1,39 @@
 <?php
-extract(get_top_story_details());
+extract( get_top_story_details() );
 ?>
-<a href="<?=$read_more_uri?>" style="border:none;text-decoration:none;">
-	<img class="responsiveimg" style="border:none;" src="<?=$thumbnail_src?>" />
-</a>
-<table class="tcollapse100" width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:600px; margin:0 auto;padding-top:20px; background-color:#FFF;border-bottom:1px solid #ddd;">
+<table width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 	<tr>
-		<td colspan="2" style="padding-bottom:15px;">
-			<a href="<?=$read_more_uri?>" style="color:#000001;text-decoration:none;">
-				<span id="topstorytitle" style="font-size:30px;font-weight:100;color:#000001;"><?=$story_title?></span>
+		<td style="padding-bottom: 0; padding-top: 15px; padding-left: 0; padding-right: 0; border: 0;">
+			<a href="<?php echo $read_more_uri; ?>" style="color: #000; text-decoration: none;">
+				<table class="tableCollapse" width="600" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
+					<tbody>
+						<tr>
+							<td style="padding-left: 0; padding-right: 0;">
+								<img class="responsiveimg" border="0" style="border:none;" src="<?php echo $thumbnail_src; ?>" />
+							</td>
+						</tr>
+						<tr>
+							<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.4; color: #000; text-align: left;" align="left">
+							<?php echo $story_title; ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #000; text-align: left;" align="left">
+							<?php echo strip_tags( $story_description ); ?>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</a>
-			<div style="padding-top:5px;font-weight:100;line-height:1.4em;padding-bottom:10px;font-size:18px">
-					<a href="<?=$read_more_uri?>" style="color:#000001;text-decoration:none;">
-						<?=$story_description?>
-					</a>
-					<? if($read_more_uri != '') {?>
-						<a style="color:#9d1a1a;text-decoration:underline;" href="<?=$read_more_uri?>">
-							Read More.
-						</a>
-					<?}?>
-			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-bottom: 0; padding-top: 0; padding-left: 0; padding-right: 0; border: 0;">
+			<table class="tableCollapse" width="600" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
+				<tbody>
+					<?php echo display_social_share( $read_more_uri, $story_title ); ?>
+				</tbody>
+			</table>
 		</td>
 	</tr>
 </table>

@@ -1,35 +1,56 @@
-Good Morning UCF for <?=date('l, F j')?><? $weather = get_weather('weather-today'); if (!empty($weather)) { ?>
+<?php header( 'Content-Type: text/plain' ); ?>
+UCF TODAY
+<?php echo date( 'l, F j, Y' ) ?>
 
-Today's High: <?=$weather['today']['tempN']?>
-
-Tonight's Low: <?=$weather['tonight']['tempN']?><? $top_story_details = get_top_story_details()?>
+<?php $weather = get_weather( 'weather-today' ); if ( !empty( $weather ) ) { ?>
+High: <?php echo $weather['today']['tempN']; ?> Low: <?php echo $weather['tonight']['tempN'] ?>
 <?php } ?>
 
--- Today's Top Stories
-
-- <?= strip_tags($top_story_details['story_title']) ?>
-
-<?= strip_tags($top_story_details['story_description']) ?>
-
-<? foreach(get_featured_stories_details() as $detail) {?>
-- <?= strip_tags($detail['title']) ?>
-
-<?= strip_tags($detail['description']) ?>
-
-<? } ?>
-
--- Announcements
-
-<? foreach(get_announcement_details() as $announcement) { ?>
-- <?=strip_tags($announcement['title'])?>
-
-<? } ?>
+<?php $top_story_details = get_top_story_details(); ?>
 
 
-<?php
-# Because of insanity, the fetch_feed function changes the Content-Type header
-# somehow. I didn't bother tracking it down because I don't care. Just force
-# the Content-Type down here instead of at the top.
+TODAY'S TOP STORIES
 
-header('Content-Type: text/plain');
-?>
+<?php echo strip_tags( $top_story_details['story_title'] ); ?>
+
+<?php echo strip_tags( $top_story_details['story_description'] ); ?>
+
+<?php echo $top_story_details['read_more_uri']; ?>
+
+
+<?php foreach( get_featured_stories_details( 4 ) as $detail ) { ?>
+<?php echo strip_tags( $detail['title'] ); ?>
+
+<?php echo strip_tags( $detail['description'] ); ?>
+
+<?php echo $detail['permalink']; ?>
+
+
+<?php } ?>
+
+
+UCF IN THE NEWS
+
+<?php foreach( get_in_the_news_stories() as $story ) { ?>
+<?php echo strip_tags( $story->link_text ); ?> (<?php echo trim( strip_tags( $story->source ) ); ?>)
+<?php echo $story->url; ?>
+
+
+<?php } ?>
+
+
+ANNOUNCEMENTS
+
+<?php foreach( get_announcement_details() as $announcement ) { ?>
+<?php echo strip_tags( $announcement['title'] ); ?>
+
+<?php echo $announcement['permalink']; ?>
+
+
+<?php } ?>
+
+
+UNIVERSITY OF CENTRAL FLORIDA
+4000 Central Florida Blvd.
+Orlando, FL 32816
+407-823-2000
