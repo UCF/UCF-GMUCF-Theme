@@ -26,7 +26,9 @@
 									<tr>
 									<?php if( !empty( $story->source_image ) ) : ?>
 										<td style="padding-right: 10px;">
-											<img class="responsiveimg" border="0" width="50" style="border:none;" src="<?php echo $story->source_image; ?>">
+											<a href="<?php echo $story->url; ?>">
+												<img class="responsiveimg" border="0" width="50" style="border:none;" src="<?php echo $story->source_image; ?>">
+											</a>
 										</td>
 									<?php endif; ?>
 										<td>
