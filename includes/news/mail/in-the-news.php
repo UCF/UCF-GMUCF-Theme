@@ -25,7 +25,7 @@
 								<tbody>
 									<tr>
 									<?php if( !empty( $story->source_image ) ) : ?>
-										<td style="padding-right: 10px;">
+										<td style="padding-right: 20px; vertical-align: top;" valign="top">
 											<a href="<?php echo $story->url; ?>">
 												<img border="0" width="50" style="border:none; height: auto; width: 50px;" src="<?php echo $story->source_image; ?>">
 											</a>
