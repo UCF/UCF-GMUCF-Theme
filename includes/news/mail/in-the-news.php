@@ -18,22 +18,37 @@
 					<ul style="list-style: none; padding-left: 0; margin: 0;">
 					<?php
 					foreach( $external as $story ) :
+						$story_source = ( !empty( $story->source_name ) ) ? $story->source_name : $story->source;
 					?>
 						<li style="padding-bottom: 30px;" align="left">
 							<table>
 								<tbody>
-								<tr>
-									<td style="padding-bottom: 4px;">
-										<a class="montserratsemibold" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000000; font-weight: 500;" href="<?php echo $story->url; ?>">
-											<?php echo $story->link_text; ?>
-										</a>
-									</td>
-								</tr>
-								<tr><td style="padding-top: 5px;">
-									<a class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; color: #757575; text-decoration: none; text-transform: uppercase;" href="<?php echo $story->url; ?>">
-										<?php echo $story->source; ?>
-									</a>
-								</td></tr>
+									<tr>
+									<?php if( !empty( $story->source_image ) ) : ?>
+										<td style="padding-right: 10px;">
+											<img class="responsiveimg" border="0" width="50" style="border:none;" src="<?php echo $story->source_image; ?>">
+										</td>
+									<?php endif; ?>
+										<td>
+											<table>
+												<tbody>
+												<tr>
+													<td style="padding-bottom: 4px;">
+														<a class="montserratsemibold" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000000; font-weight: 500;" href="<?php echo $story->url; ?>">
+															<?php echo $story->link_text; ?>
+														</a>
+													</td>
+												</tr>
+												<tr><td style="padding-top: 3px;">
+													<a class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; color: #757575; text-decoration: none; text-transform: uppercase;" href="<?php echo $story->url; ?>">
+														<?php echo $story_source; ?>
+													</a>
+												</td></tr>
+												</tbody>
+											</table>
+
+										</td>
+									</tr>
 								</tbody>
 							</table>
 						</li>
