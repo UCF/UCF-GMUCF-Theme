@@ -56,11 +56,7 @@
 													<?php echo get_template_part( 'includes/news/mail/in-the-news' ); ?>
 												</td>
 											</tr>
-											<tr>
-												<td style="padding-top: 40px; padding-bottom: 0; padding-left: 0; padding-right: 0;">
-													<?php echo get_template_part( 'includes/news/mail/announcements' ); ?>
-												</td>
-											</tr>
+											<?php echo get_template_part( 'includes/news/mail/announcements' ); ?>
 											<?php echo get_template_part( 'includes/news/mail/footer' ); ?>
 										</tbody>
 									</table>
