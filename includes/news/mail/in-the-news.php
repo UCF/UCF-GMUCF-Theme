@@ -19,18 +19,17 @@
 					<?php
 					foreach( $external as $story ) :
 						$story_source = ( !empty( $story->source_name ) ) ? $story->source_name : $story->source;
+						$story_source_image = ( !empty( $story->source_image ) ) ? $story->source_image : THEME_IMG_URL . "/external-story-default.png";
 					?>
 						<li style="padding-bottom: 30px;" align="left">
 							<table>
 								<tbody>
 									<tr>
-									<?php if( !empty( $story->source_image ) ) : ?>
 										<td style="padding-right: 20px; vertical-align: top;" valign="top">
 											<a href="<?php echo $story->url; ?>">
-												<img border="0" width="50" style="border:none; height: auto; width: 50px;" src="<?php echo $story->source_image; ?>">
+												<img border="0" width="50" height="50" style="border:none; height: auto; width: 50px; height: 50px;" src="<?php echo $story_source_image; ?>">
 											</a>
 										</td>
-									<?php endif; ?>
 										<td>
 											<table>
 												<tbody>
