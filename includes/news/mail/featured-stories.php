@@ -22,21 +22,21 @@
 							<tbody>
 								<tr>
 									<td style="padding-left: 0; padding-right: 0;">
-										<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
 											<img class="responsiveimg" border="0" width="290" style="border:none;" src="<?php echo $image; ?>" />
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.3; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
 											<?php echo $title; ?>
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.6; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
 											<?php echo strip_tags( $description ); ?>
 										</a>
 									</td>
@@ -58,7 +58,7 @@
 	</tr>
 	<tr>
 		<td class="montserratbold" style="text-align: right; padding-top: 50px; padding-bottom: 40px; padding-right: 10px; padding-left: 10px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
-			<a href="<?php echo FEATURED_STORIES_MORE_URL; ?>">
+			<a href="<?php echo FEATURED_STORIES_MORE_URL . ANALYTICS_PARAMS; ?>">
 				More UCF Stories
 			</a>
 
