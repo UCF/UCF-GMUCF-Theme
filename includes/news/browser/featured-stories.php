@@ -58,7 +58,7 @@
 	</tr>
 	<tr>
 		<td class="montserratbold" style="text-align: right; padding-top: 50px; padding-bottom: 40px; padding-right: 10px; padding-left: 10px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
-			<a href="<?php echo FEATURED_STORIES_MORE_URL; ?>">
+			<a href="<?php echo MAIN_SITE_STORIES_MORE_URL; ?>">
 				More UCF Stories
 			</a>
 
