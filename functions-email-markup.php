@@ -221,13 +221,13 @@ function gmucf_spotlight_markup( $content ) {
  * @param array $contents Contains the GMUCF email contents.
  * @return int $count The count of the number of featured stories rows in the email content.
  */
-function gmucf_get_featured_stories_row_count( $contents ) {
+function gmucf_get_content_type_count( $contents, $layout_to_count ) {
     $count = 0;
     
     foreach ( $contents as $content ) {
         $layout = $content->gmucf_layout;
         
-        if ( $layout === 'gmucf_featured_stories_row' ) {
+        if ( $layout === $layout_to_count ) {
             $count++;
         }
     }
@@ -248,14 +248,22 @@ function gmucf_email_markup( $content ) {
     $social_share = $content->gmucf_show_social_share_buttons;
     $contents     = $content->gmucf_email_content;
 
-	$featured_stories_row_final_count = gmucf_get_featured_stories_row_count( $contents );
+    $top_story_row_count = 0;
+
+	$featured_stories_row_final_count = gmucf_get_content_type_count( $contents, 'gmucf_featured_stories_row' );
     $featured_stories_row_count       = 0;
 
     foreach ( $contents as $content ) {
         $layout = $content->gmucf_layout;
   
         if ( $layout === 'gmucf_top_story' ) {
+            $top_story_row_count++;
+
             echo gmucf_top_story_markup( $content, $social_share );
+
+            if ( $top_story_row_count === 1) {
+                echo get_template_part( 'includes/news/mail/alert' );
+            }
         }
 
         if ( $layout === 'gmucf_featured_stories_row' ) {
