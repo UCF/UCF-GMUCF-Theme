@@ -41,8 +41,8 @@
 													<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
 														<tbody>
 															<?php
-																$gmucf_content = get_gmucf_email_options_feed_values();
-																$send_date     = $gmucf_content->gmucf_email_send_date;
+															$gmucf_content = get_gmucf_email_options_feed_values();
+															$send_date     = $gmucf_content->gmucf_email_send_date;
 
 															if ( $send_date === date( 'm/d/Y' ) ) {
 																echo gmucf_email_markup( $gmucf_content );
