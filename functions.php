@@ -27,8 +27,8 @@ define('EVENTS_CALENDAR_ID', 1);
 define('EVENTS_LIMIT', !empty($theme_options['events_limit']) ? $theme_options['events_limit'] : 25);
 define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
-define('GMUCF_EMAIL_CONTENT_JSON_URL', !empty($theme_options['gmucf_email_content_url']) ? $theme_options['gmucf_email_content_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/');
-define('GMUCF_EMAIL_CONTENT_JSON_TIMEOUT', 15); //seconds
+define('GMUCF_EMAIL_OPTIONS_JSON_URL', !empty($theme_options['gmucf_email_options_url']) ? $theme_options['gmucf_email_options_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/');
+define('GMUCF_EMAIL_OPTIONS_JSON_TIMEOUT', 15); //seconds
 
 define('MAIN_SITE_STORIES_RSS_URL', !empty($theme_options['main_site_stories_url']) ? $theme_options['main_site_stories_url'] : 'https://today.ucf.edu/tag/main-site-stories/feed/');
 define('MAIN_SITE_STORIES_MORE_URL', 'https://today.ucf.edu/');
@@ -100,11 +100,11 @@ Config::$theme_settings = array(
 	),
 	'UCF Today Feeds' => array(
 		new TextField(array(
-			'name'        => 'GMUCF Email Content URL',
-			'id'          => THEME_OPTIONS_NAME.'[gmucf_email_content_url]',
-			'description' => 'URL to the UCF Today GMUCF Email Content feed. Useful for development when testing on different environments. Defaults to https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/',
+			'name'        => 'GMUCF Email Options Feed URL',
+			'id'          => THEME_OPTIONS_NAME.'[gmucf_email_options_url]',
+			'description' => 'URL to the UCF Today GMUCF Email Options feed. Useful for development when testing on different environments. Defaults to https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/',
 			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/',
-			'value'       => $theme_options['gmucf_email_content_url'],
+			'value'       => $theme_options['gmucf_email_options_url'],
 		)),
 		new TextField(array(
 			'name'        => 'Main Site Stories Feed URL',
