@@ -665,7 +665,7 @@ function get_featured_stories_details( $limit = 2 ) {
 }
 
 /**
- * Fetch announcment info from RSS feed
+ * Fetch announcement info from RSS feed
  *
  * @return array
  * @author Chris Conover
