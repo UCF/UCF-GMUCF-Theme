@@ -665,6 +665,30 @@ function get_featured_stories_details( $limit = 2 ) {
 }
 
 /**
+ * Fetch gmucf options page values
+ *
+ * @return array $gmucf_email_options Contains the data from the GMUCF Email Options feed.
+ **/
+function get_gmucf_email_options_feed_values() {
+	$gmucf_email_options = array();
+
+	$response = wp_remote_get( GMUCF_EMAIL_OPTIONS_JSON_URL, array( 'timeout' => GMUCF_EMAIL_OPTIONS_JSON_URL ) );
+
+	if ( is_array( $response ) ) {
+		$items = json_decode( wp_remote_retrieve_body( $response ) );
+
+		if ( $items ) {
+			$gmucf_email_options = $items;
+		}
+	} else {
+		$error_string = $response->error;
+		error_log( "GMUCF - get_gmucf_email_options_feed_values() - " . $error_string );
+	}
+
+	return $gmucf_email_options;
+}
+
+/**
  * Fetch announcement info from RSS feed
  *
  * @return array
