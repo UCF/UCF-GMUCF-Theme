@@ -213,13 +213,14 @@ function gmucf_spotlight_markup( $content ) {
 
 
 /**
- * Counts the number of featured stories rows that are in the 
- * GMUCF email content.
+ * Counts the number of specified content types that are in
+ * the GMUCF email content.
  * 
  * @since 2.0.0
  * @author Cadie Brown
  * @param array $contents Contains the GMUCF email contents.
- * @return int $count The count of the number of featured stories rows in the email content.
+ * @param string $layout_to_count The layout type to count. Example: 'gmucf_top_story'.
+ * @return int $count The count of the number of specified content types in the email content.
  */
 function gmucf_get_content_type_count( $contents, $layout_to_count ) {
     $count = 0;
