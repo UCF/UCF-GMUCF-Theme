@@ -1,5 +1,5 @@
 <tr>
-	<td style="padding-bottom: 10px; padding-left: 0; padding-right: 0; text-align: center;">
+	<td style="padding-bottom: 45px; padding-left: 0; padding-right: 0; text-align: center;">
 		<?php echo get_template_part( 'includes/news/mail/top-story' ); ?>
 	</td>
 </tr>

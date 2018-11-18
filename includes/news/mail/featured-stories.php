@@ -14,7 +14,7 @@
 		if( $index == $limit || $index == $total ) break;
 		if( $index > 0 && $index % 2 == 0 ) echo "</tr><tr>";
 		?>
-		<th class="columnCollapse" align="left" width="290" style="font-family: Helvetica, Arial, sans-serif; padding-left: 10px; padding-right: 10px; padding-top: 60px; padding-bottom: 0; vertical-align: top; text-align: center;">
+		<th class="columnCollapse" align="left" width="290" style="font-family: Helvetica, Arial, sans-serif; padding-left: 10px; padding-right: 10px; padding-top: 0; padding-bottom: 45px; vertical-align: top; text-align: center;">
 			<table class="tableCollapse" width="100%" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
 				<tr>
 					<td>
@@ -57,7 +57,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td class="montserratbold" style="text-align: right; padding-top: 50px; padding-bottom: 40px; padding-right: 10px; padding-left: 10px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
+		<td class="montserratbold" style="text-align: right; padding-top: 0; padding-bottom: 50px; padding-right: 10px; padding-left: 10px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
 			<a href="<?php echo FEATURED_STORIES_MORE_URL; ?>">
 				More UCF Stories
 			</a>
