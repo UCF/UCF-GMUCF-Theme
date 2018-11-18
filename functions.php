@@ -587,7 +587,7 @@ function get_top_story_details() {
 		$details['read_more_uri']     = remove_quotes(get_post_meta($top_story->ID, 'top_story_external_uri', True));
 
 	} else {
-		$rss = custom_fetch_feed(MAIN_SITE_STORIES_RSS_URL, MAIN_SITE_STORIES_TIMEOUT);
+		$rss = custom_fetch_feed( MAIN_SITE_STORIES_RSS_URL . '?thumb=gmucf_top_story', MAIN_SITE_STORIES_TIMEOUT );
 		if(!is_wp_error($rss)) {
 			$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
 			$rss_item = $rss_items[0];
@@ -618,7 +618,7 @@ function get_top_story_details() {
 }
 
 /**
- * Logic for determining top story content
+ * Logic for determining featured stories content
  *
  * @return array
  * @author Chris Conover
