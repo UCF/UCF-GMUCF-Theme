@@ -86,7 +86,7 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Weather Service URL',
 			'id'          => THEME_OPTIONS_NAME.'[weather_service_url]',
-			'description' => 'URL to the SMCA weather service used to grab weather data.  Useful for development when testing the weather service on different environments.  Defaults to weather.smca.ucf.edu (do not specify a custom feed--this is done for you.)',
+			'description' => 'URL to the SMCA weather service used to grab weather data.  Useful for development when testing the weather service on different environments.  Defaults to <code>weather.smca.ucf.edu</code> (do not specify a custom feed--this is done for you.)',
 			'default'     => 'https://weather.smca.ucf.edu/',
 			'value'       => $theme_options['weather_service_url'],
 		)),
@@ -102,14 +102,14 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'GMUCF Email Options Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[gmucf_email_options_url]',
-			'description' => 'URL to the UCF Today GMUCF Email Options feed. Useful for development when testing on different environments. Defaults to https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/',
+			'description' => 'URL to the UCF Today GMUCF Email Options feed. Useful for development when testing on different environments. Defaults to <code>https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/</code>',
 			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/',
 			'value'       => $theme_options['gmucf_email_options_url'],
 		)),
 		new TextField(array(
 			'name'        => 'Main Site Stories Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[main_site_stories_url]',
-			'description' => 'URL to the UCF Today Main Site Stories feed.  Useful for development when testing on different environments.  Defaults to https://today.ucf.edu/tag/main-site-stories/feed/',
+			'description' => 'URL to the UCF Today Main Site Stories feed.  Useful for development when testing on different environments.  Defaults to <code>https://today.ucf.edu/tag/main-site-stories/feed/</code>',
 			'default'     => 'https://today.ucf.edu/tag/main-site-stories/feed/',
 			'value'       => $theme_options['main_site_stories_url'],
 		)),
@@ -118,7 +118,7 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Announcements Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[announcements_url]',
-			'description' => 'URL to the UCF Announcements feed.  Useful for development when testing on different environments.  Defaults to https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json',
+			'description' => 'URL to the UCF Announcements feed.  Useful for development when testing on different environments.  Defaults to <code>https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json</code>',
 			'default'     => 'https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json',
 			'value'       => $theme_options['announcements_url'],
 		)),
@@ -127,7 +127,7 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'In The News JSON URL',
 			'id'          => THEME_OPTIONS_NAME.'[in_the_news_url]',
-			'description' => 'URL of the external-stories feed on UCF Today. Defaults to https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
+			'description' => 'URL of the external-stories feed on UCF Today. Defaults to <code>https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/</code>',
 			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
 			'value'       => IN_THE_NEWS_JSON_URL
 		)),
@@ -143,7 +143,7 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Events Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[events_url]',
-			'description' => 'URL to the UCF Events feed. Useful for development when testing on different environments. Defaults to https://events.ucf.edu/',
+			'description' => 'URL to the UCF Events feed. Useful for development when testing on different environments. Defaults to <code>https://events.ucf.edu/</code>',
 			'default'     => 'https://events.ucf.edu/',
 			'value'       => $theme_options['events_url'],
 		)),
