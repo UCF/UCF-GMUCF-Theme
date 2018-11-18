@@ -27,9 +27,12 @@ define('EVENTS_CALENDAR_ID', 1);
 define('EVENTS_LIMIT', !empty($theme_options['events_limit']) ? $theme_options['events_limit'] : 25);
 define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
-define('FEATURED_STORIES_RSS_URL', !empty($theme_options['featured_stories_url']) ? $theme_options['featured_stories_url'] : 'https://today.ucf.edu/tag/main-site-stories/feed/');
-define('FEATURED_STORIES_MORE_URL', 'https://today.ucf.edu/');
-define('FEATURED_STORIES_TIMEOUT', 15); // seconds
+define('GMUCF_EMAIL_CONTENT_JSON_URL', !empty($theme_options['gmucf_email_content_url']) ? $theme_options['gmucf_email_content_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/');
+define('GMUCF_EMAIL_CONTENT_JSON_TIMEOUT', 15); //seconds
+
+define('MAIN_SITE_STORIES_RSS_URL', !empty($theme_options['main_site_stories_url']) ? $theme_options['main_site_stories_url'] : 'https://today.ucf.edu/tag/main-site-stories/feed/');
+define('MAIN_SITE_STORIES_MORE_URL', 'https://today.ucf.edu/');
+define('MAIN_SITE_STORIES_TIMEOUT', 15); // seconds
 
 define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'https://www.ucf.edu/announcements/?time=thisweek&exclude_ongoing=True&format=json');
 define('ANNOUNCEMENTS_MORE_URL', 'https://www.ucf.edu/announcements/');
@@ -95,13 +98,20 @@ Config::$theme_settings = array(
 			'value'       => $theme_options['weather_service_timeout'],
 		)),
 	),
-	'UCF Today Featured Stories Feed' => array(
+	'UCF Today Feeds' => array(
 		new TextField(array(
-			'name'        => 'Featured Stories Feed URL',
-			'id'          => THEME_OPTIONS_NAME.'[featured_stories_url]',
+			'name'        => 'GMUCF Email Content URL',
+			'id'          => THEME_OPTIONS_NAME.'[gmucf_email_content_url]',
+			'description' => 'URL to the UCF Today GMUCF Email Content feed. Useful for development when testing on different environments. Defaults to https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/',
+			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/',
+			'value'       => $theme_options['gmucf_email_content_url'],
+		)),
+		new TextField(array(
+			'name'        => 'Main Site Stories Feed URL',
+			'id'          => THEME_OPTIONS_NAME.'[main_site_stories_url]',
 			'description' => 'URL to the UCF Today Main Site Stories feed.  Useful for development when testing on different environments.  Defaults to https://today.ucf.edu/tag/main-site-stories/feed/',
 			'default'     => 'https://today.ucf.edu/tag/main-site-stories/feed/',
-			'value'       => $theme_options['featured_stories_url'],
+			'value'       => $theme_options['main_site_stories_url'],
 		)),
 	),
 	'UCF Announcements Feed' => array(
