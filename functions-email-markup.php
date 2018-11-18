@@ -267,7 +267,7 @@ function gmucf_email_markup( $content ) {
                 $more_stories_link = true;
             }
 
-            echo gmucf_featured_stories_row_markup( $content->gmucf_story_row, $social_share, $more_stories_link );
+            echo gmucf_featured_stories_row_markup( $content->gmucf_featured_story_row, $social_share, $more_stories_link );
         }
 
         if ( $layout === 'gmucf_spotlight' ) {
