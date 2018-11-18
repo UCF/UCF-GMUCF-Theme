@@ -4,7 +4,7 @@ if ( count( $alerts ) > 0 ) :
 	$alert = $alerts[0];
 ?>
 	<tr>
-		<td style="padding-top: 50px; padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center;">
+		<td style="padding-top: 0px; padding-bottom: 45px; padding-left: 0; padding-right: 0; text-align: center;">
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="background-color: #ffffff; width:100%; margin:0;">
 				<tr>
 					<td style="padding-bottom: 0; padding-top: 0; padding-left: 0; padding-right: 0; border: 0;">
