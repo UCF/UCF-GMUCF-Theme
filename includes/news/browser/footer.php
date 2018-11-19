@@ -48,9 +48,3 @@
 		<a href="https://today.ucf.edu/suggest-a-story/">Suggest a Story</a> <span style="color: #aaa; font-weight: normal; padding-left: 5px; padding-right: 5px;"> | </span> <a href="https://today.ucf.edu/tell-us-what-you-think/">Tell Us What You Think</a>
 	</td>
 </tr>
-
-<tr>
-	<td class="montserratlight" style="text-align: center; padding-bottom: 20px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: #000;" align="center">
-		!@!UNSUBSCRIBE!@! from this email.
-	</td>
-</tr>

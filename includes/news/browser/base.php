@@ -21,49 +21,48 @@
             <tbody>
               <tr>
                 <td align="center" style="padding: 0;">
-					<table class="wrapperInner" width="600" align="center" style="border-spacing: 0; border-collapse: collapse;">
-						<tbody>
-							<tr>
-								<td style="padding: 0;">
-									<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
+									<table class="wrapperInner" width="600" align="center" style="border-spacing: 0; border-collapse: collapse;">
 										<tbody>
 											<tr>
-												<td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center;">
-													<?php echo get_template_part( 'includes/news/mail/header' ); ?>
+												<td style="padding: 0;">
+													<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
+														<tbody>
+															<tr>
+																<td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center;">
+																	<?php echo get_template_part( 'includes/news/browser/header' ); ?>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td style="padding: 0;">
+													<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
+														<tbody>
+															<?php
+															$gmucf_content = get_gmucf_email_options_feed_values();
+															$send_date     = $gmucf_content->gmucf_email_send_date;
+
+															if ( $send_date === date( 'm/d/Y' ) ) {
+																echo gmucf_email_markup( $gmucf_content );
+															} else {
+																echo get_template_part( 'includes/news/mail/backup-email-content' );
+															}
+															?>
+															<tr>
+																<td style="padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0;">
+																	<?php echo get_template_part( 'includes/news/mail/in-the-news' ); ?>
+																</td>
+															</tr>
+															<?php echo get_template_part( 'includes/news/mail/announcements' ); ?>
+															<?php echo get_template_part( 'includes/news/browser/footer' ); ?>
+														</tbody>
+													</table>
 												</td>
 											</tr>
 										</tbody>
 									</table>
-								</td>
-							</tr>
-							<tr>
-								<td style="padding: 0;">
-									<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
-										<tbody>
-											<tr>
-												<td style="padding-bottom: 10px; padding-left: 0; padding-right: 0; text-align: center;">
-													<?php echo get_template_part( 'includes/news/mail/top-story' ); ?>
-												</td>
-											</tr>
-											<?php echo get_template_part( 'includes/news/mail/alert' ); ?>
-											<tr>
-												<td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center;">
-													<?php echo get_template_part( 'includes/news/mail/featured-stories' ); ?>
-												</td>
-											</tr>
-											<tr>
-												<td style="padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0;">
-													<?php echo get_template_part( 'includes/news/mail/in-the-news' ); ?>
-												</td>
-											</tr>
-											<?php echo get_template_part( 'includes/news/mail/announcements' ); ?>
-											<?php echo get_template_part( 'includes/news/mail/footer' ); ?>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
                 </td>
               </tr>
             </tbody>
