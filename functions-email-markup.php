@@ -1,7 +1,7 @@
 <?php
 /**
  * Creates the markup for a row containing the given top story.
- * 
+ *
  * @since 2.0.0
  * @author Cadie Brown
  * @param object $content Contains the Top Story's content.
@@ -25,21 +25,21 @@ function gmucf_top_story_markup( $content, $social_share ) {
 							<tbody>
 								<tr>
 									<td style="padding-left: 0; padding-right: 0;">
-										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
 											<img class="responsiveimg" border="0" style="border:none;" src="<?php echo $story_image; ?>" />
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.4; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
 											<?php echo $story_title; ?>
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
 											<?php echo strip_tags( $story_description ); ?>
 										</a>
 									</td>
@@ -69,7 +69,7 @@ function gmucf_top_story_markup( $content, $social_share ) {
 
 /**
  * Creates the markup for a row containing the given two featured stories.
- * 
+ *
  * @since 2.0.0
  * @author Cadie Brown
  * @param array $content Contains the content for the two given featured stories.
@@ -115,7 +115,7 @@ function gmucf_featured_stories_row_markup( $stories, $social_share, $more_stori
 
 /**
  * Creates the markup for a single featured story.
- * 
+ *
  * @since 2.0.0
  * @author Cadie Brown
  * @param object $content Contains the content for the given featured story.
@@ -138,21 +138,21 @@ function gmucf_featured_story_markup( $content, $social_share ) {
 						<tbody>
 							<tr>
 								<td style="padding-left: 0; padding-right: 0;">
-									<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+									<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
 										<img class="responsiveimg" border="0" width="290" style="border:none;" src="<?php echo $story_image; ?>" />
 									</a>
 								</td>
 							</tr>
 							<tr>
 								<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.3; color: #000; text-align: left;" align="left">
-									<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+									<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
 										<?php echo $story_title; ?>
 									</a>
 								</td>
 							</tr>
 							<tr>
 								<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.6; color: #000; text-align: left;" align="left">
-									<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+									<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
 										<?php echo strip_tags( $story_description ); ?>
 									</a>
 								</td>
@@ -173,7 +173,7 @@ function gmucf_featured_story_markup( $content, $social_share ) {
 
 /**
  * Creates the markup for a spotlight.
- * 
+ *
  * @since 2.0.0
  * @author Cadie Brown
  * @param object $content Contains the content for the given spotlight.
@@ -195,7 +195,7 @@ function gmucf_spotlight_markup( $content ) {
 							<tbody>
 								<tr>
 									<td style="padding-left: 0; padding-right: 0;">
-										<a href="<?php echo $spotlight_link; ?>" style="color: #000; text-decoration: none;" alt="<?php echo $spotlight_alt; ?>">
+										<a href="<?php echo $spotlight_link . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;" alt="<?php echo $spotlight_alt; ?>">
 											<img class="responsiveimg" border="0" style="border:none;" src="<?php echo $spotlight_image; ?>" />
 										</a>
 									</td>
@@ -215,7 +215,7 @@ function gmucf_spotlight_markup( $content ) {
 /**
  * Counts the number of specified content types that are in
  * the GMUCF email content.
- * 
+ *
  * @since 2.0.0
  * @author Cadie Brown
  * @param array $contents Contains the GMUCF email contents.
@@ -224,10 +224,10 @@ function gmucf_spotlight_markup( $content ) {
  */
 function gmucf_get_content_type_count( $contents, $layout_to_count ) {
 	$count = 0;
-	
+
 	foreach ( $contents as $content ) {
 		$layout = $content->gmucf_layout;
-		
+
 		if ( $layout === $layout_to_count ) {
 			$count++;
 		}
@@ -240,7 +240,7 @@ function gmucf_get_content_type_count( $contents, $layout_to_count ) {
 /**
  * Loops through the given email content and echos out
  * different layouts for each type of content.
- * 
+ *
  * @since 2.0.0
  * @author Cadie Brown
  * @param array $content Contains the GMUCF Email content.
@@ -256,7 +256,7 @@ function gmucf_email_markup( $content ) {
 
 	foreach ( $contents as $content ) {
 		$layout = $content->gmucf_layout;
-  
+
 		if ( $layout === 'gmucf_top_story' ) {
 			$top_story_row_count++;
 
@@ -270,7 +270,7 @@ function gmucf_email_markup( $content ) {
 
 		if ( $layout === 'gmucf_featured_stories_row' ) {
 			$featured_stories_row_count++;
-			
+
 			// Only sets the $more_stories_link var to true if this is the last row of featured stories displayed
 			if ( $featured_stories_row_count != $featured_stories_row_final_count ) {
 				$more_stories_link = false;
