@@ -109,7 +109,7 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Main Site Stories Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[main_site_stories_url]',
-			'description' => 'URL to the UCF Today Main Site Stories feed.  Useful for development when testing on different environments.  Defaults to <code>https://today.ucf.edu/tag/main-site-stories/feed/</code>',
+			'description' => 'URL to the UCF Today Main Site Stories feed. This feed\'s content is used if the GMUCF Email Options feed\'s <code>send_date</code> value does not match today\'s date. Useful for development when testing on different environments. Defaults to <code>https://today.ucf.edu/tag/main-site-stories/feed/</code>',
 			'default'     => 'https://today.ucf.edu/tag/main-site-stories/feed/',
 			'value'       => $theme_options['main_site_stories_url'],
 		)),
