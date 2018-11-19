@@ -77,7 +77,7 @@ function gmucf_top_story_markup( $content, $social_share ) {
  * @param bool $more_stories_link Used to display the 'More UCF Stories' link if true.
  * @return string The HTML for the two featured stories in a row.
  */
-function gmucf_featured_stories_row_markup( $content, $social_share, $more_stories_link ) {
+function gmucf_featured_stories_row_markup( $stories, $social_share, $more_stories_link ) {
 	ob_start();
 ?>
 	<tr>
@@ -88,7 +88,7 @@ function gmucf_featured_stories_row_markup( $content, $social_share, $more_stori
 						<table align="center" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
 							<tbody>
 								<tr>
-									<?php foreach ( $content as $story ) {
+									<?php foreach ( $stories as $story ) {
 										echo gmucf_featured_story_markup( $story, $social_share );
 									} ?>
 								</tr>
@@ -262,6 +262,7 @@ function gmucf_email_markup( $content ) {
 
 			echo gmucf_top_story_markup( $content, $social_share );
 
+			// The alert is always displayed after the first top story
 			if ( $top_story_row_count === 1) {
 				echo get_template_part( 'includes/news/mail/alert' );
 			}
@@ -270,6 +271,7 @@ function gmucf_email_markup( $content ) {
 		if ( $layout === 'gmucf_featured_stories_row' ) {
 			$featured_stories_row_count++;
 			
+			// Only sets the $more_stories_link var to true if this is the last row of featured stories displayed
 			if ( $featured_stories_row_count != $featured_stories_row_final_count ) {
 				$more_stories_link = false;
 			} else {
