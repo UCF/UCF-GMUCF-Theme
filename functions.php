@@ -673,7 +673,7 @@ function get_featured_stories_details( $limit = 2 ) {
 function get_gmucf_email_options_feed_values() {
 	$gmucf_email_options = array();
 
-	$response = wp_remote_get( GMUCF_EMAIL_OPTIONS_JSON_URL, array( 'timeout' => GMUCF_EMAIL_OPTIONS_JSON_URL ) );
+	$response = wp_remote_get( GMUCF_EMAIL_OPTIONS_JSON_URL . '?' . time(), array( 'timeout' => GMUCF_EMAIL_OPTIONS_JSON_URL ) );
 
 	if ( is_array( $response ) ) {
 		$items = json_decode( wp_remote_retrieve_body( $response ) );
