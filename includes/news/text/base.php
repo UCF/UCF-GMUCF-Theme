@@ -2,8 +2,8 @@
 UCF TODAY
 <?php echo date( 'l, F j, Y' ) ?>
 
-<?php 
-$weather = get_weather( 'weather-today' ); 
+<?php
+$weather = get_weather( 'weather-today' );
 if ( !empty( $weather ) ) : ?>
 High: <?php echo $weather['today']['tempN']; ?> Low: <?php echo $weather['tonight']['tempN'] ?>
 <?php endif; ?>
@@ -25,13 +25,14 @@ if ( $send_date === date( 'm/d/Y' ) ) {
 UCF IN THE NEWS
 ========================
 <?php foreach( get_in_the_news_stories() as $story ) : ?>
-- <?php echo strip_tags( $story->link_text ); ?> (<?php echo trim( strip_tags( $story->source ) ); ?>)
+- <?php echo strip_tags( $story->link_text ); ?> <?php if ( !empty( $story->source ) ) : ?>(<?php echo trim( strip_tags( $story->source ) ); ?>)<?php endif; ?>
+
   <?php echo $story->url; ?>
 
 
 <?php endforeach; ?>
 
-<?php 
+<?php
 $announcements = get_announcement_details();
 
 if ( count( $announcements ) != 0 ) :
