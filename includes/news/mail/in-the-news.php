@@ -64,7 +64,7 @@
 		</tr>
 		<tr>
 			<td class="montserratbold" style="text-align: right; padding-top: 20px; padding-bottom: 40px; padding-right: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
-				<a href="<?php echo IN_THE_NEWS_MORE_URL; ?>">
+				<a href="<?php echo IN_THE_NEWS_MORE_URL . ANALYTICS_PARAMS; ?>">
 					More UCF In The News
 				</a>
 			</td>

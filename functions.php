@@ -15,6 +15,7 @@ define('THEME_CSS_URL', THEME_STATIC_URL.'/css');
 define('THEME_OPTIONS_GROUP', 'settings');
 define('THEME_OPTIONS_NAME', 'theme');
 define('THEME_OPTIONS_PAGE_TITLE', 'Theme Options');
+define('ANALYTICS_PARAMS', '?utm_source=gmucf&utm_medium=email&utm_campaign=' . date("Y-m-d"));
 
 $theme_options = get_option( THEME_OPTIONS_NAME );
 
