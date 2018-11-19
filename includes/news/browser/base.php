@@ -47,7 +47,7 @@
 															if ( $send_date === date( 'm/d/Y' ) ) {
 																echo gmucf_email_markup( $gmucf_content );
 															} else {
-																echo get_template_part( 'includes/news/mail/backup-email-content' );
+																echo get_template_part( 'includes/news/mail/backup/email-content' );
 															}
 															?>
 															<tr>
