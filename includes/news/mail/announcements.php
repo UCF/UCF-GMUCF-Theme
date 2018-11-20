@@ -42,7 +42,7 @@ if ( count( $announcements ) != 0 ) :
 
 				<tr>
 					<td class="montserratbold" style="text-align: right; padding-top: 20px; padding-bottom: 40px; padding-right: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
-						<a href="<?php echo ANNOUNCEMENTS_MORE_URL; ?>">
+						<a href="<?php echo ANNOUNCEMENTS_MORE_URL . ANALYTICS_PARAMS; ?>">
 							More Announcements
 						</a>
 					</td>
