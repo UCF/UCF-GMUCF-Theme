@@ -15,6 +15,7 @@ define('THEME_CSS_URL', THEME_STATIC_URL.'/css');
 define('THEME_OPTIONS_GROUP', 'settings');
 define('THEME_OPTIONS_NAME', 'theme');
 define('THEME_OPTIONS_PAGE_TITLE', 'Theme Options');
+define('ANALYTICS_PARAMS', '?utm_source=gmucf&utm_medium=email&utm_campaign=' . date("Y-m-d"));
 
 $theme_options = get_option( THEME_OPTIONS_NAME );
 
@@ -27,9 +28,12 @@ define('EVENTS_CALENDAR_ID', 1);
 define('EVENTS_LIMIT', !empty($theme_options['events_limit']) ? $theme_options['events_limit'] : 25);
 define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
-define('FEATURED_STORIES_RSS_URL', !empty($theme_options['featured_stories_url']) ? $theme_options['featured_stories_url'] : 'https://today.ucf.edu/tag/main-site-stories/feed/');
-define('FEATURED_STORIES_MORE_URL', 'https://today.ucf.edu/');
-define('FEATURED_STORIES_TIMEOUT', 15); // seconds
+define('GMUCF_EMAIL_OPTIONS_JSON_URL', !empty($theme_options['gmucf_email_options_url']) ? $theme_options['gmucf_email_options_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/');
+define('GMUCF_EMAIL_OPTIONS_JSON_TIMEOUT', 15); //seconds
+
+define('MAIN_SITE_STORIES_RSS_URL', !empty($theme_options['main_site_stories_url']) ? $theme_options['main_site_stories_url'] : 'https://today.ucf.edu/tag/main-site-stories/feed/');
+define('MAIN_SITE_STORIES_MORE_URL', 'https://today.ucf.edu/');
+define('MAIN_SITE_STORIES_TIMEOUT', 15); // seconds
 
 define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'https://www.ucf.edu/announcements/?time=thisweek&exclude_ongoing=True&format=json');
 define('ANNOUNCEMENTS_MORE_URL', 'https://www.ucf.edu/announcements/');
@@ -56,10 +60,11 @@ define('HTTP_TIMEOUT', 5); //seconds
 # Custom Image Sizes
 add_image_size('top_story', 600, 308, True);
 
-require_once('functions-base.php');     # Base theme functions
-require_once('custom-post-types.php');  # Where per theme post types are defined
-require_once('shortcodes.php');         # Per theme shortcodes
-require_once('functions-admin.php');    # Admin/login functions
+require_once('functions-base.php');         # Base theme functions
+require_once('custom-post-types.php');      # Where per theme post types are defined
+require_once('shortcodes.php');             # Per theme shortcodes
+require_once('functions-admin.php');        # Admin/login functions
+require_once('functions-email-markup.php'); # Email layout functions
 
 
 /**
@@ -82,7 +87,7 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Weather Service URL',
 			'id'          => THEME_OPTIONS_NAME.'[weather_service_url]',
-			'description' => 'URL to the SMCA weather service used to grab weather data.  Useful for development when testing the weather service on different environments.  Defaults to weather.smca.ucf.edu (do not specify a custom feed--this is done for you.)',
+			'description' => 'URL to the SMCA weather service used to grab weather data.  Useful for development when testing the weather service on different environments.  Defaults to <code>weather.smca.ucf.edu</code> (do not specify a custom feed--this is done for you.)',
 			'default'     => 'https://weather.smca.ucf.edu/',
 			'value'       => $theme_options['weather_service_url'],
 		)),
@@ -94,20 +99,27 @@ Config::$theme_settings = array(
 			'value'       => $theme_options['weather_service_timeout'],
 		)),
 	),
-	'UCF Today Featured Stories Feed' => array(
+	'UCF Today Feeds' => array(
 		new TextField(array(
-			'name'        => 'Featured Stories Feed URL',
-			'id'          => THEME_OPTIONS_NAME.'[featured_stories_url]',
-			'description' => 'URL to the UCF Today Main Site Stories feed.  Useful for development when testing on different environments.  Defaults to https://today.ucf.edu/tag/main-site-stories/feed/',
+			'name'        => 'GMUCF Email Options Feed URL',
+			'id'          => THEME_OPTIONS_NAME.'[gmucf_email_options_url]',
+			'description' => 'URL to the UCF Today GMUCF Email Options feed. Useful for development when testing on different environments. Defaults to <code>https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/</code>',
+			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/',
+			'value'       => $theme_options['gmucf_email_options_url'],
+		)),
+		new TextField(array(
+			'name'        => 'Main Site Stories Feed URL',
+			'id'          => THEME_OPTIONS_NAME.'[main_site_stories_url]',
+			'description' => 'URL to the UCF Today Main Site Stories feed. This feed\'s content is used if the GMUCF Email Options feed\'s <code>send_date</code> value does not match today\'s date. Useful for development when testing on different environments. Defaults to <code>https://today.ucf.edu/tag/main-site-stories/feed/</code>',
 			'default'     => 'https://today.ucf.edu/tag/main-site-stories/feed/',
-			'value'       => $theme_options['featured_stories_url'],
+			'value'       => $theme_options['main_site_stories_url'],
 		)),
 	),
 	'UCF Announcements Feed' => array(
 		new TextField(array(
 			'name'        => 'Announcements Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[announcements_url]',
-			'description' => 'URL to the UCF Announcements feed.  Useful for development when testing on different environments.  Defaults to https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json',
+			'description' => 'URL to the UCF Announcements feed.  Useful for development when testing on different environments.  Defaults to <code>https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json</code>',
 			'default'     => 'https://www.ucf.edu/announcements/api/announcements/?time=this-week&exclude_ongoing=True&format=json',
 			'value'       => $theme_options['announcements_url'],
 		)),
@@ -116,7 +128,7 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'In The News JSON URL',
 			'id'          => THEME_OPTIONS_NAME.'[in_the_news_url]',
-			'description' => 'URL of the external-stories feed on UCF Today. Defaults to https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
+			'description' => 'URL of the external-stories feed on UCF Today. Defaults to <code>https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/</code>',
 			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
 			'value'       => IN_THE_NEWS_JSON_URL
 		)),
@@ -132,7 +144,7 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Events Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[events_url]',
-			'description' => 'URL to the UCF Events feed. Useful for development when testing on different environments. Defaults to https://events.ucf.edu/',
+			'description' => 'URL to the UCF Events feed. Useful for development when testing on different environments. Defaults to <code>https://events.ucf.edu/</code>',
 			'default'     => 'https://events.ucf.edu/',
 			'value'       => $theme_options['events_url'],
 		)),
@@ -576,7 +588,7 @@ function get_top_story_details() {
 		$details['read_more_uri']     = remove_quotes(get_post_meta($top_story->ID, 'top_story_external_uri', True));
 
 	} else {
-		$rss = custom_fetch_feed(FEATURED_STORIES_RSS_URL.'?thumb=gmucf_top_story', FEATURED_STORIES_TIMEOUT);
+		$rss = custom_fetch_feed( MAIN_SITE_STORIES_RSS_URL . '?thumb=gmucf_top_story', MAIN_SITE_STORIES_TIMEOUT );
 		if(!is_wp_error($rss)) {
 			$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
 			$rss_item = $rss_items[0];
@@ -607,7 +619,7 @@ function get_top_story_details() {
 }
 
 /**
- * Logic for determining top story content
+ * Logic for determining featured stories content
  *
  * @return array
  * @author Chris Conover
@@ -615,7 +627,7 @@ function get_top_story_details() {
 function get_featured_stories_details( $limit = 2 ) {
 	$stories = array();
 
-	$rss = custom_fetch_feed( FEATURED_STORIES_RSS_URL.'?thumb=gmucf_featured_story', FEATURED_STORIES_TIMEOUT );
+	$rss = custom_fetch_feed( MAIN_SITE_STORIES_RSS_URL.'?thumb=gmucf_featured_story', MAIN_SITE_STORIES_TIMEOUT );
 
 	if( !is_wp_error( $rss ) ) {
 		$rss_items = $rss->get_items( 0, $rss->get_item_quantity( 15 ) );
@@ -654,7 +666,31 @@ function get_featured_stories_details( $limit = 2 ) {
 }
 
 /**
- * Fetch announcment info from RSS feed
+ * Fetch gmucf options page values
+ *
+ * @return array $gmucf_email_options Contains the data from the GMUCF Email Options feed.
+ **/
+function get_gmucf_email_options_feed_values() {
+	$gmucf_email_options = array();
+
+	$response = wp_remote_get( GMUCF_EMAIL_OPTIONS_JSON_URL . '?' . time(), array( 'timeout' => GMUCF_EMAIL_OPTIONS_JSON_URL ) );
+
+	if ( is_array( $response ) ) {
+		$items = json_decode( wp_remote_retrieve_body( $response ) );
+
+		if ( $items ) {
+			$gmucf_email_options = $items;
+		}
+	} else {
+		$error_string = $response->error;
+		error_log( "GMUCF - get_gmucf_email_options_feed_values() - " . $error_string );
+	}
+
+	return $gmucf_email_options;
+}
+
+/**
+ * Fetch announcement info from RSS feed
  *
  * @return array
  * @author Chris Conover
@@ -1004,9 +1040,7 @@ function gmucf_template_redirect() {
 
 		# Most to least specific
 		$mapping = array(
-			'news/v2/'             => create_function('', 'display_gmucf_template(\'includes/news/v2/mail/base\');'),
 			'news/mail/'           => create_function('', 'display_gmucf_template(\'includes/news/mail/base\');'),
-			'news/text/v2/'        => create_function('', 'display_gmucf_template(\'includes/news/v2/text/base\');'),
 			'news/text/'           => create_function('', 'display_gmucf_template(\'includes/news/text/base\');'),
 			'news/'                => create_function('', 'display_gmucf_template(\'includes/news/browser/base\');'),
 			'events/weekday/mail/' => create_function('', '$_GET[\'edition\'] = \'weekday\';display_gmucf_template(\'includes/events/mail/base\');'),
