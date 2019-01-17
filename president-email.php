@@ -1,8 +1,8 @@
 <?php
 /*
  * Template Name: President Email
- * description: >-
-  Template to be used with the president emails.
+ * Template Post Type: page
+ * Description: Template to be used with the president emails.
  */
 ?>
 
