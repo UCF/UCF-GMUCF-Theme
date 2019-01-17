@@ -1,8 +1,8 @@
 <?php
 /*
- * Template Name: President Email
+ * Template Name: Provost Email
  * Template Post Type: page
- * Description: Template used to create a president email.
+ * Description: Template used to create a provost email.
  */
 ?>
 
@@ -14,7 +14,7 @@
 <?php get_template_part( 'includes/email-templates/header' ); ?>
 
 <table class="tcollapse100" width="564" border="0" align="center">
-  <tbody>
+  <tbody></tbody>
   <tr>
     <td class="montserratbold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 35px; font-weight: bold; padding-top: 20px; padding-bottom: 30px; line-height: 1.1; color: #000; text-align: left;" align="left">
     <?php the_title(); ?>
@@ -38,4 +38,4 @@
   </tbody>
 </table>
 
-<?php get_template_part( 'includes/email-templates/president/signature' ); ?>
+<?php get_template_part( 'includes/email-templates/provost/signature' ); ?>
