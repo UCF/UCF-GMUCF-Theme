@@ -289,13 +289,17 @@ function gmucf_email_markup( $content ) {
 
 
 /**
- * Convert paragraphs into email friendly tables
+ * Filter to convert content paragraphs into email friendly tables
  *
  * @since 2.1.0
  * @author RJ Bruneel
- * @param array $content Contains the email content.
  */
-function convert_email_markup( $content ) {
+add_filter( 'the_content', 'convert_content_to_email_markup' );
+
+function convert_content_to_email_markup( $content ) {
+	if ( ! is_page_template( 'president-email.php' ) && ! is_page_template( 'provost-email.php' ) ) {
+		return $content;
+	}
 
 	$table_open = '
 		<table class="paragraphtable" style="width: 100%;">

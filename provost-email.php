@@ -8,13 +8,12 @@
 
 <?php
   the_post();
-  $content = apply_filters( 'the_content', get_the_content() );
 ?>
 
 <?php get_template_part( 'includes/email-templates/header' ); ?>
 
 <table class="tcollapse100" width="564" border="0" align="center">
-  <tbody></tbody>
+  <tbody>
   <tr>
     <td class="montserratbold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 35px; font-weight: bold; padding-top: 20px; padding-bottom: 30px; line-height: 1.1; color: #000; text-align: left;" align="left">
     <?php the_title(); ?>
@@ -26,9 +25,7 @@
       <tbody>
       <tr>
         <td class="ccollapse100" style="font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.5;">
-        <?php
-          echo convert_email_markup( $content );
-        ?>
+          <?php the_content(); ?>
         </td>
       </tr>
       </tbody>

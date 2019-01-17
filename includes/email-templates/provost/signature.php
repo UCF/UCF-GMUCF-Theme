@@ -32,6 +32,10 @@
   </tr>
   </tbody>
 </table>
-<?php wp_footer(); ?>
+<?php
+if (current_user_can('administrator') || current_user_can('editor')) {
+  wp_footer();
+}
+?>
 </body>
 </html>
