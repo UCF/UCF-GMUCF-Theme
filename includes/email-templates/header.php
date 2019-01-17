@@ -13,20 +13,6 @@
   </title>
 
   <?php get_template_part( 'includes/email-templates/css' ); ?>
-
-  <?php if ( is_admin_bar_showing() ) : ?>
-  <style>
-    body {
-      margin-top: 46px;
-    }
-
-    @media (min-width: 783px) {
-      body {
-        margin-top: 30px;
-      }
-    }
-  </style>
-  <?php endif; ?>
 </head>
 
 <body>

@@ -301,17 +301,23 @@ function convert_content_to_email_markup( $content ) {
 		return $content;
 	}
 
-	$table_open = '
+	ob_start();
+	?>
 		<table class="paragraphtable" style="width: 100%;">
 			<tbody>
 				<tr>
-					<td class="montserratlight" style="width: 100%; font-family: Helvetica, Arial, sans-serif; padding: 0px 0px 16px 0px; margin: 0;">';
+					<td class="montserratlight" style="width: 100%; font-family: Helvetica, Arial, sans-serif; padding: 0px 0px 16px 0px; margin: 0;">
+	<?php
+	$table_open = ob_get_clean();
 
-	$table_close = '
-		</td>
-			</tr>
-				</tbody>
-					</table>';
+	ob_start();
+	?>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	<?php
+	$table_close = ob_get_clean();
 
 	$content = str_replace( "<p>", $table_open, $content );
 
