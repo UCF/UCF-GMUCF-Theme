@@ -319,8 +319,9 @@ function convert_content_to_email_markup( $content ) {
 	<?php
 	$table_close = ob_get_clean();
 
-	$content = str_replace( "<p>", $table_open, $content );
+	$content = preg_replace('/<p[^>]*>/', $table_open, $content);
+	$content = preg_replace('/<\/p>/', $table_close, $content);
 
-	return str_replace( "</p>", $table_close, $content );
+	return $content;
 }
 ?>
