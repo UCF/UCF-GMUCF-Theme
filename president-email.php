@@ -6,7 +6,10 @@
  */
 ?>
 
-<?php the_post();?>
+<?php
+	the_post();
+	$content = apply_filters( 'the_content', get_the_content() );
+?>
 
 <?php get_template_part( 'includes/email-templates/header' ); ?>
 
@@ -23,7 +26,9 @@
           <tbody>
             <tr>
               <td class="ccollapse100" style="font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.5;">
-                <?php the_content();?>
+				<?php
+					echo convert_email_markup( $content );
+				?>
               </td>
             </tr>
           </tbody>

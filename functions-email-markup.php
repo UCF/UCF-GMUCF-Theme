@@ -286,3 +286,31 @@ function gmucf_email_markup( $content ) {
 		}
 	}
 }
+
+
+/**
+ * Convert paragraphs into email friendly tables
+ *
+ * @since 2.1.0
+ * @author RJ Bruneel
+ * @param array $content Contains the email content.
+ */
+function convert_email_markup( $content ) {
+
+	$table_open = '
+		<table class="paragraphtable" style="width: 100%;">
+			<tbody>
+				<tr>
+					<td class="montserratlight" style="width: 100%; font-family: Helvetica, Arial, sans-serif; padding: 0px 0px 16px 0px; margin: 0;">';
+
+	$table_close = '
+		</td>
+			</tr>
+				</tbody>
+					</table>';
+
+	$content = str_replace( "<p>", $table_open, $content );
+
+	return str_replace( "</p>", $table_close, $content );
+}
+?>
