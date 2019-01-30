@@ -362,7 +362,7 @@ function display_events($events) {
 					<?php echo esc_html($event->title); ?>
 				</a>
 			</li>
-		<?
+		<?php
 			$count++;
 		endforeach;
 		?>
