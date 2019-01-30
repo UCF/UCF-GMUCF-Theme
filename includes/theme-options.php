@@ -1,49 +1,49 @@
-<?php 
+<?php
 	# Check for settings updated or updated, varies between wp versions
-	$updated = (bool)($_GET['settings-updated'] or $_GET['updated']);
+	$updated = ( bool ) ( ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] === 'true' ) || ( isset( $_GET['updated'] ) && $_GET['updated'] === 'true' ) );
 ?>
 
 <form method="post" action="options.php" id="theme-options">
 	<div class="wrap">
-		<h2><?=__(THEME_OPTIONS_PAGE_TITLE)?></h2>
-		
-		<?php if ($updated):?>
-		<div class="updated fade"><p><strong><?=__( 'Options saved' ); ?></strong></p></div>
+		<h2><?php echo __( THEME_OPTIONS_PAGE_TITLE ); ?></h2>
+
+		<?php if ( $updated ): ?>
+		<div class="updated fade"><p><strong><?php echo __( 'Options saved' ); ?></strong></p></div>
 		<?php endif; ?>
-		
-		<?php settings_fields(THEME_OPTIONS_GROUP);?>
+
+		<?php settings_fields( THEME_OPTIONS_GROUP ); ?>
 		<table class="form-table">
-			<?php foreach(Config::$theme_settings as $key=>$setting):?>
-			<?php if(is_array($setting)): $section = $setting;?>
+			<?php foreach( Config::$theme_settings as $key => $setting): ?>
+			<?php if( is_array( $setting ) ): $section = $setting; ?>
 			<tr class="section">
 				<td colspan="2">
-					<h3><?=$key?></h3>
+					<h3><?php echo $key; ?></h3>
 					<table class="form-table">
-						<?php foreach($section as $setting):?>
-						<tr valign="top">
-							<th scope="row"><?=$setting->label_html()?></th>
+						<?php foreach( $section as $setting ): ?>
+						<tr>
+							<th scope="row"><?php echo $setting->label_html(); ?></th>
 							<td class="field">
-								<?=$setting->input_html()?>
-								<?=$setting->description_html()?>
+								<?php echo $setting->input_html(); ?>
+								<?php echo $setting->description_html(); ?>
 							</td>
 						</tr>
-						<?php endforeach;?>
+						<?php endforeach; ?>
 					</table>
 				</td>
 			</tr>
 			<?php else:?>
-			<tr valign="top">
-				<th scope="row"><?=$setting->label_html()?></th>
+			<tr>
+				<th scope="row"><?php echo $setting->label_html(); ?></th>
 				<td class="field">
-					<?=$setting->input_html()?>
-					<?=$setting->description_html()?>
+					<?php echo $setting->input_html(); ?>
+					<?php echo $setting->description_html(); ?>
 				</td>
 			</tr>
-			<?php endif;?>
-			<?php endforeach;?>
+			<?php endif; ?>
+			<?php endforeach; ?>
 		</table>
 		<div class="submit">
-			<input type="submit" class="button-primary" value="<?= __('Save Options')?>" />
+			<input type="submit" class="button-primary" value="<?php echo  __('Save Options'); ?>" />
 		</div>
 	</div>
 </form>

@@ -62,7 +62,6 @@ add_image_size('top_story', 600, 308, True);
 
 require_once('functions-base.php');         # Base theme functions
 require_once('custom-post-types.php');      # Where per theme post types are defined
-require_once('shortcodes.php');             # Per theme shortcodes
 require_once('functions-admin.php');        # Admin/login functions
 require_once('functions-email-markup.php'); # Email layout functions
 
@@ -105,14 +104,14 @@ Config::$theme_settings = array(
 			'id'          => THEME_OPTIONS_NAME.'[gmucf_email_options_url]',
 			'description' => 'URL to the UCF Today GMUCF Email Options feed. Useful for development when testing on different environments. Defaults to <code>https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/</code>',
 			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/',
-			'value'       => $theme_options['gmucf_email_options_url'],
+			'value'       => GMUCF_EMAIL_OPTIONS_JSON_URL,
 		)),
 		new TextField(array(
 			'name'        => 'Main Site Stories Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[main_site_stories_url]',
 			'description' => 'URL to the UCF Today Main Site Stories feed. This feed\'s content is used if the GMUCF Email Options feed\'s <code>send_date</code> value does not match today\'s date. Useful for development when testing on different environments. Defaults to <code>https://today.ucf.edu/tag/main-site-stories/feed/</code>',
 			'default'     => 'https://today.ucf.edu/tag/main-site-stories/feed/',
-			'value'       => $theme_options['main_site_stories_url'],
+			'value'       => MAIN_SITE_STORIES_RSS_URL,
 		)),
 	),
 	'UCF Announcements Feed' => array(
@@ -164,13 +163,9 @@ Config::$links = array(
 );
 
 Config::$styles = array(
-	array('admin' => True, 'src' => THEME_CSS_URL.'/admin.css',),
 	'https://universityheader.ucf.edu/bar/css/bar.css',
-	THEME_CSS_URL.'/jquery.css',
-	THEME_CSS_URL.'/yahoo.css',
 	THEME_CSS_URL.'/blueprint-screen.css',
 	array('media' => 'print', 'src' => THEME_CSS_URL.'/blueprint-print.css',),
-	THEME_CSS_URL.'/webcom-base.css',
 	get_bloginfo('stylesheet_url'),
 );
 
@@ -178,9 +173,6 @@ Config::$scripts = array(
 	array('admin' => True, 'src' => THEME_JS_URL.'/admin.js',),
 	'https://universityheader.ucf.edu/bar/js/university-header.js',
 	array('name' => 'jquery', 'src' => 'https://code.jquery.com/jquery-1.6.1.min.js',),
-	THEME_JS_URL.'/jquery-extras.js',
-	array('name' => 'base-script',  'src' => THEME_JS_URL.'/webcom-base.js',),
-	array('name' => 'theme-script', 'src' => THEME_JS_URL.'/script.js',),
 );
 
 Config::$metas = array(
@@ -234,7 +226,7 @@ function custom_fetch_feed( $url, $timeout=10 ) {
 	$rss = fetch_feed( $url );
 
 	if ( is_wp_error( $rss ) ) : // Checks that the object is created correctly
-		return new WP_Error( 'simplepie-error', $rss->error() );
+		return new WP_Error( 'simplepie-error', $rss->get_error_message() );
 	endif;
 
 	return $rss;
