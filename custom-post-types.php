@@ -280,7 +280,7 @@ class Example extends CustomPostType{
 	public function fields(){
 		return array(
 			array(
-				'name'  => 'Helpy Help',
+				'name'  => 'Help',
 				'desc'  => 'Help Example, static content to assist the nice users.',
 				'id'    => $this->options('name').'_help',
 				'type'  => 'help',
@@ -366,6 +366,7 @@ class Alert extends CustomPostType{
 				'desc'  => 'If this is field is not empty, a link with the title `Click here for more information` and pointing to this URI will be displayed at the bottom of the alert box.',
 				'id'    => $this->options('name').'_external_uri',
 				'type'  => 'text',
+				'std'   => '',
 			),
 		);
 	}
@@ -414,6 +415,7 @@ class TopStory extends CustomPostType {
 				'desc'  => 'If not empty, a link with the title `Read More` and pointing to this URI will be displayed at the end of the story description.',
 				'id'    => $this->options('name').'_external_uri',
 				'type'  => 'text',
+				'std'   => MAIN_SITE_STORIES_MORE_URL,
 			),
 		);
 	}
