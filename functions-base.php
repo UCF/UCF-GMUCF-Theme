@@ -206,7 +206,7 @@ class TextField extends Field{
 	function input_html(){
 		ob_start();
 		?>
-		<input type="<?=$this->type_attr?>" id="<?=htmlentities($this->id)?>" name="<?=htmlentities($this->id)?>" value="<?=htmlentities($this->value)?>" />
+		<input type="<?php echo $this->type_attr; ?>" class="large-text" id="<?php echo htmlentities($this->id); ?>" name="<?php echo htmlentities($this->id); ?>" value="<?php echo htmlentities($this->value); ?>" />
 		<?php
 		return ob_get_clean();
 	}
@@ -403,10 +403,6 @@ function cleanup($content){
 	$content = preg_replace('/^<br \/>/i', '', $content);
 	$content = preg_replace('/<br \/>$/i', '', $content);
 
-	#Remove paragraph and linebreak tags wrapped around shortcodes
-	$content = preg_replace('/(<p>|<br \/>)\[/i', '[', $content);
-	$content = preg_replace('/\](<\/p>|<br \/>)/i', ']', $content);
-
 	#Remove empty paragraphs
 	$content = preg_replace('/<p><\/p>/i', '', $content);
 
@@ -553,116 +549,6 @@ function sc_object_list($attr, $default_content=null, $sort_func=null){
 
 
 /**
- * Creates an array of shortcodes mapped to a documentation string for that
- * shortcode.  Used to generate the auto shortcode documentation.
- *
- * @return array
- * @author Jared Lang
- **/
-function shortcodes(){
-	$file = file_get_contents(THEME_DIR.'/shortcodes.php');
-
-	$documentation = "\/\*\*(?P<documentation>.*?)\*\*\/";
-	$declaration   = "function[\s]+(?P<declaration>[^\(]+)";
-
-	# Auto generated shortcode documentation.
-	$codes = array();
-	$auto  = array_filter(installed_custom_post_types(), create_function('$c', '
-		return $c->options("use_shortcode");
-	'));
-	foreach($auto as $code){
-		$scode  = $code->options('name').'-list';
-		$plural = $code->options('plural_name');
-		$doc = <<<DOC
- Outputs a list of {$plural} filtered by arbitrary taxonomies, for example a tag
-or category.  A default output for when no objects matching the criteria are
-found.
-
- Example:
- # Output a maximum of 5 items tagged foo or bar, with a default output.
- [{$scode} tags="foo bar" limit="5"]No {$plural} were found.[/{$scode}]
-
- # Output all objects categorized as foo
- [{$scode} categories="foo"]
-
- # Output all objects matching the terms in the custom taxonomy named foo
- [{$scode} foo="term list example"]
-
- # Outputs all objects found categorized as staff and tagged as small.
- [{$scode} limit="5" join="and" categories="staff" tags="small"]
-DOC;
-		$codes[] = array(
-			'documentation' => $doc,
-			'shortcode'     => $scode,
-		);
-	}
-
-	# Defined shortcode documentation
-	$found = preg_match_all("/{$documentation}\s*{$declaration}/is", $file, $matches);
-	if ($found){
-		foreach ($matches['declaration'] as $key=>$match){
-			$codes[$match]['documentation'] = $matches['documentation'][$key];
-			$codes[$match]['shortcode']     = str_replace(
-				array('sc_', '_',),
-				array('', '-',),
-				$matches['declaration'][$key]
-			);
-		}
-	}
-	return $codes;
-}
-
-
-/**
- * Creates the shortcode help section in admin screens for custom and built-in
- * post types.
- *
- * @return void
- * @author Jared Lang
- **/
-function admin_help(){
-	global $post;
-	$shortcodes = shortcodes();
-	switch($post->post_title){
-		default:
-			?>
-			<ul class="shortcode-list">
-				<?php foreach($shortcodes as $sc):?>
-				<li class="shortcode">
-					<div class="name"><?=$sc['shortcode']?></div>
-					<div class="documentation">
-						<?=nl2br(trim(
-							str_replace(
-								array(' *'),
-								array(''),
-								htmlentities($sc['documentation'])
-							)
-						))?>
-					</div>
-				</li>
-				<?php endforeach;?>
-			</ul>
-			<?php
-			break;
-	}
-}
-
-
-/**
- * Creates the help meta box used for the admin shortcode documentation, and
- * registers the admin_help callback for output.
- *
- * @return void
- * @author Jared Lang
- **/
-function admin_meta_boxes(){
-	global $post;
-	add_meta_box('page-help', 'Shortcode Help', 'admin_help', 'page', 'normal', 'high');
-}
-add_action('admin_init', 'admin_meta_boxes');
-
-
-/**
  * Returns true if the current request is on the login screen.
  *
  * @return boolean
@@ -769,35 +655,6 @@ function __shutdown__(){
 add_action('shutdown', '__shutdown__');
 
 
-/**
- * Modifies the default stylesheets associated with the TinyMCE editor.
- *
- * @return string
- * @author Jared Lang
- **/
-function editor_styles($css){
-	$css   = array_map('trim', explode(',', $css));
-	$css[] = THEME_CSS_URL.'/formatting.css';
-	$css   = implode(',', $css);
-	return $css;
-}
-add_filter('mce_css', 'editor_styles');
-
-
-/**
- * Edits second row of buttons in tinyMCE editor. Removing/adding actions
- *
- * @return array
- * @author Jared Lang
- **/
-function editor_format_options($row){
-	$found = array_search('underline', $row);
-	if (False !== $found){
-		unset($row[$found]);
-	}
-	return $row;
-}
-add_filter('mce_buttons_2', 'editor_format_options');
 
 /**
  * Remove paragraph tag from excerpts
@@ -1276,23 +1133,52 @@ add_action('do_meta_boxes', 'register_meta_boxes');
 
 
 /**
+ * Returns a custom post type's metabox data.
+ **/
+function get_post_meta_box( $post_id ) {
+	$meta_box = null;
+	foreach ( installed_custom_post_types() as $custom_post_type ) {
+		if ( post_type( $post_id ) == $custom_post_type->options( 'name' ) ) {
+			$meta_box = $custom_post_type->metabox();
+			break;
+		}
+	}
+	return $meta_box;
+}
+
+
+/**
  * Saves the data for a given post type
  *
  * @return void
  * @author Jared Lang
  **/
-function save_meta_data($post){
-	#Register custom post types metaboxes
-	foreach(installed_custom_post_types() as $custom_post_type){
-		if (post_type($post) == $custom_post_type->options('name')){
-			$meta_box = $custom_post_type->metabox();
-			break;
+function save_meta_data( $post_id ) {
+	$meta_box = get_post_meta_box( $post_id );
+	// verify nonce
+	$nonce = isset( $_POST['meta_box_nonce'] ) ? $_POST['meta_box_nonce'] : null;
+	if ( !wp_verify_nonce( $nonce, basename( __FILE__ ) ) ) {
+		return $post_id;
+	}
+	// check autosave
+	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || isset( $_REQUEST['bulk_edit'] ) ) {
+		return $post_id;
+	}
+	// check permissions
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) ) {
+			return $post_id;
+		}
+	} elseif ( !current_user_can( 'edit_post', $post_id ) ) {
+		return $post_id;
+	}
+	if ( $meta_box ) {
+		foreach ( $meta_box['fields'] as $field ) {
+			save_default( $post_id, $field );
 		}
 	}
-	return _save_meta_data($post, $meta_box);
-
 }
-add_action('save_post', 'save_meta_data');
+add_action( 'save_post', 'save_meta_data' );
 
 
 /**
@@ -1321,7 +1207,7 @@ function save_default($post_id, $field){
 		update_post_meta($post_id, $field['id'], $new);
 	}
 	# Delete if we're sending a new null value and there was an old value
-	elseif ($new === "" and $old) {
+	elseif ( ( $new === "" || is_null( $new ) ) && $old ) {
 		delete_post_meta($post_id, $field['id'], $old);
 	}
 	# Otherwise we do nothing, field stays the same
@@ -1336,31 +1222,29 @@ function save_default($post_id, $field){
  **/
 function _save_meta_data($post_id, $meta_box){
 	// verify nonce
-	if (!wp_verify_nonce($_POST['meta_box_nonce'], basename(__FILE__))) {
+	$nonce = isset( $_POST['meta_box_nonce'] ) ? $_POST['meta_box_nonce'] : null;
+
+	if ( !wp_verify_nonce( $nonce, basename( __FILE__ ) ) ) {
 		return $post_id;
 	}
-
 	// check autosave
-	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || isset( $_REQUEST['bulk_edit'] ) ) {
 		return $post_id;
 	}
-
 	// check permissions
-	if ('page' == $_POST['post_type']) {
-		if (!current_user_can('edit_page', $post_id)) {
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) ) {
 			return $post_id;
 		}
-	} elseif (!current_user_can('edit_post', $post_id)) {
+	} elseif ( !current_user_can( 'edit_post', $post_id ) ) {
 		return $post_id;
 	}
-
-	foreach ($meta_box['fields'] as $field) {
-		switch ($field['type']){
-			default:
-				save_default($post_id, $field);
-				break;
+	if ( $meta_box ) {
+		foreach ( $meta_box['fields'] as $field ) {
+			save_default( $post_id, $field );
 		}
 	}
+
 }
 
 /**
@@ -1371,55 +1255,55 @@ function _save_meta_data($post_id, $meta_box){
  **/
 function _show_meta_boxes($post, $meta_box){
 	?>
-	<input type="hidden" name="meta_box_nonce" value="<?=wp_create_nonce(basename(__FILE__))?>"/>
+	<input type="hidden" name="meta_box_nonce" value="<?php echo wp_create_nonce(basename(__FILE__)); ?>"/>
 	<table class="form-table">
 	<?php foreach($meta_box['fields'] as $field):
 		$current_value = get_post_meta($post->ID, $field['id'], true);?>
 		<tr>
-			<th><label for="<?=$field['id']?>"><?=$field['name']?></label></th>
+			<th><label for="<?php echo $field['id']; ?>"><?php echo $field['name']; ?></label></th>
 			<td>
 			<?php if($field['desc']):?>
 				<div class="description">
-					<?=$field['desc']?>
+					<?php echo $field['desc']; ?>
 				</div>
 			<?php endif;?>
 
 			<?php switch ($field['type']):
 				case 'text':?>
-				<input type="text" name="<?=$field['id']?>" id="<?=$field['id']?>" value="<?=($current_value) ? htmlentities($current_value) : $field['std']?>" />
+				<input type="text" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" class="large-text" value="<?php echo ($current_value) ? htmlentities($current_value) : $field['std']; ?>" />
 
 			<?php break; case 'textarea':?>
-				<textarea name="<?=$field['id']?>" id="<?=$field['id']?>" cols="60" rows="4"><?=($current_value) ? htmlentities($current_value) : $field['std']?></textarea>
+				<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo ($current_value) ? htmlentities($current_value) : $field['std']; ?></textarea>
 
 			<?php break; case 'select':?>
-				<select name="<?=$field['id']?>" id="<?=$field['id']?>">
-					<option value=""><?=($field['default']) ? $field['default'] : '--'?></option>
+				<select name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>">
+					<option value=""><?php echo ($field['default']) ? $field['default'] : '--'; ?></option>
 				<?php foreach ($field['options'] as $k=>$v):?>
-					<option <?=($current_value == $v) ? ' selected="selected"' : ''?> value="<?=$v?>"><?=$k?></option>
+					<option <?php echo ($current_value == $v) ? ' selected="selected"' : ''; ?> value="<?php echo $v; ?>"><?php echo $k; ?></option>
 				<?php endforeach;?>
 				</select>
 
 			<?php break; case 'radio':?>
 				<?php foreach ($field['options'] as $k=>$v):?>
-				<label for="<?=$field['id']?>_<?=slug($k, '_')?>"><?=$k?></label>
-				<input type="radio" name="<?=$field['id']?>" id="<?=$field['id']?>_<?=slug($k, '_')?>" value="<?=$v?>"<?=($current_value == $v) ? ' checked="checked"' : ''?> />
+				<label for="<?php echo $field['id']; ?>_<?php echo slug($k, '_'); ?>"><?php echo $k; ?></label>
+				<input type="radio" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>_<?php echo slug($k, '_'); ?>" value="<?php echo $v; ?>"<?php echo ($current_value == $v) ? ' checked="checked"' : ''; ?> />
 				<?php endforeach;?>
 
 			<?php break; case 'checkbox':?>
-				<input type="checkbox" name="<?=$field['id']?>" id="<?=$field['id']?>"<?=($current_value) ? ' checked="checked"' : ''?> />
+				<input type="checkbox" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>"<?php echo ($current_value) ? ' checked="checked"' : ''; ?> />
 
 			<?php break; case 'help':?><!-- Do nothing for help -->
 			<?php break; default:?>
-				<p class="error">Don't know how to handle field of type '<?=$field['type']?>'</p>
+				<p class="error">Don't know how to handle field of type '<?php echo $field['type']; ?>'</p>
 			<?php break; endswitch;?>
 			<td>
 		</tr>
 	<?php endforeach;?>
 	</table>
 
-	<?php if($meta_box['helptxt']):?>
-	<p><?=$meta_box['helptxt']?></p>
-	<?php endif;?>
+	<?php if( isset( $meta_box['helptxt'] ) ): ?>
+	<p><?php echo $meta_box['helptxt']; ?></p>
+	<?php endif; ?>
 	<?php
 }
 
