@@ -701,8 +701,14 @@ function get_announcement_details( $announcement_ids=array() ) {
 
 	if ( ! empty( $announcement_ids ) ) {
 		foreach( $announcement_ids as $announcement_id ) {
-			$response = wp_remote_get( "$base_url/$announcement_id/", array( 'timeout' => 5 ) );
+			$response      = wp_remote_get( "$base_url/$announcement_id/", array( 'timeout' => 5 ) );
+			$response_code = wp_remote_retrieve_response_code( $response );
+
+			// Continue loop if error code is returned
+			if ( $response_code > 400 ) continue;
+
 			$item = json_decode( wp_remote_retrieve_body( $response ) );
+
 			array_push(
 				$announcements,
 				array(
