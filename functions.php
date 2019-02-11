@@ -732,9 +732,10 @@ function get_announcement_details( $announcement_ids=array() ) {
 	 * If specific announcements weren't provided,
 	 * go ahead and retrieve announcements normally.
 	 */
-	$response = wp_remote_get( ANNOUNCEMENTS_JSON_URL );
+	$response      = wp_remote_get( ANNOUNCEMENTS_JSON_URL );
+	$response_code = wp_remote_retrieve_response_code( $response );
 
-	if( is_array( $response ) ) {
+	if( is_array( $response ) && $response_code < 400 ) {
 		$items = json_decode( wp_remote_retrieve_body( $response ) );
 		foreach($items as $item) {
 			array_push(
