@@ -1,5 +1,12 @@
 <?php
-$announcements = get_announcement_details();
+$gmucf_content = get_gmucf_email_options_feed_values();
+$announcements = array();
+
+if ( $gmucf_content->gmucf_announcements ) {
+	$announcements = get_announcement_details( $gmucf_content->gmucf_announcements );
+} else {
+	$announcements = get_announcement_details();
+}
 
 if ( count( $announcements ) != 0 ) :
 ?>

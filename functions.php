@@ -687,9 +687,44 @@ function get_gmucf_email_options_feed_values() {
  * @return array
  * @author Chris Conover
  **/
-function get_announcement_details() {
+function get_announcement_details( $announcement_ids=array() ) {
 	$announcements = array();
 
+	/**
+	 * First check to see if there are specific announcement_ids to pull.
+	 * If there are, we need to get the data from each announcement.
+	 */
+
+	// Slice up the default URL to remove query params and trailing slash
+	$base_url = preg_replace( "/\/\?.*/", "", ANNOUNCEMENTS_JSON_URL );
+
+	if ( ! empty( $announcement_ids ) ) {
+		foreach( $announcement_ids as $announcement_id ) {
+			$response = wp_remote_get( "$base_url/$announcement_id/", array( 'timeout' => 5 ) );
+			$item = json_decode( wp_remote_retrieve_body( $response ) );
+			array_push(
+				$announcements,
+				array(
+					'title' => sanitize_for_email( $item->title ),
+					'permalink' => ANNOUNCEMENTS_MORE_URL . $item->slug
+				)
+			);
+		}
+
+		/**
+		 * If we have at least one announcement in the array after looping
+		 * through, then we're done and can return out.
+		 */
+		if ( count( $announcements ) > 0 ) {
+			return array_slice( $announcements, 0, 3 );
+		}
+	}
+
+
+	/**
+	 * If specific announcements weren't provided,
+	 * go ahead and retrieve announcements normally.
+	 */
 	$response = wp_remote_get( ANNOUNCEMENTS_JSON_URL );
 
 	if( is_array( $response ) ) {
