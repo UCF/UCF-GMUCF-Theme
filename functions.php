@@ -723,7 +723,7 @@ function get_announcement_details( $announcement_ids=array() ) {
 		 * through, then we're done and can return out.
 		 */
 		if ( count( $announcements ) > 0 ) {
-			return array_slice( $announcements, 0, 3 );
+			return $announcements;
 		}
 	}
 
