@@ -35,7 +35,7 @@ define('MAIN_SITE_STORIES_RSS_URL', !empty($theme_options['main_site_stories_url
 define('MAIN_SITE_STORIES_MORE_URL', 'https://today.ucf.edu/');
 define('MAIN_SITE_STORIES_TIMEOUT', 15); // seconds
 
-define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'https://www.ucf.edu/announcements/?time=thisweek&exclude_ongoing=True&format=json');
+define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'https://www.ucf.edu/announcements/api/announcements/?time=thisweek&exclude_ongoing=True&format=json');
 define('ANNOUNCEMENTS_MORE_URL', 'https://www.ucf.edu/announcements/');
 
 define('IN_THE_NEWS_JSON_URL', !empty($theme_options['in_the_news_url']) ? $theme_options['in_the_news_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/');
@@ -687,19 +687,62 @@ function get_gmucf_email_options_feed_values() {
  * @return array
  * @author Chris Conover
  **/
-function get_announcement_details() {
+function get_announcement_details( $announcement_ids=array() ) {
 	$announcements = array();
 
-	$response = wp_remote_get( ANNOUNCEMENTS_JSON_URL );
+	/**
+	 * First check to see if there are specific announcement_ids to pull.
+	 * If there are, we need to get the data from each announcement.
+	 */
 
-	if( is_array( $response ) ) {
+	// Slice up the default URL to remove query params and trailing slash
+	$base_url       = preg_replace( "/\/\?.*/", "", ANNOUNCEMENTS_JSON_URL );
+	$front_base_url = preg_replace( "/^(.*)(.*\/api).*$/", "$1", ANNOUNCEMENTS_JSON_URL );
+
+	if ( ! empty( $announcement_ids ) ) {
+		foreach( $announcement_ids as $announcement_id ) {
+			$response      = wp_remote_get( "$base_url/$announcement_id/", array( 'timeout' => 5 ) );
+			$response_code = wp_remote_retrieve_response_code( $response );
+
+			// Continue loop if error code is returned
+			if ( $response_code > 400 ) continue;
+
+			$item = json_decode( wp_remote_retrieve_body( $response ) );
+
+			array_push(
+				$announcements,
+				array(
+					'title' => sanitize_for_email( $item->title ),
+					'permalink' => "$front_base_url/$item->slug"
+				)
+			);
+		}
+
+		/**
+		 * If we have at least one announcement in the array after looping
+		 * through, then we're done and can return out.
+		 */
+		if ( count( $announcements ) > 0 ) {
+			return $announcements;
+		}
+	}
+
+
+	/**
+	 * If specific announcements weren't provided,
+	 * go ahead and retrieve announcements normally.
+	 */
+	$response      = wp_remote_get( ANNOUNCEMENTS_JSON_URL );
+	$response_code = wp_remote_retrieve_response_code( $response );
+
+	if( is_array( $response ) && $response_code < 400 ) {
 		$items = json_decode( wp_remote_retrieve_body( $response ) );
 		foreach($items as $item) {
 			array_push(
 				$announcements,
 				array(
 					'title'     => sanitize_for_email( $item->title ),
-					'permalink' => ANNOUNCEMENTS_MORE_URL . $item->slug
+					'permalink' => "$front_base_url/$item->slug"
 				)
 			);
 		}
