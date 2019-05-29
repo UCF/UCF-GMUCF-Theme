@@ -26,7 +26,7 @@ function gmucf_top_story_markup( $content, $social_share ) {
 								<tr>
 									<td style="padding-left: 0; padding-right: 0;">
 										<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
-											<img class="responsiveimg" border="0" style="border:none;" src="<?php echo $story_image; ?>" />
+											<img class="responsiveimg" border="0" width="600" style="border:none; max-width: 600px;" src="<?php echo $story_image; ?>" />
 										</a>
 									</td>
 								</tr>
