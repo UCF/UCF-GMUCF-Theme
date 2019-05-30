@@ -28,11 +28,11 @@ define('EVENTS_CALENDAR_ID', 1);
 define('EVENTS_LIMIT', !empty($theme_options['events_limit']) ? $theme_options['events_limit'] : 25);
 define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
-define('GMUCF_EMAIL_OPTIONS_JSON_URL', !empty($theme_options['gmucf_email_options_url']) ? $theme_options['gmucf_email_options_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/');
+define('GMUCF_EMAIL_OPTIONS_JSON_URL', !empty($theme_options['gmucf_email_options_url']) ? $theme_options['gmucf_email_options_url'] : 'https://www.ucf.edu/news/wp-json/ucf-news/v1/gmucf-email-options/');
 define('GMUCF_EMAIL_OPTIONS_JSON_TIMEOUT', 15); //seconds
 
-define('MAIN_SITE_STORIES_RSS_URL', !empty($theme_options['main_site_stories_url']) ? $theme_options['main_site_stories_url'] : 'https://today.ucf.edu/tag/main-site-stories/feed/');
-define('MAIN_SITE_STORIES_MORE_URL', 'https://today.ucf.edu/');
+define('MAIN_SITE_STORIES_URL', !empty($theme_options['main_site_stories_url']) ? $theme_options['main_site_stories_url'] : 'https://www.ucf.edu/news/wp-json/wp/v2/posts/');
+define('MAIN_SITE_STORIES_MORE_URL', 'https://www.ucf.edu/news/');
 define('MAIN_SITE_STORIES_TIMEOUT', 15); // seconds
 
 define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'https://www.ucf.edu/announcements/api/announcements/?time=thisweek&exclude_ongoing=True&format=json');
@@ -110,8 +110,8 @@ Config::$theme_settings = array(
 			'name'        => 'Main Site Stories Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[main_site_stories_url]',
 			'description' => 'URL to the UCF Today Main Site Stories feed. This feed\'s content is used if the GMUCF Email Options feed\'s <code>send_date</code> value does not match today\'s date. Useful for development when testing on different environments. Defaults to <code>https://today.ucf.edu/tag/main-site-stories/feed/</code>',
-			'default'     => 'https://today.ucf.edu/tag/main-site-stories/feed/',
-			'value'       => MAIN_SITE_STORIES_RSS_URL,
+			'default'     => 'https://www.ucf.edu/news/wp-json/wp/v2/posts/',
+			'value'       => MAIN_SITE_STORIES_URL,
 		)),
 	),
 	'UCF Announcements Feed' => array(
@@ -559,54 +559,51 @@ function truncate($string, $word_count=30) {
 
 /**
  * Logic for determining top story content
- *
- * @return array
- * @author Chris Conover
- **/
+ */
 function get_top_story_details() {
 	$details = array(
 		'thumbnail_src'     => '',
 		'story_title'       => '',
 		'story_description' => '',
-		'read_more_uri'     => '');
+		'read_more_uri'     => ''
+	);
 
-	if( ($top_story = get_todays_top_story()) !== False && has_post_thumbnail($top_story->ID)) {
-		$thumbnail_id  = get_post_thumbnail_id($top_story->ID);
-		$image_details = wp_get_attachment_image_src($thumbnail_id, 'top_story');
+	$args = array(
+		'timeout' => MAIN_SITE_STORIES_TIMEOUT
+	);
 
-		$details['thumbnail_src']     = remove_quotes($image_details[0]);
-		$details['story_title']       = sanitize_for_email($top_story->post_title);
-		$details['story_description'] = sanitize_for_email($top_story->post_content);
-		$details['read_more_uri']     = remove_quotes(get_post_meta($top_story->ID, 'top_story_external_uri', True));
+	$params = array(
+		time(),
+		'per_page' => 1
+	);
 
-	} else {
-		$rss = custom_fetch_feed( MAIN_SITE_STORIES_RSS_URL . '?thumb=gmucf_top_story', MAIN_SITE_STORIES_TIMEOUT );
-		if(!is_wp_error($rss)) {
-			$rss_items = $rss->get_items(0, $rss->get_item_quantity(15));
-			$rss_item = $rss_items[0];
+	$query_args = http_build_query( $params );
 
-			foreach($rss_items as $rss_item) {
+	$url = MAIN_SITE_STORIES_URL . '?' . $query_args;
 
-				$enclosure = $rss_item->get_enclosure();
+	$response = wp_remote_get( $url, $args );
 
-				if($enclosure && in_array($enclosure->get_type(),get_valid_enclosure_types())) {
+	if ( is_array( $response ) ) {
+		$items = json_decode( wp_remote_retrieve_body( $response ) );
 
-					$details['thumbnail_src']     = remove_quotes($enclosure->get_thumbnail());
-					$details['story_title']       = sanitize_for_email($rss_item->get_title());
-					$details['story_description'] = sanitize_for_email($rss_item->get_description());
-					$details['read_more_uri']     = remove_quotes($rss_item->get_permalink());
+		if ( $items ) {
+			$item = $items[0];
 
-					if($details['thumbnail_src'] != '') {
-						set_transient('top_story_id', $rss_item->get_id());
-						break;
-					}
-				}
-			}
+			$details['thumbnail_src']     = $item->thumbnail;
+			$details['story_title']       = $item->title->rendered;
+			$details['story_description'] = truncate( $item->excerpt->rendered );
+			$details['read_more_uri']     = $item->link;
+
+			return $details;
 		} else {
-			$error_string = $rss->get_error_message();
-			error_log("GMUCF - get_top_story_details() - " . $error_string);
+			$error_string = 'Unable to parse JSON.';
+			error_log( "GMUCF - get_top_story_details() - " . $error_string );
 		}
+	} else {
+		$error_string = $response->error;
+		error_log( "GMUCF - get_top_story_details() - " . $error_string );
 	}
+
 	return $details;
 }
 
@@ -619,41 +616,47 @@ function get_top_story_details() {
 function get_featured_stories_details( $limit = 2 ) {
 	$stories = array();
 
-	$rss = custom_fetch_feed( MAIN_SITE_STORIES_RSS_URL.'?thumb=gmucf_featured_story', MAIN_SITE_STORIES_TIMEOUT );
+	$args = array(
+		'timeout' => MAIN_SITE_STORIES_TIMEOUT
+	);
 
-	if( !is_wp_error( $rss ) ) {
-		$rss_items = $rss->get_items( 0, $rss->get_item_quantity( 15 ) );
+	$params = array(
+		time(),
+		'per_page' => 2,
+		'offset'   => 1
+	);
 
-		$count = 0;
-		$top_story_id = get_transient( 'top_story_id' );
-		foreach( $rss_items as $rss_item ) {
-			if( $count == $limit ) break;
-			if( $top_story_id !== $rss_item->get_id() ) {
-				$story = array(
-					'thumbnail_src' => '',
-					'title'         => '',
-					'description'   => '',
-					'permalink'     => ''
+	$query_args = http_build_query( $params );
+
+	$url = MAIN_SITE_STORIES_URL . '?' . $query_args;
+
+	$response = wp_remote_get( $url, $args );
+
+	if ( is_array( $response ) ) {
+		$items = json_decode( wp_remote_retrieve_body( $response ) );
+
+		if ( $items ) {
+			foreach( $items as $item ) {
+				$details = array(
+					'thumbnail_src' => $item->thumbnail,
+					'title'         => $item->title->rendered,
+					'description'   => truncate( $item->excerpt->rendered ),
+					'permalink'     => $item->link
 				);
-				$enclosure = $rss_item->get_enclosure();
-				if( $enclosure && in_array( $enclosure->get_type(),get_valid_enclosure_types() ) && ( $thumbnail = $enclosure->get_thumbnail() ) ) {
-					$image = $enclosure->get_link();
-					$story['image'] = remove_quotes( $image );
-					$story['thumbnail_src'] = remove_quotes( $thumbnail );
-				} else {
-					$story['thumbnail_src'] = remove_quotes( get_bloginfo( 'stylesheet_directory', 'raw' ).'/static/img/no-photo.png' );
-				}
-				$story['title']       = sanitize_for_email( $rss_item->get_title() );
-				$story['description'] = sanitize_for_email( $rss_item->get_description() );
-				$story['permalink']   = remove_quotes( $rss_item->get_permalink() );
-				array_push( $stories, $story );
-				$count++;
+
+				$stories[] = $details;
 			}
+
+			return $stories;
+		} else {
+			$error_string = 'Unable to parse JSON.';
+			error_log( "GMUCF - get_featured_stories_details() - " . $error_string );
 		}
 	} else {
-		$error_string = $rss->get_error_message();
+		$error_string = $response->error;
 		error_log( "GMUCF - get_featured_stories_details() - " . $error_string );
 	}
+
 	return $stories;
 }
 
