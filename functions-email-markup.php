@@ -162,7 +162,7 @@ function gmucf_featured_story_markup( $content, $social_share ) {
 				</td>
 			</tr>
 			<?php if ( $social_share ) : ?>
-				<?php echo display_social_share( $permalink, $title ); ?>
+				<?php echo display_social_share( $story_permalink, $story_title ); ?>
 			<?php endif; ?>
 		</table>
 	</th>
