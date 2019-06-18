@@ -28,18 +28,18 @@ define('EVENTS_CALENDAR_ID', 1);
 define('EVENTS_LIMIT', !empty($theme_options['events_limit']) ? $theme_options['events_limit'] : 25);
 define('EVENTS_CACHE_DURATION', 60 * 10); // seconds
 
-define('GMUCF_EMAIL_OPTIONS_JSON_URL', !empty($theme_options['gmucf_email_options_url']) ? $theme_options['gmucf_email_options_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/');
+define('GMUCF_EMAIL_OPTIONS_JSON_URL', !empty($theme_options['gmucf_email_options_url']) ? $theme_options['gmucf_email_options_url'] : 'https://www.ucf.edu/news/wp-json/ucf-news/v1/gmucf-email-options/');
 define('GMUCF_EMAIL_OPTIONS_JSON_TIMEOUT', 15); //seconds
 
-define('MAIN_SITE_STORIES_RSS_URL', !empty($theme_options['main_site_stories_url']) ? $theme_options['main_site_stories_url'] : 'https://today.ucf.edu/tag/main-site-stories/feed/');
-define('MAIN_SITE_STORIES_MORE_URL', 'https://today.ucf.edu/');
+define('MAIN_SITE_STORIES_RSS_URL', !empty($theme_options['main_site_stories_url']) ? $theme_options['main_site_stories_url'] : 'https://www.ucf.edu/news/feed/');
+define('MAIN_SITE_STORIES_MORE_URL', 'https://www.ucf.edu/news/');
 define('MAIN_SITE_STORIES_TIMEOUT', 15); // seconds
 
 define('ANNOUNCEMENTS_JSON_URL', !empty($theme_options['announcements_url']) ? $theme_options['announcements_url'] : 'https://www.ucf.edu/announcements/api/announcements/?time=thisweek&exclude_ongoing=True&format=json');
 define('ANNOUNCEMENTS_MORE_URL', 'https://www.ucf.edu/announcements/');
 
-define('IN_THE_NEWS_JSON_URL', !empty($theme_options['in_the_news_url']) ? $theme_options['in_the_news_url'] : 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/');
-define('IN_THE_NEWS_MORE_URL', 'https://today.ucf.edu/in-the-news/');
+define('IN_THE_NEWS_JSON_URL', !empty($theme_options['in_the_news_url']) ? $theme_options['in_the_news_url'] : 'https://www.ucf.edu/news/wp-json/ucf-news/v1/external-stories/');
+define('IN_THE_NEWS_MORE_URL', 'https://www.ucf.edu/news/in-the-news/');
 define('IN_THE_NEWS_ITEM_COUNT', !empty($theme_options['in_the_news_item_count']) ? $theme_options['in_the_news_item_count'] : 4);
 define('IN_THE_NEWS_JSON_TIMEOUT', 15); //seconds
 
@@ -102,15 +102,15 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'GMUCF Email Options Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[gmucf_email_options_url]',
-			'description' => 'URL to the UCF Today GMUCF Email Options feed. Useful for development when testing on different environments. Defaults to <code>https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/</code>',
-			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/gmucf-email-options/',
+			'description' => 'URL to the UCF Today GMUCF Email Options feed. Useful for development when testing on different environments. Defaults to <code>https://www.ucf.edu/news/wp-json/ucf-news/v1/gmucf-email-options/</code>',
+			'default'     => 'https://www.ucf.edu/news/wp-json/ucf-news/v1/gmucf-email-options/',
 			'value'       => GMUCF_EMAIL_OPTIONS_JSON_URL,
 		)),
 		new TextField(array(
 			'name'        => 'Main Site Stories Feed URL',
 			'id'          => THEME_OPTIONS_NAME.'[main_site_stories_url]',
-			'description' => 'URL to the UCF Today Main Site Stories feed. This feed\'s content is used if the GMUCF Email Options feed\'s <code>send_date</code> value does not match today\'s date. Useful for development when testing on different environments. Defaults to <code>https://today.ucf.edu/tag/main-site-stories/feed/</code>',
-			'default'     => 'https://today.ucf.edu/tag/main-site-stories/feed/',
+			'description' => 'URL to the UCF Today Main Site Stories feed. This feed\'s content is used if the GMUCF Email Options feed\'s <code>send_date</code> value does not match today\'s date. Useful for development when testing on different environments. Defaults to <code>https://www.ucf.edu/news/feed/</code>',
+			'default'     => 'https://www.ucf.edu/news/feed/',
 			'value'       => MAIN_SITE_STORIES_RSS_URL,
 		)),
 	),
@@ -127,8 +127,8 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'In The News JSON URL',
 			'id'          => THEME_OPTIONS_NAME.'[in_the_news_url]',
-			'description' => 'URL of the external-stories feed on UCF Today. Defaults to <code>https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/</code>',
-			'default'     => 'https://today.ucf.edu/wp-json/ucf-news/v1/external-stories/',
+			'description' => 'URL of the external-stories feed on UCF Today. Defaults to <code>https://www.ucf.edu/news/wp-json/ucf-news/v1/external-stories/</code>',
+			'default'     => 'https://www.ucf.edu/news/wp-json/ucf-news/v1/external-stories/',
 			'value'       => IN_THE_NEWS_JSON_URL
 		)),
 		new TextField(array(
@@ -1103,7 +1103,7 @@ function display_social_share( $permalink, $title ) {
 			<span class="montserratlight" style="color: #757575; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px; line-height: 21px; vertical-align: top; padding-right: 6px;">Share: </span>
 			<a href="http://www.facebook.com/sharer.php?u=<?php echo $permalink; ?>" style="display: inline-block; height: 20px; width: 20px; padding-right: 6px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/facebook-share.png" alt="Share on Facebook" width="20" height="20"></a>
 			<a href="https://twitter.com/intent/tweet?text=<?php echo $title; ?>&url=<?php echo $permalink; ?>" style="display: inline-block; height: 20px; width: 20px; padding-right: 6px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/twitter-share.png" alt="Share on Twitter" width="20" height="20"></a>
-			<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo $permalink; ?>&title=<?php echo $title; ?>&source=today.ucf.edu" style="display: inline-block; height: 20px; width: 20px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/linkedin-share.png" alt="Share on LinkedIn" width="20" height="20"></a>
+			<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo $permalink; ?>&title=<?php echo $title; ?>&source=ucf.edu" style="display: inline-block; height: 20px; width: 20px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/linkedin-share.png" alt="Share on LinkedIn" width="20" height="20"></a>
 		</td>
 	</tr>
 	<?php
