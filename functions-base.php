@@ -1072,9 +1072,9 @@ function disallow_direct_load($page){
 function installed_custom_post_types(){
 	$installed = Config::$custom_post_types;
 
-	return array_map(create_function('$class', '
+	return array_map( function( $class ) {
 		return new $class;
-	'), $installed);
+	}, $installed );
 }
 
 

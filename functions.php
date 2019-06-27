@@ -201,7 +201,9 @@ if ( BW_VERIFY ) {
 /* Custom Theme Functions */
 
 if(isset($_GET['no_cache'])) {
-	add_filter( 'wp_feed_cache_transient_lifetime', create_function('$a', 'return 0;') );
+	add_filter( 'wp_feed_cache_transient_lifetime', function( $a ) {
+		return 0; 
+	});
 	define('CLEAR_CACHE', TRUE);
 } else {
 	define('CLEAR_CACHE', FALSE);
@@ -1075,15 +1077,16 @@ function gmucf_template_redirect() {
 
 		# Most to least specific
 		$mapping = array(
-			'news/mail/'           => create_function('', 'display_gmucf_template(\'includes/news/mail/base\');'),
-			'news/text/'           => create_function('', 'display_gmucf_template(\'includes/news/text/base\');'),
-			'news/'                => create_function('', 'display_gmucf_template(\'includes/news/browser/base\');'),
-			'events/weekday/mail/' => create_function('', '$_GET[\'edition\'] = \'weekday\';display_gmucf_template(\'includes/events/mail/base\');'),
-			'events/weekday/text/' => create_function('', '$_GET[\'edition\'] = \'weekday\';display_gmucf_template(\'includes/events/text/base\');'),
-			'events/weekday/'      => create_function('', '$_GET[\'edition\'] = \'weekday\';display_gmucf_template(\'includes/events/browser/base\');'),
-			'events/weekend/mail/' => create_function('', '$_GET[\'edition\'] = \'weekend\';display_gmucf_template(\'includes/events/mail/base\');'),
-			'events/weekend/text/' => create_function('', '$_GET[\'edition\'] = \'weekend\';display_gmucf_template(\'includes/events/text/base\');'),
-			'events/weekend/'      => create_function('', '$_GET[\'edition\'] = \'weekend\';display_gmucf_template(\'includes/events/browser/base\');'),);
+			'news/mail/'           => function() { display_gmucf_template( 'includes/news/mail/base' ); },
+			'news/text/'           => function() { display_gmucf_template( 'includes/news/text/base' ); },
+			'news/'                => function() { display_gmucf_template( 'includes/news/browser/base' ); },
+			'events/weekday/mail/' => function() { $_GET['edition'] = 'weekday'; display_gmucf_template( 'includes/events/mail/base' ); },
+			'events/weekday/text/' => function() { $_GET['edition'] = 'weekday'; display_gmucf_template( 'includes/events/text/base' ); },
+			'events/weekday/'      => function() { $_GET['edition'] = 'weekday'; display_gmucf_template( 'includes/events/browser/base' ); },
+			'events/weekend/mail/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'includes/events/mail/base' ); },
+			'events/weekend/text/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'includes/events/text/base' ); },
+			'events/weekend/'      => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'includes/events/browser/base' ); },
+		);
 
 		foreach($mapping as $path => $func) {
 			if(stripos($request_path, $path) === 0) {
