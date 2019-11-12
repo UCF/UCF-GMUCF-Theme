@@ -195,8 +195,8 @@ function gmucf_spotlight_markup( $content ) {
 							<tbody>
 								<tr>
 									<td style="padding-left: 0; padding-right: 0;">
-										<a href="<?php echo $spotlight_link . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;" alt="<?php echo $spotlight_alt; ?>">
-											<img class="responsiveimg" border="0" width="600" style="border:none; max-width: 600px;" src="<?php echo $spotlight_image; ?>" />
+										<a href="<?php echo $spotlight_link . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
+											<img class="responsiveimg" border="0" width="600" style="border:none; max-width: 600px;" src="<?php echo $spotlight_image; ?>" alt="<?php echo $spotlight_alt; ?>" />
 										</a>
 									</td>
 								</tr>
