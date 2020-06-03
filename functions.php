@@ -174,7 +174,7 @@ Config::$styles = array(
 Config::$scripts = array(
 	array('admin' => True, 'src' => THEME_JS_URL.'/admin.js',),
 	'https://universityheader.ucf.edu/bar/js/university-header.js',
-	array('name' => 'jquery', 'src' => 'https://code.jquery.com/jquery-1.6.1.min.js',),
+	array('name' => 'jquery', 'src' => 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',),
 );
 
 Config::$metas = array(
