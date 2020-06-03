@@ -1,5 +1,7 @@
 <?php
-date_default_timezone_set('America/New_York');
+// TODO replace this logic with something compatible with WP 5.3+
+// see https://wordpress.org/support/topic/read-this-first-wordpress-5-3-master-list/#post-12124062
+// date_default_timezone_set('America/New_York');
 
 # Set theme constants
 #define('DEBUG', True);                  # Always on
@@ -202,7 +204,7 @@ if ( BW_VERIFY ) {
 
 if(isset($_GET['no_cache'])) {
 	add_filter( 'wp_feed_cache_transient_lifetime', function( $a ) {
-		return 0; 
+		return 0;
 	});
 	define('CLEAR_CACHE', TRUE);
 } else {
