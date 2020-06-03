@@ -176,6 +176,25 @@
                 "return_format": "value",
                 "ajax": 0,
                 "placeholder": ""
+            },
+            {
+                "key": "field_5ed7fbc70256d",
+                "label": "Other Details",
+                "name": "other_details",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": ""
             }
         ],
         "location": [
