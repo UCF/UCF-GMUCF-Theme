@@ -58,6 +58,18 @@ function init() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
 	add_theme_support( 'title-tag' );
+
+	// Enforce default option values when `get_option()` is called.
+	$options = unserialize( GMUCF_THEME_CUSTOMIZER_DEFAULTS );
+	foreach ( $options as $option_name => $option_default ) {
+		add_filter( 'default_option_{$option_name}', function( $get_option_default, $option, $passed_default ) {
+			// If get_option() was passed a unique default value, prioritize it
+			if ( $passed_default ) {
+				return $get_option_default;
+			}
+			return $option_default;
+		}, 10, 3 );
+	}
 }
 
 add_action( 'after_setup_theme', __NAMESPACE__ . '\init' );
@@ -554,17 +566,6 @@ add_action( 'admin_menu', __NAMESPACE__ . '\kill_unused_admin_pages' );
 
 
 /**
- * Return a list of valid enclosure mime types
- *
- * @return array
- * @author Chris Conover
- **/
-function get_valid_enclosure_types() {
-	return array('image/jpeg','image/png','image/jpg');
-}
-
-
-/**
  * Convenience template redirects
  *
  * @author Chris Conover
@@ -608,4 +609,5 @@ function gmucf_template_redirect() {
 		}
 	}
 }
+
 add_action( 'template_redirect', __NAMESPACE__ . '\gmucf_template_redirect', 1 );

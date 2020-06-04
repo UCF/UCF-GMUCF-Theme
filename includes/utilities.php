@@ -62,6 +62,17 @@ function custom_fetch_feed( $url, $timeout=10 ) {
 
 
 /**
+ * Return a list of valid enclosure mime types
+ *
+ * @return array
+ * @author Chris Conover
+ **/
+function get_valid_enclosure_types() {
+	return array('image/jpeg','image/png','image/jpg');
+}
+
+
+/**
  * Calculate the how mnay days ahead the next
  * Monday is from today
  *
