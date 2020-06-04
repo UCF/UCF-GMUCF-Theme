@@ -1,7 +1,7 @@
 <?php
 /**
  * Handle all theme configuration here
- **/
+ */
 namespace GMUCF\Theme\Includes\Config;
 use GMUCF\Theme\Includes\Utilities as Utils;
 
