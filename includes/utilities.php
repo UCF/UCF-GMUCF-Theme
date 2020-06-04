@@ -54,7 +54,7 @@ function custom_fetch_feed( $url, $timeout=10 ) {
 	$rss = fetch_feed( $url );
 
 	if ( is_wp_error( $rss ) ) : // Checks that the object is created correctly
-		return new WP_Error( 'simplepie-error', $rss->get_error_message() );
+		return new \WP_Error( 'simplepie-error', $rss->get_error_message() );
 	endif;
 
 	return $rss;

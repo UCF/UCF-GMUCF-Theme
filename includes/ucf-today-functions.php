@@ -4,6 +4,7 @@
  * articles or fallback content from UCF Today
  */
 namespace GMUCF\Theme\Includes\UCFToday;
+use GMUCF\Theme\Includes\Utilities as Utilities;
 
 
 /**
@@ -14,8 +15,10 @@ namespace GMUCF\Theme\Includes\UCFToday;
  **/
 function get_featured_stories_details( $limit = 2 ) {
 	$stories = array();
+	$main_site_stories_rss_url = get_option( 'main_site_stories_url' );
+	$main_site_stories_timeout = get_option( 'main_site_stories_timeout' );
 
-	$rss = custom_fetch_feed( MAIN_SITE_STORIES_RSS_URL.'?thumb=gmucf_featured_story', MAIN_SITE_STORIES_TIMEOUT );
+	$rss = Utilities\custom_fetch_feed( $main_site_stories_rss_url . '?thumb=gmucf_featured_story', $main_site_stories_timeout );
 
 	if( !is_wp_error( $rss ) ) {
 		$rss_items = $rss->get_items( 0, $rss->get_item_quantity( 15 ) );
@@ -60,9 +63,11 @@ function get_featured_stories_details( $limit = 2 ) {
  * @return array $gmucf_email_options Contains the data from the GMUCF Email Options feed.
  **/
 function get_gmucf_email_options_feed_values() {
+	$options_url = get_option( 'gmucf_email_options_url' );
+	$options_timeout = get_option( 'gmucf_email_options_json_timeout' );
 	$gmucf_email_options = array();
 
-	$response = wp_remote_get( GMUCF_EMAIL_OPTIONS_JSON_URL . '?' . time(), array( 'timeout' => GMUCF_EMAIL_OPTIONS_JSON_TIMEOUT ) );
+	$response = wp_remote_get( $options_url . '?' . time(), array( 'timeout' => $options_timeout ) );
 
 	if ( is_array( $response ) ) {
 		$items = json_decode( wp_remote_retrieve_body( $response ) );
@@ -71,7 +76,7 @@ function get_gmucf_email_options_feed_values() {
 			$gmucf_email_options = $items;
 		}
 	} else {
-		$error_string = $response->error;
+		$error_string = $response->get_error_message();
 		error_log( "GMUCF - get_gmucf_email_options_feed_values() - " . $error_string );
 	}
 

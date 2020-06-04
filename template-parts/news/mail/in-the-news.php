@@ -1,14 +1,23 @@
+<?php
+namespace GMUCF\Theme\TemplateParts\News\Mail\InTheNews;
+use GMUCF\Theme\Includes\InTheNews as InTheNews;
+use GMUCF\Theme\Includes\Analytics as Analytics;
+
+$in_the_news_more_url = get_option( 'in_the_news_more_url' );
+?>
 <table class="tableCollapse" width="600" border="0" align="center" style="border-bottom: 3px solid #fc0; border-top: 3px solid #fc0; border-spacing: 0; border-collapse: collapse;">
 	<tbody>
+		<?php if ( $in_the_news_more_url ): ?>
 		<tr>
 			<td class="montserratbold" style="padding-top: 40px; padding-bottom: 30px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 22px; font-weight: bold; color: #006699; text-transform: uppercase; letter-spacing: 1.3px;" align="left">
-				<a href="<?php echo IN_THE_NEWS_MORE_URL; ?>" style="text-decoration: none;">UCF In the News</a>
+				<a href="<?php echo $in_the_news_more_url; ?>" style="text-decoration: none;">UCF In the News</a>
 			</td>
 		</tr>
+		<?php endif; ?>
 		<tr>
 			<td>
 				<?php
-				$external = get_in_the_news_stories();
+				$external = InTheNews\get_in_the_news_stories();
 
 				if( count( $external ) == 0 ) { ?>
 					<p class="montserratlight" style="margin: 0; font-family: Helvetica, Arial, sans-serif; font-weight: 400; padding-top: 10px; padding-bottom: 10px;">No stories found for today.</p>
@@ -62,12 +71,14 @@
 				?>
 			</td>
 		</tr>
+		<?php if ( $in_the_news_more_url ): ?>
 		<tr>
 			<td class="montserratbold" style="text-align: right; padding-top: 20px; padding-bottom: 40px; padding-right: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
-				<a href="<?php echo IN_THE_NEWS_MORE_URL . ANALYTICS_PARAMS; ?>">
+				<a href="<?php echo Analytics\format_url_news_announcements_utm_params( $in_the_news_more_url ); ?>">
 					More UCF In The News
 				</a>
 			</td>
 		</tr>
+		<?php endif; ?>
 	</tbody>
 </table>
