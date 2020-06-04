@@ -9,7 +9,7 @@
     <?php echo (int)date( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?> UCF -
     <?php echo date( 'F j' ); ?>
   </title>
-  <?php echo get_template_part( 'includes/news/mail/style' ); ?>
+  <?php echo get_template_part( 'template-parts/news/mail/style' ); ?>
 </head>
 
 <body style="background-color: #f1f1f1;">
@@ -29,7 +29,7 @@
                             <tbody>
                               <tr>
                                 <td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center;">
-                                  <?php echo get_template_part( 'includes/news/mail/header' ); ?>
+                                  <?php echo get_template_part( 'template-parts/news/mail/header' ); ?>
                                 </td>
                               </tr>
                             </tbody>
@@ -47,16 +47,16 @@
                               if ( $send_date === date( 'm/d/Y' ) ) {
                                 echo gmucf_email_markup( $gmucf_content );
                               } else {
-                                echo get_template_part( 'includes/news/mail/backup/email-content' );
+                                echo get_template_part( 'template-parts/news/mail/backup/email-content' );
                               }
                               ?>
                               <tr>
                                 <td style="padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0;">
-                                  <?php echo get_template_part( 'includes/news/mail/in-the-news' ); ?>
+                                  <?php echo get_template_part( 'template-parts/news/mail/in-the-news' ); ?>
                                 </td>
                               </tr>
-                              <?php echo get_template_part( 'includes/news/mail/announcements' ); ?>
-                              <?php echo get_template_part( 'includes/news/mail/footer' ); ?>
+                              <?php echo get_template_part( 'template-parts/news/mail/announcements' ); ?>
+                              <?php echo get_template_part( 'template-parts/news/mail/footer' ); ?>
                             </tbody>
                           </table>
                         </td>

@@ -16,9 +16,9 @@ $gmucf_content = get_gmucf_email_options_feed_values();
 $send_date     = $gmucf_content->gmucf_email_send_date;
 
 if ( $send_date === date( 'm/d/Y' ) ) {
-    echo get_template_part( 'includes/news/text/email-text' );
+    echo get_template_part( 'template-parts/news/text/email-text' );
 } else {
-    echo get_template_part( 'includes/news/text/backup-email-text' );
+    echo get_template_part( 'template-parts/news/text/backup-email-text' );
 }
 ?>
 

@@ -1,5 +1,14 @@
 <?php
 /**
+ * Functions that display content in the
+ * News & Announcements emails.
+ * (TODO should probably move to template parts)
+ */
+namespace GMUCF\Theme\Includes\EmailMarkup;
+use GMUCF\Theme\Includes\Analytics as Analytics;
+
+
+/**
  * Creates the markup for a row containing the given top story.
  *
  * @since 2.0.0
@@ -9,7 +18,7 @@
  * @return string The HTML for the provided top story.
  */
 function gmucf_top_story_markup( $content, $social_share ) {
-	$story_permalink   = $content->gmucf_story_permalink;
+	$story_permalink   = Analytics\format_url_news_announcements_utm_params( $content->gmucf_story_permalink );
 	$story_image       = $content->gmucf_story_image;
 	$story_title       = $content->gmucf_story_title;
 	$story_description = $content->gmucf_story_description;
@@ -25,21 +34,21 @@ function gmucf_top_story_markup( $content, $social_share ) {
 							<tbody>
 								<tr>
 									<td style="padding-left: 0; padding-right: 0;">
-										<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
 											<img class="responsiveimg" border="0" width="600" style="border:none; max-width: 600px;" src="<?php echo $story_image; ?>" />
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.4; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
 											<?php echo $story_title; ?>
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
 											<?php echo strip_tags( $story_description ); ?>
 										</a>
 									</td>
@@ -78,6 +87,7 @@ function gmucf_top_story_markup( $content, $social_share ) {
  * @return string The HTML for the two featured stories in a row.
  */
 function gmucf_featured_stories_row_markup( $stories, $social_share, $more_stories_link ) {
+	$more_stories_url = get_option( 'main_site_stories_more_url' );
 	ob_start();
 ?>
 	<tr>
@@ -99,7 +109,7 @@ function gmucf_featured_stories_row_markup( $stories, $social_share, $more_stori
 				<?php if ( $more_stories_link ) : ?>
 					<tr>
 						<td class="montserratbold" style="text-align: right; padding-top: 0; padding-bottom: 50px; padding-right: 10px; padding-left: 10px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
-							<a href="<?php echo MAIN_SITE_STORIES_MORE_URL; ?>">
+							<a href="<?php echo $more_stories_url; ?>">
 								More UCF Stories
 							</a>
 						</td>
@@ -123,7 +133,7 @@ function gmucf_featured_stories_row_markup( $stories, $social_share, $more_stori
  * @return string The HTML for the featured story.
  */
 function gmucf_featured_story_markup( $content, $social_share ) {
-	$story_permalink   = $content->gmucf_story_permalink;
+	$story_permalink   = Analytics\format_url_news_announcements_utm_params( $content->gmucf_story_permalink );
 	$story_image       = $content->gmucf_story_image;
 	$story_title       = $content->gmucf_story_title;
 	$story_description = $content->gmucf_story_description;
@@ -131,39 +141,41 @@ function gmucf_featured_story_markup( $content, $social_share ) {
 	ob_start();
 ?>
 	<th class="columnCollapse" align="left" width="290" style="font-family: Helvetica, Arial, sans-serif; padding-left: 10px; padding-right: 10px; padding-top: 0; padding-bottom: 45px; vertical-align: top; text-align: center;">
-		<table class="tableCollapse" width="100%" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
-			<tr>
-				<td>
-					<table width="100%" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
-						<tbody>
-							<tr>
-								<td style="padding-left: 0; padding-right: 0;">
-									<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
-										<img class="responsiveimg" border="0" width="290" style="border:none;" src="<?php echo $story_image; ?>" />
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.3; color: #000; text-align: left;" align="left">
-									<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
-										<?php echo $story_title; ?>
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.6; color: #000; text-align: left;" align="left">
-									<a href="<?php echo $story_permalink . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
-										<?php echo strip_tags( $story_description ); ?>
-									</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</td>
-			</tr>
-			<?php if ( $social_share ) : ?>
-				<?php echo display_social_share( $story_permalink, $story_title ); ?>
-			<?php endif; ?>
+		<table class="tableCollapse" width="100%" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+			<tbody>
+				<tr>
+					<td>
+						<table width="100%" border="0" align="center" style="border-spacing: 0; border-collapse: collapse;">
+							<tbody>
+								<tr>
+									<td style="padding-left: 0; padding-right: 0;">
+										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+											<img class="responsiveimg" border="0" width="290" style="border:none;" src="<?php echo $story_image; ?>" />
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.3; color: #000; text-align: left;" align="left">
+										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+											<?php echo $story_title; ?>
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.6; color: #000; text-align: left;" align="left">
+										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+											<?php echo strip_tags( $story_description ); ?>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<?php if ( $social_share ) : ?>
+					<?php echo display_social_share( $story_permalink, $story_title ); ?>
+				<?php endif; ?>
+			</tbody>
 		</table>
 	</th>
 <?php
@@ -181,7 +193,7 @@ function gmucf_featured_story_markup( $content, $social_share ) {
  */
 function gmucf_spotlight_markup( $content ) {
 	$spotlight_image = $content->gmucf_spotlight_image;
-	$spotlight_link  = $content->gmucf_spotlight_link;
+	$spotlight_link  = Analytics\format_url_news_announcements_utm_params( $content->gmucf_spotlight_link );
 	$spotlight_alt   = $content->gmucf_spotlight_alt_text;
 
 	ob_start();
@@ -195,7 +207,7 @@ function gmucf_spotlight_markup( $content ) {
 							<tbody>
 								<tr>
 									<td style="padding-left: 0; padding-right: 0;">
-										<a href="<?php echo $spotlight_link . ANALYTICS_PARAMS; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $spotlight_link; ?>" style="color: #000; text-decoration: none;">
 											<img class="responsiveimg" border="0" width="600" style="border:none; max-width: 600px;" src="<?php echo $spotlight_image; ?>" alt="<?php echo $spotlight_alt; ?>" />
 										</a>
 									</td>
@@ -263,9 +275,9 @@ function gmucf_email_markup( $content ) {
 			echo gmucf_top_story_markup( $content, $social_share );
 
 			// The alert is always displayed after the first top story
-			if ( $top_story_row_count === 1) {
-				echo get_template_part( 'includes/news/mail/alert' );
-			}
+			// if ( $top_story_row_count === 1) {
+			// 	echo get_template_part( 'template-parts/news/mail/alert' );
+			// }
 		}
 
 		if ( $layout === 'gmucf_featured_stories_row' ) {

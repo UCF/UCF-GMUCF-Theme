@@ -1,7 +1,6 @@
 <?php
 /**
  * Handle all theme configuration here
- * TODO add default_option_ hook for all options with default values!
  */
 namespace GMUCF\Theme\Includes\Config;
 use GMUCF\Theme\Includes\Utilities as Utils;
@@ -59,7 +58,10 @@ function init() {
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
 	add_theme_support( 'title-tag' );
 
-	// Enforce default option values when `get_option()` is called.
+	// Enforce default option values when `get_option()` is
+	// called.  Assumes that all default values defined in
+	// GMUCF_THEME_CUSTOMIZER_DEFAULTS correspond to a
+	// theme option (not a theme mod).
 	$options = unserialize( GMUCF_THEME_CUSTOMIZER_DEFAULTS );
 	foreach ( $options as $option_name => $option_default ) {
 		add_filter( 'default_option_{$option_name}', function( $get_option_default, $option, $passed_default ) {
@@ -572,11 +574,11 @@ add_action( 'admin_menu', __NAMESPACE__ . '\kill_unused_admin_pages' );
  **/
 function gmucf_template_redirect() {
 
-	function display_gmucf_template($template) {
+	function display_gmucf_template( $template ) {
 		global $wp_query;
-		$wp_query->is_404 = False;
-		header("HTTP/1.1 200 OK");
-		get_template_part($template);
+		$wp_query->is_404 = false;
+		header( "HTTP/1.1 200 OK" );
+		get_template_part( $template );
 		exit;
 	}
 

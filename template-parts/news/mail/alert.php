@@ -1,5 +1,6 @@
 <?php
-$alerts = get_posts( array( 'post_type'=>'alert', 'numberposts' => 1 ) );
+$alerts = array();
+// $alerts = get_posts( array( 'post_type'=>'alert', 'numberposts' => 1 ) );
 if ( count( $alerts ) > 0 ) :
 	$alert = $alerts[0];
 ?>
@@ -34,4 +35,6 @@ if ( count( $alerts ) > 0 ) :
 			</table>
 		</td>
 	</tr>
-<?php endif; ?>
+<?php
+endif;
+?>

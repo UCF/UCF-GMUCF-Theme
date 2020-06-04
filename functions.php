@@ -16,7 +16,7 @@ include_once GMUCF_THEME_DIR . 'includes/announcements-functions.php';
 include_once GMUCF_THEME_DIR . 'includes/in-the-news-functions.php';
 
 // TODO update to use template parts instead of functions?
-include_once GMUCF_THEME_DIR . 'include/email-markup-functions.php';
+include_once GMUCF_THEME_DIR . 'includes/email-markup-functions.php';
 
 // Plugin extras/overrides
 
