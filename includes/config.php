@@ -535,3 +535,18 @@ function define_customizer_controls( $wp_customize ) {
 }
 
 add_action( 'customize_register', __NAMESPACE__ . '\define_customizer_controls', 10 );
+
+
+/**
+ * Remove old blogroll Links and Comments admin pages.
+ *
+ * @since 3.0.0
+ * @author Jo Dickson
+ * @return void
+ **/
+function kill_unused_admin_pages() {
+	remove_menu_page( 'link-manager.php' );
+	remove_menu_page( 'edit-comments.php' );
+}
+
+add_action( 'admin_menu', __NAMESPACE__ . '\kill_unused_admin_pages' );
