@@ -1,4 +1,3 @@
 <?php
-// TODO
-	// get_template_part('news/browser/base');
+	get_template_part('template-parts/news/browser/base');
 ?>
