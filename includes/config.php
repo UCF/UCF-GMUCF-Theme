@@ -62,6 +62,7 @@ function init() {
 	// called.  Assumes that all default values defined in
 	// GMUCF_THEME_CUSTOMIZER_DEFAULTS correspond to a
 	// theme option (not a theme mod).
+	// TODO not working???
 	$options = unserialize( GMUCF_THEME_CUSTOMIZER_DEFAULTS );
 	foreach ( $options as $option_name => $option_default ) {
 		add_filter( 'default_option_{$option_name}', function( $get_option_default, $option, $passed_default ) {

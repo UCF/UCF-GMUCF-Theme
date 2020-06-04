@@ -18,10 +18,11 @@ use GMUCF\Theme\Includes\Analytics as Analytics;
  * @return string The HTML for the provided top story.
  */
 function gmucf_top_story_markup( $content, $social_share ) {
-	$story_permalink   = Analytics\format_url_news_announcements_utm_params( $content->gmucf_story_permalink );
-	$story_image       = $content->gmucf_story_image;
-	$story_title       = $content->gmucf_story_title;
-	$story_description = $content->gmucf_story_description;
+	$story_permalink     = $content->gmucf_story_permalink;
+	$story_permalink_utm = Analytics\format_url_news_announcements_utm_params( $story_permalink );
+	$story_image         = $content->gmucf_story_image;
+	$story_title         = $content->gmucf_story_title;
+	$story_description   = $content->gmucf_story_description;
 
 	ob_start();
 ?>
@@ -34,21 +35,21 @@ function gmucf_top_story_markup( $content, $social_share ) {
 							<tbody>
 								<tr>
 									<td style="padding-left: 0; padding-right: 0;">
-										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink_utm; ?>" style="color: #000; text-decoration: none;">
 											<img class="responsiveimg" border="0" width="600" style="border:none; max-width: 600px;" src="<?php echo $story_image; ?>" />
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.4; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink_utm; ?>" style="color: #000; text-decoration: none;">
 											<?php echo $story_title; ?>
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink_utm; ?>" style="color: #000; text-decoration: none;">
 											<?php echo strip_tags( $story_description ); ?>
 										</a>
 									</td>
@@ -133,10 +134,11 @@ function gmucf_featured_stories_row_markup( $stories, $social_share, $more_stori
  * @return string The HTML for the featured story.
  */
 function gmucf_featured_story_markup( $content, $social_share ) {
-	$story_permalink   = Analytics\format_url_news_announcements_utm_params( $content->gmucf_story_permalink );
-	$story_image       = $content->gmucf_story_image;
-	$story_title       = $content->gmucf_story_title;
-	$story_description = $content->gmucf_story_description;
+	$story_permalink     = $content->gmucf_story_permalink;
+	$story_permalink_utm = Analytics\format_url_news_announcements_utm_params( $story_permalink );
+	$story_image         = $content->gmucf_story_image;
+	$story_title         = $content->gmucf_story_title;
+	$story_description   = $content->gmucf_story_description;
 
 	ob_start();
 ?>
@@ -149,21 +151,21 @@ function gmucf_featured_story_markup( $content, $social_share ) {
 							<tbody>
 								<tr>
 									<td style="padding-left: 0; padding-right: 0;">
-										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink_utm; ?>" style="color: #000; text-decoration: none;">
 											<img class="responsiveimg" border="0" width="290" style="border:none;" src="<?php echo $story_image; ?>" />
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="montserratsemibold" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 500; padding-top: 20px; padding-bottom: 15px; line-height: 1.3; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink_utm; ?>" style="color: #000; text-decoration: none;">
 											<?php echo $story_title; ?>
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="montserratlight" style="padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 1.6; color: #000; text-align: left;" align="left">
-										<a href="<?php echo $story_permalink; ?>" style="color: #000; text-decoration: none;">
+										<a href="<?php echo $story_permalink_utm; ?>" style="color: #000; text-decoration: none;">
 											<?php echo strip_tags( $story_description ); ?>
 										</a>
 									</td>

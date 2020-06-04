@@ -1,3 +1,7 @@
+<?php
+namespace GMUCF\Theme\TemplateParts\News\Browser\Header;
+use GMUCF\Theme\Includes\Weather as Weather;
+?>
 <table class="tableCollapse" width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 	<tr>
 		<td style="padding-top: 20px; padding-bottom: 20px; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 3px solid #fc0;">
@@ -10,28 +14,30 @@
 			<table align="center" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
 				<tr>
 					<th class="columnCollapse" align="left" width="290" style="font-family: Helvetica, Arial, sans-serif; color: #757575; text-transform: uppercase; padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 0; vertical-align: middle;">
-						<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
-							<tr>
-								<th class="text-left-desktop" style="text-align: center;">
-									<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
-										<tbody>
-											<tr>
-												<td class="montserratlight" style="font-weight: 400; font-size: 14px; line-height: 20px;">
-													<?php echo date( 'l, F j, Y' ); ?>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</th>
-							</tr>
+						<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+							<tbody>
+								<tr>
+									<th class="text-left-desktop" style="text-align: center;">
+										<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+											<tbody>
+												<tr>
+													<td class="montserratlight" style="font-weight: 400; font-size: 14px; line-height: 20px;">
+														<?php echo date( 'l, F j, Y' ); ?>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</th>
+								</tr>
+							</tbody>
 						</table>
 					</th>
 					<th class="columnCollapse" align="right" width="290" style="font-family: Helvetica, Arial, sans-serif; color: #757575; padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 0; vertical-align: middle; text-align: center;">
 						<?php
-						$weather = get_weather( 'weather-today' );
+						$weather = Weather\get_weather( 'weather-today' );
 						if ( ! empty( $weather ) ) :
-							$today_icon = get_weather_icon( $weather['today']['condition'] );
-							$tonight_icon = get_weather_icon( $weather['tonight']['condition'], true );
+							$today_icon = Weather\get_weather_icon( $weather['today']['condition'] );
+							$tonight_icon = Weather\get_weather_icon( $weather['tonight']['condition'], true );
 						?>
 							<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
 								<tr>
