@@ -23,8 +23,9 @@ function get_option_default( $option_name ) {
 
 
 /**
- * TODO description
- * TODO move to frontend action
+ * Enables the constant CLEAR_CACHE used throughout
+ * this theme to force feed transient expiration via
+ * the GET param `no_cache`.
  */
 if ( isset( $_GET['no_cache'] ) ) {
 	add_filter( 'wp_feed_cache_transient_lifetime', function( $a ) {

@@ -7,7 +7,7 @@ namespace GMUCF\Theme\Includes\InTheNews;
 
 
 /**
- * TODO description
+ * Returns In The News story data
  */
 function get_in_the_news_stories() {
 	$stories    = array();
