@@ -16,10 +16,7 @@ define( 'GMUCF_THEME_CUSTOMIZER_PREFIX', 'gmucf_' );
 define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	'news_utm_source'                  => 'gmucf',
 	'news_utm_medium'                  => 'email',
-	'news_utm_campaign'                => 'news_announcement_email', // TODO add method that returns complete UTM query param set with utm_content=date("Y-m-d")
-	// 'events_utm_source'             => '',
-	// 'events_utm_medium'             => '',
-	// 'events_utm_campaign'           => '',
+	'news_utm_campaign'                => 'news_announcement_email',
 	'events_url'                       => 'https://events.ucf.edu/',
 	'events_calendar_id'               => 1,
 	'events_limit'                     => 25,
