@@ -1,5 +1,9 @@
-<? 
-$weather = get_weather('weather-extended'); 
+<?php
+namespace GMUCF\Theme\TemplateParts\Events\Mail\WeekendWeather;
+use GMUCF\Theme\Includes\Weather as Weather;
+
+
+$weather = Weather\get_weather('weather-extended');
 if (!empty($weather)) {
 ?>
 <tr>

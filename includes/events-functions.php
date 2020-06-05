@@ -4,6 +4,7 @@
  * in the This Week/end @ UCF emails
  */
 namespace GMUCF\Theme\Includes\Events;
+use GMUCF\Theme\Includes\Utilities as Utilities;
 
 
 /**
@@ -37,8 +38,8 @@ function get_event_data($options = array())
 {
 	$cache_key_prefix = 'events-';
 	$default_options = array(
-		'calendar_id' => EVENTS_CALENDAR_ID,
-		'per_page'    => EVENTS_LIMIT,
+		'calendar_id' => get_option( 'events_calendar_id' ),
+		'per_page'    => get_option( 'events_limit' ),
 		'format'      => 'json');
 
 	$options = array_merge($default_options, $options);
@@ -48,7 +49,7 @@ function get_event_data($options = array())
 	if(CLEAR_CACHE || ($events = get_transient($cache_key)) === False) {
 		$events = array();
 
-		$url = EVENTS_URL.$options['y'].'/'.$options['m'].'/'.$options['d'].'/feed.json';
+		$url = get_option( 'events_url' ) . $options['y'].'/'.$options['m'].'/'.$options['d'].'/feed.json';
 
 		$params = array(
 			'per_page' => $options['per_page']
@@ -59,7 +60,7 @@ function get_event_data($options = array())
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
-		curl_setopt($ch, CURLOPT_TIMEOUT, HTTP_TIMEOUT);
+		curl_setopt($ch, CURLOPT_TIMEOUT, get_option( 'events_timeout' ));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
 
@@ -76,13 +77,13 @@ function get_event_data($options = array())
 		curl_close($ch);
 
 		// Events aren't neccessarily sorted from earliest to latest start time
-		usort($events, 'compare_event_starts');
+		usort($events, __NAMESPACE__ . '\compare_event_starts');
 
 		if(isset($options['limit']) && count($events) > $options['limit']) {
 			$events = array_slice($events, 0, $options['limit']);
 		}
 
-		set_transient($cache_key, $events, EVENTS_CACHE_DURATION);
+		set_transient($cache_key, $events, get_option( 'events_cache_duration' ));
 	}
 	return $events;
 }
@@ -108,7 +109,7 @@ function get_todays_events($options = array()) {
  * @author Chris Conover
  **/
 function get_tomorrows_events($options = array()) {
-	$tomorrow = date_add((new DateTime()), new DateInterval('P0Y1DT0H0M'));
+	$tomorrow = date_add((new \DateTime()), new \DateInterval('P0Y1DT0H0M'));
 	$date = getdate($tomorrow->getTimestamp());
 	$options = array_merge($options,array('y'=>$date['year'], 'm'=>$date['mon'], 'd'=>$date['mday']));
 	return get_event_data($options);
@@ -177,13 +178,13 @@ function get_weekday_events($options = array()) {
 	$days = array();
 
 	// Today might not be Monday
-	$day_diff = get_next_monday_diff();
+	$day_diff = Utilities\get_next_monday_diff();
 
 	// Fetch the events for Monday through Friday
 	$start_date = NULL;
 	$end_date   = NULL;
 	for($i = 0; $i < 5; $i++) {
-		$date = date_add((new DateTime()), new DateInterval('P0Y'.($day_diff + $i).'DT0H0M'));
+		$date = date_add((new \DateTime()), new \DateInterval('P0Y'.($day_diff + $i).'DT0H0M'));
 
 		if($i == 0) {
 			$start_date = $date;
@@ -238,13 +239,13 @@ function get_weekend_events($options = array()) {
 	$days = array();
 
 	// Today might not be Friday
-	$day_diff = get_next_friday_diff();
+	$day_diff = Utilities\get_next_friday_diff();
 
 	// Fetch the events for Monday through Friday
 	$start_date = NULL;
 	$end_date   = NULL;
 	for($i = 0; $i < 4; $i++) {
-		$date = date_add((new DateTime()), new DateInterval('P0Y'.($day_diff + $i).'DT0H0M'));
+		$date = date_add((new \DateTime()), new \DateInterval('P0Y'.($day_diff + $i).'DT0H0M'));
 
 		if($i == 0) {
 			$start_date = $date;

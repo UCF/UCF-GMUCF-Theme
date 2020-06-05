@@ -1,4 +1,7 @@
 <?php
+namespace GMUCF\Theme\TemplateParts\Events\Browser\Base;
+use GMUCF\Theme\Includes\Events as Events;
+
 
 # Which edition of the events should be displayed.
 # Override if specified
@@ -9,7 +12,7 @@ if(isset($_GET['edition'])) {
 		$edition = EVENTS_WEEKEND_EDITION;
 	}
 } else {
-	$edition = get_events_edition();
+	$edition = Events\get_events_edition();
 }
 
 if($edition === False) {
@@ -21,10 +24,10 @@ if($edition === False) {
 
 switch($edition) {
 	case EVENTS_WEEKDAY_EDITION:
-		extract(get_weekday_events());
+		extract(Events\get_weekday_events());
 		break;
 	case EVENTS_WEEKEND_EDITION:
-		extract(get_weekend_events());
+		extract(Events\get_weekend_events());
 		break;
 }
 ?>

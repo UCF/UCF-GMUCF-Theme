@@ -1,4 +1,8 @@
 <?php
+namespace GMUCF\Theme\TemplateParts\Events\Text\Base;
+use GMUCF\Theme\Includes\Weather as Weather;
+use GMUCF\Theme\Includes\Events as Events;
+
 
 # Which edition of the events should be displayed.
 # Override if specified
@@ -9,7 +13,7 @@ if(isset($_GET['edition'])) {
 		$edition = EVENTS_WEEKEND_EDITION;
 	}
 } else {
-	$edition = get_events_edition();
+	$edition = Events\get_events_edition();
 }
 
 if($edition === False) {
@@ -21,14 +25,15 @@ if($edition === False) {
 
 switch($edition) {
 	case EVENTS_WEEKDAY_EDITION:
-		extract(get_weekday_events());
+		extract(Events\get_weekday_events());
 		break;
 	case EVENTS_WEEKEND_EDITION:
-		extract(get_weekend_events());
+		extract(Events\get_weekend_events());
 		break;
 }
 
-$weather = get_weather('weather-extended');
+$weather = Weather\get_weather('weather-extended');
+
 header('Content-type: text/plain');
 ?>
 This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ UCF
@@ -57,7 +62,7 @@ if (!empty($weather)) {
 
 -- Events
 
-<?
+<?php
 for($i = 0; $i < count($days); $i++) {
 	$day       = $days[$i];
 	$title     = 'Today';
@@ -100,10 +105,10 @@ for($i = 0; $i < count($days); $i++) {
 	# date_add modifies the passed object in place. want $start_date to stay the
 	# same so make a copy of it.
 	# http://www.php.net/manual/en/datetime.add.php#102193
-	$_start_date          = new DateTime(date('c', $start_date->getTimestamp()));
-	$title_date           = date_add($_start_date, new DateInterval('P'.$i.'D'));
+	$_start_date          = new \DateTime(date('c', $start_date->getTimestamp()));
+	$title_date           = date_add($_start_date, new \DateInterval('P'.$i.'D'));
 	$title_date_timestamp = $title_date->getTimestamp();
-	$all_events_link      = EVENTS_URL.date('Y', $title_date_timestamp).'/'.date('n',$title_date_timestamp).'/'.date('j', $title_date_timestamp);
+	$all_events_link      = get_option( 'events_url' ) . date('Y', $title_date_timestamp).'/'.date('n',$title_date_timestamp).'/'.date('j', $title_date_timestamp);
 
 	if($i > 0) {
 		echo "\n\n\n";
@@ -148,5 +153,3 @@ for($i = 0; $i < count($days); $i++) {
 		}
 	}
 }
-?>
-

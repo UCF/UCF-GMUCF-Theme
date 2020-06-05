@@ -1,5 +1,9 @@
 <?php
-$weather = get_weather('weather-extended');
+namespace GMUCF\Theme\TemplateParts\Events\Browser\WeekdayWeather;
+use GMUCF\Theme\Includes\Weather as Weather;
+
+
+$weather = Weather\get_weather('weather-extended');
 if (!empty($weather)) {
 ?>
 <div id="weekend-weather" class="weather">
