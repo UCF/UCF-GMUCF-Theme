@@ -65,7 +65,7 @@ function init() {
 	// TODO not working???
 	$options = unserialize( GMUCF_THEME_CUSTOMIZER_DEFAULTS );
 	foreach ( $options as $option_name => $option_default ) {
-		add_filter( 'default_option_{$option_name}', function( $get_option_default, $option, $passed_default ) {
+		add_filter( "default_option_$option_name", function( $get_option_default, $option, $passed_default ) use ( $option_default ) {
 			// If get_option() was passed a unique default value, prioritize it
 			if ( $passed_default ) {
 				return $get_option_default;
