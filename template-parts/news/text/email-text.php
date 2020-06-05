@@ -1,6 +1,6 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\News\Text\EmailText;
-use GMUCF\Theme\Includes\UCFToday as UCFToday;
+use GMUCF\Theme\Includes\UCFToday;
 
 
 $gmucf_content = UCFToday\get_gmucf_email_options_feed_values();

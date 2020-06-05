@@ -5,7 +5,7 @@
  * (TODO should probably move to template parts)
  */
 namespace GMUCF\Theme\Includes\EmailMarkup;
-use GMUCF\Theme\Includes\Analytics as Analytics;
+use GMUCF\Theme\Includes\Analytics;
 
 
 /**

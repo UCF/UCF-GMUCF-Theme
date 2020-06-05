@@ -1,8 +1,8 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\News\Mail\Backup\FeaturedStories;
-use GMUCF\Theme\Includes\Analytics as Analytics;
-use GMUCF\Theme\Includes\EmailMarkup as EmailMarkup;
-use GMUCF\Theme\Includes\UCFToday as UCFToday;
+use GMUCF\Theme\Includes\Analytics;
+use GMUCF\Theme\Includes\EmailMarkup;
+use GMUCF\Theme\Includes\UCFToday;
 
 $limit = 4;
 $featured_stories = UCFToday\get_featured_stories_details( $limit );

@@ -1,7 +1,7 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\Events\Text\Base;
-use GMUCF\Theme\Includes\Weather as Weather;
-use GMUCF\Theme\Includes\Events as Events;
+use GMUCF\Theme\Includes\Weather;
+use GMUCF\Theme\Includes\Events;
 
 
 # Which edition of the events should be displayed.

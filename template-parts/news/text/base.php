@@ -1,9 +1,9 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\News\Text\Base;
-use GMUCF\Theme\Includes\Weather as Weather;
-use GMUCF\Theme\Includes\UCFToday as UCFToday;
-use GMUCF\Theme\Includes\InTheNews as InTheNews;
-use GMUCF\Theme\Includes\Announcements as Announcements;
+use GMUCF\Theme\Includes\Weather;
+use GMUCF\Theme\Includes\UCFToday;
+use GMUCF\Theme\Includes\InTheNews;
+use GMUCF\Theme\Includes\Announcements;
 
 
 header( 'Content-Type: text/plain' );

@@ -1,6 +1,6 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\Events\Mail\Base;
-use GMUCF\Theme\Includes\Events as Events;
+use GMUCF\Theme\Includes\Events;
 
 
 # Which edition of the events should be displayed.

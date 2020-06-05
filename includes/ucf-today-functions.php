@@ -4,7 +4,7 @@
  * articles or fallback content from UCF Today
  */
 namespace GMUCF\Theme\Includes\UCFToday;
-use GMUCF\Theme\Includes\Utilities as Utilities;
+use GMUCF\Theme\Includes\Utilities;
 
 
 /**
@@ -35,16 +35,16 @@ function get_featured_stories_details( $limit = 2 ) {
 					'permalink'     => ''
 				);
 				$enclosure = $rss_item->get_enclosure();
-				if( $enclosure && in_array( $enclosure->get_type(),get_valid_enclosure_types() ) && ( $thumbnail = $enclosure->get_thumbnail() ) ) {
+				if( $enclosure && in_array( $enclosure->get_type(), Utilities\get_valid_enclosure_types() ) && ( $thumbnail = $enclosure->get_thumbnail() ) ) {
 					$image = $enclosure->get_link();
-					$story['image'] = remove_quotes( $image );
-					$story['thumbnail_src'] = remove_quotes( $thumbnail );
+					$story['image'] = Utilities\remove_quotes( $image );
+					$story['thumbnail_src'] = Utilities\remove_quotes( $thumbnail );
 				} else {
-					$story['thumbnail_src'] = remove_quotes( get_bloginfo( 'stylesheet_directory', 'raw' ).'/static/img/no-photo.png' );
+					$story['thumbnail_src'] = Utilities\remove_quotes( get_bloginfo( 'stylesheet_directory', 'raw' ).'/static/img/no-photo.png' );
 				}
-				$story['title']       = sanitize_for_email( $rss_item->get_title() );
-				$story['description'] = sanitize_for_email( $rss_item->get_description() );
-				$story['permalink']   = remove_quotes( $rss_item->get_permalink() );
+				$story['title']       = Utilities\sanitize_for_email( $rss_item->get_title() );
+				$story['description'] = Utilities\sanitize_for_email( $rss_item->get_description() );
+				$story['permalink']   = Utilities\remove_quotes( $rss_item->get_permalink() );
 				array_push( $stories, $story );
 				$count++;
 			}

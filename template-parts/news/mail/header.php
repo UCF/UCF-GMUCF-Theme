@@ -1,6 +1,6 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\News\Mail\Header;
-use GMUCF\Theme\Includes\Weather as Weather;
+use GMUCF\Theme\Includes\Weather;
 ?>
 <table class="tableCollapse" width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 	<tr>

@@ -1,6 +1,6 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\Events\Mail\WeekdayWeather;
-use GMUCF\Theme\Includes\Weather as Weather;
+use GMUCF\Theme\Includes\Weather;
 
 
 $weather = Weather\get_weather('weather-extended');

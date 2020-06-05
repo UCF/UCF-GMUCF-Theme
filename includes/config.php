@@ -3,7 +3,7 @@
  * Handle all theme configuration here
  */
 namespace GMUCF\Theme\Includes\Config;
-use GMUCF\Theme\Includes\Utilities as Utils;
+use GMUCF\Theme\Includes\Utilities;
 
 
 define( 'GMUCF_THEME_URL', get_template_directory_uri() );
@@ -20,7 +20,7 @@ define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	// 'events_utm_source'             => '',
 	// 'events_utm_medium'             => '',
 	// 'events_utm_campaign'           => '',
-	'events_url'                       => 'https://events.ucf.edu',
+	'events_url'                       => 'https://events.ucf.edu/',
 	'events_calendar_id'               => 1,
 	'events_limit'                     => 25,
 	'events_cache_duration'            => 60 * 10, // seconds
@@ -147,7 +147,7 @@ function define_customizer_controls( $wp_customize ) {
 		'gmucf_email_options_url',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'gmucf_email_options_url' )
+			'default' => Utilities\get_option_default( 'gmucf_email_options_url' )
 		)
 	);
 	$wp_customize->add_control(
@@ -164,7 +164,7 @@ function define_customizer_controls( $wp_customize ) {
 		'gmucf_email_options_json_timeout',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'gmucf_email_options_json_timeout' )
+			'default' => Utilities\get_option_default( 'gmucf_email_options_json_timeout' )
 		)
 	);
 	$wp_customize->add_control(
@@ -181,7 +181,7 @@ function define_customizer_controls( $wp_customize ) {
 		'main_site_stories_url',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'main_site_stories_url' )
+			'default' => Utilities\get_option_default( 'main_site_stories_url' )
 		)
 	);
 	$wp_customize->add_control(
@@ -198,7 +198,7 @@ function define_customizer_controls( $wp_customize ) {
 		'main_site_stories_more_url',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'main_site_stories_more_url' )
+			'default' => Utilities\get_option_default( 'main_site_stories_more_url' )
 		)
 	);
 	$wp_customize->add_control(
@@ -215,7 +215,7 @@ function define_customizer_controls( $wp_customize ) {
 		'main_site_stories_timeout',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'main_site_stories_timeout' )
+			'default' => Utilities\get_option_default( 'main_site_stories_timeout' )
 		)
 	);
 	$wp_customize->add_control(
@@ -235,7 +235,7 @@ function define_customizer_controls( $wp_customize ) {
 		'announcements_url',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'announcements_url' )
+			'default' => Utilities\get_option_default( 'announcements_url' )
 		)
 	);
 	$wp_customize->add_control(
@@ -252,7 +252,7 @@ function define_customizer_controls( $wp_customize ) {
 		'announcements_more_url',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'announcements_more_url' )
+			'default' => Utilities\get_option_default( 'announcements_more_url' )
 		)
 	);
 	$wp_customize->add_control(
@@ -272,7 +272,7 @@ function define_customizer_controls( $wp_customize ) {
 		'in_the_news_url',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'in_the_news_url' )
+			'default' => Utilities\get_option_default( 'in_the_news_url' )
 		)
 	);
 	$wp_customize->add_control(
@@ -289,7 +289,7 @@ function define_customizer_controls( $wp_customize ) {
 		'in_the_news_more_url',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'in_the_news_more_url' )
+			'default' => Utilities\get_option_default( 'in_the_news_more_url' )
 		)
 	);
 	$wp_customize->add_control(
@@ -306,7 +306,7 @@ function define_customizer_controls( $wp_customize ) {
 		'in_the_news_item_count',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'in_the_news_item_count' )
+			'default' => Utilities\get_option_default( 'in_the_news_item_count' )
 		)
 	);
 	$wp_customize->add_control(
@@ -323,7 +323,7 @@ function define_customizer_controls( $wp_customize ) {
 		'in_the_news_json_timeout',
 		array (
 			'type'    => 'option',
-			'default' => Utils\get_option_default( 'in_the_news_json_timeout' )
+			'default' => Utilities\get_option_default( 'in_the_news_json_timeout' )
 		)
 	);
 	$wp_customize->add_control(
@@ -343,7 +343,7 @@ function define_customizer_controls( $wp_customize ) {
 		'events_url',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'events_url' )
+			'default' => Utilities\get_option_default( 'events_url' )
 		)
 	);
 	$wp_customize->add_control(
@@ -360,7 +360,7 @@ function define_customizer_controls( $wp_customize ) {
 		'events_calendar_id',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'events_calendar_id' )
+			'default' => Utilities\get_option_default( 'events_calendar_id' )
 		)
 	);
 	$wp_customize->add_control(
@@ -377,7 +377,7 @@ function define_customizer_controls( $wp_customize ) {
 		'events_limit',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'events_limit' )
+			'default' => Utilities\get_option_default( 'events_limit' )
 		)
 	);
 	$wp_customize->add_control(
@@ -394,7 +394,7 @@ function define_customizer_controls( $wp_customize ) {
 		'events_cache_duration',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'events_cache_duration' )
+			'default' => Utilities\get_option_default( 'events_cache_duration' )
 		)
 	);
 	$wp_customize->add_control(
@@ -411,7 +411,7 @@ function define_customizer_controls( $wp_customize ) {
 		'events_timeout',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'events_timeout' )
+			'default' => Utilities\get_option_default( 'events_timeout' )
 		)
 	);
 	$wp_customize->add_control(
@@ -431,7 +431,7 @@ function define_customizer_controls( $wp_customize ) {
 		'weather_service_today_url',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'weather_service_today_url' )
+			'default' => Utilities\get_option_default( 'weather_service_today_url' )
 		)
 	);
 	$wp_customize->add_control(
@@ -448,7 +448,7 @@ function define_customizer_controls( $wp_customize ) {
 		'weather_service_extended_url',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'weather_service_extended_url' )
+			'default' => Utilities\get_option_default( 'weather_service_extended_url' )
 		)
 	);
 	$wp_customize->add_control(
@@ -465,7 +465,7 @@ function define_customizer_controls( $wp_customize ) {
 		'weather_service_cache_duration',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'weather_service_cache_duration' )
+			'default' => Utilities\get_option_default( 'weather_service_cache_duration' )
 		)
 	);
 	$wp_customize->add_control(
@@ -482,7 +482,7 @@ function define_customizer_controls( $wp_customize ) {
 		'weather_service_timeout',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'weather_service_timeout' )
+			'default' => Utilities\get_option_default( 'weather_service_timeout' )
 		)
 	);
 	$wp_customize->add_control(
@@ -502,7 +502,7 @@ function define_customizer_controls( $wp_customize ) {
 		'news_utm_source',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'news_utm_source' )
+			'default' => Utilities\get_option_default( 'news_utm_source' )
 		)
 	);
 	$wp_customize->add_control(
@@ -519,7 +519,7 @@ function define_customizer_controls( $wp_customize ) {
 		'news_utm_medium',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'news_utm_medium' )
+			'default' => Utilities\get_option_default( 'news_utm_medium' )
 		)
 	);
 	$wp_customize->add_control(
@@ -536,7 +536,7 @@ function define_customizer_controls( $wp_customize ) {
 		'news_utm_campaign',
 		array (
 			'type' => 'option',
-			'default' => Utils\get_option_default( 'news_utm_campaign' )
+			'default' => Utilities\get_option_default( 'news_utm_campaign' )
 		)
 	);
 	$wp_customize->add_control(

@@ -1,6 +1,6 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\News\Text\BackupEmailText;
-use GMUCF\Theme\Includes\UCFToday as UCFToday;
+use GMUCF\Theme\Includes\UCFToday;
 ?>
 TODAY'S TOP STORIES
 ========================

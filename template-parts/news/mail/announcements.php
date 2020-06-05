@@ -1,8 +1,8 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\News\Mail\Announcements;
-use GMUCF\Theme\Includes\UCFToday as UCFToday;
-use GMUCF\Theme\Includes\Announcements as Announcements;
-use GMUCF\Theme\Includes\Analytics as Analytics;
+use GMUCF\Theme\Includes\UCFToday;
+use GMUCF\Theme\Includes\Announcements;
+use GMUCF\Theme\Includes\Analytics;
 
 
 $gmucf_content = UCFToday\get_gmucf_email_options_feed_values();

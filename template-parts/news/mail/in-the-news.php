@@ -1,7 +1,7 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\News\Mail\InTheNews;
-use GMUCF\Theme\Includes\InTheNews as InTheNews;
-use GMUCF\Theme\Includes\Analytics as Analytics;
+use GMUCF\Theme\Includes\InTheNews;
+use GMUCF\Theme\Includes\Analytics;
 
 $in_the_news_more_url = get_option( 'in_the_news_more_url' );
 ?>

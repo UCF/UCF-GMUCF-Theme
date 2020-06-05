@@ -4,7 +4,7 @@
  * in the This Week/end @ UCF emails
  */
 namespace GMUCF\Theme\Includes\Events;
-use GMUCF\Theme\Includes\Utilities as Utilities;
+use GMUCF\Theme\Includes\Utilities;
 
 
 /**
