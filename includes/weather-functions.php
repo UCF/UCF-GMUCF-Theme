@@ -26,11 +26,11 @@ function get_weather( $cache_key ) {
 		// Get the url from which weather data is fetched
 		switch ( $cache_key ) {
 			case 'weather-extended':
-				$json_url = get_option( 'weather_service_today_url' );
+				$json_url = get_option( 'weather_service_extended_url' );
 				break;
 			case 'weather-today':
 			default:
-				$json_url = get_option( 'weather_service_extended_url' );
+				$json_url = get_option( 'weather_service_today_url' );
 				break;
 		}
 
