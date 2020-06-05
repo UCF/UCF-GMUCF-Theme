@@ -1,3 +1,8 @@
+<?php
+namespace GMUCF\Theme\TemplateParts\News\Mail\Base;
+use GMUCF\Theme\Includes\UCFToday as UCFToday;
+use GMUCF\Theme\Includes\EmailMarkup as EmailMarkup;
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -41,11 +46,11 @@
                           <table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
                             <tbody>
                               <?php
-                              $gmucf_content = get_gmucf_email_options_feed_values();
-                              $send_date     = $gmucf_content->gmucf_email_send_date;
+                              $gmucf_content = UCFToday\get_gmucf_email_options_feed_values();
+                              $send_date     = $gmucf_content->gmucf_email_send_date ?? null;
 
                               if ( $send_date === date( 'm/d/Y' ) ) {
-                                echo gmucf_email_markup( $gmucf_content );
+                                echo EmailMarkup\gmucf_email_markup( $gmucf_content );
                               } else {
                                 echo get_template_part( 'template-parts/news/mail/backup/email-content' );
                               }

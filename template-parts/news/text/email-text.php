@@ -1,8 +1,12 @@
 <?php
-$gmucf_content = get_gmucf_email_options_feed_values();
+namespace GMUCF\Theme\TemplateParts\News\Text\EmailText;
+use GMUCF\Theme\Includes\UCFToday as UCFToday;
+
+
+$gmucf_content = UCFToday\get_gmucf_email_options_feed_values();
 $send_date     = $gmucf_content->gmucf_email_send_date;
 
-$contents     = $gmucf_content->gmucf_email_content;
+$contents      = $gmucf_content->gmucf_email_content;
 
 $email_content_grouped = array(
     'gmucf_stories' => '',
@@ -25,7 +29,7 @@ foreach ( $contents as $content ) {
     }
 
     if ( $layout === 'gmucf_spotlight' ) {
-        $email_content_grouped['gmucf_spotlights'][] = $content;        
+        $email_content_grouped['gmucf_spotlights'][] = $content;
     }
 }
 ?>

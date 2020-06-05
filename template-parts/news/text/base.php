@@ -1,9 +1,18 @@
-<?php header( 'Content-Type: text/plain' ); ?>
+<?php
+namespace GMUCF\Theme\TemplateParts\News\Text\Base;
+use GMUCF\Theme\Includes\Weather as Weather;
+use GMUCF\Theme\Includes\UCFToday as UCFToday;
+use GMUCF\Theme\Includes\InTheNews as InTheNews;
+use GMUCF\Theme\Includes\Announcements as Announcements;
+
+
+header( 'Content-Type: text/plain' );
+?>
 UCF TODAY
 <?php echo date( 'l, F j, Y' ) ?>
 
 <?php
-$weather = get_weather( 'weather-today' );
+$weather = Weather\get_weather( 'weather-today' );
 if ( !empty( $weather ) ) : ?>
 High: <?php echo $weather['today']['tempN']; ?> Low: <?php echo $weather['tonight']['tempN'] ?>
 <?php endif; ?>
@@ -12,8 +21,8 @@ High: <?php echo $weather['today']['tempN']; ?> Low: <?php echo $weather['tonigh
 
 
 <?php
-$gmucf_content = get_gmucf_email_options_feed_values();
-$send_date     = $gmucf_content->gmucf_email_send_date;
+$gmucf_content = UCFToday\get_gmucf_email_options_feed_values();
+$send_date     = $gmucf_content->gmucf_email_send_date ?? null;
 
 if ( $send_date === date( 'm/d/Y' ) ) {
     echo get_template_part( 'template-parts/news/text/email-text' );
@@ -24,7 +33,7 @@ if ( $send_date === date( 'm/d/Y' ) ) {
 
 UCF IN THE NEWS
 ========================
-<?php foreach( get_in_the_news_stories() as $story ) : ?>
+<?php foreach( InTheNews\get_in_the_news_stories() as $story ) : ?>
 - <?php echo strip_tags( $story->link_text ); ?> <?php if ( !empty( $story->source ) ) : ?>(<?php echo trim( strip_tags( $story->source ) ); ?>)<?php endif; ?>
 
   <?php echo $story->url; ?>
@@ -33,7 +42,7 @@ UCF IN THE NEWS
 <?php endforeach; ?>
 
 <?php
-$announcements = get_announcement_details();
+$announcements = Announcements\get_announcement_details();
 
 if ( count( $announcements ) != 0 ) :
 ?>
