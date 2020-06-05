@@ -4,6 +4,7 @@
  * in the News & Announcements emails
  */
 namespace GMUCF\Theme\Includes\Announcements;
+use GMUCF\Theme\Includes\Utilities;
 
 
 /**
@@ -39,7 +40,7 @@ function get_announcement_details( $announcement_ids=array() ) {
 			array_push(
 				$announcements,
 				array(
-					'title' => sanitize_for_email( $item->title ),
+					'title' => Utilities\sanitize_for_email( $item->title ),
 					'permalink' => "$front_base_url/$item->slug"
 				)
 			);
@@ -68,7 +69,7 @@ function get_announcement_details( $announcement_ids=array() ) {
 			array_push(
 				$announcements,
 				array(
-					'title'     => sanitize_for_email( $item->title ),
+					'title'     => Utilities\sanitize_for_email( $item->title ),
 					'permalink' => "$front_base_url/$item->slug"
 				)
 			);
