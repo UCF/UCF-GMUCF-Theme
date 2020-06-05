@@ -38,7 +38,7 @@ switch($edition) {
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="initial-scale=1.0"><!-- So that mobile webkit will display zoomed in -->
-		<title>This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> at UCF</title>
+		<title>This Week<?php echo ($edition === EVENTS_WEEKEND_EDITION ? 'end' :''); ?> at UCF</title>
 		<style type="text/css">
 			<!--
 			html, body { margin:0; padding:0; background-color:#FFF; color:#333; font-family:Helvetica, sans-serif; }
@@ -299,16 +299,16 @@ switch($edition) {
 					<table class="t600" width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 						<tr>
 							<td class="ccollapse100" id="week-at-ucf" style="width:365px;font-size:36px;font-weight:200;">
-								This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ <span style="color:#ffc907;font-weight:bold">UCF</span>
+								This Week<?php echo ($edition === EVENTS_WEEKEND_EDITION ? 'end' :''); ?> @ <span style="color:#ffc907;font-weight:bold">UCF</span>
 							</td>
 							<td class="ccollapse100" id="week-at-ucf-date" style="width:235px;font-size:36px;font-weight:200;text-align:right;">
-								<?=date('n/j', $start_date->getTimestamp()).'-'.date('n/j', $end_date->getTimestamp())?>
+								<?php echo date('n/j', $start_date->getTimestamp()).'-'.date('n/j', $end_date->getTimestamp()); ?>
 							</td>
 						</tr>
 					</table>
 				</td>
 			</tr>
-			<?
+			<?php
 			// Use includes here instead of get_template_part
 			// to preserve scope.
 			switch($edition) {
@@ -337,7 +337,7 @@ switch($edition) {
 						<tr>
 							<td class="ccollapse100pb" style="width:330px;vertical-align:top;">
 								<a href="https://www.ucf.edu">
-									<img src="<?=bloginfo('stylesheet_directory')?>/static/img/logo-no-opportunity.png" style="border:0"/>
+									<img src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/logo-no-opportunity.png" style="border:0"/>
 								</a>
 								<p style="line-height:1.4em;font-size:15px;margin:0;padding:0;">
 									4000 Central Florida Blvd.
@@ -357,22 +357,22 @@ switch($edition) {
 									<tr>
 										<td>
 											<a href="https://www.facebook.com/ucf/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/facebook.png" />
+												<img style="border:0;" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/facebook.png" />
 											</a>
 										</td>
 										<td style="padding-left:10px;">
 											<a href="https://www.twitter.com/UCF/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/twitter.png" />
+												<img style="border:0;" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/twitter.png" />
 											</a>
 										</td>
 										<td style="padding-left:10px;">
 											<a href="https://www.instagram.com/ucf.edu" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/instagram.png" />
+												<img style="border:0;" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/instagram.png" />
 											</a>
 										</td>
 										<td style="padding-left:10px;">
 											<a href="https://www.youtube.com/user/UCF/" style="text-decoration:none;">
-												<img style="border:0;" src="<?=bloginfo('stylesheet_directory')?>/static/img/social/youtube.png" />
+												<img style="border:0;" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/youtube.png" />
 											</a>
 										</td>
 									</tr>
@@ -385,7 +385,7 @@ switch($edition) {
 			<tr>
 				<td style="padding-top:15px;padding-bottom:15px;text-align:center;font-size:13px;">
 					Having trouble viewing this email? See it in your
-					<?
+					<?php
 					// Use includes here instead of get_template_part
 					// to preserve scope.
 					switch($edition) {

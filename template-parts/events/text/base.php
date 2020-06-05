@@ -36,7 +36,7 @@ $weather = Weather\get_weather('weather-extended');
 
 header('Content-type: text/plain');
 ?>
-This Week<?=($edition === EVENTS_WEEKEND_EDITION ? 'end' :'')?> @ UCF
+This Week<?php echo ($edition === EVENTS_WEEKEND_EDITION ? 'end' :''); ?> @ UCF
 
 -- Weather
 
