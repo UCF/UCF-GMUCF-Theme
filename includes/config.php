@@ -62,9 +62,10 @@ function init() {
 	// called.  Assumes that all default values defined in
 	// GMUCF_THEME_CUSTOMIZER_DEFAULTS correspond to a
 	// theme option (not a theme mod).
-	// TODO not working???
 	$options = unserialize( GMUCF_THEME_CUSTOMIZER_DEFAULTS );
 	foreach ( $options as $option_name => $option_default ) {
+		// Enforce a default value for options we've defined
+		// defaults for:
 		add_filter( "default_option_$option_name", function( $get_option_default, $option, $passed_default ) use ( $option_default ) {
 			// If get_option() was passed a unique default value, prioritize it
 			if ( $passed_default ) {
@@ -72,6 +73,29 @@ function init() {
 			}
 			return $option_default;
 		}, 10, 3 );
+
+		// Enforce typecasting of returned option values,
+		// based on the types of the defaults we've defined.
+		// NOTE: Also forces non-empty values, since this theme
+		// expects all theme option values to be non-empty:
+		add_filter( "option_$option_name", function( $value, $option ) use ( $option_default ) {
+			switch ( $type = gettype( $option_default ) ) {
+				case 'integer':
+					// None of our current theme options should ever
+					// have a value of 0; assume 0 should be "empty" here:
+					$value = intval( $value );
+					break;
+				case 'string':
+				default:
+					break;
+			}
+
+			if ( empty( $value ) ) {
+				$value = $option_default;
+			}
+
+			return $value;
+		}, 10, 2 );
 	}
 }
 
