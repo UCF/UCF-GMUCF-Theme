@@ -29,18 +29,20 @@ function get_featured_stories_details( $limit = 2 ) {
 			if( $count == $limit ) break;
 			if( $top_story_id !== $rss_item->get_id() ) {
 				$story = array(
-					'thumbnail_src' => '',
-					'title'         => '',
-					'description'   => '',
-					'permalink'     => ''
+					'image'       => '',
+					'title'       => '',
+					'description' => '',
+					'permalink'   => ''
 				);
+				// NOTE: get_enclosure() doesn't always return the story
+				// header image like you'd expect, and may result in the
+				// fallback story image being shown as a result
 				$enclosure = $rss_item->get_enclosure();
-				if( $enclosure && in_array( $enclosure->get_type(), Utilities\get_valid_enclosure_types() ) && ( $thumbnail = $enclosure->get_thumbnail() ) ) {
+				if( $enclosure && in_array( $enclosure->get_type(), Utilities\get_valid_enclosure_types() ) && ( $image = $enclosure->get_link() ) ) {
 					$image = $enclosure->get_link();
 					$story['image'] = Utilities\remove_quotes( $image );
-					$story['thumbnail_src'] = Utilities\remove_quotes( $thumbnail );
 				} else {
-					$story['thumbnail_src'] = Utilities\remove_quotes( get_bloginfo( 'stylesheet_directory', 'raw' ).'/static/img/no-photo.png' );
+					$story['image'] = Utilities\remove_quotes( get_bloginfo( 'stylesheet_directory', 'raw' ).'/static/img/no-photo.png' );
 				}
 				$story['title']       = Utilities\sanitize_for_email( $rss_item->get_title() );
 				$story['description'] = Utilities\sanitize_for_email( $rss_item->get_description() );
