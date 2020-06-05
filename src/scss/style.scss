@@ -19,5 +19,7 @@
 // Project-specific styles and overrides
 //
 
-// Add/import your theme's custom styles here
-// ...
+@import 'layout';
+
+// Pages
+@import 'pages/404';

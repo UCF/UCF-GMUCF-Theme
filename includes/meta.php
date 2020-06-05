@@ -14,12 +14,15 @@ namespace GMUCF\Theme\Includes\Meta;
  * @return void
  */
 function enqueue_frontend_assets() {
-	wp_enqueue_style( 'athena-framework-css-cdn', 'https://cdn.ucf.edu/athena-framework/latest/css/framework.min.css', null );
+	$theme = wp_get_theme( 'UCF-GMUCF-Theme' );
+	$theme_version = ( $theme instanceof WP_Theme ) ? $theme->get( 'Version' ) : false;
+
+	wp_enqueue_style( 'style', GMUCF_THEME_CSS_URL . '/style.min.css', null, $theme_version );
 
 	wp_enqueue_script( 'ucf-header', '//universityheader.ucf.edu/bar/js/university-header.js?use-1200-breakpoint=1', null, null, true );
 	wp_enqueue_script( 'wp-a11y' );
 	wp_enqueue_script( 'tether', 'https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js', null, null, true );
-	wp_enqueue_script( 'athena-framework-js-cdn', 'https://cdn.ucf.edu/athena-framework/latest/js/framework.min.js', array( 'jquery', 'tether' ), $theme_version, true );
+	wp_enqueue_script( 'script', GMUCF_THEME_JS_URL . '/script.min.js', array( 'jquery', 'tether' ), $theme_version, true );
 }
 
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_frontend_assets' );
