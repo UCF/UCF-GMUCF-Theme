@@ -34,8 +34,7 @@ function compare_event_starts($a, $b) {
  * @return array
  * @author Chris Conover
  **/
-function get_event_data($options = array())
-{
+function get_event_data($options = array()) {
 	$cache_key_prefix = 'events-';
 	$default_options = array(
 		'calendar_id' => get_option( 'events_calendar_id' ),
@@ -113,38 +112,6 @@ function get_tomorrows_events($options = array()) {
 	$date = getdate($tomorrow->getTimestamp());
 	$options = array_merge($options,array('y'=>$date['year'], 'm'=>$date['mon'], 'd'=>$date['mday']));
 	return get_event_data($options);
-}
-
-
-/**
- * Returns the events HTML
- *
- * @return string
- * @author RJ Bruneel
- **/
-function display_events($events) {
-	$count = 0;
-	ob_start();
-		?>
-		<ul>
-		<?php
-		foreach($events as $event) :
-			if($count == 7) break;
-			$start_timestamp = strtotime($event->starts);
-		?>
-			<li>
-				<?php echo date('g:i', $start_timestamp) . date('A', $start_timestamp); ?>
-				<a href="<?php echo $event->url?>">
-					<?php echo esc_html($event->title); ?>
-				</a>
-			</li>
-		<?php
-			$count++;
-		endforeach;
-		?>
-		</ul>
-		<?php
-	return ob_end_flush();
 }
 
 
