@@ -1,6 +1,9 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\News\Browser\Header;
 use GMUCF\Theme\Includes\Weather;
+
+
+$current_date = current_datetime();
 ?>
 <table class="tableCollapse" width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 	<tr>
@@ -22,7 +25,7 @@ use GMUCF\Theme\Includes\Weather;
 											<tbody>
 												<tr>
 													<td class="montserratlight" style="font-weight: 400; font-size: 14px; line-height: 20px;">
-														<?php echo date( 'l, F j, Y' ); ?>
+														<?php echo $current_date->format( 'l, F j, Y' ); ?>
 													</td>
 												</tr>
 											</tbody>
@@ -70,7 +73,7 @@ use GMUCF\Theme\Includes\Weather;
 
 	<tr>
 		<td class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding-bottom: 20px; padding-top: 30px; padding-left: 0; padding-right: 0; text-align: left;" align="left">
-			<h2 style="margin-top: 0; margin-bottom: 0; font-weight: normal;">Good <?php echo (int)date( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?>, UCF.</h2>
+			<h2 style="margin-top: 0; margin-bottom: 0; font-weight: normal;">Good <?php echo (int)$current_date->format( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?>, UCF.</h2>
 		</td>
 	</tr>
 </table>

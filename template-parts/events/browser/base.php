@@ -119,7 +119,7 @@ switch($edition) {
 		<h1>
 			This Week<?php echo ($edition === EVENTS_WEEKEND_EDITION ? 'end' :''); ?> @ <span class="highlight">UCF</span>
 			<span class="range">
-				<?php echo date('n/j', $start_date->getTimestamp()).'-'.date('n/j', $end_date->getTimestamp()); ?>
+				<?php echo $start_date->format( 'n/j' ) . '-' . $end_date->format( 'n/j' ); ?>
 			</span>
 		</h1>
 		<?php

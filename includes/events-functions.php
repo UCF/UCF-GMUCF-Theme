@@ -231,7 +231,7 @@ function get_events_range( $options=array(), $day_start=1, $num_days=5 ) {
 
 		foreach ( $day as $event ) {
 			$start      = date_create_from_format( DATE_RFC2822, $event->starts );
-			$start_hour = $start->format( 'G' );
+			$start_hour = (int)$start->format( 'G' );
 			$part       = $start->format( 'g:i A' );
 
 			if ( $start_hour < 12 ) {
