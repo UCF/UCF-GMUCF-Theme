@@ -1,7 +1,5 @@
-			<div id="footer" class="span-24 last">
-
 			</div>
-		</div><!-- #blueprint-container -->
+		</main>
+		<?php wp_footer(); ?>
 	</body>
-	<?="\n".footer_()."\n"?>
 </html>
