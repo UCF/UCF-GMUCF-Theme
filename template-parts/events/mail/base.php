@@ -302,7 +302,7 @@ switch($edition) {
 								This Week<?php echo ($edition === EVENTS_WEEKEND_EDITION ? 'end' :''); ?> @ <span style="color:#ffc907;font-weight:bold">UCF</span>
 							</td>
 							<td class="ccollapse100" id="week-at-ucf-date" style="width:235px;font-size:36px;font-weight:200;text-align:right;">
-								<?php echo date('n/j', $start_date->getTimestamp()).'-'.date('n/j', $end_date->getTimestamp()); ?>
+								<?php echo $start_date->format( 'n/j' ) . '-' . $end_date->format( 'n/j' ); ?>
 							</td>
 						</tr>
 					</table>

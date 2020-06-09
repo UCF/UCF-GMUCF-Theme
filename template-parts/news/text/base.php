@@ -7,14 +7,16 @@ use GMUCF\Theme\Includes\Announcements;
 
 
 header( 'Content-Type: text/plain' );
+
+$current_date = current_datetime();
 ?>
 UCF TODAY
-<?php echo date( 'l, F j, Y' ) ?>
+<?php echo $current_date->format( 'l, F j, Y' ); ?>
 
 <?php
 $weather = Weather\get_weather( 'weather-today' );
 if ( !empty( $weather ) ) : ?>
-High: <?php echo $weather['today']['tempN']; ?> Low: <?php echo $weather['tonight']['tempN'] ?>
+High: <?php echo $weather['today']['tempN']; ?> Low: <?php echo $weather['tonight']['tempN']; ?>
 <?php endif; ?>
 
 
@@ -24,7 +26,7 @@ High: <?php echo $weather['today']['tempN']; ?> Low: <?php echo $weather['tonigh
 $gmucf_content = UCFToday\get_gmucf_email_options_feed_values();
 $send_date     = $gmucf_content->gmucf_email_send_date ?? null;
 
-if ( $send_date === date( 'm/d/Y' ) ) {
+if ( $send_date === $current_date->format( 'm/d/Y' ) ) {
     echo get_template_part( 'template-parts/news/text/email-text' );
 } else {
     echo get_template_part( 'template-parts/news/text/backup-email-text' );
