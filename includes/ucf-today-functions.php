@@ -26,7 +26,7 @@ function get_featured_stories_details( $limit = 2 ) {
 		$count = 0;
 		$top_story_id = get_transient( 'top_story_id' );
 		foreach( $rss_items as $rss_item ) {
-			if( $count == $limit ) break;
+			if( $count === $limit ) break;
 			if( $top_story_id !== $rss_item->get_id() ) {
 				$story = array(
 					'image'       => '',

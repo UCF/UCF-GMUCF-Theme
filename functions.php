@@ -8,6 +8,7 @@ define( 'GMUCF_THEME_DIR', trailingslashit( get_stylesheet_directory() ) );
 include_once GMUCF_THEME_DIR . 'includes/utilities.php';
 include_once GMUCF_THEME_DIR . 'includes/config.php';
 include_once GMUCF_THEME_DIR . 'includes/meta.php';
+include_once GMUCF_THEME_DIR . 'includes/template-redirect-functions.php';
 
 include_once GMUCF_THEME_DIR . 'includes/analytics-functions.php';
 include_once GMUCF_THEME_DIR . 'includes/announcements-functions.php';
