@@ -16,7 +16,7 @@
 		}
 
 		$title_date      = $start_date->add( date_interval_create_from_date_string( $i . ' days' ) );
-		$all_events_link = get_option( 'events_url' ) . $title_date->format( 'Y\/n\/j\/' );
+		$all_events_link = get_option( 'events_url' ) . $title_date->format( 'Y/n/j/' );
 ?>
 <tr>
 	<td class="ccollapse100p" style="border-top:1px solid #ddd;padding-top:35px;padding-bottom:35px;">
