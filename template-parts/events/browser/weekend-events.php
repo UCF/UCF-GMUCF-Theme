@@ -16,7 +16,7 @@
 		}
 
 		$title_date      = $start_date->add( date_interval_create_from_date_string( $i . ' days' ) );
-		$all_events_link = get_option( 'events_url' ) . $title_date->format( 'Y\/n\/j\/' );
+		$all_events_link = get_option( 'events_url' ) . $title_date->format( 'Y/n/j/' );
 ?>
 <div class="day">
 	<h2><?php echo $title; ?>, <?php echo $title_date->format( 'n/j' ); ?> <a href="<?php echo $all_events_link; ?>" style="font-size:15px;color:#9d1a1a;">View all <?php echo $event_day; ?> events</a></h2>
