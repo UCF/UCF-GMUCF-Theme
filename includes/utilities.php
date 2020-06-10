@@ -111,7 +111,7 @@ function get_valid_enclosure_types() {
 }
 
 /**
- * Calculate how mnay days ahead the next
+ * Calculate how many days ahead the next
  * Friday is from today
  *
  * @return integer
