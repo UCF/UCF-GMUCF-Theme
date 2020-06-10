@@ -1,21 +1,21 @@
 <tr>
 	<td style="padding-bottom: 20px; padding-top: 60px; padding-left: 0; padding-right: 0; text-align: center;" align="center">
 		<a href="https://www.facebook.com/ucf/" style="text-decoration: none;">
-			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/facebook-circle.png" alt="Facebook" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
+			<img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/facebook-circle.png" alt="Facebook" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
 		<a href="https://www.twitter.com/UCF/" style="text-decoration: none;">
-			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/twitter-circle.png" alt="Twitter" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
+			<img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/twitter-circle.png" alt="Twitter" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
 		<a href="https://www.instagram.com/ucf.edu" style="text-decoration: none;">
-			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/instagram-circle.png" alt="Instagram" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
+			<img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/instagram-circle.png" alt="Instagram" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
 		<a href="https://www.linkedin.com/edu/university-of-central-florida-18118" style="text-decoration: none;">
-			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/linkedin-circle.png" alt="LinkedIn" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
+			<img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/linkedin-circle.png" alt="LinkedIn" align="center" class="float-center" style="display:inline-block; padding-right: 8px;" width="42" height="42"></a>
 		<a href="https://www.youtube.com/user/UCF/" style="text-decoration: none;">
-			<img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/youtube-circle.png" alt="YouTube" align="center" class="float-center" style="display:inline-block;" width="42" height="42"></a>
+			<img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/youtube-circle.png" alt="YouTube" align="center" class="float-center" style="display:inline-block;" width="42" height="42"></a>
 	</td>
 </tr>
 
 <tr>
 	<td style="padding-bottom: 20px; padding-top: 20px; padding-left: 0; padding-right: 0; text-align: center" align="center">
-			<a href="https://www.ucf.edu"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/ucf-tab.png" width="100" height="135" alt="UCF Tab" align="center" class="float-center"></a>
+			<a href="https://www.ucf.edu"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/ucf-tab.png" width="100" height="135" alt="UCF Tab" align="center" class="float-center"></a>
 	</td>
 </tr>
 

@@ -40,7 +40,7 @@ function get_featured_stories_details( $limit = 2 ) {
 				$image = $enclosure->get_link();
 				$story['image'] = Utilities\remove_quotes( $image );
 			} else {
-				$story['image'] = Utilities\remove_quotes( get_bloginfo( 'stylesheet_directory', 'raw' ).'/static/img/no-photo.png' );
+				$story['image'] = Utilities\remove_quotes( GMUCF_THEME_IMG_URL . '/no-photo.png' );
 			}
 			$story['title']       = Utilities\sanitize_for_email( $rss_item->get_title() );
 			$story['description'] = Utilities\sanitize_for_email( $rss_item->get_description() );

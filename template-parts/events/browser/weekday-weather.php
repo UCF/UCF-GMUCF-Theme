@@ -10,7 +10,7 @@ if (!empty($weather)) {
 	<div class="day">
 		<div class="day-image">
 			<h2>Today</h2>
-			<img src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/weather/<?php echo $weather['day1']['imgCode']; ?>.png" />
+			<img src="<?php echo Weather\get_weather_icon_classic( $weather['day1']['imgCode'] ); ?>" />
 		</div>
 		<div class="temp">
 			<div class="high">
@@ -28,7 +28,7 @@ if (!empty($weather)) {
 	<div class="day">
 		<div class="day-image">
 			<h2>Tomorrow</h2>
-			<img src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/weather/<?php echo $weather['day2']['imgCode']; ?>.png" />
+			<img src="<?php echo Weather\get_weather_icon_classic( $weather['day2']['imgCode'] ); ?>" />
 		</div>
 		<div class="temp">
 			<div class="high">
@@ -46,7 +46,7 @@ if (!empty($weather)) {
 	<div class="day">
 		<div class="day-image">
 			<h2><?php echo date('l', strtotime($weather['day3']['date'])); ?></h2>
-			<img src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/weather/<?php echo $weather['day3']['imgCode']; ?>.png" />
+			<img src="<?php echo Weather\get_weather_icon_classic( $weather['day3']['imgCode'] ); ?>" />
 		</div>
 		<div class="temp">
 			<div class="high">
@@ -64,7 +64,7 @@ if (!empty($weather)) {
 	<div class="day">
 		<div class="day-image">
 			<h2><?php echo date('l', strtotime($weather['day4']['date'])); ?></h2>
-			<img src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/weather/<?php echo $weather['day4']['imgCode']; ?>.png" />
+			<img src="<?php echo Weather\get_weather_icon_classic( $weather['day4']['imgCode'] ); ?>" />
 		</div>
 		<div class="temp">
 			<div class="high">
@@ -82,7 +82,7 @@ if (!empty($weather)) {
 	<div class="day">
 		<div class="day-image">
 			<h2><?php echo date('l', strtotime($weather['day5']['date'])); ?></h2>
-			<img src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/weather/<?php echo $weather['day5']['imgCode']; ?>.png" />
+			<img src="<?php echo Weather\get_weather_icon_classic( $weather['day5']['imgCode'] ); ?>" />
 		</div>
 		<div class="temp">
 			<div class="high">
