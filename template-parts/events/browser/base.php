@@ -78,13 +78,13 @@ switch($edition) {
 			#bottom #social {float:right;margin-top:20px;}
 			#bottom #social h2 {font-family:Helvetica,sans-serif;font-weight:100;margin-bottom:5px;}
 			#bottom #social a {text-indent:-300em;width:32px;height:32px;display:block;float:left;margin-left:10px;}
-			#bottom #social #facebook {background:#FFF url('<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/facebook.png') no-repeat center center;margin-left:0;}
-			#bottom #social #youtube {background:#FFF url('<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/youtube.png') no-repeat center center;}
-			#bottom #social #twitter {background:#FFF url('<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/twitter.png') no-repeat center center;}
-			#bottom #social #instagram {background:#FFF url('<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/instagram.png') no-repeat center center;}
+			#bottom #social #facebook {background:#FFF url('<?php echo GMUCF_THEME_IMG_URL; ?>/social/facebook.png') no-repeat center center;margin-left:0;}
+			#bottom #social #youtube {background:#FFF url('<?php echo GMUCF_THEME_IMG_URL; ?>/social/youtube.png') no-repeat center center;}
+			#bottom #social #twitter {background:#FFF url('<?php echo GMUCF_THEME_IMG_URL; ?>/social/twitter.png') no-repeat center center;}
+			#bottom #social #instagram {background:#FFF url('<?php echo GMUCF_THEME_IMG_URL; ?>/social/instagram.png') no-repeat center center;}
 			#bottom #ucf {
 				display:block;
-				background:#FFF url('<?php echo bloginfo('stylesheet_directory'); ?>/static/img/logo-no-opportunity.png') no-repeat top left;
+				background:#FFF url('<?php echo GMUCF_THEME_IMG_URL; ?>/logo-no-opportunity.png') no-repeat top left;
 				text-decoration:none;padding-top:61px;
 				float:left;
 				color:#333;

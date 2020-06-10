@@ -8,7 +8,7 @@ $current_date = current_datetime();
 <table class="tableCollapse" width="100%" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:100%; margin:0; background-color:#fff;">
 	<tr>
 		<td style="padding-top: 20px; padding-bottom: 20px; padding-left: 0; padding-right: 0; text-align: center; border-bottom: 3px solid #fc0;">
-			<a href="https://www.ucf.edu/news/"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/logo-today.png" alt="UCF Today" border="0" width="250" height="34"></a>
+			<a href="https://www.ucf.edu/news/"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/logo-today.png" alt="UCF Today" border="0" width="250" height="34"></a>
 		</td>
 	</tr>
 
@@ -48,11 +48,11 @@ $current_date = current_datetime();
 												<tr>
 													<td valign="middle" style="font-size: 14px;">
 														<span style="margin-top: 0; margin-bottom: 0; line-height: 20px; vertical-align: middle;">
-															<img align="top" height="20" width="20" src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/weather/<?php echo $today_icon; ?>.png" />
+															<img align="top" height="20" width="20" src="<?php echo GMUCF_THEME_IMG_URL; ?>/weather/<?php echo $today_icon; ?>.png" />
 															<span class="montserratlight" style="font-weight: 400;">High</span> <span class="montserratsemibold" style="font-weight: 500;"><?php echo $weather['today']['tempN']; ?>&deg;</span>
 														</span>
 														<span style="margin-top: 0; margin-bottom: 0; line-height: 20px; vertical-align: middle; padding-left: 10px;">
-															<img align="top" height="20" width="20" src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/weather/<?php echo $tonight_icon; ?>.png" />
+															<img align="top" height="20" width="20" src="<?php echo GMUCF_THEME_IMG_URL; ?>/weather/<?php echo $tonight_icon; ?>.png" />
 															<span class="montserratlight" style="font-weight: 400;">Low</span> <span class="montserratsemibold" style="font-weight: 500;"><?php echo $weather['tonight']['tempN']; ?>&deg;</span>
 														</span>
 													</td>

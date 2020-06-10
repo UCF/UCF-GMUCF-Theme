@@ -309,9 +309,9 @@ function display_social_share( $permalink, $title ) {
 	<tr>
 		<td class="montserratlight" style="padding-top: 25px; padding-left: 0; padding-right: 0; text-align: right;" align="right">
 			<span class="montserratlight" style="color: #757575; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px; line-height: 21px; vertical-align: top; padding-right: 6px;">Share: </span>
-			<a href="http://www.facebook.com/sharer.php?u=<?php echo $permalink; ?>" style="display: inline-block; height: 20px; width: 20px; padding-right: 6px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/facebook-share.png" alt="Share on Facebook" width="20" height="20"></a>
-			<a href="https://twitter.com/intent/tweet?text=<?php echo $title; ?>&url=<?php echo $permalink; ?>" style="display: inline-block; height: 20px; width: 20px; padding-right: 6px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/twitter-share.png" alt="Share on Twitter" width="20" height="20"></a>
-			<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo $permalink; ?>&title=<?php echo $title; ?>&source=ucf.edu" style="display: inline-block; height: 20px; width: 20px;"><img src="<?php echo bloginfo( 'stylesheet_directory' ); ?>/static/img/social/linkedin-share.png" alt="Share on LinkedIn" width="20" height="20"></a>
+			<a href="http://www.facebook.com/sharer.php?u=<?php echo $permalink; ?>" style="display: inline-block; height: 20px; width: 20px; padding-right: 6px;"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/facebook-share.png" alt="Share on Facebook" width="20" height="20"></a>
+			<a href="https://twitter.com/intent/tweet?text=<?php echo $title; ?>&url=<?php echo $permalink; ?>" style="display: inline-block; height: 20px; width: 20px; padding-right: 6px;"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/twitter-share.png" alt="Share on Twitter" width="20" height="20"></a>
+			<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo $permalink; ?>&title=<?php echo $title; ?>&source=ucf.edu" style="display: inline-block; height: 20px; width: 20px;"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/linkedin-share.png" alt="Share on LinkedIn" width="20" height="20"></a>
 		</td>
 	</tr>
 	<?php
