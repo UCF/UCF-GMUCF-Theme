@@ -17,17 +17,13 @@
 				$title = $event_day = 'Friday';
 				break;
 		}
-		# date_add modifies the passed object in place. want $start_date to stay the
-		# same so make a copy of it.
-		# http://www.php.net/manual/en/datetime.add.php#102193
-		$_start_date          = new \DateTime(date('c', $start_date->getTimestamp()));
-		$title_date           = date_add($_start_date, new \DateInterval('P'.$i.'D'));
-		$title_date_timestamp = $title_date->getTimestamp();
-		$all_events_link      = get_option( 'events_url' ) . date('Y', $title_date_timestamp).'/'.date('n',$title_date_timestamp).'/'.date('j', $title_date_timestamp).'/';
+
+		$title_date      = $start_date->add( date_interval_create_from_date_string( $i . ' days' ) );
+		$all_events_link = get_option( 'events_url' ) . $title_date->format( 'Y/n/j/' );
 ?>
 <tr>
 	<td class="ccollapse100p" style="border-top:1px solid #ddd;padding-top:35px;padding-bottom:35px;">
-		<span class="event-date" style="font-size:25px;font-weight:500;padding-right:15px;"><?php echo $title; ?>, <?php echo date('n/j', $title_date_timestamp); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<a class="view-day-events" href="<?php echo $all_events_link; ?>" style="font-size:15px;color:#9d1a1a;">View all <?php echo $event_day; ?> events</a>
+		<span class="event-date" style="font-size:25px;font-weight:500;padding-right:15px;"><?php echo $title; ?>, <?php echo $title_date->format( 'n/j' ); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<a class="view-day-events" href="<?php echo $all_events_link; ?>" style="font-size:15px;color:#9d1a1a;">View all <?php echo $event_day; ?> events</a>
 		<br class="linebreak" /><br class="linebreak" />
 		<table class="t600" width="600" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width: 600px; margin:0; background-color:#FFF;">
 			<tr>

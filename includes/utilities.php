@@ -74,17 +74,17 @@ function get_valid_enclosure_types() {
 
 
 /**
- * Calculate the how mnay days ahead the next
+ * Calculate how many days ahead the next
  * Monday is from today
  *
  * @return integer
  * @author Chris Conover
  **/
  function get_next_monday_diff() {
-	$current_day = date('w');
+	$current_day = wp_date( 'w' );
 	$day_diff    = 0;
 
-	switch($current_day) {
+	switch ( $current_day ) {
 		case 0:
 			$day_diff = 1;
 			break;
@@ -111,17 +111,17 @@ function get_valid_enclosure_types() {
 }
 
 /**
- * Calculate the how mnay days ahead the next
+ * Calculate how many days ahead the next
  * Friday is from today
  *
  * @return integer
  * @author Chris Conover
  **/
  function get_next_friday_diff() {
-	$current_day = date('w');
+	$current_day = wp_date( 'w' );
 	$day_diff    = 0;
 
-	switch($current_day) {
+	switch ( $current_day ) {
 		case 0:
 			$day_diff = 5;
 			break;
