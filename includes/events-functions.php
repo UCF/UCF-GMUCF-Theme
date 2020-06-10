@@ -10,56 +10,56 @@ use GMUCF\Theme\Includes\Utilities;
 /**
  * Fetch events from UCF event system (with caching)
  *
- * @return array
+ * @since 0.1.0
  * @author Chris Conover
- **/
-function get_event_data($options = array()) {
+ * @param array $options Custom options/params by which to retrieve events
+ * @return mixed Array of event data, or false
+ */
+function get_event_data( $options=array() ) {
 	$cache_key_prefix = 'events-';
-	$default_options = array(
+	$default_options  = array(
 		'calendar_id' => get_option( 'events_calendar_id' ),
 		'per_page'    => get_option( 'events_limit' ),
-		'format'      => 'json');
+		'format'      => 'json'
+	);
+	$options          = array_merge( $default_options, $options );
+	$cache_key        = $cache_key_prefix . implode( '', $options );
 
-	$options = array_merge($default_options, $options);
-
-	$cache_key = $cache_key_prefix.implode('', $options);
-
-	if(CLEAR_CACHE || ($events = get_transient($cache_key)) === False) {
+	if ( CLEAR_CACHE || ( $events = get_transient( $cache_key ) ) === false ) {
 		$events = array();
-
-		$url = get_option( 'events_url' ) . $options['y'].'/'.$options['m'].'/'.$options['d'].'/feed.json';
-
+		$url    = get_option( 'events_url' ) . $options['y'] . '/' . $options['m'] . '/' . $options['d'] . '/feed.json';
 		$params = array(
 			'per_page' => $options['per_page']
 		);
 
 		$url .= '?' . http_build_query( $params );
 
-		$ch = curl_init($url);
-		curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
-		curl_setopt($ch, CURLOPT_HEADER, 0);
-		curl_setopt($ch, CURLOPT_TIMEOUT, get_option( 'events_timeout' ));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+		$ch = curl_init( $url );
+		curl_setopt( $ch, CURLOPT_AUTOREFERER, true );
+		curl_setopt( $ch, CURLOPT_HEADER, 0 );
+		curl_setopt( $ch, CURLOPT_TIMEOUT, get_option( 'events_timeout' ) );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
 
-		$raw_events = curl_exec($ch);
+		$raw_events = curl_exec( $ch );
 
-		if( $raw_events !== FALSE ) {
-			if( !is_null($json_events = json_decode($raw_events)) ) {
+		if ( $raw_events !== false ) {
+			if ( ! is_null( $json_events = json_decode( $raw_events ) ) ) {
 				$events = $json_events;
 			}
 		} else {
-			error_log('Curl error in GMUCF theme - get_event_data ('.$url.'): '.curl_error($ch), 0);
+			error_log( "Curl error in GMUCF theme - get_event_data ($url): " . curl_error( $ch ), 0 );
 		}
 
-		curl_close($ch);
+		curl_close( $ch );
 
-		if(isset($options['limit']) && count($events) > $options['limit']) {
-			$events = array_slice($events, 0, $options['limit']);
+		if ( isset( $options['limit'] ) && count( $events ) > $options['limit'] ) {
+			$events = array_slice( $events, 0, $options['limit'] );
 		}
 
-		set_transient($cache_key, $events, get_option( 'events_cache_duration' ));
+		set_transient( $cache_key, $events, get_option( 'events_cache_duration' ) );
 	}
+
 	return $events;
 }
 
@@ -67,9 +67,11 @@ function get_event_data($options = array()) {
 /**
  * Wraps get_event_data and returns today's events
  *
- * @return array
+ * @since 0.1.0
  * @author Chris Conover
- **/
+ * @param array $options Custom options/params by which to retrieve events
+ * @return mixed Array of event data, or false
+ */
 function get_todays_events( $options=array() ) {
 	$today = current_datetime();
 	$options = array_merge(
@@ -87,9 +89,11 @@ function get_todays_events( $options=array() ) {
 /**
  * Wraps get_event_data and returns tomorrow's events
  *
- * @return array
+ * @since 0.1.0
  * @author Chris Conover
- **/
+ * @param array $options Custom options/params by which to retrieve events
+ * @return mixed Array of event data, or false
+ */
 function get_tomorrows_events( $options = array() ) {
 	$tomorrow = current_datetime()->add( date_interval_create_from_date_string( '1 day' ) );
 	$options = array_merge(
@@ -107,9 +111,10 @@ function get_tomorrows_events( $options = array() ) {
 /**
  * Which edition of the events should be displayed
  *
- * @return integer constant
+ * @since 0.1.0
  * @author Chris Conover
- **/
+ * @return mixed Integer (constant value) or false
+ */
 function get_events_edition() {
 	$dw = wp_date( 'w' );
 	if ( $dw === 1 ) {
@@ -130,7 +135,7 @@ function get_events_edition() {
  * @author Jo Dickson
  * @param array $options Options to pass to `get_event_data()`
  * @return array Event data grouped by day + time of day
- **/
+ */
 function get_weekday_events( $options=array() ) {
 	$day_start = Utilities\get_next_monday_diff(); // Today might not be Monday
 	$num_days = 5;
@@ -146,7 +151,7 @@ function get_weekday_events( $options=array() ) {
  * @author Jo Dickson
  * @param array $options Options to pass to `get_event_data()` for each day
  * @return array Event data grouped by day + time of day
- **/
+ */
 function get_weekend_events( $options=array() ) {
 	$day_start = Utilities\get_next_friday_diff(); // Today might not be Friday
 	$num_days = 4;

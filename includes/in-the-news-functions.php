@@ -8,6 +8,10 @@ namespace GMUCF\Theme\Includes\InTheNews;
 
 /**
  * Returns In The News story data
+ *
+ * @since 1.2.0
+ * @author Jim Barnes
+ * @return array Story data
  */
 function get_in_the_news_stories() {
 	$stories    = array();

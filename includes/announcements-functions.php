@@ -8,11 +8,13 @@ use GMUCF\Theme\Includes\Utilities;
 
 
 /**
- * Fetch announcement info from RSS feed
+ * Fetches and returns announcement info from RSS feed
  *
- * @return array
+ * @since 0.1.0
  * @author Chris Conover
- **/
+ * @param array $announcement_ids A specific set of announcements IDs to retrieve
+ * @return array Announcement data
+ */
 function get_announcement_details( $announcement_ids=array() ) {
 	$announcements = array();
 	$announcements_json_url = get_option( 'announcements_url' );
@@ -28,7 +30,7 @@ function get_announcement_details( $announcement_ids=array() ) {
 	$front_base_url = preg_replace( "/^(.*)(.*\/api).*$/", "$1", $announcements_json_url );
 
 	if ( ! empty( $announcement_ids ) ) {
-		foreach( $announcement_ids as $announcement_id ) {
+		foreach ( $announcement_ids as $announcement_id ) {
 			$response      = wp_remote_get( "$base_url/$announcement_id/", array( 'timeout' => 5 ) );
 			$response_code = wp_remote_retrieve_response_code( $response );
 
@@ -40,7 +42,7 @@ function get_announcement_details( $announcement_ids=array() ) {
 			array_push(
 				$announcements,
 				array(
-					'title' => Utilities\sanitize_for_email( $item->title ),
+					'title'     => Utilities\sanitize_for_email( $item->title ),
 					'permalink' => "$front_base_url/$item->slug"
 				)
 			);
@@ -63,9 +65,9 @@ function get_announcement_details( $announcement_ids=array() ) {
 	$response      = wp_remote_get( $announcements_json_url );
 	$response_code = wp_remote_retrieve_response_code( $response );
 
-	if( is_array( $response ) && $response_code < 400 ) {
+	if ( is_array( $response ) && $response_code < 400 ) {
 		$items = json_decode( wp_remote_retrieve_body( $response ) );
-		foreach($items as $item) {
+		foreach ( $items as $item ) {
 			array_push(
 				$announcements,
 				array(
@@ -76,7 +78,8 @@ function get_announcement_details( $announcement_ids=array() ) {
 		}
 	} else {
 		$error_string = $response->get_error_message();
-		error_log("GMUCF - get_announcement_details() - " . $error_string);
+		error_log( "GMUCF - get_announcement_details() - " . $error_string );
 	}
+
 	return array_slice( $announcements, 0, 3 );
 }
