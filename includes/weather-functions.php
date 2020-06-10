@@ -83,8 +83,8 @@ function get_weather( $cache_key ) {
  *
  * @author Jim Barnes
  * @since 1.2.0
- * @param $condition string | The weather condition
- * @return string | The css icon classes.
+ * @param $condition string The human-friendly weather condition name ("condition" value from the weather service)
+ * @return string URL for a weather icon
  **/
 function get_weather_icon( $condition, $night=false ) {
 	$icon_name = null;
@@ -161,10 +161,10 @@ function get_weather_icon( $condition, $night=false ) {
 	$icon_name = $icon_name ? $icon_name : 'day-sunny';
 
 	if ( $night ) {
-		return $night_icons[$icon_name];
+		$icon_name = $night_icons[$icon_name];
 	}
 
-	return $icon_name;
+	return GMUCF_THEME_IMG_URL . '/weather/' . $icon_name . '.png';
 }
 
 

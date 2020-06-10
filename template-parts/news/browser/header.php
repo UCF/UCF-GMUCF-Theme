@@ -39,8 +39,6 @@ $current_date = current_datetime();
 						<?php
 						$weather = Weather\get_weather( 'weather-today' );
 						if ( ! empty( $weather ) ) :
-							$today_icon = Weather\get_weather_icon( $weather['today']['condition'] );
-							$tonight_icon = Weather\get_weather_icon( $weather['tonight']['condition'], true );
 						?>
 							<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
 								<tr>
@@ -50,11 +48,11 @@ $current_date = current_datetime();
 												<tr>
 													<td valign="middle" style="font-size: 14px;">
 														<span style="margin-top: 0; margin-bottom: 0; line-height: 20px; vertical-align: middle;">
-															<img align="top" height="20" width="20" src="<?php echo GMUCF_THEME_IMG_URL; ?>/weather/<?php echo $today_icon; ?>.png" />
+															<img align="top" height="20" width="20" src="<?php echo Weather\get_weather_icon( $weather['today']['condition'] ); ?>" />
 															<span class="montserratlight" style="font-weight: 400;">High</span> <span class="montserratsemibold" style="font-weight: 500;"><?php echo $weather['today']['tempN']; ?>&deg;</span>
 														</span>
 														<span style="margin-top: 0; margin-bottom: 0; line-height: 20px; vertical-align: middle; padding-left: 10px;">
-															<img align="top" height="20" width="20" src="<?php echo GMUCF_THEME_IMG_URL; ?>/weather/<?php echo $tonight_icon; ?>.png" />
+															<img align="top" height="20" width="20" src="<?php echo Weather\get_weather_icon( $weather['tonight']['condition'], true ); ?>" />
 															<span class="montserratlight" style="font-weight: 400;">Low</span> <span class="montserratsemibold" style="font-weight: 500;"><?php echo $weather['tonight']['tempN']; ?>&deg;</span>
 														</span>
 													</td>
