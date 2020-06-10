@@ -16,7 +16,7 @@ if (!empty($weather)) {
 						<tr>
 							<td class="weather-icon-date" style="width:60px">
 								<span class="weather-date" style="font-size:10px;font-weight:bold;">TODAY</span>
-								<img class="weather-icon" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/weather/<?php echo $weather['day1']['imgCode']; ?>.png" />
+								<img class="weather-icon" src="<?php echo Weather\get_weather_icon_classic( $weather['day1']['imgCode'] ); ?>" />
 							</td>
 							<td class="weather-temps">
 								<span class="temp" style="font-size:18px;font-weight:bold"><?php echo $weather['day1']['tempMaxN']; ?>&deg;</span>
@@ -35,7 +35,7 @@ if (!empty($weather)) {
 						<tr>
 							<td class="weather-icon-date" style="width:60px">
 								<span class="weather-date" style="font-size:10px;font-weight:bold;">TOMORROW</span>
-								<img class="weather-icon" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/weather/<?php echo $weather['day2']['imgCode']; ?>.png" />
+								<img class="weather-icon" src="<?php echo Weather\get_weather_icon_classic( $weather['day2']['imgCode'] ); ?>" />
 							</td>
 							<td class="weather-temps">
 								<span class="temp" style="font-size:18px;font-weight:bold"><?php echo $weather['day2']['tempMaxN']; ?>&deg;</span>
@@ -54,7 +54,7 @@ if (!empty($weather)) {
 						<tr>
 							<td class="weather-icon-date" style="width:60px">
 								<span class="weather-date" style="font-size:10px;font-weight:bold;"><?php echo strtoupper(date('l', strtotime($weather['day3']['date']))); ?></span>
-								<img class="weather-icon" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/weather/<?php echo $weather['day3']['imgCode']; ?>.png" />
+								<img class="weather-icon" src="<?php echo Weather\get_weather_icon_classic( $weather['day3']['imgCode'] ); ?>" />
 							</td>
 							<td class="weather-temps">
 								<span class="temp" style="font-size:18px;font-weight:bold"><?php echo $weather['day3']['tempMaxN']; ?>&deg;</span>
@@ -73,7 +73,7 @@ if (!empty($weather)) {
 						<tr>
 							<td class="weather-icon-date" style="width:60px">
 								<span class="weather-date" style="font-size:10px;font-weight:bold;"><?php echo strtoupper(date('l', strtotime($weather['day4']['date']))); ?></span>
-								<img class="weather-icon" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/weather/<?php echo $weather['day4']['imgCode']; ?>.png" />
+								<img class="weather-icon" src="<?php echo Weather\get_weather_icon_classic( $weather['day4']['imgCode'] ); ?>" />
 							</td>
 							<td class="weather-temps">
 								<span class="temp" style="font-size:18px;font-weight:bold"><?php echo $weather['day4']['tempMaxN']; ?>&deg;</span>
@@ -96,7 +96,7 @@ if (!empty($weather)) {
 									<br class="linebreak" />
 									<span class="weather-icon" style="font-size:15px;font-weight:bold;">???</span>
 								<?php } else { ?>
-									<img class="weather-icon" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/weather/<?php echo $weather['day5']['imgCode']; ?>.png" />
+									<img class="weather-icon" src="<?php echo Weather\get_weather_icon_classic( $weather['day5']['imgCode'] ); ?>" />
 								<?php } ?>
 							</td>
 							<td class="weather-temps">
