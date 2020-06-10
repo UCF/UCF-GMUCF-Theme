@@ -275,11 +275,6 @@ function gmucf_email_markup( $content ) {
 			$top_story_row_count++;
 
 			echo gmucf_top_story_markup( $content, $social_share );
-
-			// The alert is always displayed after the first top story
-			// if ( $top_story_row_count === 1) {
-			// 	echo get_template_part( 'template-parts/news/mail/alert' );
-			// }
 		}
 
 		if ( $layout === 'gmucf_featured_stories_row' ) {
