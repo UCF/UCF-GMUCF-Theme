@@ -79,7 +79,8 @@ function get_weather( $cache_key ) {
 
 /**
  * Translates the weather conditions from our feed
- * to a weather icon.
+ * to a modern weather icon.
+ *
  * @author Jim Barnes
  * @since 1.2.0
  * @param $condition string | The weather condition
@@ -164,4 +165,18 @@ function get_weather_icon( $condition, $night=false ) {
 	}
 
 	return $icon_name;
+}
+
+
+/**
+ * Returns a "classic" weather icon based on the provided
+ * weather status image code.
+ *
+ * @since 3.0.0
+ * @author Jo Dickson
+ * @param int $img_code "imgCode" value for a forecast from the weather service
+ * @return string URL for a weather icon
+ */
+function get_weather_icon_classic( $img_code ) {
+	return GMUCF_THEME_IMG_URL . '/weather/' . $img_code . '.png';
 }
