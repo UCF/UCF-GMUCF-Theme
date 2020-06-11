@@ -49,9 +49,7 @@ if ( count( $announcements ) !== 0 ) :
 									</tbody>
 								</table>
 							</li>
-						<?php
-						endforeach;
-						?>
+						<?php endforeach; ?>
 						</ul>
 					</td>
 				</tr>

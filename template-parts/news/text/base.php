@@ -35,8 +35,8 @@ if ( $send_date === $current_date->format( 'm/d/Y' ) ) {
 
 UCF IN THE NEWS
 ========================
-<?php foreach( InTheNews\get_in_the_news_stories() as $story ) : ?>
-- <?php echo strip_tags( $story->link_text ); ?> <?php if ( !empty( $story->source ) ) : ?>(<?php echo trim( strip_tags( $story->source ) ); ?>)<?php endif; ?>
+<?php foreach ( InTheNews\get_in_the_news_stories() as $story ) : ?>
+- <?php echo strip_tags( $story->link_text ); ?> <?php if ( ! empty( $story->source ) ) : ?>(<?php echo trim( strip_tags( $story->source ) ); ?>)<?php endif; ?>
 
   <?php echo $story->url; ?>
 
@@ -50,7 +50,7 @@ if ( count( $announcements ) !== 0 ) :
 ?>
 ANNOUNCEMENTS
 ========================
-<?php foreach( $announcements as $announcement ) : ?>
+<?php foreach ( $announcements as $announcement ) : ?>
 - <?php echo strip_tags( $announcement['title'] ); ?>
 
   <?php echo $announcement['permalink']; ?>
