@@ -3,8 +3,8 @@ namespace GMUCF\Theme\TemplateParts\Events\Browser\WeekdayWeather;
 use GMUCF\Theme\Includes\Weather;
 
 
-$weather = Weather\get_weather('weather-extended');
-if (!empty($weather)) {
+$weather = Weather\get_weather( 'weather-extended' );
+if ( ! empty( $weather ) ) :
 ?>
 <div id="weekend-weather" class="weather">
 	<div class="day">
@@ -45,7 +45,7 @@ if (!empty($weather)) {
 	</div>
 	<div class="day">
 		<div class="day-image">
-			<h2><?php echo date('l', strtotime($weather['day3']['date'])); ?></h2>
+			<h2><?php echo date( 'l', strtotime( $weather['day3']['date'] )); ?></h2>
 			<img src="<?php echo Weather\get_weather_icon_classic( $weather['day3']['imgCode'] ); ?>" />
 		</div>
 		<div class="temp">
@@ -63,7 +63,7 @@ if (!empty($weather)) {
 	</div>
 	<div class="day">
 		<div class="day-image">
-			<h2><?php echo date('l', strtotime($weather['day4']['date'])); ?></h2>
+			<h2><?php echo date( 'l', strtotime( $weather['day4']['date'] )); ?></h2>
 			<img src="<?php echo Weather\get_weather_icon_classic( $weather['day4']['imgCode'] ); ?>" />
 		</div>
 		<div class="temp">
@@ -81,4 +81,4 @@ if (!empty($weather)) {
 	</div>
 	<div style="clear:left;">&nbsp;</div>
 </div>
-<?php } ?>
+<?php endif; ?>

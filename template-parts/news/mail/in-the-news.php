@@ -4,6 +4,7 @@ use GMUCF\Theme\Includes\InTheNews;
 use GMUCF\Theme\Includes\Analytics;
 
 $in_the_news_more_url = get_option( 'in_the_news_more_url' );
+$external             = InTheNews\get_in_the_news_stories();
 ?>
 <table class="tableCollapse" width="600" border="0" align="center" style="border-bottom: 3px solid #fc0; border-top: 3px solid #fc0; border-spacing: 0; border-collapse: collapse;">
 	<tbody>
@@ -16,17 +17,12 @@ $in_the_news_more_url = get_option( 'in_the_news_more_url' );
 		<?php endif; ?>
 		<tr>
 			<td>
-				<?php
-				$external = InTheNews\get_in_the_news_stories();
-
-				if( count( $external ) == 0 ) { ?>
+				<?php if ( count( $external ) === 0 ) : ?>
 					<p class="montserratlight" style="margin: 0; font-family: Helvetica, Arial, sans-serif; font-weight: 400; padding-top: 10px; padding-bottom: 10px;">No stories found for today.</p>
-				<?php
-				} else {
-					?>
+				<?php else: ?>
 					<ul style="list-style: none; padding-left: 0; margin: 0;">
 					<?php
-					foreach( $external as $story ) :
+					foreach ( $external as $story ) :
 						$story_source = ( !empty( $story->source_name ) ) ? $story->source_name : $story->source;
 						$story_source_image = ( !empty( $story->source_image ) ) ? $story->source_image : THEME_IMG_URL . "/external-story-default.png";
 					?>
@@ -62,13 +58,9 @@ $in_the_news_more_url = get_option( 'in_the_news_more_url' );
 								</tbody>
 							</table>
 						</li>
-					<?php
-					endforeach;
-					?>
+					<?php endforeach; ?>
 					</ul>
-					<?php
-				}
-				?>
+				<?php endif; ?>
 			</td>
 		</tr>
 		<?php if ( $in_the_news_more_url ): ?>

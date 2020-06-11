@@ -10,16 +10,18 @@ namespace GMUCF\Theme\Includes\Weather;
  * Fetches today/tonight weather, extended weather and stores
  * it as transient data.
  *
- * @return array
+ * @since 1.0.10
  * @author Jo Dickson
- **/
+ * @param string $cache_key Transient key to pull existing cached data from
+ * @return array
+ */
 function get_weather( $cache_key ) {
-	$weather = array();
+	$weather   = array();
 	$transient = get_transient( $cache_key );
 
 	// Always attempt to re-fetch weather if CLEAR_CACHE is set or if
 	// previously stored transient data is bad
-	if ( ! CLEAR_CACHE && ! empty( $transient ) ) { // empty() catches NULL or FALSE
+	if ( ! CLEAR_CACHE && ! empty( $transient ) ) { // empty() catches `null` or `false`
 		$weather = $transient;
 	}
 	else {
@@ -38,7 +40,7 @@ function get_weather( $cache_key ) {
 			// Setup curl request and execute. Log errors if necessary.
 			$ch = curl_init();
 			$options = array(
-				CURLOPT_URL => $json_url,
+				CURLOPT_URL            => $json_url,
 				CURLOPT_CONNECTTIMEOUT => get_option( 'weather_service_timeout' ),
 				CURLOPT_RETURNTRANSFER => true
 			);
@@ -52,7 +54,7 @@ function get_weather( $cache_key ) {
 					$weather = null;
 				}
 				else {
-					if ( $cache_key == 'weather-extended' ) {
+					if ( $cache_key === 'weather-extended' ) {
 						$weather = $json['days'];
 					}
 					else {
@@ -85,7 +87,7 @@ function get_weather( $cache_key ) {
  * @since 1.2.0
  * @param $condition string The human-friendly weather condition name ("condition" value from the weather service)
  * @return string URL for a weather icon
- **/
+ */
 function get_weather_icon( $condition, $night=false ) {
 	$icon_name = null;
 	$icons_to_conditions = array(

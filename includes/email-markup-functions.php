@@ -281,7 +281,7 @@ function gmucf_email_markup( $content ) {
 			$featured_stories_row_count++;
 
 			// Only sets the $more_stories_link var to true if this is the last row of featured stories displayed
-			if ( $featured_stories_row_count != $featured_stories_row_final_count ) {
+			if ( $featured_stories_row_count !== $featured_stories_row_final_count ) {
 				$more_stories_link = false;
 			} else {
 				$more_stories_link = true;

@@ -3,31 +3,36 @@ namespace GMUCF\Theme\TemplateParts\Events\Browser\Base;
 use GMUCF\Theme\Includes\Events;
 
 
-# Which edition of the events should be displayed.
-# Override if specified
-if(isset($_GET['edition'])) {
-	if(strtolower($_GET['edition']) == 'weekday') {
+// Which edition of the events should be displayed.
+// Override if specified
+if ( isset( $_GET['edition'] ) ) {
+	if ( strtolower( $_GET['edition'] ) === 'weekday' ) {
 		$edition = EVENTS_WEEKDAY_EDITION;
-	} else if(strtolower($_GET['edition']) == 'weekend') {
+	} else if ( strtolower( $_GET['edition'] ) === 'weekend' ) {
 		$edition = EVENTS_WEEKEND_EDITION;
 	}
 } else {
 	$edition = Events\get_events_edition();
 }
 
-if($edition === False) {
-	echo '<div style="width:500px;font-size:40px;margin:auto;text-align:center;">';
-	echo 'There is no events edition due out today. Override by adding an `edition`';
-	echo ' GET paramter to the URI with a value of either `weekday` or `weekend`.</div>';
+if ( $edition === false ) {
+	ob_start();
+?>
+<div style="width:500px;font-size:40px;margin:auto;text-align:center;">
+There is no events edition due out today. Override by adding an `edition`
+GET paramter to the URI with a value of either `weekday` or `weekend`.
+</div>
+<?php
+	echo ob_get_clean();
 	die();
 }
 
-switch($edition) {
+switch ( $edition ) {
 	case EVENTS_WEEKDAY_EDITION:
-		extract(Events\get_weekday_events());
+		extract( Events\get_weekday_events() );
 		break;
 	case EVENTS_WEEKEND_EDITION:
-		extract(Events\get_weekend_events());
+		extract( Events\get_weekend_events() );
 		break;
 }
 ?>
@@ -35,7 +40,7 @@ switch($edition) {
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-		<title>This Week<?php echo ($edition === EVENTS_WEEKEND_EDITION ? 'end' :''); ?> @ UCF</title>
+		<title>This Week<?php echo ( $edition === EVENTS_WEEKEND_EDITION ? 'end' : '' ); ?> @ UCF</title>
 		<style type="text/css">
 			body {width:600px;margin:15px auto;font-family:"Helvetica Neue",Helvetica,sans-serif;font-weight:200;}
 
@@ -117,7 +122,7 @@ switch($edition) {
 	<body>
 		<div id="shoutout">UCF, check out:</div>
 		<h1>
-			This Week<?php echo ($edition === EVENTS_WEEKEND_EDITION ? 'end' :''); ?> @ <span class="highlight">UCF</span>
+			This Week<?php echo ( $edition === EVENTS_WEEKEND_EDITION ? 'end' : '' ); ?> @ <span class="highlight">UCF</span>
 			<span class="range">
 				<?php echo $start_date->format( 'n/j' ) . '-' . $end_date->format( 'n/j' ); ?>
 			</span>
@@ -125,12 +130,12 @@ switch($edition) {
 		<?php
 		// Use includes here instead of get_template_part
 		// to preserve scope.
-		switch($edition) {
+		switch ( $edition ) {
 			case EVENTS_WEEKDAY_EDITION:
-				include('weekday-weather.php');
+				include( 'weekday-weather.php' );
 				break;
 			case EVENTS_WEEKEND_EDITION:
-				include('weekend-weather.php');
+				include( 'weekend-weather.php' );
 				break;
 		}
 		?>
@@ -138,12 +143,12 @@ switch($edition) {
 		<?php
 		// Use includes here instead of get_template_part
 		// to preserve scope.
-		switch($edition) {
+		switch ( $edition ) {
 			case EVENTS_WEEKDAY_EDITION:
-				include('weekday-events.php');
+				include( 'weekday-events.php' );
 				break;
 			case EVENTS_WEEKEND_EDITION:
-				include('weekend-events.php');
+				include( 'weekend-events.php' );
 				break;
 		}
 		?>

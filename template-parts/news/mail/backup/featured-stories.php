@@ -18,8 +18,8 @@ $more_stories_url = get_option( 'main_site_stories_more_url' );
 					<?php
 					foreach( $featured_stories as $index => $details ) :
 						extract( $details );
-						if( $index == $limit || $index == $total ) break;
-						if( $index > 0 && $index % 2 == 0 ) echo "</tr><tr>";
+						if ( $index === $limit || $index === $total ) break;
+						if ( $index > 0 && $index % 2 === 0 ) echo "</tr><tr>";
 					?>
 						<th class="columnCollapse" align="left" width="290" style="font-family: Helvetica, Arial, sans-serif; padding-left: 10px; padding-right: 10px; padding-top: 0; padding-bottom: 45px; vertical-align: top; text-align: center;">
 							<table class="tableCollapse" width="100%" style="width: 100%; border-spacing: 0; border-collapse: collapse;">

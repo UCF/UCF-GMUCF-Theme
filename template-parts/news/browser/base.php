@@ -14,7 +14,7 @@ $current_date = current_datetime();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="format-detection" content="telephone=no">
 	<title>Good
-		<?php echo (int)$current_date->format( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?> UCF -
+		<?php echo ( int )$current_date->format( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?> UCF -
 		<?php echo $current_date->format( 'F j' ); ?>
 	</title>
 	<?php echo get_template_part( 'template-parts/news/mail/style' ); ?>
@@ -29,48 +29,48 @@ $current_date = current_datetime();
             <tbody>
               <tr>
                 <td align="center" style="padding: 0;">
-									<table class="wrapperInner" width="600" align="center" style="border-spacing: 0; border-collapse: collapse;">
+					<table class="wrapperInner" width="600" align="center" style="border-spacing: 0; border-collapse: collapse;">
+						<tbody>
+							<tr>
+								<td style="padding: 0;">
+									<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
 										<tbody>
 											<tr>
-												<td style="padding: 0;">
-													<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
-														<tbody>
-															<tr>
-																<td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center;">
-																	<?php echo get_template_part( 'template-parts/news/browser/header' ); ?>
-																</td>
-															</tr>
-														</tbody>
-													</table>
-												</td>
-											</tr>
-											<tr>
-												<td style="padding: 0;">
-													<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
-														<tbody>
-															<?php
-															$gmucf_content = UCFToday\get_gmucf_email_options_feed_values();
-															$send_date     = $gmucf_content->gmucf_email_send_date ?? null;
-
-															if ( $send_date === $current_date->format( 'm/d/Y' ) ) {
-																echo EmailMarkup\gmucf_email_markup( $gmucf_content );
-															} else {
-																echo get_template_part( 'template-parts/news/mail/backup/email-content' );
-															}
-															?>
-															<tr>
-																<td style="padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0;">
-																	<?php echo get_template_part( 'template-parts/news/mail/in-the-news' ); ?>
-																</td>
-															</tr>
-															<?php echo get_template_part( 'template-parts/news/mail/announcements' ); ?>
-															<?php echo get_template_part( 'template-parts/news/browser/footer' ); ?>
-														</tbody>
-													</table>
+												<td style="padding-bottom: 0; padding-left: 0; padding-right: 0; text-align: center;">
+													<?php echo get_template_part( 'template-parts/news/browser/header' ); ?>
 												</td>
 											</tr>
 										</tbody>
 									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 0;">
+									<table class="tableCollapse" width="600" border="0" align="center" style="padding: 0; border-spacing: 0; border-collapse: collapse;">
+										<tbody>
+											<?php
+											$gmucf_content = UCFToday\get_gmucf_email_options_feed_values();
+											$send_date     = $gmucf_content->gmucf_email_send_date ?? null;
+
+											if ( $send_date === $current_date->format( 'm/d/Y' ) ) {
+												echo EmailMarkup\gmucf_email_markup( $gmucf_content );
+											} else {
+												echo get_template_part( 'template-parts/news/mail/backup/email-content' );
+											}
+											?>
+											<tr>
+												<td style="padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0;">
+													<?php echo get_template_part( 'template-parts/news/mail/in-the-news' ); ?>
+												</td>
+											</tr>
+											<?php echo get_template_part( 'template-parts/news/mail/announcements' ); ?>
+											<?php echo get_template_part( 'template-parts/news/browser/footer' ); ?>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
                 </td>
               </tr>
             </tbody>

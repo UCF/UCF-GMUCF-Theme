@@ -71,7 +71,7 @@ $current_date = current_datetime();
 
 	<tr>
 		<td class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; padding-bottom: 20px; padding-top: 30px; padding-left: 0; padding-right: 0; text-align: left;" align="left">
-			<h2 style="margin-top: 0; margin-bottom: 0; font-weight: normal;">Good <?php echo (int)$current_date->format( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?>, UCF.</h2>
+			<h2 style="margin-top: 0; margin-bottom: 0; font-weight: normal;">Good <?php echo ( int )$current_date->format( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?>, UCF.</h2>
 		</td>
 	</tr>
 </table>
