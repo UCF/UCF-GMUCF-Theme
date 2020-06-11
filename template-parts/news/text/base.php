@@ -46,7 +46,7 @@ UCF IN THE NEWS
 <?php
 $announcements = Announcements\get_announcement_details();
 
-if ( count( $announcements ) != 0 ) :
+if ( count( $announcements ) !== 0 ) :
 ?>
 ANNOUNCEMENTS
 ========================

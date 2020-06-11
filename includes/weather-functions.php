@@ -54,7 +54,7 @@ function get_weather( $cache_key ) {
 					$weather = null;
 				}
 				else {
-					if ( $cache_key == 'weather-extended' ) {
+					if ( $cache_key === 'weather-extended' ) {
 						$weather = $json['days'];
 					}
 					else {
