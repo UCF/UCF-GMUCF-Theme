@@ -337,7 +337,7 @@ switch($edition) {
 						<tr>
 							<td class="ccollapse100pb" style="width:330px;vertical-align:top;">
 								<a href="https://www.ucf.edu">
-									<img src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/logo-no-opportunity.png" style="border:0"/>
+									<img src="<?php echo GMUCF_THEME_IMG_URL; ?>/logo-no-opportunity.png" style="border:0"/>
 								</a>
 								<p style="line-height:1.4em;font-size:15px;margin:0;padding:0;">
 									4000 Central Florida Blvd.
@@ -357,22 +357,22 @@ switch($edition) {
 									<tr>
 										<td>
 											<a href="https://www.facebook.com/ucf/" style="text-decoration:none;">
-												<img style="border:0;" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/facebook.png" />
+												<img style="border:0;" src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/facebook.png" />
 											</a>
 										</td>
 										<td style="padding-left:10px;">
 											<a href="https://www.twitter.com/UCF/" style="text-decoration:none;">
-												<img style="border:0;" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/twitter.png" />
+												<img style="border:0;" src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/twitter.png" />
 											</a>
 										</td>
 										<td style="padding-left:10px;">
 											<a href="https://www.instagram.com/ucf.edu" style="text-decoration:none;">
-												<img style="border:0;" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/instagram.png" />
+												<img style="border:0;" src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/instagram.png" />
 											</a>
 										</td>
 										<td style="padding-left:10px;">
 											<a href="https://www.youtube.com/user/UCF/" style="text-decoration:none;">
-												<img style="border:0;" src="<?php echo bloginfo('stylesheet_directory'); ?>/static/img/social/youtube.png" />
+												<img style="border:0;" src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/youtube.png" />
 											</a>
 										</td>
 									</tr>
