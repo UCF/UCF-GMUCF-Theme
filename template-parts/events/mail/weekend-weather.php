@@ -3,8 +3,8 @@ namespace GMUCF\Theme\TemplateParts\Events\Mail\WeekendWeather;
 use GMUCF\Theme\Includes\Weather;
 
 
-$weather = Weather\get_weather('weather-extended');
-if (!empty($weather)) {
+$weather = Weather\get_weather( 'weather-extended' );
+if ( ! empty( $weather ) ) :
 ?>
 <tr>
 	<td>
@@ -53,7 +53,7 @@ if (!empty($weather)) {
 					<table class="weather-col" width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px; margin:0; background-color:#FFF;">
 						<tr>
 							<td class="weather-icon-date" style="width:90px">
-								<span class="weather-date" style="font-size:10px;font-weight:bold;"><?php echo strtoupper(date('l', strtotime($weather['day3']['date']))); ?></span>
+								<span class="weather-date" style="font-size:10px;font-weight:bold;"><?php echo strtoupper( date( 'l', strtotime( $weather['day3']['date'] ) ) ); ?></span>
 								<img class="weather-icon" src="<?php echo Weather\get_weather_icon_classic( $weather['day3']['imgCode'] ); ?>" />
 							</td>
 							<td class="weather-temps">
@@ -72,7 +72,7 @@ if (!empty($weather)) {
 					<table class="weather-col" width="110" border="0" align="center" cellpadding="0" bgcolor="#FFF" cellspacing="0" style="width:120px; margin:0; background-color:#FFF;">
 						<tr>
 							<td class="weather-icon-date" style="width:90px">
-								<span class="weather-date" style="font-size:10px;font-weight:bold;"><?php echo strtoupper(date('l', strtotime($weather['day4']['date']))); ?></span>
+								<span class="weather-date" style="font-size:10px;font-weight:bold;"><?php echo strtoupper( date( 'l', strtotime( $weather['day4']['date'] ) ) ); ?></span>
 								<img class="weather-icon" src="<?php echo Weather\get_weather_icon_classic( $weather['day4']['imgCode'] ); ?>" />
 							</td>
 							<td class="weather-temps">
@@ -91,4 +91,4 @@ if (!empty($weather)) {
 		<div class="clear">&nbsp;</div>
 	</td>
 </tr>
-<?php } ?>
+<?php endif; ?>
