@@ -49,17 +49,17 @@ This Week<?php echo ( $edition === EVENTS_WEEKEND_EDITION ? 'end' : '' ); ?> @ U
 if ( ! empty( $weather ) ) {
 	switch( $edition ) {
 		case EVENTS_WEEKDAY_EDITION:
-			echo 'Today:     '.$weather['day1']['tempMaxN'].' High, '.$weather['day1']['tempMinN'].' Low'."\n";
-			echo 'Tomorrow:  '.$weather['day2']['tempMaxN'].' High, '.$weather['day2']['tempMinN'].' Low'."\n";
-			echo date( 'l', strtotime( $weather['day3']['date'] )).': '.$weather['day3']['tempMaxN'].' High, '.$weather['day3']['tempMinN'].' Low'."\n";
-			echo date( 'l', strtotime( $weather['day4']['date'] )).': '.$weather['day4']['tempMaxN'].' High, '.$weather['day4']['tempMinN'].' Low'."\n";
-			echo date( 'l', strtotime( $weather['day5']['date'] )).': '.$weather['day5']['tempMaxN'].' High, '.$weather['day5']['tempMinN'].' Low'."\n";
+			echo 'Today:     ' . $weather['day1']['tempMaxN'] . ' High, ' . $weather['day1']['tempMinN'] . ' Low' . "\n";
+			echo 'Tomorrow:  ' . $weather['day2']['tempMaxN'] . ' High, ' . $weather['day2']['tempMinN'] . ' Low' . "\n";
+			echo date( 'l', strtotime( $weather['day3']['date'] ) ) . ': ' . $weather['day3']['tempMaxN'] . ' High, ' . $weather['day3']['tempMinN'] . ' Low' . "\n";
+			echo date( 'l', strtotime( $weather['day4']['date'] ) ) . ': ' . $weather['day4']['tempMaxN'] . ' High, ' . $weather['day4']['tempMinN'] . ' Low' . "\n";
+			echo date( 'l', strtotime( $weather['day5']['date'] ) ) . ': ' . $weather['day5']['tempMaxN'] . ' High, ' . $weather['day5']['tempMinN'] . ' Low' . "\n";
 			break;
 		case EVENTS_WEEKEND_EDITION:
-			echo 'Today:     '.$weather['day1']['tempMaxN'].' High, '.$weather['day1']['tempMinN'].' Low'."\n";
-			echo 'Tomorrow:  '.$weather['day2']['tempMaxN'].' High, '.$weather['day2']['tempMinN'].' Low'."\n";
-			echo date( 'l', strtotime( $weather['day3']['date'] )).': '.$weather['day3']['tempMaxN'].' High, '.$weather['day3']['tempMinN'].' Low'."\n";
-			echo date( 'l', strtotime( $weather['day4']['date'] )).': '.$weather['day4']['tempMaxN'].' High, '.$weather['day4']['tempMinN'].' Low'."\n";
+			echo 'Today:     ' . $weather['day1']['tempMaxN'] . ' High, ' . $weather['day1']['tempMinN'] . ' Low' . "\n";
+			echo 'Tomorrow:  ' . $weather['day2']['tempMaxN'] . ' High, ' . $weather['day2']['tempMinN'] . ' Low' . "\n";
+			echo date( 'l', strtotime( $weather['day3']['date'] ) ) . ': ' . $weather['day3']['tempMaxN'] . ' High, ' . $weather['day3']['tempMinN'] . ' Low' . "\n";
+			echo date( 'l', strtotime( $weather['day4']['date'] ) ) . ': ' . $weather['day4']['tempMaxN'] . ' High, ' . $weather['day4']['tempMinN'] . ' Low' . "\n";
 			break;
 	}
 }
@@ -68,14 +68,14 @@ if ( ! empty( $weather ) ) {
 -- Events
 
 <?php
-for ( $i = 0; $i < count( $days ); $i++) {
+for ( $i = 0; $i < count( $days ); $i++ ) {
 	$day       = $days[$i];
 	$title     = 'Today';
 
-	switch( $edition ) {
+	switch ( $edition ) {
 		case EVENTS_WEEKDAY_EDITION:
 			$event_day = 'Monday';
-			switch( $i ) {
+			switch ( $i ) {
 				case 1:
 					$title     = 'Tomorrow';
 					$event_day = 'Tuesday';
@@ -92,7 +92,7 @@ for ( $i = 0; $i < count( $days ); $i++) {
 			}
 		break;
 		case EVENTS_WEEKEND_EDITION:
-			switch( $i ) {
+			switch ( $i ) {
 				case 1:
 					$title     = 'Tomorrow';
 					$event_day = 'Saturday';
@@ -110,16 +110,16 @@ for ( $i = 0; $i < count( $days ); $i++) {
 	if ( $i > 0 ) {
 		echo "\n\n\n";
 	}
-	echo '> '.$title."\n";
-	echo '>> Morning'."\n";
+	echo '> ' . $title . "\n";
+	echo '>> Morning' . "\n";
 
 	if ( count( $day['morning'] ) === 0 ) {
-			echo '   No Morning Events'."\n";
+			echo '   No Morning Events' . "\n";
 	} else {
 		foreach ( $day['morning'] as $section => $events ) {
-			echo '   - '.( $section === '12:00 AM' ? 'All Day' : $section )."\n";
+			echo '   - ' . ( $section === '12:00 AM' ? 'All Day' : $section ) . "\n";
 			foreach ( $events as $event ) {
-				echo '    '.strip_tags( $event->title ).' - '.( $event->url )."\n";
+				echo '    ' . strip_tags( $event->title ) . ' - ' . $event->url . "\n";
 			}
 		}
 	}
@@ -127,12 +127,12 @@ for ( $i = 0; $i < count( $days ); $i++) {
 	echo '>> Afternoon'."\n";
 
 	if ( count( $day['afternoon'] ) === 0 ) {
-			echo '   No Afternoon Events'."\n";
+			echo '   No Afternoon Events' . "\n";
 	} else {
 		foreach ( $day['afternoon'] as $section => $events ) {
-			echo '   - '.( $section === '12:00 AM' ? 'All Day' : $section )."\n";
+			echo '   - ' . ( $section === '12:00 AM' ? 'All Day' : $section ) . "\n";
 			foreach ( $events as $event ) {
-				echo '    '.strip_tags( $event->title ).' - '.( $event->url )."\n";
+				echo '    ' . strip_tags( $event->title ) . ' - ' . $event->url . "\n";
 			}
 		}
 	}
@@ -140,12 +140,12 @@ for ( $i = 0; $i < count( $days ); $i++) {
 	echo '>> Evening'."\n";
 
 	if ( count( $day['evening'] ) === 0 ) {
-			echo '   No Evening Events'."\n";
+			echo '   No Evening Events' . "\n";
 	} else {
 		foreach ( $day['evening'] as $section => $events ) {
-			echo '   - '.( $section === '12:00 AM' ? 'All Day' : $section )."\n";
+			echo '   - ' . ( $section === '12:00 AM' ? 'All Day' : $section ) . "\n";
 			foreach ( $events as $event ) {
-				echo '    '.strip_tags( $event->title ).' - '.( $event->url )."\n";
+				echo '    ' . strip_tags( $event->title ) . ' - ' . $event->url . "\n";
 			}
 		}
 	}
