@@ -132,7 +132,8 @@ function get_events_edition() {
  * and events for the next weekday edition of the event
  * version starting from the nearest monday going forward
  *
- * @author Jo Dickson
+ * @since 0.1.0
+ * @author Chris Conover, Jo Dickson
  * @param array $options Options to pass to `get_event_data()`
  * @return array Event data grouped by day + time of day
  */
@@ -148,7 +149,8 @@ function get_weekday_events( $options=array() ) {
  * and events for the next weekend edition of the event
  * version starting from the nearest monday going forward
  *
- * @author Jo Dickson
+ * @since 0.1.0
+ * @author Chris Conover, Jo Dickson
  * @param array $options Options to pass to `get_event_data()` for each day
  * @return array Event data grouped by day + time of day
  */
@@ -212,7 +214,7 @@ function get_events_range( $options=array(), $day_start=1, $num_days=5 ) {
 
 		foreach ( $day as $event ) {
 			$start      = date_create_from_format( DATE_RFC2822, $event->starts );
-			$start_hour = (int)$start->format( 'G' );
+			$start_hour = ( int )$start->format( 'G' );
 			$part       = $start->format( 'g:i A' );
 
 			if ( $start_hour < 12 ) {

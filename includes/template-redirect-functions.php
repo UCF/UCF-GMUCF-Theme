@@ -29,7 +29,7 @@ function display_gmucf_template( $template ) {
  * @return void
  */
 function gmucf_template_redirect() {
-	# Get the path without server host or leading blog stuff (e.g. /wp3/gmucf)
+	// Get the path without server host or leading blog stuff (e.g. /wp3/gmucf)
 	$parts = explode( $_SERVER['SERVER_NAME'], home_url( '/' ) );
 	if ( count( $parts ) === 2 ) {
 		if ( $parts[1] !== '/' ) {
@@ -38,7 +38,7 @@ function gmucf_template_redirect() {
 			$request_path = substr( $_SERVER['REQUEST_URI'], 1 );
 		}
 
-		# Most to least specific
+		// Most to least specific
 		$mapping = array(
 			'news/mail/'           => function() { display_gmucf_template( 'template-parts/news/mail/base' ); },
 			'news/text/'           => function() { display_gmucf_template( 'template-parts/news/text/base' ); },
