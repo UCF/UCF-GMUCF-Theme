@@ -9,8 +9,8 @@ $send_date     = $gmucf_content->gmucf_email_send_date;
 $contents      = $gmucf_content->gmucf_email_content;
 
 $email_content_grouped = array(
-    'gmucf_stories' => '',
-    'spotlights'    => ''
+    'gmucf_stories' => array(),
+    'spotlights'    => array()
 );
 
 foreach ( $contents as $content ) {
