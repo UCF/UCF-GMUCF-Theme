@@ -580,7 +580,7 @@ add_action( 'customize_register', __NAMESPACE__ . '\define_customizer_controls',
  * @since 3.0.0
  * @author Jo Dickson
  * @return void
- **/
+ */
 function kill_unused_admin_pages() {
 	remove_menu_page( 'link-manager.php' );
 	remove_menu_page( 'edit-comments.php' );

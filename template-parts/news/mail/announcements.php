@@ -15,7 +15,7 @@ if ( isset( $gmucf_content->gmucf_announcements ) && ! empty( $gmucf_content->gm
 	$announcements = Announcements\get_announcement_details();
 }
 
-if ( count( $announcements ) != 0 ) :
+if ( count( $announcements ) !== 0 ) :
 ?>
 <tr>
 	<td style="padding-top: 40px; padding-bottom: 0; padding-left: 0; padding-right: 0;">
@@ -49,9 +49,7 @@ if ( count( $announcements ) != 0 ) :
 									</tbody>
 								</table>
 							</li>
-						<?php
-						endforeach;
-						?>
+						<?php endforeach; ?>
 						</ul>
 					</td>
 				</tr>

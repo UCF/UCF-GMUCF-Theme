@@ -9,8 +9,8 @@ $send_date     = $gmucf_content->gmucf_email_send_date;
 $contents      = $gmucf_content->gmucf_email_content;
 
 $email_content_grouped = array(
-    'gmucf_stories' => '',
-    'spotlights'    => ''
+    'gmucf_stories' => array(),
+    'spotlights'    => array()
 );
 
 foreach ( $contents as $content ) {
@@ -35,9 +35,7 @@ foreach ( $contents as $content ) {
 ?>
 TODAY'S TOP STORIES
 ========================
-<?php
-foreach ( $email_content_grouped['gmucf_stories'] as $story ) {
-?>
+<?php foreach ( $email_content_grouped['gmucf_stories'] as $story ) : ?>
 <?php echo strip_tags( $story->gmucf_story_title ); ?>
 
 <?php echo strip_tags( $story->gmucf_story_description ); ?>
@@ -45,20 +43,14 @@ foreach ( $email_content_grouped['gmucf_stories'] as $story ) {
 <?php echo strip_tags( $story->gmucf_story_permalink ); ?>
 
 
-<?php
-}
-?>
+<?php endforeach; ?>
 
 Spotlights
 ========================
-<?php
-foreach ( $email_content_grouped['gmucf_spotlights'] as $spotlight ) {
-?>
+<?php foreach ( $email_content_grouped['gmucf_spotlights'] as $spotlight ) : ?>
 <?php echo strip_tags( $spotlight->gmucf_spotlight_alt_text ); ?>
 
 <?php echo strip_tags( $spotlight->gmucf_spotlight_link ); ?>
 
 
-<?php
-}
-?>
+<?php endforeach; ?>

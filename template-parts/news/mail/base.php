@@ -14,7 +14,7 @@ $current_date = current_datetime();
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="format-detection" content="telephone=no">
   <title>Good
-    <?php echo (int)$current_date->format( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?> UCF -
+    <?php echo ( int )$current_date->format( 'G' ) >= 12 ? 'Afternoon' : 'Morning'; ?> UCF -
     <?php echo $current_date->format( 'F j' ); ?>
   </title>
   <?php echo get_template_part( 'template-parts/news/mail/style' ); ?>
