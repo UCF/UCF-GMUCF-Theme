@@ -110,7 +110,7 @@ function gmucf_featured_stories_row_markup( $stories, $social_share, $more_stori
 				<?php if ( $more_stories_link ) : ?>
 					<tr>
 						<td class="montserratbold" style="text-align: right; padding-top: 0; padding-bottom: 50px; padding-right: 10px; padding-left: 10px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;" align="right">
-							<a href="<?php echo $more_stories_url; ?>">
+							<a href="<?php echo Analytics\format_url_news_announcements_utm_params( $more_stories_url ); ?>">
 								More UCF Stories
 							</a>
 						</td>
