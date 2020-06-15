@@ -24,7 +24,7 @@ if ( count( $announcements ) !== 0 ) :
 				<?php if ( $announcements_more_url ): ?>
 				<tr>
 					<td class="montserratbold" style="padding-top: 0; padding-bottom: 30px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 22px; font-weight: bold; color: #006699; text-transform: uppercase; letter-spacing: 1.3px;" align="left">
-						<a href="<?php echo $announcements_more_url; ?>" style="text-decoration: none;">Announcements</a>
+						<a href="<?php echo Analytics\format_url_news_announcements_utm_params( $announcements_more_url ); ?>" style="text-decoration: none;">Announcements</a>
 					</td>
 				</tr>
 				<?php endif; ?>
@@ -41,7 +41,7 @@ if ( count( $announcements ) !== 0 ) :
 									<tbody>
 									<tr>
 										<td style="padding-bottom: 4px;">
-											<a class="montserratsemibold" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000000; font-weight: 500;" href="<?php echo $permalink; ?>">
+											<a class="montserratsemibold" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; color: #000000; font-weight: 500;" href="<?php echo Analytics\format_url_news_announcements_utm_params( $permalink ); ?>">
 												<?php echo $title; ?>
 											</a>
 										</td>
