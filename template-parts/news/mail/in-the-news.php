@@ -11,7 +11,7 @@ $external             = InTheNews\get_in_the_news_stories();
 		<?php if ( $in_the_news_more_url ): ?>
 		<tr>
 			<td class="montserratbold" style="padding-top: 40px; padding-bottom: 30px; padding-left: 0; padding-right: 0; font-family: Helvetica, Arial, sans-serif; font-size: 22px; font-weight: bold; color: #006699; text-transform: uppercase; letter-spacing: 1.3px;" align="left">
-				<a href="<?php echo $in_the_news_more_url; ?>" style="text-decoration: none;">UCF In the News</a>
+				<a href="<?php echo Analytics\format_url_news_announcements_utm_params( $in_the_news_more_url ); ?>" style="text-decoration: none;">UCF In the News</a>
 			</td>
 		</tr>
 		<?php endif; ?>
