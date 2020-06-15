@@ -193,7 +193,7 @@
                 "inputs": null,
                 "inputType": "date",
                 "formId": 1,
-                "description": "The desired day for the email to be sent.  Setting this value does <em>not<\/em> schedule the email automatically.",
+                "description": "The desired date for the email to be sent.  Setting this value does <em>not<\/em> schedule the email automatically.",
                 "allowsPrepopulate": false,
                 "inputMask": true,
                 "inputMaskValue": "99\/99\/9999",
