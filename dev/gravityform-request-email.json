@@ -94,7 +94,8 @@
                 "useRichTextEditor": false,
                 "checkboxLabel": "",
                 "fields": "",
-                "displayOnly": ""
+                "displayOnly": "",
+                "postCustomFieldName": "other_details"
             },
             {
                 "type": "post_title",
