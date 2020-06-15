@@ -1,0 +1,26 @@
+// sass-lint:disable class-name-format
+.gf_progressbar_wrapper {
+  margin-bottom: 3rem;
+}
+
+.gform_wrapper {
+  .gfield_description {
+    font-size: .8em;
+  }
+
+  .gfield {
+    margin-bottom: 2.5rem;
+  }
+
+  // Modifiers for forms with descriptions
+  // set above inputs:
+  .gfield.field_description_above {
+    .gfield_label {
+      margin-bottom: 0;
+    }
+
+    .gfield_description {
+      margin-bottom: 1.25rem;
+    }
+  }
+}
