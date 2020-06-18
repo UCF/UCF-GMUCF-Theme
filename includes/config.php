@@ -595,7 +595,7 @@ add_action( 'admin_menu', __NAMESPACE__ . '\kill_unused_admin_pages' );
  *
  * http://betterwp.net/wordpress-tips/disable-some-wordpress-pages/
  *
- * @since 1.0.1
+ * @since 3.0.1
  * @author Jo Dickson
  * @return void
  */
@@ -614,7 +614,7 @@ add_action( 'template_redirect', __NAMESPACE__ . '\kill_unused_templates' );
 /**
  * Removes dashboard widgets that reference posts.
  *
- * @since 1.0.1
+ * @since 3.0.1
  * @author Jo Dickson
  * @return void
  */
@@ -634,7 +634,7 @@ add_action( 'wp_dashboard_setup', __NAMESPACE__ . '\kill_unused_dashboard_widget
  * trackbacks, and pingbacks sitewide, and hides references to comments in the
  * WordPress admin to reduce clutter.
  *
- * @since 1.0.1
+ * @since 3.0.1
  * @author Jo Dickson
  * @return void
  */
