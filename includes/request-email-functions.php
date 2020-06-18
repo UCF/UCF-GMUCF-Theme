@@ -17,7 +17,7 @@ namespace GMUCF\Theme\Includes\RequestEmail;
  *
  * Requires functions defined in the UCF Email Editor plugin.
  *
- * @since TODO
+ * @since 3.0.1
  * @author Jo Dickson
  */
 if ( function_exists( 'email_wysiwyg_toolbar_r1' ) ) {
