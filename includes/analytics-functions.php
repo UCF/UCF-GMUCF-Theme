@@ -35,10 +35,10 @@ function format_url_news_announcements_utm_params( $url='' ) {
 
 	parse_str( parse_url( $url, PHP_URL_QUERY ), $params_array );
 	if ( is_array( $params_array ) ) {
-		$params_array['source'] = $source;
-		$params_array['medium'] = $medium;
-		$params_array['campaign'] = $campaign;
-		$params_array['content'] = $content;
+		$params_array['utm_source'] = $source;
+		$params_array['utm_medium'] = $medium;
+		$params_array['utm_campaign'] = $campaign;
+		$params_array['utm_content'] = $content;
 	}
 
 	return $url_base . '?' . http_build_query( $params_array );
