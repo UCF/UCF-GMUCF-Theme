@@ -22,6 +22,7 @@ These plugins are not technically required for this theme to function normally, 
 * [UCF Email Editor Plugin](https://github.com/UCF/UCF-Email-Editor-Plugin) (for custom emails)
 * [UCF Section Plugin](https://github.com/UCF/UCF-Section-Plugin) (for custom emails)
 * [WP Mail SMTP](https://wordpress.org/plugins/wp-mail-smtp/) (for form confirmations and Email CPT instant sends)
+* [Disable REST API](https://wordpress.org/plugins/disable-json-api/), or equivalent plugin (to disable unused REST endpoints)
 
 
 ## Configuration
