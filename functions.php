@@ -17,6 +17,7 @@ include_once GMUCF_THEME_DIR . 'includes/events-functions.php';
 include_once GMUCF_THEME_DIR . 'includes/in-the-news-functions.php';
 include_once GMUCF_THEME_DIR . 'includes/ucf-today-functions.php';
 include_once GMUCF_THEME_DIR . 'includes/weather-functions.php';
+include_once GMUCF_THEME_DIR . 'includes/request-email-functions.php';
 
 
 // Plugin extras/overrides
