@@ -37,6 +37,7 @@ define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	'weather_service_extended_url'     => 'https://weather.smca.ucf.edu/?data=forecastExtended',
 	'weather_service_cache_duration'   => 60 * 15, // seconds
 	'weather_service_timeout'          => 10, // seconds
+	'email_preview_base_list'          => ''
 ) ) );
 
 define( 'EVENTS_WEEKEND_EDITION', 0 );
@@ -73,8 +74,8 @@ function init() {
 
 		// Enforce typecasting of returned option values,
 		// based on the types of the defaults we've defined.
-		// NOTE: Also forces non-empty values, since this theme
-		// expects all theme option values to be non-empty:
+		// NOTE: Forces option defaults to return when empty
+		// option values are retrieved.
 		add_filter( "option_$option_name", function( $value, $option ) use ( $option_default ) {
 			switch ( $type = gettype( $option_default ) ) {
 				case 'integer':
@@ -146,6 +147,13 @@ function define_customizer_sections( $wp_customize ) {
 		'analytics',
 		array(
 			'title' => 'Analytics'
+		)
+	);
+
+	$wp_customize->add_section(
+		'custom_emails',
+		array(
+			'title' => 'Custom Emails'
 		)
 	);
 }
@@ -567,6 +575,26 @@ function define_customizer_controls( $wp_customize ) {
 			'description' => 'The UTM "campaign" value to set on News & Announcement email links.',
 			'section'     => 'analytics',
 			'type'        => 'text'
+		)
+	);
+
+	//
+	// Custom Emails
+	//
+	$wp_customize->add_setting(
+		'email_preview_base_list',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'email_preview_base_list' )
+		)
+	);
+	$wp_customize->add_control(
+		'email_preview_base_list',
+		array(
+			'label'       => 'Base Preview Recipients List',
+			'description' => 'A comma-separated list of email addresses that custom email previews should always be sent to.',
+			'section'     => 'custom_emails',
+			'type'        => 'textarea'
 		)
 	);
 }
