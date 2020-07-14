@@ -74,7 +74,7 @@ use GMUCF\Theme\Includes\Coronavirus;
 												</td>
 											</tr>
 											<tr>
-												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; line-height: 1.5; padding-top: 30px; padding-bottom: 45px; text-align: center; font-size: 13px;" align="center">
+												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; line-height: 1.5; padding-bottom: 45px; text-align: center; font-size: 13px;" align="center">
 													!@!UNSUBSCRIBE!@! from this email.
 												</td>
 											</tr>
