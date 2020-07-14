@@ -3,6 +3,11 @@ namespace GMUCF\Theme\TemplateParts\Coronavirus\Components\Paragraph;
 use GMUCF\Theme\Includes\Coronavirus;
 
 
-$row = Coronavirus\get_current_row();
+$row     = Coronavirus\get_current_row();
+$content = Coronavirus\format_wysiwyg_content( $row->paragraph );
 ?>
-TODO paragraph row markup
+<tr>
+	<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; text-align: left; padding-bottom: 14px;" align="left">
+		<?php echo $content; ?>
+	</td>
+</tr>

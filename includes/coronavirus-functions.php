@@ -31,12 +31,28 @@ function fetch_options_data() {
 
 
 /**
+ * Returns the email title defined in the
+ * Coronavirus email options feed.
+ *
+ * @since 3.1.0
+ * @author Jo Dickson
+ * @return string|false
+ */
+function get_email_title() {
+	$options = fetch_options_data();
+	if ( ! $options || ! isset( $options->email_content ) ) return false;
+
+	return escape_chars( $options->title );
+}
+
+
+/**
  * Returns all email content data from the
  * Coronavirus email options feed.
  *
  * @since 3.1.0
  * @author Jo Dickson
- * @return object
+ * @return object|false
  */
 function get_email_content() {
 	$options = fetch_options_data();
@@ -47,17 +63,48 @@ function get_email_content() {
 
 
 /**
- * Returns a template part for the provided
- * row of email content.
+ * Displays either a one-column or two-column row
+ * of email content.
  *
  * @since 3.1.0
  * @author Jo Dickson
  * @param object $row Row of email content data
  * @return void
  */
-function display_component( $row ) {
+function display_row( $row ) {
+	$row_type = 'one_column_row';
+	if ( isset( $row->acf_fc_layout ) && $row->acf_fc_layout === 'two_column_row' ) {
+		$row_type = 'two_column_row';
+	}
+
+	// Pass along $row data to the template part:
+	set_query_var( 'gmucf_coronavirus_current_row', $row );
+
+	get_template_part( "template-parts/coronavirus/rows/$row_type" );
+
+	// Clean up afterwards:
+	set_query_var( 'gmucf_coronavirus_current_row', false );
+}
+
+
+/**
+ * Returns a component template part for the provided
+ * row of email content.
+ *
+ * @since 3.1.0
+ * @author Jo Dickson
+ * @param object $row Row of email content data
+ * @param string $row_type Type of row that this component is being displayed in
+ * @return void
+ */
+function display_component( $row, $row_type='one_column_row' ) {
 	$component = $row->acf_fc_layout ?? '';
 	if ( ! $component ) return;
+
+	// Make row-specific adjustments as necessary:
+	if ( $row_type === 'two_column_row' && $component === 'article' ) {
+		$component = 'article_sm';
+	}
 
 	// Pass along $row data to the template part:
 	set_query_var( 'gmucf_coronavirus_current_row', $row );
@@ -71,7 +118,7 @@ function display_component( $row ) {
 
 /**
  * Returns data for the current row being looped through.
- * For use in component template parts.
+ * For use in row and component template parts.
  *
  * @since 3.1.0
  * @author Jo Dickson
@@ -83,9 +130,10 @@ function get_current_row() {
 
 
 /**
- * TODO
  * Format WYSIWYG-generated content for use in
- * Coronavirus email HTML
+ * Coronavirus email HTML.
+ *
+ * Utilizes functions defined in the UCF Email Editor plugin.
  *
  * @since 3.1.0
  * @author Jo Dickson
@@ -93,5 +141,24 @@ function get_current_row() {
  * @return string Formatted content
  */
 function format_wysiwyg_content( $content ) {
+	$content = \convert_p_tags( $content );
+	$content = \convert_list_tags( $content, 'ul' );
+	$content = \convert_list_tags( $content, 'ol' );
+	$content = \convert_li_tags( $content );
+	$content = escape_chars( $content );
+
 	return $content;
+}
+
+
+/**
+ * Escapes string content suitable for use in email HTML.
+ *
+ * @since 3.1.0
+ * @author Jo Dickson
+ * @param string Arbitrary string/HTML content
+ * @return string Sanitized content
+ */
+function escape_chars( $content ) {
+	return htmlspecialchars_decode( htmlentities( $content ) );
 }
