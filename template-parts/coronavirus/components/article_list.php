@@ -8,7 +8,7 @@ $row = Coronavirus\get_current_row();
 foreach ( $row->articles as $key => $article ):
 	$thumbnail = $article->thumbnail;
 	$title     = Coronavirus\escape_chars( $article->article_title );
-	$deck      = Coronavirus\format_wysiwyg_content( $article->article_deck );
+	$deck      = Coronavirus\format_deck_content( $article->article_deck );
 	$href      = $article->links_to;
 ?>
 <tr>

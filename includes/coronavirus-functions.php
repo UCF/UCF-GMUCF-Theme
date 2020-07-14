@@ -130,21 +130,49 @@ function get_current_row() {
 
 
 /**
- * Format WYSIWYG-generated content for use in
+ * Format WYSIWYG-generated paragraph content for use in
  * Coronavirus email HTML.
  *
  * Utilizes functions defined in the UCF Email Editor plugin.
+ *
+ * TODO update this function to strip all HTML tags except
+ * for those supported by the "Email Content" WYSIWYG toolbar
+ * in the CV Utilities plugin
  *
  * @since 3.1.0
  * @author Jo Dickson
  * @param string $content Arbitrary HTML string
  * @return string Formatted content
  */
-function format_wysiwyg_content( $content ) {
+function format_paragraph_content( $content ) {
 	$content = \convert_p_tags( $content );
 	$content = \convert_list_tags( $content, 'ul' );
 	$content = \convert_list_tags( $content, 'ol' );
 	$content = \convert_li_tags( $content );
+	$content = escape_chars( $content );
+
+	return $content;
+}
+
+
+/**
+ * Formats WYSIWYG-generated deck content for use
+ * in Coronavirus email HTML.
+ *
+ * TODO update this function to strip literally all
+ * HTML except for <strong>/<em>
+ *
+ * @since 3.1.0
+ * @author Jo Dickson
+ * @param string $content Arbitrary HTML string
+ * @return string Formatted content
+ */
+function format_deck_content( $content ) {
+	// Strip <p> tags entirely (no replacement, since decks may
+	// be wrapped within a link)
+	$content = preg_replace( '/<p[^>]*>/', '', $content );
+	$content = preg_replace( '/<\/p>/', '', $content );
+
 	$content = escape_chars( $content );
 
 	return $content;

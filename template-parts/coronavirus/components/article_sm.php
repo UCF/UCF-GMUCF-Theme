@@ -6,7 +6,7 @@ use GMUCF\Theme\Includes\Coronavirus;
 $row       = Coronavirus\get_current_row();
 $thumbnail = $row->thumbnail;
 $title     = Coronavirus\escape_chars( $row->article_title );
-$deck      = Coronavirus\format_wysiwyg_content( $row->article_deck );
+$deck      = Coronavirus\format_deck_content( $row->article_deck );
 $href      = $row->links_to;
 ?>
 <tr>
@@ -41,7 +41,7 @@ $href      = $row->links_to;
 				<?php endif; ?>
 				<?php if ( $deck ): ?>
 				<tr>
-					<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; line-height: 1.5; text-align: left; padding-bottom: 45px; font-size: 13px;" align="left">
+					<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; line-height: 1.5; text-align: left; padding-bottom: 0px; font-size: 13px;" align="left">
 						<?php if ( $href ): ?>
 						<a href="<?php echo $href; ?>" style="color: #000; text-decoration: none;">
 						<?php endif; ?>
