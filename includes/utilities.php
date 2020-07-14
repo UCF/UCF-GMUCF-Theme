@@ -203,7 +203,7 @@ function remove_quotes( $s ) {
  * @return mixed JSON-decoded object or false on failure
  */
 function fetch_json( $url ) {
-	$response      = wp_remote_get( $url, array( 'timeout' => 15 ) );
+	$response      = wp_remote_get( $url . '?' . time(), array( 'timeout' => 15 ) );
 	$response_code = wp_remote_retrieve_response_code( $response );
 	$result        = false;
 
