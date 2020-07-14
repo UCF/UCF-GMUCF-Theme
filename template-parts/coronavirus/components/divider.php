@@ -8,7 +8,7 @@ $color     = $row->color ?? '#ffcc00';
 $thickness = $row->thickness ?? '3px';
 ?>
 <tr>
-	<td style="padding-bottom: 30px;">
+	<td style="padding-bottom: 40px;">
 		<table style="text-align: center; width: 100%;" align="center">
 			<tbody>
 				<tr>

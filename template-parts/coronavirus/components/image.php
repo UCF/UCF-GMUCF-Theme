@@ -11,7 +11,7 @@ $href      = $row->links_to;
 if ( $thumbnail ):
 ?>
 <tr>
-	<td style="padding-bottom: 30px;">
+	<td style="padding-bottom: 40px;">
 		<?php if ( $href ): ?>
 		<a href="<?php echo $href; ?>">
 		<?php endif; ?>
