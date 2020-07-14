@@ -6,7 +6,7 @@ use GMUCF\Theme\Includes\Coronavirus;
 $row       = Coronavirus\get_current_row();
 $thumbnail = $row->thumbnail;
 $title     = Coronavirus\escape_chars( $row->article_title );
-$deck      = Coronavirus\format_wysiwyg_content( $row->article_deck );
+$deck      = Coronavirus\format_deck_content( $row->article_deck );
 $href      = $row->links_to;
 ?>
 <tr>
