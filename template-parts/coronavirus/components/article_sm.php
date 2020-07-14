@@ -41,7 +41,7 @@ $href      = $row->links_to;
 				<?php endif; ?>
 				<?php if ( $deck ): ?>
 				<tr>
-					<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; line-height: 1.5; text-align: left; padding-bottom: 45px; font-size: 13px;" align="left">
+					<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; line-height: 1.5; text-align: left; padding-bottom: 0px; font-size: 13px;" align="left">
 						<?php if ( $href ): ?>
 						<a href="<?php echo $href; ?>" style="color: #000; text-decoration: none;">
 						<?php endif; ?>
