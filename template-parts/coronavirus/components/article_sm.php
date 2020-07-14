@@ -10,7 +10,7 @@ $deck      = Coronavirus\format_deck_content( $row->article_deck );
 $href      = $row->links_to;
 ?>
 <tr>
-	<td style="text-align: left; padding-bottom: 30px;" align="left">
+	<td style="text-align: left; padding-bottom: 40px;" align="left">
 		<table style="text-align: center; width: 100%;" width="100%" align="center">
 			<tbody>
 				<?php if ( $thumbnail ): ?>
@@ -28,7 +28,7 @@ $href      = $row->links_to;
 				<?php endif; ?>
 				<?php if ( $title ): ?>
 				<tr>
-					<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; text-align: left; padding-top: 5px; padding-bottom: 10px; font-size: 18px; font-weight: bold; line-height: 1.2;" align="left">
+					<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; text-align: left; padding-bottom: 10px; font-size: 18px; font-weight: bold; line-height: 1.2;" align="left">
 						<?php if ( $href ): ?>
 						<a href="<?php echo $href; ?>" style="color: #000; text-decoration: none;">
 						<?php endif; ?>
