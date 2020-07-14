@@ -186,12 +186,12 @@ img {
 									<table class="container-inner" style="text-align: center; margin: auto; min-width: 580px; width: 580px;" width="580" align="center">
 										<tbody>
 											<tr>
-												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; line-height: 1.5; text-align: left; padding-bottom: 5px; padding-top: 30px; font-size: 13px; font-weight: 700; color: #767676; text-transform: uppercase;" align="left">
+												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; line-height: 1.5; text-align: left; padding-bottom: 10px; padding-top: 30px; font-size: 13px; font-weight: 700; color: #767676; text-transform: uppercase;" align="left">
 													<?php echo $current_date->format( 'M d, Y' ); ?>
 												</td>
 											</tr>
 											<tr>
-												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; text-align: left; padding-bottom: 15px; font-size: 27px; letter-spacing: -0.025em; line-height: 1.3;" align="left">
+												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; text-align: left; padding-bottom: 25px; font-size: 27px; letter-spacing: -0.025em; line-height: 1.3;" align="left">
 													<?php echo $title; ?>
 												</td>
 											</tr>
