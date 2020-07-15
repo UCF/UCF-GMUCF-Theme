@@ -31,22 +31,6 @@ function fetch_options_data() {
 
 
 /**
- * Returns the email title defined in the
- * Coronavirus email options feed.
- *
- * @since 3.1.0
- * @author Jo Dickson
- * @return string|false
- */
-function get_email_title() {
-	$options = fetch_options_data();
-	if ( ! $options || ! isset( $options->email_content ) ) return false;
-
-	return escape_chars( $options->title );
-}
-
-
-/**
  * Returns all email content data from the
  * Coronavirus email options feed.
  *
