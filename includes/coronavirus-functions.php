@@ -119,10 +119,6 @@ function get_current_row() {
  *
  * Utilizes functions defined in the UCF Email Editor plugin.
  *
- * TODO update this function to strip all HTML tags except
- * for those supported by the "Email Content" WYSIWYG toolbar
- * in the CV Utilities plugin
- *
  * @since 3.1.0
  * @author Jo Dickson
  * @param string $content Arbitrary HTML string
@@ -142,9 +138,6 @@ function format_paragraph_content( $content ) {
 /**
  * Formats WYSIWYG-generated deck content for use
  * in Coronavirus email HTML.
- *
- * TODO update this function to strip literally all
- * HTML except for <strong>/<em>
  *
  * @since 3.1.0
  * @author Jo Dickson
