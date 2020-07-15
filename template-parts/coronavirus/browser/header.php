@@ -3,8 +3,11 @@ namespace GMUCF\Theme\TemplateParts\Coronavirus\Browser\Header;
 use GMUCF\Theme\Includes\Coronavirus;
 
 
-$current_date = current_datetime();
-$title        = Coronavirus\get_email_title();
+$current_date   = current_datetime();
+$options        = Coronavirus\fetch_options_data();
+$title          = isset( $options->title ) ? Coronavirus\escape_chars( $options->title ) : '';
+$header_img     = $options->header_image ?? null;
+$header_img_url = $options->header_image_link ?? null;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -176,11 +179,19 @@ img {
 				<td style="text-align: left;" align="left">
 					<table class="container-outer" style="text-align: center; background-color: #fff; margin: auto; min-width: 640px; width: 640px;" width="640" bgcolor="#fff" align="center">
 						<tbody>
+							<?php if ( $header_img ): ?>
 							<tr>
 								<td style="text-align: left;" align="left">
-									<img class="img-fluid" src="https://s3.amazonaws.com/web.ucf.edu/email/2020-cv-newsletter-demos/dummy-header.jpg" alt="TODO" style="max-width: 100%;">
+									<?php if ( $header_img_url ): ?>
+									<a href="<?php echo $header_img_url; ?>">
+									<?php endif; ?>
+										<img class="img-fluid" src="<?php echo $header_img; ?>" alt="UCF Coronavirus Information" style="max-width: 100%;">
+									<?php if ( $header_img_url ): ?>
+									</a>
+									<?php endif; ?>
 								</td>
 							</tr>
+							<?php endif; ?>
 							<tr>
 								<td style="text-align: left;" align="left">
 									<table class="container-inner" style="text-align: center; margin: auto; min-width: 580px; width: 580px;" width="580" align="center">
