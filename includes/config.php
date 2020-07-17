@@ -37,6 +37,7 @@ define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	'weather_service_extended_url'     => 'https://weather.smca.ucf.edu/?data=forecastExtended',
 	'weather_service_cache_duration'   => 60 * 15, // seconds
 	'weather_service_timeout'          => 10, // seconds
+	'coronavirus_email_options_url'    => 'https://www.ucf.edu/coronavirus/wp-json/coronavirus-weekly-email/v1/options/',
 	'email_preview_base_list'          => ''
 ) ) );
 
@@ -140,6 +141,13 @@ function define_customizer_sections( $wp_customize ) {
 		'events',
 		array(
 			'title' => 'Events Data'
+		)
+	);
+
+	$wp_customize->add_section(
+		'coronavirus',
+		array(
+			'title' => 'Coronavirus Email Data'
 		)
 	);
 
@@ -450,6 +458,26 @@ function define_customizer_controls( $wp_customize ) {
 			'description' => 'Number of seconds to wait before timing out a request to the Events system feed.',
 			'section'     => 'events',
 			'type'        => 'number'
+		)
+	);
+
+	//
+	// Coronavirus
+	//
+	$wp_customize->add_setting(
+		'coronavirus_email_options_url',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'coronavirus_email_options_url' )
+		)
+	);
+	$wp_customize->add_control(
+		'coronavirus_email_options_url',
+		array(
+			'label'       => 'Coronavirus Email Options Data URL',
+			'description' => 'URL to the Coronavirus email options feed.',
+			'section'     => 'coronavirus',
+			'type'        => 'text'
 		)
 	);
 

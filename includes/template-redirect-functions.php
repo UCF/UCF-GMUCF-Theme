@@ -49,6 +49,8 @@ function gmucf_template_redirect() {
 			'events/weekend/mail/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/mail/base' ); },
 			'events/weekend/text/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/text/base' ); },
 			'events/weekend/'      => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/browser/base' ); },
+			'coronavirus/mail/'    => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
+			'coronavirus/'         => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
 		);
 
 		foreach ( $mapping as $path => $func ) {
