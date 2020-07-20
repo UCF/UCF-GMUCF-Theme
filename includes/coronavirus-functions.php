@@ -129,6 +129,8 @@ function format_paragraph_content( $content ) {
 	$content = \convert_list_tags( $content, 'ul' );
 	$content = \convert_list_tags( $content, 'ol' );
 	$content = \convert_li_tags( $content );
+	$content = convert_heading_tags( $content, 'h2', '24px' );
+	$content = convert_heading_tags( $content, 'h3', '18px' );
 	$content = escape_chars( $content );
 
 	return $content;
@@ -151,6 +153,46 @@ function format_deck_content( $content ) {
 	$content = preg_replace( '/<\/p>/', '', $content );
 
 	$content = escape_chars( $content );
+
+	return $content;
+}
+
+
+/**
+ * We need slightly different heading styles than what are
+ * provided in the UCF Email Editor Plugin, so custom
+ * heading markup is defined here.
+ *
+ * @since 3.1.0
+ * @author Jo Dickson
+ * @param string $font_size Font size to apply to the generated markup
+ * @return string Email-safe heading markup
+ */
+function get_heading_open_markup( $font_size='24px' ) {
+	ob_start();
+?>
+<table class="paragraphtable" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; text-align: left; padding-bottom: 10px; font-size: <?php echo $font_size; ?>; font-weight: bold; line-height: 1.2;" align="left">
+<?php
+	return ob_get_clean();
+}
+
+
+/**
+ * Converts heading tags to email-safe markup.
+ *
+ * @since 3.1.0
+ * @author Jo Dickson
+ * @param string $content Unmodified markup
+ * @param string $heading_elem The heading element to replace (e.g. "h2", "h3")
+ * @param string $font_size The font size to apply to the heading
+ * @return string Modified email markup
+ */
+function convert_heading_tags( $content, $heading_elem, $font_size ) {
+	$content = preg_replace( '/<' . $heading_elem .  '[^>]*>/', get_heading_open_markup( $font_size ), $content );
+	$content = preg_replace( '/<\/' . $heading_elem .  '>/', \get_table_close_markup(), $content );
 
 	return $content;
 }
