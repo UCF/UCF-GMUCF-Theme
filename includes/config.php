@@ -38,6 +38,9 @@ define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	'weather_service_cache_duration'   => 60 * 15, // seconds
 	'weather_service_timeout'          => 10, // seconds
 	'coronavirus_email_options_url'    => 'https://www.ucf.edu/coronavirus/wp-json/coronavirus-weekly-email/v1/options/',
+	'coronavirus_utm_source'           => 'weekly_update',
+	'coronavirus_utm_medium'           => 'email',
+	'coronavirus_utm_campaign'         => 'coronavirus',
 	'email_preview_base_list'          => ''
 ) ) );
 
@@ -601,6 +604,57 @@ function define_customizer_controls( $wp_customize ) {
 		array(
 			'label'       => 'News & Announcements - UTM Campaign',
 			'description' => 'The UTM "campaign" value to set on News & Announcement email links.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'coronavirus_utm_source',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'coronavirus_utm_source' )
+		)
+	);
+	$wp_customize->add_control(
+		'coronavirus_utm_source',
+		array(
+			'label'       => 'Coronavirus Emails - UTM Source',
+			'description' => 'The UTM "source" value to set on Coronavirus email links.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'coronavirus_utm_medium',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'coronavirus_utm_medium' )
+		)
+	);
+	$wp_customize->add_control(
+		'coronavirus_utm_medium',
+		array(
+			'label'       => 'Coronavirus Emails - UTM Medium',
+			'description' => 'The UTM "medium" value to set on Coronavirus email links.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'coronavirus_utm_campaign',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'coronavirus_utm_campaign' )
+		)
+	);
+	$wp_customize->add_control(
+		'coronavirus_utm_campaign',
+		array(
+			'label'       => 'Coronavirus Emails - UTM Campaign',
+			'description' => 'The UTM "campaign" value to set on Coronavirus email links.',
 			'section'     => 'analytics',
 			'type'        => 'text'
 		)
