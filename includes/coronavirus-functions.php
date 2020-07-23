@@ -223,11 +223,17 @@ function escape_chars( $content ) {
  * @return string Formatted URL
  */
 function format_url_utm_params( $url ) {
-	$source   = get_option( 'coronavirus_utm_source' );
-	$medium   = get_option( 'coronavirus_utm_medium' );
-	$campaign = get_option( 'coronavirus_utm_campaign' );
+	$pattern = \UCF_Email_Editor_Config::get_option_or_default( 'utm_replace_regex' );
 
-	return \format_url_utm_params( $url, $source, $medium, $campaign );
+	if ( preg_match( $pattern, $url ) ) {
+		$source   = get_option( 'coronavirus_utm_source' );
+		$medium   = get_option( 'coronavirus_utm_medium' );
+		$campaign = get_option( 'coronavirus_utm_campaign' );
+
+		$url = \format_url_utm_params( $url, $source, $medium, $campaign );
+	}
+
+	return $url;
 }
 
 
