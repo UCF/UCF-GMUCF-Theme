@@ -6,7 +6,7 @@ use GMUCF\Theme\Includes\Coronavirus;
 $row = Coronavirus\get_current_row();
 $thumbnail = $row->thumbnail;
 $alt       = esc_attr( $row->alt_text );
-$href      = $row->links_to;
+$href      = Coronavirus\format_url_utm_params( $row->links_to );
 
 if ( $thumbnail ):
 ?>

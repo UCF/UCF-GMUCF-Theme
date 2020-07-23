@@ -14,7 +14,7 @@ $row = Coronavirus\get_current_row();
 					$thumbnail = $article->thumbnail;
 					$title     = Coronavirus\escape_chars( $article->article_title );
 					$deck      = Coronavirus\format_deck_content( $article->article_deck );
-					$href      = $article->links_to;
+					$href      = Coronavirus\format_url_utm_params( $article->links_to );
 				?>
 				<tr>
 					<td style="text-align: left; padding-bottom: 30px;" align="left">

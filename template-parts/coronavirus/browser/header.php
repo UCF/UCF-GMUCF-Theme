@@ -7,7 +7,7 @@ $current_date   = current_datetime();
 $options        = Coronavirus\fetch_options_data();
 $title          = isset( $options->title ) ? Coronavirus\escape_chars( $options->title ) : '';
 $header_img     = $options->header_image ?? null;
-$header_img_url = $options->header_image_link ?? null;
+$header_img_url = isset( $options->header_image_link ) ? Coronavirus\format_url_utm_params( $options->header_image_link ) : null;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
