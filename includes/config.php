@@ -41,6 +41,7 @@ define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	'coronavirus_utm_source'           => 'weekly_update',
 	'coronavirus_utm_medium'           => 'email',
 	'coronavirus_utm_campaign'         => 'coronavirus',
+	'coronavirus_header_utm_content'   => 'header_image',
 	'email_preview_base_list'          => ''
 ) ) );
 
@@ -620,7 +621,7 @@ function define_customizer_controls( $wp_customize ) {
 		'coronavirus_utm_source',
 		array(
 			'label'       => 'Coronavirus Emails - UTM Source',
-			'description' => 'The UTM "source" value to set on Coronavirus email links.',
+			'description' => 'The UTM "source" value to set on links within Coronavirus email content.',
 			'section'     => 'analytics',
 			'type'        => 'text'
 		)
@@ -637,7 +638,7 @@ function define_customizer_controls( $wp_customize ) {
 		'coronavirus_utm_medium',
 		array(
 			'label'       => 'Coronavirus Emails - UTM Medium',
-			'description' => 'The UTM "medium" value to set on Coronavirus email links.',
+			'description' => 'The UTM "medium" value to set on links within Coronavirus email content.',
 			'section'     => 'analytics',
 			'type'        => 'text'
 		)
@@ -654,7 +655,24 @@ function define_customizer_controls( $wp_customize ) {
 		'coronavirus_utm_campaign',
 		array(
 			'label'       => 'Coronavirus Emails - UTM Campaign',
-			'description' => 'The UTM "campaign" value to set on Coronavirus email links.',
+			'description' => 'The UTM "campaign" value to set on links within Coronavirus email content.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'coronavirus_header_utm_content',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'coronavirus_header_utm_content' )
+		)
+	);
+	$wp_customize->add_control(
+		'coronavirus_header_utm_content',
+		array(
+			'label'       => 'Coronavirus Email Header - UTM Content',
+			'description' => 'The UTM "content" value to set on the Coronavirus email header.',
 			'section'     => 'analytics',
 			'type'        => 'text'
 		)
