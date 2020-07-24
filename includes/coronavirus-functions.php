@@ -222,15 +222,16 @@ function escape_chars( $content ) {
  * @param string $url Arbitrary URL
  * @return string Formatted URL
  */
-function format_url_utm_params( $url ) {
+function format_url_utm_params( $url, $utm_content='' ) {
 	$pattern = \UCF_Email_Editor_Config::get_option_or_default( 'utm_replace_regex' );
 
 	if ( preg_match( $pattern, $url ) ) {
 		$source   = get_option( 'coronavirus_utm_source' );
 		$medium   = get_option( 'coronavirus_utm_medium' );
 		$campaign = get_option( 'coronavirus_utm_campaign' );
+		$content  = $utm_content;
 
-		$url = \format_url_utm_params( $url, $source, $medium, $campaign );
+		$url = \format_url_utm_params( $url, $source, $medium, $campaign, $content );
 	}
 
 	return $url;
