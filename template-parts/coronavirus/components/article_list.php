@@ -3,7 +3,8 @@ namespace GMUCF\Theme\TemplateParts\Coronavirus\Components\ArticleList;
 use GMUCF\Theme\Includes\Coronavirus;
 
 
-$row = Coronavirus\get_current_row();
+$current_date = current_datetime();
+$row          = Coronavirus\get_current_row();
 ?>
 <tr>
 	<td style="text-align: left; padding-bottom: 10px;" align="left">
@@ -14,7 +15,7 @@ $row = Coronavirus\get_current_row();
 					$thumbnail = $article->thumbnail;
 					$title     = Coronavirus\escape_chars( $article->article_title );
 					$deck      = Coronavirus\format_deck_content( $article->article_deck );
-					$href      = Coronavirus\format_url_utm_params( $article->links_to );
+					$href      = Coronavirus\format_url_utm_params( $article->links_to, $current_date->format( 'Y-m-d' ) );
 				?>
 				<tr>
 					<td style="text-align: left; padding-bottom: 30px;" align="left">
