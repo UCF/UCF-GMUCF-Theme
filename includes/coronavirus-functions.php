@@ -125,12 +125,15 @@ function get_current_row() {
  * @return string Formatted content
  */
 function format_paragraph_content( $content ) {
+	$current_date = current_datetime();
+
 	$content = \convert_p_tags( $content );
 	$content = \convert_list_tags( $content, 'ul' );
 	$content = \convert_list_tags( $content, 'ol' );
 	$content = \convert_li_tags( $content );
 	$content = convert_heading_tags( $content, 'h2', '24px' );
 	$content = convert_heading_tags( $content, 'h3', '18px' );
+	$content = apply_link_utm_params( $content, $current_date->format( 'Y-m-d' ) ); // namespaced function--not Email Editor Plugin's function
 	$content = escape_chars( $content );
 
 	return $content;
@@ -208,4 +211,50 @@ function convert_heading_tags( $content, $heading_elem, $font_size ) {
  */
 function escape_chars( $content ) {
 	return htmlspecialchars_decode( htmlentities( $content ) );
+}
+
+
+/**
+ * Wrapper for the UCF Email Editor Plugin's
+ * `format_url_utm_params()` function, using params
+ * for Coronavirus emails defined in the Customizer.
+ *
+ * @since 3.1.1
+ * @author Jo Dickson
+ * @param string $url Arbitrary URL
+ * @param string $content utm_content param to insert into the URL
+ * @return string Formatted URL
+ */
+function format_url_utm_params( $url, $content='' ) {
+	$pattern = \UCF_Email_Editor_Config::get_option_or_default( 'utm_replace_regex' );
+
+	if ( preg_match( $pattern, $url ) ) {
+		$source   = get_option( 'coronavirus_utm_source' );
+		$medium   = get_option( 'coronavirus_utm_medium' );
+		$campaign = get_option( 'coronavirus_utm_campaign' );
+
+		$url = \format_url_utm_params( $url, $source, $medium, $campaign, $content );
+	}
+
+	return $url;
+}
+
+
+/**
+ * Wrapper for the UCF Email Editor Plugin's
+ * `apply_link_utm_params()` function, using params
+ * for Coronavirus emails defined in the Customizer.
+ *
+ * @since 3.1.1
+ * @author Jo Dickson
+ * @param string $str Arbitrary HTML string
+ * @param string $content utm_content param to insert into URLs
+ * @return string Modified HTML string
+ */
+function apply_link_utm_params( $str, $content='' ) {
+	$source   = get_option( 'coronavirus_utm_source' );
+	$medium   = get_option( 'coronavirus_utm_medium' );
+	$campaign = get_option( 'coronavirus_utm_campaign' );
+
+	return \apply_link_utm_params( $str, $source, $medium, $campaign, $content );
 }
