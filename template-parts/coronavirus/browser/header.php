@@ -186,7 +186,7 @@ img {
 									<?php if ( $header_img_url ): ?>
 									<a href="<?php echo $header_img_url; ?>">
 									<?php endif; ?>
-										<img class="img-fluid" src="<?php echo $header_img; ?>" alt="UCF Coronavirus Information" style="max-width: 100%;">
+										<img class="img-fluid" width="640" src="<?php echo $header_img; ?>" alt="UCF Coronavirus Information" style="max-width: 100%;">
 									<?php if ( $header_img_url ): ?>
 									</a>
 									<?php endif; ?>
