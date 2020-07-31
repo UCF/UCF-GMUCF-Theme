@@ -16,7 +16,7 @@ if ( $thumbnail ):
 		<?php if ( $href ): ?>
 		<a href="<?php echo $href; ?>">
 		<?php endif; ?>
-		<img class="img-fluid" width="580" src="<?php echo $thumbnail; ?>" alt="<?php echo $alt; ?>" style="max-width: 100%;">
+		<img class="img-fluid" width="275" src="<?php echo $thumbnail; ?>" alt="<?php echo $alt; ?>" style="max-width: 100%;">
 		<?php if ( $href ): ?>
 		</a>
 		<?php endif; ?>

@@ -89,6 +89,9 @@ function display_component( $row, $row_type='one_column_row' ) {
 	if ( $row_type === 'two_column_row' && $component === 'article' ) {
 		$component = 'article_sm';
 	}
+	else if ( $row_type === 'two_column_row' && $component === 'image' ) {
+		$component = 'image_sm';
+	}
 
 	// Pass along $row data to the template part:
 	set_query_var( 'gmucf_coronavirus_current_row', $row );
