@@ -33,7 +33,7 @@ $row          = Coronavirus\get_current_row();
 										<?php endif; ?>
 									</td>
 									<?php endif; ?>
-									<td style="text-align: left; vertical-align: top;" valign="top" align="left">
+									<td style="text-align: left; vertical-align: middle;" valign="middle" align="left">
 										<table style="text-align: center; width: 100%;" width="100%" align="center">
 											<tbody>
 												<?php if ( $title ): ?>
