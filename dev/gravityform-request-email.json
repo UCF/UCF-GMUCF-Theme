@@ -503,7 +503,7 @@
                 "fields": "",
                 "displayOnly": "",
                 "enableChoiceValue": true,
-                "postCustomFieldName": " subscription_category"
+                "postCustomFieldName": "subscription_category"
             },
             {
                 "type": "post_custom_field",
