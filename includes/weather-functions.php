@@ -21,7 +21,7 @@ function get_weather( $cache_key ) {
 
 	// Always attempt to re-fetch weather if CLEAR_CACHE is set or if
 	// previously stored transient data is bad
-	if ( ! CLEAR_CACHE && ! empty( $transient ) ) { // empty() catches `null` or `false`
+	if ( ! CLEAR_CACHE && ! empty( $transient ) ) {
 		$weather = $transient;
 	}
 	else {
@@ -37,39 +37,28 @@ function get_weather( $cache_key ) {
 		}
 
 		if ( $json_url ) {
-			// Setup curl request and execute. Log errors if necessary.
-			$ch = curl_init();
-			$options = array(
-				CURLOPT_URL            => $json_url,
-				CURLOPT_CONNECTTIMEOUT => get_option( 'weather_service_timeout' ),
-				CURLOPT_RETURNTRANSFER => true
+			$json = array();
+			$args = array(
+				'timeout' => get_option( 'weather_service_timeout' )
 			);
-			curl_setopt_array( $ch, $options );
 
-			$json = curl_exec( $ch );
+			$response = wp_remote_get( $json_url, $args );
+			if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) < 400 ) {
+				$json = json_decode( wp_remote_retrieve_body( $response ), true ); // convert to array
+			}
 
-			if ( $json !== false ) {
-				$json = json_decode( $json, true ); // Convert to array
-				if ( ! $json['successfulFetch'] || $json['successfulFetch'] !== 'yes' ) {
-					$weather = null;
+			if (
+				is_array( $json )
+				&& isset( $json['successfulFetch'] )
+				&& $json['successfulFetch'] === 'yes'
+			) {
+				if ( $cache_key === 'weather-extended' ) {
+					$weather = $json['days'];
 				}
 				else {
-					if ( $cache_key === 'weather-extended' ) {
-						$weather = $json['days'];
-					}
-					else {
-						$weather = $json;
-					}
+					$weather = $json;
 				}
 			}
-			else {
-				$weather = null;
-				error_log( 'Curl error in GMUCF theme when fetching weather: ' . curl_error( $ch ), 0 );
-			}
-			curl_close( $ch );
-		}
-		else {
-			$weather = null;
 		}
 
 		set_transient( $cache_key, $weather, get_option( 'weather_service_cache_duration' ) );
