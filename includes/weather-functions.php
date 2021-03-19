@@ -41,7 +41,7 @@ function get_weather( $cache_key ) {
 
 			$dt = urlencode( microtime() );
 
-			if ( str_contains( $json_url, '?' ) ) {
+			if ( strpos( $json_url, '?' ) > -1 ) {
 				$json_url .= "&request_time=$dt";
 			} else {
 				$json_url .= "?request_time=$dt";
@@ -49,7 +49,7 @@ function get_weather( $cache_key ) {
 
 			$ch = curl_init();
 			$options = array(
-				CURLOPT_URL            => "$json_url?request_time=$dt",
+				CURLOPT_URL            => "$json_url",
 				CURLOPT_CONNECTTIMEOUT => get_option( 'weather_service_timeout' ),
 				CURLOPT_RETURNTRANSFER => true
 			);
