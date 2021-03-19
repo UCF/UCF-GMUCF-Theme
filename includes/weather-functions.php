@@ -38,9 +38,12 @@ function get_weather( $cache_key ) {
 
 		if ( $json_url ) {
 			// Setup curl request and execute. Log errors if necessary.
+
+			$dt = microtime();
+
 			$ch = curl_init();
 			$options = array(
-				CURLOPT_URL            => $json_url,
+				CURLOPT_URL            => "$json_url?request_time=$dt",
 				CURLOPT_CONNECTTIMEOUT => get_option( 'weather_service_timeout' ),
 				CURLOPT_RETURNTRANSFER => true
 			);
