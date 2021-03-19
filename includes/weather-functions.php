@@ -40,7 +40,7 @@ function get_weather( $cache_key ) {
 			$json = array();
 
 			$args = array(
-				'timeout' => get_option( 'weather_service_timeout' );
+				'timeout' => get_option( 'weather_service_timeout' )
 			)
 
 			$dt = urlencode( microtime() );
