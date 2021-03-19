@@ -38,9 +38,18 @@ function get_weather( $cache_key ) {
 
 		if ( $json_url ) {
 			$json = array();
+
 			$args = array(
 				'timeout' => get_option( 'weather_service_timeout' )
 			);
+
+			$dt = urlencode( microtime() );
+
+			if ( strpos( $json_url, '?' ) === false ) {
+				$json_url .= "?request_time=$dt";
+			} else {
+				$json_url .= "&request_time=$dt";
+			}
 
 			$response = wp_remote_get( $json_url, $args );
 			if ( is_array( $response ) && wp_remote_retrieve_response_code( $response ) < 400 ) {
