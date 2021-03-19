@@ -37,7 +37,8 @@ function get_weather( $cache_key ) {
 		}
 
 		if ( $json_url ) {
-			$json = array()
+			$json = array();
+
 			$args = array(
 				'timeout' => get_option( 'weather_service_timeout' );
 			)
