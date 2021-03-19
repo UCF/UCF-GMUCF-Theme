@@ -37,6 +37,12 @@ define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	'weather_service_extended_url'     => 'https://weather.smca.ucf.edu/?data=forecastExtended',
 	'weather_service_cache_duration'   => 60 * 15, // seconds
 	'weather_service_timeout'          => 10, // seconds
+	'coronavirus_email_options_url'    => 'https://www.ucf.edu/coronavirus/wp-json/coronavirus-weekly-email/v1/options/',
+	'coronavirus_utm_source'           => 'weekly_update',
+	'coronavirus_utm_medium'           => 'email',
+	'coronavirus_utm_campaign'         => 'coronavirus',
+	'coronavirus_header_utm_content'   => 'header_image',
+	'email_preview_base_list'          => ''
 ) ) );
 
 define( 'EVENTS_WEEKEND_EDITION', 0 );
@@ -73,8 +79,8 @@ function init() {
 
 		// Enforce typecasting of returned option values,
 		// based on the types of the defaults we've defined.
-		// NOTE: Also forces non-empty values, since this theme
-		// expects all theme option values to be non-empty:
+		// NOTE: Forces option defaults to return when empty
+		// option values are retrieved.
 		add_filter( "option_$option_name", function( $value, $option ) use ( $option_default ) {
 			switch ( $type = gettype( $option_default ) ) {
 				case 'integer':
@@ -143,9 +149,23 @@ function define_customizer_sections( $wp_customize ) {
 	);
 
 	$wp_customize->add_section(
+		'coronavirus',
+		array(
+			'title' => 'Coronavirus Email Data'
+		)
+	);
+
+	$wp_customize->add_section(
 		'analytics',
 		array(
 			'title' => 'Analytics'
+		)
+	);
+
+	$wp_customize->add_section(
+		'custom_emails',
+		array(
+			'title' => 'Custom Emails'
 		)
 	);
 }
@@ -446,6 +466,26 @@ function define_customizer_controls( $wp_customize ) {
 	);
 
 	//
+	// Coronavirus
+	//
+	$wp_customize->add_setting(
+		'coronavirus_email_options_url',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'coronavirus_email_options_url' )
+		)
+	);
+	$wp_customize->add_control(
+		'coronavirus_email_options_url',
+		array(
+			'label'       => 'Coronavirus Email Options Data URL',
+			'description' => 'URL to the Coronavirus email options feed.',
+			'section'     => 'coronavirus',
+			'type'        => 'text'
+		)
+	);
+
+	//
 	// Weather
 	//
 	$wp_customize->add_setting(
@@ -567,6 +607,94 @@ function define_customizer_controls( $wp_customize ) {
 			'description' => 'The UTM "campaign" value to set on News & Announcement email links.',
 			'section'     => 'analytics',
 			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'coronavirus_utm_source',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'coronavirus_utm_source' )
+		)
+	);
+	$wp_customize->add_control(
+		'coronavirus_utm_source',
+		array(
+			'label'       => 'Coronavirus Emails - UTM Source',
+			'description' => 'The UTM "source" value to set on links within Coronavirus email content.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'coronavirus_utm_medium',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'coronavirus_utm_medium' )
+		)
+	);
+	$wp_customize->add_control(
+		'coronavirus_utm_medium',
+		array(
+			'label'       => 'Coronavirus Emails - UTM Medium',
+			'description' => 'The UTM "medium" value to set on links within Coronavirus email content.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'coronavirus_utm_campaign',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'coronavirus_utm_campaign' )
+		)
+	);
+	$wp_customize->add_control(
+		'coronavirus_utm_campaign',
+		array(
+			'label'       => 'Coronavirus Emails - UTM Campaign',
+			'description' => 'The UTM "campaign" value to set on links within Coronavirus email content.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'coronavirus_header_utm_content',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'coronavirus_header_utm_content' )
+		)
+	);
+	$wp_customize->add_control(
+		'coronavirus_header_utm_content',
+		array(
+			'label'       => 'Coronavirus Email Header - UTM Content',
+			'description' => 'The UTM "content" value to set on the Coronavirus email header.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	//
+	// Custom Emails
+	//
+	$wp_customize->add_setting(
+		'email_preview_base_list',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'email_preview_base_list' )
+		)
+	);
+	$wp_customize->add_control(
+		'email_preview_base_list',
+		array(
+			'label'       => 'Base Preview Recipients List',
+			'description' => 'A comma-separated list of email addresses that custom email previews should always be sent to.',
+			'section'     => 'custom_emails',
+			'type'        => 'textarea'
 		)
 	);
 }
