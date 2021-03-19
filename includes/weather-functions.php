@@ -39,7 +39,13 @@ function get_weather( $cache_key ) {
 		if ( $json_url ) {
 			// Setup curl request and execute. Log errors if necessary.
 
-			$dt = microtime();
+			$dt = urlencode( microtime() );
+
+			if ( str_contains( $json_url, '?' ) ) {
+				$json_url .= "&request_time=$dt";
+			} else {
+				$json_url .= "?request_time=$dt";
+			}
 
 			$ch = curl_init();
 			$options = array(
