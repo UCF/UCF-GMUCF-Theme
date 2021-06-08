@@ -1,6 +1,5 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\Events\Text\Base;
-use GMUCF\Theme\Includes\Weather;
 use GMUCF\Theme\Includes\Events;
 
 
@@ -37,33 +36,9 @@ switch ( $edition ) {
 		break;
 }
 
-$weather = Weather\get_weather( 'weather-extended' );
-
 header( 'Content-type: text/plain' );
 ?>
 This Week<?php echo ( $edition === EVENTS_WEEKEND_EDITION ? 'end' : '' ); ?> @ UCF
-
--- Weather
-
-<?php
-if ( ! empty( $weather ) ) {
-	switch( $edition ) {
-		case EVENTS_WEEKDAY_EDITION:
-			echo 'Today:     ' . $weather['day1']['tempMaxN'] . ' High, ' . $weather['day1']['tempMinN'] . ' Low' . "\n";
-			echo 'Tomorrow:  ' . $weather['day2']['tempMaxN'] . ' High, ' . $weather['day2']['tempMinN'] . ' Low' . "\n";
-			echo date( 'l', strtotime( $weather['day3']['date'] ) ) . ': ' . $weather['day3']['tempMaxN'] . ' High, ' . $weather['day3']['tempMinN'] . ' Low' . "\n";
-			echo date( 'l', strtotime( $weather['day4']['date'] ) ) . ': ' . $weather['day4']['tempMaxN'] . ' High, ' . $weather['day4']['tempMinN'] . ' Low' . "\n";
-			echo date( 'l', strtotime( $weather['day5']['date'] ) ) . ': ' . $weather['day5']['tempMaxN'] . ' High, ' . $weather['day5']['tempMinN'] . ' Low' . "\n";
-			break;
-		case EVENTS_WEEKEND_EDITION:
-			echo 'Today:     ' . $weather['day1']['tempMaxN'] . ' High, ' . $weather['day1']['tempMinN'] . ' Low' . "\n";
-			echo 'Tomorrow:  ' . $weather['day2']['tempMaxN'] . ' High, ' . $weather['day2']['tempMinN'] . ' Low' . "\n";
-			echo date( 'l', strtotime( $weather['day3']['date'] ) ) . ': ' . $weather['day3']['tempMaxN'] . ' High, ' . $weather['day3']['tempMinN'] . ' Low' . "\n";
-			echo date( 'l', strtotime( $weather['day4']['date'] ) ) . ': ' . $weather['day4']['tempMaxN'] . ' High, ' . $weather['day4']['tempMinN'] . ' Low' . "\n";
-			break;
-	}
-}
-?>
 
 -- Events
 
