@@ -33,10 +33,6 @@ define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	'in_the_news_more_url'             => 'https://www.ucf.edu/news/in-the-news/',
 	'in_the_news_item_count'           => 4,
 	'in_the_news_json_timeout'         => 15, // seconds
-	'weather_service_today_url'        => 'https://weather.smca.ucf.edu/?data=forecastToday',
-	'weather_service_extended_url'     => 'https://weather.smca.ucf.edu/?data=forecastExtended',
-	'weather_service_cache_duration'   => 60 * 15, // seconds
-	'weather_service_timeout'          => 10, // seconds
 	'coronavirus_email_options_url'    => 'https://www.ucf.edu/coronavirus/wp-json/coronavirus-weekly-email/v1/options/',
 	'coronavirus_utm_source'           => 'weekly_update',
 	'coronavirus_utm_medium'           => 'email',
@@ -113,13 +109,6 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\init' );
  * @return void
  */
 function define_customizer_sections( $wp_customize ) {
-	$wp_customize->add_section(
-		'weather',
-		array(
-			'title' => 'Weather Data'
-		)
-	);
-
 	$wp_customize->add_section(
 		'ucf_today_gmucf_options',
 		array(
@@ -482,77 +471,6 @@ function define_customizer_controls( $wp_customize ) {
 			'description' => 'URL to the Coronavirus email options feed.',
 			'section'     => 'coronavirus',
 			'type'        => 'text'
-		)
-	);
-
-	//
-	// Weather
-	//
-	$wp_customize->add_setting(
-		'weather_service_today_url',
-		array (
-			'type' => 'option',
-			'default' => Utilities\get_option_default( 'weather_service_today_url' )
-		)
-	);
-	$wp_customize->add_control(
-		'weather_service_today_url',
-		array(
-			'label'       => 'Weather Service URL - Today\'s Weather',
-			'description' => 'URL to the weather service used to grab current-day weather data.',
-			'section'     => 'weather',
-			'type'        => 'text'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'weather_service_extended_url',
-		array (
-			'type' => 'option',
-			'default' => Utilities\get_option_default( 'weather_service_extended_url' )
-		)
-	);
-	$wp_customize->add_control(
-		'weather_service_extended_url',
-		array(
-			'label'       => 'Weather Service URL - Extended Weather',
-			'description' => 'URL to the weather service used to grab extended forecast weather data.',
-			'section'     => 'weather',
-			'type'        => 'text'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'weather_service_cache_duration',
-		array (
-			'type' => 'option',
-			'default' => Utilities\get_option_default( 'weather_service_cache_duration' )
-		)
-	);
-	$wp_customize->add_control(
-		'weather_service_cache_duration',
-		array(
-			'label'       => 'Weather Data Cache Duration',
-			'description' => 'How long, in seconds, retrieved weather data should be cached.',
-			'section'     => 'weather',
-			'type'        => 'number'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'weather_service_timeout',
-		array (
-			'type' => 'option',
-			'default' => Utilities\get_option_default( 'weather_service_timeout' )
-		)
-	);
-	$wp_customize->add_control(
-		'weather_service_timeout',
-		array(
-			'label'       => 'Weather Service Timeout',
-			'description' => 'Number of seconds to wait before timing out a weather service request.',
-			'section'     => 'weather',
-			'type'        => 'number'
 		)
 	);
 
