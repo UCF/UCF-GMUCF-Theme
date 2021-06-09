@@ -11,7 +11,7 @@ $current_date = current_datetime();
 	</tr>
 
 	<tr>
-		<td class="montserratlight" style="padding-top: 5px; padding-left: 0; padding-right: 0; font-weight: 400; font-size: 14px; line-height: 20px; color: #757575; text-transform: uppercase;">
+		<td class="montserratlight" style="font-family: Helvetica, Arial, sans-serif; text-align: center; padding-top: 5px; padding-left: 0; padding-right: 0; font-weight: 400; font-size: 14px; line-height: 20px; color: #757575; text-transform: uppercase;">
 			<?php echo $current_date->format( 'l, F j, Y' ); ?>
 		</td>
 	</tr>
