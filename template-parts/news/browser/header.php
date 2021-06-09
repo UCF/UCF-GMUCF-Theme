@@ -11,31 +11,8 @@ $current_date = current_datetime();
 	</tr>
 
 	<tr>
-		<td style="padding-top: 0; padding-left: 0; padding-right: 0;">
-			<table align="center" style="width: 100%; border-spacing: 0; border-collapse: collapse;"><tbody>
-				<tr>
-					<th class="columnCollapse" align="left" width="290" style="font-family: Helvetica, Arial, sans-serif; color: #757575; text-transform: uppercase; padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 0; vertical-align: middle;">
-						<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
-							<tbody>
-								<tr>
-									<th class="text-left-desktop" style="text-align: center;">
-										<table class="tableCollapse" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
-											<tbody>
-												<tr>
-													<td class="montserratlight" style="font-weight: 400; font-size: 14px; line-height: 20px;">
-														<?php echo $current_date->format( 'l, F j, Y' ); ?>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</th>
-								</tr>
-							</tbody>
-						</table>
-					</th>
-					<th class="columnCollapse" align="right" width="290" style="font-family: Helvetica, Arial, sans-serif; color: #757575; padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 0; vertical-align: middle; text-align: center;"></th>
-				</tr>
-			</table>
+		<td class="montserratlight" style="padding-top: 5px; padding-left: 0; padding-right: 0; font-weight: 400; font-size: 14px; line-height: 20px; color: #757575; text-transform: uppercase;">
+			<?php echo $current_date->format( 'l, F j, Y' ); ?>
 		</td>
 	</tr>
 
