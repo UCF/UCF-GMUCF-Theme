@@ -52,16 +52,6 @@ switch ( $edition ) {
 			h1 .highlight {color:#FFC907;font-weight:bold;}
 			h1 .range {float:right;}
 
-			.weather {border-bottom:1px solid #ddd;}
-			.weather .day {float:left;border-left:1px solid #ddd;width:110px;padding-left:11px;}
-			.weather .day:first-child {border-left:none;padding-left:0;}
-			.weather .day h2 {font-size:10px;font-weight:bold;margin:0;text-transform:uppercase;}
-			.weather .day .day-image {float:left;}
-			.weather .day .temp {font-size:12px;}
-			.weather .day .temp strong {font-size:18px;}
-			#weekend-weather .day {width:141px;}
-			#weekend-weather .temp {padding-left:95px;}
-
 			#events .day {clear:left;padding-bottom:30px;border-bottom:1px solid #DDD;}
 			#events .day h2 {font-weight:500;font-size:25px;margin-bottom:0;}
 			#events .day h2 a {font-size:15px;color:#9d1a1a;text-decoration:none;padding-left:15px;}
@@ -127,18 +117,6 @@ switch ( $edition ) {
 				<?php echo $start_date->format( 'n/j' ) . '-' . $end_date->format( 'n/j' ); ?>
 			</span>
 		</h1>
-		<?php
-		// Use includes here instead of get_template_part
-		// to preserve scope.
-		switch ( $edition ) {
-			case EVENTS_WEEKDAY_EDITION:
-				include( 'weekday-weather.php' );
-				break;
-			case EVENTS_WEEKEND_EDITION:
-				include( 'weekend-weather.php' );
-				break;
-		}
-		?>
 		<div id="events">
 		<?php
 		// Use includes here instead of get_template_part

@@ -204,51 +204,8 @@ switch ( $edition ) {
 					padding-bottom: 10px;
 				}
 
-				/* Weather overrides */
 				br[class="linebreak"] {
 					display: none !important;
-				}
-				table[id="weather"] {
-					padding-top: 0 !important;
-				}
-				table[class="weather-col"] {
-					width: 100% !important;
-				}
-				td[class="weather-icon-date"] {
-					width: 40% !important;
-					display: table;
-					float: left;
-				}
-				span[class="weather-date"] {
-					width: 85px;
-					display: table-cell;
-					text-align: center;
-					vertical-align: middle;
-				}
-				img[class="weather-icon"],
-				span[class="weather-icon"] {
-					width: 30px !important;
-					height: 30px !important;
-					display: table-cell;
-					vertical-align: middle;
-					padding-left: 5px;
-				}
-				td[class="weather-temps"] {
-					display: table;
-					float: left;
-					width: 60% !important;
-				}
-				span[class="temp"] {
-					display: table-cell;
-					height: 30px;
-					width: 40px;
-					vertical-align: middle;
-					padding-left: 20px;
-				}
-				span[class="highlow"] {
-					display: table-cell;
-					height: 30px;
-					vertical-align: middle;
 				}
 
 				/* Events overrides */
@@ -318,11 +275,9 @@ switch ( $edition ) {
 			// to preserve scope.
 			switch( $edition ) {
 				case EVENTS_WEEKDAY_EDITION:
-					include( 'weekday-weather.php' );
 					include( 'weekday-events.php' );
 					break;
 				case EVENTS_WEEKEND_EDITION:
-					include( 'weekend-weather.php' );
 					include( 'weekend-events.php' );
 					break;
 			}
