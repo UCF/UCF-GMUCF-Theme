@@ -1,6 +1,5 @@
 <?php
 namespace GMUCF\Theme\TemplateParts\News\Text\Base;
-use GMUCF\Theme\Includes\Weather;
 use GMUCF\Theme\Includes\UCFToday;
 use GMUCF\Theme\Includes\InTheNews;
 use GMUCF\Theme\Includes\Announcements;
@@ -12,14 +11,6 @@ $current_date = current_datetime();
 ?>
 UCF TODAY
 <?php echo $current_date->format( 'l, F j, Y' ); ?>
-
-<?php
-$weather = Weather\get_weather( 'weather-today' );
-if ( !empty( $weather ) ) : ?>
-High: <?php echo $weather['today']['tempN']; ?> Low: <?php echo $weather['tonight']['tempN']; ?>
-<?php endif; ?>
-
-
 
 
 <?php
