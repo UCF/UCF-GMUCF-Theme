@@ -761,3 +761,66 @@ function kill_comments() {
 }
 
 add_action( 'init', __NAMESPACE__ . '\kill_comments' );
+
+
+/**
+ * Removes date admin column and adds new admin columns
+ * for displaying from email address, from friendly name,
+ * send date/time, and distribution lists.
+ *
+ * @since 3.2.2
+ * @author Cadie Stockman
+ * @param array $columns Existing column data
+ * @return array Modified column data
+ */
+function email_admin_define_columns( $columns ) {
+	unset($columns['date']);
+
+	$columns['from_email_address'] = 'From Email Address';
+	$columns['from_friendly_name'] = 'From Friendly Name';
+	$columns['send_date_time'] = 'Requested Send Date/Time';
+	$columns['distribution_lists'] = 'Distribution List(s)';
+
+	return $columns;
+}
+
+add_filter( 'manage_ucf-email_posts_columns', __NAMESPACE__ . '\email_admin_define_columns' );
+
+
+/**
+ * Displays values for custom columns
+ * in the email list admin view.
+ *
+ * @since 3.2.2
+ * @author Cadie Stockman
+ * @param string $column_name Column name
+ * @param int $post_id Post ID for individual post obj's in the list
+ * @return void
+ */
+function email_admin_set_columns( $column_name, $post_id ) {
+	switch ( $column_name ) {
+		case 'from_email_address':
+			$email_address = get_field( 'from_email_address', $post_id ) ?: '';
+			echo $email_address;
+			break;
+		case 'from_friendly_name':
+			$friendly_name = get_field( 'from_friendly_name', $post_id ) ?: '';
+			echo $friendly_name;
+			break;
+		case 'send_date_time':
+			$send_date = get_field( 'live_send_date', $post_id ) ?: '';
+			$send_time = get_field( 'live_send_time', $post_id ) ?: '';
+
+			$send_date_time =  $send_date . ' ' . $send_time;
+			echo $send_date_time;
+			break;
+		case 'distribution_lists':
+			$distribution_lists = get_field( 'distribution_lists', $post_id ) ?: '';
+			echo $distribution_lists;
+			break;
+		default:
+			break;
+	}
+}
+
+add_action( 'manage_ucf-email_posts_custom_column' , __NAMESPACE__ . '\email_admin_set_columns', 10, 2 );
