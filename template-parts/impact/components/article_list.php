@@ -12,7 +12,7 @@ $row          = Impact\get_current_row();
 			<tbody>
 				<?php
 				foreach ( $row->articles as $key => $article ):
-					$thumbnail = $article->thumbnail;
+					$thumbnail = isset( $article->thumbnail ) ?? $article->thumbnail->url;
 					$title     = Impact\escape_chars( $article->article_title );
 					$deck      = Impact\format_deck_content( $article->article_deck );
 					$href      = Impact\format_url_utm_params( $article->links_to, $current_date->format( 'Y-m-d' ) );
@@ -27,7 +27,7 @@ $row          = Impact\get_current_row();
 										<?php if ( $href ): ?>
 										<a href="<?php echo $href; ?>">
 										<?php endif; ?>
-											<img width="50" src="<?php echo $thumbnail->url; ?>" alt="">
+											<img width="50" src="<?php echo $thumbnail; ?>" alt="">
 										<?php if ( $href ): ?>
 										</a>
 										<?php endif; ?>
