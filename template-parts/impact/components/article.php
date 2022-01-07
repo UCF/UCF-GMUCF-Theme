@@ -5,7 +5,7 @@ use GMUCF\Theme\Includes\Impact;
 
 $current_date = current_datetime();
 $row          = Impact\get_current_row();
-$thumbnail    = isset( $row->thumbnail ) ?? $row->thumbnail->url;
+$thumbnail    = isset( $row->thumbnail ) ? $row->thumbnail->url : null;
 $title        = Impact\escape_chars( $row->article_title );
 $deck         = Impact\format_deck_content( $row->article_deck );
 $href         = Impact\format_url_utm_params( $row->links_to, $current_date->format( 'Y-m-d' ) );
