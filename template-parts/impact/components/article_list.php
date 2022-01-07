@@ -27,7 +27,7 @@ $row          = Impact\get_current_row();
 										<?php if ( $href ): ?>
 										<a href="<?php echo $href; ?>">
 										<?php endif; ?>
-											<img width="50" src="<?php echo $thumbnail; ?>" alt="">
+											<img width="50" src="<?php echo $thumbnail->url; ?>" alt="">
 										<?php if ( $href ): ?>
 										</a>
 										<?php endif; ?>

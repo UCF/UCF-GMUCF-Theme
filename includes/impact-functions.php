@@ -17,7 +17,10 @@ namespace GMUCF\Theme\Includes\Impact;
 function fetch_options_data() {
 	$options = get_fields( 'impact_options' );
 
-	return (object) $options;
+	// Convert it to and then back from a JSON
+	// object, to objectify the array.
+	$json_array = json_encode( $options );
+	return json_decode( $json_array );
 }
 
 
@@ -53,12 +56,12 @@ function display_row( $row ) {
 	}
 
 	// Pass along $row data to the template part:
-	set_query_var( 'gmucf_coronavirus_current_row', $row );
+	set_query_var( 'gmucf_impact_current_row', $row );
 
-	get_template_part( "template-parts/coronavirus/rows/$row_type" );
+	get_template_part( "template-parts/impact/rows/$row_type" );
 
 	// Clean up afterwards:
-	set_query_var( 'gmucf_coronavirus_current_row', false );
+	set_query_var( 'gmucf_impact_current_row', false );
 }
 
 
@@ -85,12 +88,12 @@ function display_component( $row, $row_type='one_column_row' ) {
 	}
 
 	// Pass along $row data to the template part:
-	set_query_var( 'gmucf_coronavirus_current_row', $row );
+	set_query_var( 'gmucf_impact_current_row', $row );
 
-	get_template_part( "template-parts/coronavirus/components/$component" );
+	get_template_part( "template-parts/impact/components/$component" );
 
 	// Clean up afterwards:
-	set_query_var( 'gmucf_coronavirus_current_row', false );
+	set_query_var( 'gmucf_impact_current_row', false );
 }
 
 
@@ -103,7 +106,7 @@ function display_component( $row, $row_type='one_column_row' ) {
  * @return object
  */
 function get_current_row() {
-	return get_query_var( 'gmucf_coronavirus_current_row' );
+	return get_query_var( 'gmucf_impact_current_row' );
 }
 
 
@@ -223,9 +226,9 @@ function format_url_utm_params( $url, $content='' ) {
 	$pattern = \UCF_Email_Editor_Config::get_option_or_default( 'utm_replace_regex' );
 
 	if ( preg_match( $pattern, $url ) ) {
-		$source   = get_option( 'coronavirus_utm_source' );
-		$medium   = get_option( 'coronavirus_utm_medium' );
-		$campaign = get_option( 'coronavirus_utm_campaign' );
+		$source   = get_option( 'impact_utm_source' );
+		$medium   = get_option( 'impact_utm_medium' );
+		$campaign = get_option( 'impact_utm_campaign' );
 
 		$url = \format_url_utm_params( $url, $source, $medium, $campaign, $content );
 	}
@@ -246,9 +249,9 @@ function format_url_utm_params( $url, $content='' ) {
  * @return string Modified HTML string
  */
 function apply_link_utm_params( $str, $content='' ) {
-	$source   = get_option( 'coronavirus_utm_source' );
-	$medium   = get_option( 'coronavirus_utm_medium' );
-	$campaign = get_option( 'coronavirus_utm_campaign' );
+	$source   = get_option( 'impact_utm_source' );
+	$medium   = get_option( 'impact_utm_medium' );
+	$campaign = get_option( 'impact_utm_campaign' );
 
 	return \apply_link_utm_params( $str, $source, $medium, $campaign, $content );
 }

@@ -3,7 +3,6 @@ namespace GMUCF\Theme\TemplateParts\Impact\Browser\Header;
 use GMUCF\Theme\Includes\Impact;
 
 
-$current_date           = current_datetime();
 $options                = Impact\fetch_options_data();
 $title                  = isset( $options->title ) ? Impact\escape_chars( $options->title ) : '';
 $header_img             = $options->header_image ?? null;
@@ -198,12 +197,7 @@ img {
 									<table class="container-inner" style="text-align: center; margin: auto; min-width: 580px; width: 580px;" width="580" align="center">
 										<tbody>
 											<tr>
-												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; line-height: 1.5; text-align: left; padding-bottom: 10px; padding-top: 30px; font-size: 13px; font-weight: 700; color: #767676; text-transform: uppercase;" align="left">
-													<?php echo $current_date->format( 'M d, Y' ); ?>
-												</td>
-											</tr>
-											<tr>
-												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; text-align: left; padding-bottom: 25px; font-size: 27px; letter-spacing: -0.025em; line-height: 1.3;" align="left">
+												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; text-align: left; padding-top: 25px; padding-bottom: 25px; font-size: 27px; letter-spacing: -0.025em; line-height: 1.3;" align="left">
 													<?php echo $title; ?>
 												</td>
 											</tr>
