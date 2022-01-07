@@ -4,7 +4,6 @@
  * of Coronavirus email content
  */
 namespace GMUCF\Theme\Includes\Impact;
-use GMUCF\Theme\Includes\Utilities;
 
 
 /**
@@ -13,37 +12,30 @@ use GMUCF\Theme\Includes\Utilities;
  *
  * @since 3.3.0
  * @author Jim Barnes
- * @return array|false
+ * @return object|false
  */
-function get_impact_email_data() {
-	$retval = get_fields( 'impact_options' );
+function fetch_options_data() {
+	$options = get_fields( 'impact_options' );
 
-	$header_image = null;
-	if ( $retval['impact_header_image'] !== null ) {
-		$header_image_array = wp_get_attachment_image_src(
-			$retval['impact_header_image'],
-			'full'
-		);
-
-		if ( is_array( $header_image_array ) ) {
-			$header_image = $header_image_array[0];
-		}
-	}
-
-	$retval['header_image'] = $header_image;
-
-	return $retval;
+	return (object) $options;
 }
+
 
 /**
- * Returns the content of the impact email
- * @author Jim Barnes
+ * Returns all email content data from the
+ * Coronavirus email options feed.
+ *
  * @since 3.3.0
- * @return array|false
+ * @author Jim Barnes
+ * @return object|false
  */
-function get_impact_email_content() {
-	return get_field( 'impact_email_content', 'impact_options' );
+function get_email_content() {
+	$options = fetch_options_data();
+	if ( ! $options || ! isset( $options->email_content ) ) return false;
+
+	return $options->email_content;
 }
+
 
 /**
  * Displays either a one-column or two-column row

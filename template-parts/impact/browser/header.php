@@ -3,12 +3,12 @@ namespace GMUCF\Theme\TemplateParts\Impact\Browser\Header;
 use GMUCF\Theme\Includes\Impact;
 
 
-$options                = Impact\get_impact_email_data();
-$title                  = isset( $options['impact_title'] ) ? Impact\escape_chars( $options['impact_title'] ) : '';
-$header_img             = $options['header_image'] ?? null;
+$current_date           = current_datetime();
+$options                = Impact\fetch_options_data();
+$title                  = isset( $options->title ) ? Impact\escape_chars( $options->title ) : '';
+$header_img             = $options->header_image ?? null;
 $header_img_utm_content = get_option( 'impact_header_utm_content' ) ?: '';
-$header_img_url         = isset( $options['impact_header_image_url'] ) ? Impact\format_url_utm_params( $options['impact_header_image_url'], $header_img_utm_content ) : null;
-
+$header_img_url         = isset( $options->header_image_link ) ? Impact\format_url_utm_params( $options->header_image_link, $header_img_utm_content ) : null;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -197,6 +197,11 @@ img {
 								<td style="text-align: left;" align="left">
 									<table class="container-inner" style="text-align: center; margin: auto; min-width: 580px; width: 580px;" width="580" align="center">
 										<tbody>
+											<tr>
+												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; line-height: 1.5; text-align: left; padding-bottom: 10px; padding-top: 30px; font-size: 13px; font-weight: 700; color: #767676; text-transform: uppercase;" align="left">
+													<?php echo $current_date->format( 'M d, Y' ); ?>
+												</td>
+											</tr>
 											<tr>
 												<td style="font-family: 'UCF-Sans-Serif-Alt', Helvetica, Arial, sans-serif; text-align: left; padding-bottom: 25px; font-size: 27px; letter-spacing: -0.025em; line-height: 1.3;" align="left">
 													<?php echo $title; ?>
