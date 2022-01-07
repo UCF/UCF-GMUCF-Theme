@@ -736,7 +736,7 @@
                     "class": "",
                     "id": ""
                 },
-                "return_format": "id",
+                "return_format": "url",
                 "preview_size": "medium",
                 "library": "all",
                 "min_width": 640,
