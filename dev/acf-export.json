@@ -1180,7 +1180,7 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "<p style=\"margin-top: 0;\">Click the button below to open the email in a new tab. This page must be updated in order to see the latest changes.<\/p>\r\n<a href=\"https:\/\/gmucf.smca.ucf.edu\/coronavirus\/mail\/?no_cache=true\" target=\"_blank\" style=\"background: #fc0; padding: 8px; color: #000; text-decoration: none; font-weight: bold; display: block; text-align: center;\">Preview Email<\/a>",
+                "message": "<p style=\"margin-top: 0;\">Click the button below to open the email in a new tab. This page must be updated in order to see the latest changes.<\/p>\r\n<a href=\"https:\/\/gmucf.smca.ucf.edu\/impact\/mail\/?no_cache=true\" target=\"_blank\" style=\"background: #fc0; padding: 8px; color: #000; text-decoration: none; font-weight: bold; display: block; text-align: center;\">Preview Email<\/a>",
                 "new_lines": "wpautop",
                 "esc_html": 0
             }
