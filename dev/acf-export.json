@@ -4,115 +4,13 @@
         "title": "Email Cloneable Group - Article",
         "fields": [
             {
-                "key": "field_5f0880e05319a",
-                "label": "Type of Article",
-                "name": "article_type",
-                "type": "select",
-                "instructions": "Select \"Existing Post\" to create an article component from an existing Post on this site, or select \"Custom\" to create one from scratch.",
-                "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "choices": {
-                    "post": "Existing Post",
-                    "custom": "Custom"
-                },
-                "default_value": "post",
-                "allow_null": 0,
-                "multiple": 0,
-                "ui": 0,
-                "return_format": "value",
-                "ajax": 0,
-                "placeholder": ""
-            },
-            {
-                "key": "field_5f0881235319b",
-                "label": "Select Existing Post",
-                "name": "existing_post",
-                "type": "post_object",
-                "instructions": "Choose an existing post to display.",
-                "required": 1,
-                "conditional_logic": [
-                    [
-                        {
-                            "field": "field_5f0880e05319a",
-                            "operator": "==",
-                            "value": "post"
-                        }
-                    ]
-                ],
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "post"
-                ],
-                "taxonomy": "",
-                "allow_null": 0,
-                "multiple": 0,
-                "return_format": "object",
-                "ui": 1
-            },
-            {
-                "key": "field_5f08821ce017f",
-                "label": "Enable content overrides",
-                "name": "content_overrides",
-                "type": "true_false",
-                "instructions": "Need more customization options? Check this checkbox to enable overrides to the article thumbnail, title, deck, etc.",
-                "required": 0,
-                "conditional_logic": [
-                    [
-                        {
-                            "field": "field_5f0880e05319a",
-                            "operator": "==",
-                            "value": "post"
-                        }
-                    ]
-                ],
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "message": "Enable",
-                "default_value": 0,
-                "ui": 1,
-                "ui_on_text": "",
-                "ui_off_text": ""
-            },
-            {
                 "key": "field_5ec4437eb99e9",
                 "label": "Thumbnail",
                 "name": "thumbnail",
                 "type": "image",
                 "instructions": "Images must be at least 640px wide.",
                 "required": 0,
-                "conditional_logic": [
-                    [
-                        {
-                            "field": "field_5f0880e05319a",
-                            "operator": "==",
-                            "value": "custom"
-                        }
-                    ],
-                    [
-                        {
-                            "field": "field_5f0880e05319a",
-                            "operator": "==",
-                            "value": "post"
-                        },
-                        {
-                            "field": "field_5f08821ce017f",
-                            "operator": "==",
-                            "value": "1"
-                        }
-                    ]
-                ],
+                "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
                     "class": "",
@@ -136,27 +34,7 @@
                 "type": "text",
                 "instructions": "",
                 "required": 0,
-                "conditional_logic": [
-                    [
-                        {
-                            "field": "field_5f0880e05319a",
-                            "operator": "==",
-                            "value": "custom"
-                        }
-                    ],
-                    [
-                        {
-                            "field": "field_5f0880e05319a",
-                            "operator": "==",
-                            "value": "post"
-                        },
-                        {
-                            "field": "field_5f08821ce017f",
-                            "operator": "==",
-                            "value": "1"
-                        }
-                    ]
-                ],
+                "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
                     "class": "",
@@ -175,27 +53,7 @@
                 "type": "wysiwyg",
                 "instructions": "Note: multiple lines are not supported (all deck content will be displayed in a single paragraph in the email.)",
                 "required": 0,
-                "conditional_logic": [
-                    [
-                        {
-                            "field": "field_5f0880e05319a",
-                            "operator": "==",
-                            "value": "custom"
-                        }
-                    ],
-                    [
-                        {
-                            "field": "field_5f0880e05319a",
-                            "operator": "==",
-                            "value": "post"
-                        },
-                        {
-                            "field": "field_5f08821ce017f",
-                            "operator": "==",
-                            "value": "1"
-                        }
-                    ]
-                ],
+                "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
                     "class": "",
@@ -203,7 +61,7 @@
                 },
                 "default_value": "",
                 "tabs": "all",
-                "toolbar": "inline_text",
+                "toolbar": "full",
                 "media_upload": 0,
                 "delay": 0
             },
@@ -214,27 +72,7 @@
                 "type": "url",
                 "instructions": "",
                 "required": 0,
-                "conditional_logic": [
-                    [
-                        {
-                            "field": "field_5f0880e05319a",
-                            "operator": "==",
-                            "value": "custom"
-                        }
-                    ],
-                    [
-                        {
-                            "field": "field_5f0880e05319a",
-                            "operator": "==",
-                            "value": "post"
-                        },
-                        {
-                            "field": "field_5f08821ce017f",
-                            "operator": "==",
-                            "value": "1"
-                        }
-                    ]
-                ],
+                "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
                     "class": "",
