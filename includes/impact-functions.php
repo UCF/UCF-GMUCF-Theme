@@ -44,7 +44,7 @@ function get_email_content() {
  * Displays either a one-column or two-column row
  * of email content.
  *
- * @since 3.1.0
+ * @since 3.3.0
  * @author Jo Dickson
  * @param object $row Row of email content data
  * @return void
@@ -69,7 +69,7 @@ function display_row( $row ) {
  * Returns a component template part for the provided
  * row of email content.
  *
- * @since 3.1.0
+ * @since 3.3.0
  * @author Jo Dickson
  * @param object $row Row of email content data
  * @param string $row_type Type of row that this component is being displayed in
@@ -101,7 +101,7 @@ function display_component( $row, $row_type='one_column_row' ) {
  * Returns data for the current row being looped through.
  * For use in row and component template parts.
  *
- * @since 3.1.0
+ * @since 3.3.0
  * @author Jo Dickson
  * @return object
  */
@@ -116,7 +116,7 @@ function get_current_row() {
  *
  * Utilizes functions defined in the UCF Email Editor plugin.
  *
- * @since 3.1.0
+ * @since 3.3.0
  * @author Jo Dickson
  * @param string $content Arbitrary HTML string
  * @return string Formatted content
@@ -141,7 +141,7 @@ function format_paragraph_content( $content ) {
  * Formats WYSIWYG-generated deck content for use
  * in Coronavirus email HTML.
  *
- * @since 3.1.0
+ * @since 3.3.0
  * @author Jo Dickson
  * @param string $content Arbitrary HTML string
  * @return string Formatted content
@@ -163,7 +163,7 @@ function format_deck_content( $content ) {
  * provided in the UCF Email Editor Plugin, so custom
  * heading markup is defined here.
  *
- * @since 3.1.0
+ * @since 3.3.0
  * @author Jo Dickson
  * @param string $font_size Font size to apply to the generated markup
  * @return string Email-safe heading markup
@@ -183,7 +183,7 @@ function get_heading_open_markup( $font_size='24px' ) {
 /**
  * Converts heading tags to email-safe markup.
  *
- * @since 3.1.0
+ * @since 3.3.0
  * @author Jo Dickson
  * @param string $content Unmodified markup
  * @param string $heading_elem The heading element to replace (e.g. "h2", "h3")
@@ -201,7 +201,7 @@ function convert_heading_tags( $content, $heading_elem, $font_size ) {
 /**
  * Escapes string content suitable for use in email HTML.
  *
- * @since 3.1.0
+ * @since 3.3.0
  * @author Jo Dickson
  * @param string Arbitrary string/HTML content
  * @return string Sanitized content
@@ -216,7 +216,7 @@ function escape_chars( $content ) {
  * `format_url_utm_params()` function, using params
  * for Coronavirus emails defined in the Customizer.
  *
- * @since 3.1.1
+ * @since 3.3.0
  * @author Jo Dickson
  * @param string $url Arbitrary URL
  * @param string $content utm_content param to insert into the URL
@@ -242,7 +242,7 @@ function format_url_utm_params( $url, $content='' ) {
  * `apply_link_utm_params()` function, using params
  * for Coronavirus emails defined in the Customizer.
  *
- * @since 3.1.1
+ * @since 3.3.0
  * @author Jo Dickson
  * @param string $str Arbitrary HTML string
  * @param string $content utm_content param to insert into URLs
