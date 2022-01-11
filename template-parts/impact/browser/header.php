@@ -186,7 +186,7 @@ img {
 									<?php if ( $header_img_url ): ?>
 									<a href="<?php echo $header_img_url; ?>">
 									<?php endif; ?>
-										<img class="img-fluid" width="640" src="<?php echo $header_img; ?>" alt="<?php echo $header_image_alt; ?>" style="max-width: 100%;">
+										<img class="img-fluid" width="640" src="<?php echo $header_img; ?>" alt="<?php echo esc_attr( $header_image_alt ); ?>" style="max-width: 100%;">
 									<?php if ( $header_img_url ): ?>
 									</a>
 									<?php endif; ?>
