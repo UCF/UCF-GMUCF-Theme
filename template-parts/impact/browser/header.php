@@ -8,6 +8,7 @@ $title                  = isset( $options->title ) ? Impact\escape_chars( $optio
 $header_img             = $options->header_image ?? null;
 $header_img_utm_content = get_option( 'impact_header_utm_content' ) ?: '';
 $header_img_url         = isset( $options->header_image_link ) ? Impact\format_url_utm_params( $options->header_image_link, $header_img_utm_content ) : null;
+$header_image_alt       = $options->header_image_alt ?? '';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -185,7 +186,7 @@ img {
 									<?php if ( $header_img_url ): ?>
 									<a href="<?php echo $header_img_url; ?>">
 									<?php endif; ?>
-										<img class="img-fluid" width="640" src="<?php echo $header_img; ?>" alt="TODO: Placeholder alt that describes what this email/image is" style="max-width: 100%;">
+										<img class="img-fluid" width="640" src="<?php echo $header_img; ?>" alt="<?php echo $header_image_alt; ?>" style="max-width: 100%;">
 									<?php if ( $header_img_url ): ?>
 									</a>
 									<?php endif; ?>

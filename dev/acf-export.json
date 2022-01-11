@@ -602,6 +602,25 @@
                 "placeholder": ""
             },
             {
+                "key": "field_61ddb738a7b6d",
+                "label": "Header Image Alt",
+                "name": "header_image_alt",
+                "type": "text",
+                "instructions": "The text to place in the alt field of the header image.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
                 "key": "field_5f088e87d99c3",
                 "label": "Title",
                 "name": "title",
