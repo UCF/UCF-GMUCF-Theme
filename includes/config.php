@@ -38,7 +38,11 @@ define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	'coronavirus_utm_medium'           => 'email',
 	'coronavirus_utm_campaign'         => 'coronavirus',
 	'coronavirus_header_utm_content'   => 'header_image',
-	'email_preview_base_list'          => ''
+	'email_preview_base_list'          => '',
+	'impact_utm_source'                => 'impact_update',
+	'impact_utm_medium'                => 'email',
+	'impact_utm_campaign'              => 'impact',
+	'impact_header_utm_content'        => 'header_image'
 ) ) );
 
 define( 'EVENTS_WEEKEND_EDITION', 0 );
@@ -596,6 +600,78 @@ function define_customizer_controls( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_setting(
+		'impact_utm_source',
+		array (
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'impact_utm_source' )
+		)
+	);
+
+	$wp_customize->add_control(
+		'impact_utm_source',
+		array(
+			'label'       => 'Impact Emails - UTM Source',
+			'description' => 'The "UTM Source" value set within Impact email content.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'impact_utm_medium',
+		array(
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'impact_utm_medium' )
+		)
+	);
+
+	$wp_customize->add_control(
+		'impact_utm_medium',
+		array(
+			'label'       => 'Impact Emails - UTM Medium',
+			'description' => 'The "UTM Medium" value set within Impact email content.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'impact_utm_campaign',
+		array(
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'impact_utm_campaign' )
+		)
+	);
+
+	$wp_customize->add_control(
+		'impact_utm_campaign',
+		array(
+			'label'       => 'Impact Emails - UTM Campaign',
+			'description' => 'The "UTM Campaign" value set within Impact email content.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
+	$wp_customize->add_setting(
+		'impact_header_utm_content',
+		array(
+			'type' => 'option',
+			'default' => Utilities\get_option_default( 'impact_header_utm_content' )
+		)
+	);
+
+	$wp_customize->add_control(
+		'impact_header_utm_content',
+		array(
+			'label'       => 'Impact Email Header - UTM Content',
+			'description' => 'The "Utm Content" value to set for the header image of the Impact email.',
+			'section'     => 'analytics',
+			'type'        => 'text'
+		)
+	);
+
 	//
 	// Custom Emails
 	//
@@ -761,3 +837,66 @@ function kill_comments() {
 }
 
 add_action( 'init', __NAMESPACE__ . '\kill_comments' );
+
+
+/**
+ * Removes date admin column and adds new admin columns
+ * for displaying from email address, from friendly name,
+ * send date/time, and distribution lists.
+ *
+ * @since 3.2.2
+ * @author Cadie Stockman
+ * @param array $columns Existing column data
+ * @return array Modified column data
+ */
+function email_admin_define_columns( $columns ) {
+	unset($columns['date']);
+
+	$columns['from_email_address'] = 'From Email Address';
+	$columns['from_friendly_name'] = 'From Friendly Name';
+	$columns['send_date_time'] = 'Requested Send Date/Time';
+	$columns['distribution_lists'] = 'Distribution List(s)';
+
+	return $columns;
+}
+
+add_filter( 'manage_ucf-email_posts_columns', __NAMESPACE__ . '\email_admin_define_columns' );
+
+
+/**
+ * Displays values for custom columns
+ * in the email list admin view.
+ *
+ * @since 3.2.2
+ * @author Cadie Stockman
+ * @param string $column_name Column name
+ * @param int $post_id Post ID for individual post obj's in the list
+ * @return void
+ */
+function email_admin_set_columns( $column_name, $post_id ) {
+	switch ( $column_name ) {
+		case 'from_email_address':
+			$email_address = get_field( 'from_email_address', $post_id ) ?: '';
+			echo $email_address;
+			break;
+		case 'from_friendly_name':
+			$friendly_name = get_field( 'from_friendly_name', $post_id ) ?: '';
+			echo $friendly_name;
+			break;
+		case 'send_date_time':
+			$send_date = get_field( 'live_send_date', $post_id ) ?: '';
+			$send_time = get_field( 'live_send_time', $post_id ) ?: '';
+
+			$send_date_time =  $send_date . ' ' . $send_time;
+			echo $send_date_time;
+			break;
+		case 'distribution_lists':
+			$distribution_lists = get_field( 'distribution_lists', $post_id ) ?: '';
+			echo $distribution_lists;
+			break;
+		default:
+			break;
+	}
+}
+
+add_action( 'manage_ucf-email_posts_custom_column' , __NAMESPACE__ . '\email_admin_set_columns', 10, 2 );

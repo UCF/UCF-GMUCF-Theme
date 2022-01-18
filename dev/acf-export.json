@@ -1,5 +1,347 @@
 [
     {
+        "key": "group_5ec4437310d21",
+        "title": "Email Cloneable Group - Article",
+        "fields": [
+            {
+                "key": "field_5ec4437eb99e9",
+                "label": "Thumbnail",
+                "name": "thumbnail",
+                "type": "image",
+                "instructions": "Images must be at least 640px wide.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": 640,
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,gif"
+            },
+            {
+                "key": "field_5ec443bdb99eb",
+                "label": "Article title",
+                "name": "article_title",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5ec443edb99ec",
+                "label": "Article deck",
+                "name": "article_deck",
+                "type": "wysiwyg",
+                "instructions": "Note: multiple lines are not supported (all deck content will be displayed in a single paragraph in the email.)",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 0,
+                "delay": 0
+            },
+            {
+                "key": "field_5ec4472d390ba",
+                "label": "Links to URL",
+                "name": "links_to",
+                "type": "url",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "post"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": false,
+        "description": ""
+    },
+    {
+        "key": "group_5f08840b36d00",
+        "title": "Email Cloneable Group - Divider",
+        "fields": [
+            {
+                "key": "field_5f08841d4aba2",
+                "label": "Color",
+                "name": "color",
+                "type": "select",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "#dddddd": "Gray",
+                    "#ffcc00": "Gold",
+                    "#000000": "Black"
+                },
+                "default_value": "#ffcc00",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_5f0884d74aba3",
+                "label": "Thickness",
+                "name": "thickness",
+                "type": "select",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1px": "Default (thin)",
+                    "3px": "Heavier (3px)",
+                    "5px": "Heaviest (5px)"
+                },
+                "default_value": "3px",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "post"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": false,
+        "description": ""
+    },
+    {
+        "key": "group_5ec43f669e250",
+        "title": "Email Cloneable Group - Image",
+        "fields": [
+            {
+                "key": "field_5ec43f6f2dcfb",
+                "label": "Image file",
+                "name": "image_file",
+                "type": "image",
+                "instructions": "Images must be at least 640px wide.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "100",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": 640,
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,gif,png"
+            },
+            {
+                "key": "field_5ec43f8b2dcfc",
+                "label": "Alt text",
+                "name": "alt_text",
+                "type": "text",
+                "instructions": "Text displayed by email clients that don't download images by default.  If no alt text is provided here, the attachment's alt text will be used (click \"Edit\" button on image to view).",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5ec43f962dcfd",
+                "label": "Links to URL",
+                "name": "links_to",
+                "type": "url",
+                "instructions": "(Optional) URL to link the image to.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "post"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": false,
+        "description": ""
+    },
+    {
+        "key": "group_5ec43f2787f31",
+        "title": "Email Cloneable Group - Paragraph",
+        "fields": [
+            {
+                "key": "field_5ec43f369be15",
+                "label": "Paragraph Content",
+                "name": "paragraph",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "all",
+                "toolbar": "email_content",
+                "media_upload": 0,
+                "delay": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "post"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": false,
+        "description": ""
+    },
+    {
+        "key": "group_5ec5832315b73",
+        "title": "Email Cloneable Group – Custom HTML",
+        "fields": [
+            {
+                "key": "field_5ec5832dc9e3f",
+                "label": "Custom HTML",
+                "name": "custom_html",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "ucf-email"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": false,
+        "description": ""
+    },
+    {
         "key": "group_5ed7d8e51fc89",
         "title": "Email Send Details",
         "fields": [
@@ -72,8 +414,8 @@
                     "class": "",
                     "id": ""
                 },
-                "display_format": "d\/m\/Y",
-                "return_format": "d\/m\/Y",
+                "display_format": "m\/d\/Y",
+                "return_format": "m\/d\/Y",
                 "first_day": 1
             },
             {
@@ -169,7 +511,7 @@
                     "ucf-today": "UCF Today - News and Announcements",
                     "pegasus-magazine": "Pegasus Magazine"
                 },
-                "default_value": [],
+                "default_value": false,
                 "allow_null": 0,
                 "multiple": 0,
                 "ui": 0,
@@ -208,6 +550,829 @@
         ],
         "menu_order": 0,
         "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    },
+    {
+        "key": "group-impact-email-fields",
+        "title": "Impact Email Fields",
+        "fields": [
+            {
+                "key": "field_5f0f1afe1ad3d",
+                "label": "Header Image",
+                "name": "header_image",
+                "type": "image",
+                "instructions": "The header image to display at the top of the email.  Recommended dimensions: 640x100px",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": 640,
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,gif"
+            },
+            {
+                "key": "field_5f0f1b321ad3e",
+                "label": "Header Image Link",
+                "name": "header_image_link",
+                "type": "url",
+                "instructions": "(Optional) If provided, the header image will link to this URL when clicked.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "https:\/\/www.ucf.edu\/coronavirus\/",
+                "placeholder": ""
+            },
+            {
+                "key": "field_61ddb738a7b6d",
+                "label": "Header Image Alt",
+                "name": "header_image_alt",
+                "type": "text",
+                "instructions": "The text to place in the alt field of the header image.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5f088e87d99c3",
+                "label": "Title",
+                "name": "title",
+                "type": "text",
+                "instructions": "Title displayed at the top of the email.  (This is not the same as the email's subject line.)",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5ec43adf31c3b",
+                "label": "Email Content",
+                "name": "email_content",
+                "type": "flexible_content",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layouts": {
+                    "layout_5ec43ae6cf8bc": {
+                        "key": "layout_5ec43ae6cf8bc",
+                        "name": "paragraph",
+                        "label": "Paragraph",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_5ec43fffc0566",
+                                "label": "Paragraph(s)",
+                                "name": "paragraph",
+                                "type": "clone",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "clone": [
+                                    "group_5ec43f2787f31"
+                                ],
+                                "display": "seamless",
+                                "layout": "block",
+                                "prefix_label": 0,
+                                "prefix_name": 0
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_5ec43c2d31c3d": {
+                        "key": "layout_5ec43c2d31c3d",
+                        "name": "image",
+                        "label": "Full-Width Image",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_5ec44027c0567",
+                                "label": "Image",
+                                "name": "image",
+                                "type": "clone",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "clone": [
+                                    "group_5ec43f669e250"
+                                ],
+                                "display": "seamless",
+                                "layout": "block",
+                                "prefix_label": 0,
+                                "prefix_name": 0
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_5ec444339b215": {
+                        "key": "layout_5ec444339b215",
+                        "name": "article",
+                        "label": "Article",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_5ec444389b216",
+                                "label": "Article",
+                                "name": "article",
+                                "type": "clone",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "clone": [
+                                    "group_5ec4437310d21"
+                                ],
+                                "display": "seamless",
+                                "layout": "block",
+                                "prefix_label": 0,
+                                "prefix_name": 0
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_5f0890826d16d": {
+                        "key": "layout_5f0890826d16d",
+                        "name": "article_list",
+                        "label": "Article List",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_5f08908a6d16e",
+                                "label": "Articles",
+                                "name": "articles",
+                                "type": "repeater",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "collapsed": "",
+                                "min": 0,
+                                "max": 0,
+                                "layout": "block",
+                                "button_label": "Add Article",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_5f0890956d16f",
+                                        "label": "Article",
+                                        "name": "article",
+                                        "type": "clone",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "clone": [
+                                            "group_5ec4437310d21"
+                                        ],
+                                        "display": "seamless",
+                                        "layout": "block",
+                                        "prefix_label": 0,
+                                        "prefix_name": 0
+                                    }
+                                ]
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_5ec4403bc0568": {
+                        "key": "layout_5ec4403bc0568",
+                        "name": "two_column_row",
+                        "label": "Two column row",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_5ec4404bc0569",
+                                "label": "Column 1 contents",
+                                "name": "column_1_contents",
+                                "type": "flexible_content",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "50",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "layouts": {
+                                    "layout_5ec440573c617": {
+                                        "key": "layout_5ec440573c617",
+                                        "name": "paragraph",
+                                        "label": "Paragraph(s)",
+                                        "display": "block",
+                                        "sub_fields": [
+                                            {
+                                                "key": "field_5ec44066c056a",
+                                                "label": "Paragraph",
+                                                "name": "paragraph",
+                                                "type": "clone",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "clone": [
+                                                    "group_5ec43f2787f31"
+                                                ],
+                                                "display": "seamless",
+                                                "layout": "",
+                                                "prefix_label": 0,
+                                                "prefix_name": 0
+                                            }
+                                        ],
+                                        "min": "",
+                                        "max": ""
+                                    },
+                                    "layout_5ec4407bc056b": {
+                                        "key": "layout_5ec4407bc056b",
+                                        "name": "image",
+                                        "label": "Image",
+                                        "display": "block",
+                                        "sub_fields": [
+                                            {
+                                                "key": "field_5ec4407fc056c",
+                                                "label": "Image",
+                                                "name": "image",
+                                                "type": "clone",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "clone": [
+                                                    "group_5ec43f669e250"
+                                                ],
+                                                "display": "seamless",
+                                                "layout": "",
+                                                "prefix_label": 0,
+                                                "prefix_name": 0
+                                            }
+                                        ],
+                                        "min": "",
+                                        "max": ""
+                                    },
+                                    "layout_5ec444559b217": {
+                                        "key": "layout_5ec444559b217",
+                                        "name": "article",
+                                        "label": "Article",
+                                        "display": "block",
+                                        "sub_fields": [
+                                            {
+                                                "key": "field_5ec4445a9b218",
+                                                "label": "Article",
+                                                "name": "article",
+                                                "type": "clone",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "clone": [
+                                                    "group_5ec4437310d21"
+                                                ],
+                                                "display": "seamless",
+                                                "layout": "block",
+                                                "prefix_label": 0,
+                                                "prefix_name": 0
+                                            }
+                                        ],
+                                        "min": "",
+                                        "max": ""
+                                    },
+                                    "layout_5ec5839f6d65f": {
+                                        "key": "layout_5ec5839f6d65f",
+                                        "name": "custom_html",
+                                        "label": "Custom HTML",
+                                        "display": "block",
+                                        "sub_fields": [
+                                            {
+                                                "key": "field_5ec583a36d660",
+                                                "label": "Custom HTML",
+                                                "name": "custom_html",
+                                                "type": "clone",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "clone": [
+                                                    "group_5ec5832315b73"
+                                                ],
+                                                "display": "seamless",
+                                                "layout": "block",
+                                                "prefix_label": 0,
+                                                "prefix_name": 0
+                                            }
+                                        ],
+                                        "min": "",
+                                        "max": ""
+                                    }
+                                },
+                                "button_label": "Add Row",
+                                "min": 0,
+                                "max": 1
+                            },
+                            {
+                                "key": "field_5ec44099c056d",
+                                "label": "Column 2 contents",
+                                "name": "column_2_contents",
+                                "type": "flexible_content",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "50",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "layouts": {
+                                    "layout_5ec440573c617": {
+                                        "key": "layout_5ec440573c617",
+                                        "name": "paragraph",
+                                        "label": "Paragraph(s)",
+                                        "display": "block",
+                                        "sub_fields": [
+                                            {
+                                                "key": "field_5ec44099c056e",
+                                                "label": "Paragraph",
+                                                "name": "paragraph",
+                                                "type": "clone",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "clone": [
+                                                    "group_5ec43f2787f31"
+                                                ],
+                                                "display": "seamless",
+                                                "layout": "block",
+                                                "prefix_label": 0,
+                                                "prefix_name": 0
+                                            }
+                                        ],
+                                        "min": "",
+                                        "max": ""
+                                    },
+                                    "layout_5ec4407bc056b": {
+                                        "key": "layout_5ec4407bc056b",
+                                        "name": "image",
+                                        "label": "Image",
+                                        "display": "block",
+                                        "sub_fields": [
+                                            {
+                                                "key": "field_5ec44099c056f",
+                                                "label": "Image",
+                                                "name": "image",
+                                                "type": "clone",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "clone": [
+                                                    "group_5ec43f669e250"
+                                                ],
+                                                "display": "seamless",
+                                                "layout": "block",
+                                                "prefix_label": 0,
+                                                "prefix_name": 0
+                                            }
+                                        ],
+                                        "min": "",
+                                        "max": ""
+                                    },
+                                    "layout_5ec4447c9b219": {
+                                        "key": "layout_5ec4447c9b219",
+                                        "name": "article",
+                                        "label": "Article",
+                                        "display": "block",
+                                        "sub_fields": [
+                                            {
+                                                "key": "field_5ec444809b21a",
+                                                "label": "Article",
+                                                "name": "article",
+                                                "type": "clone",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "clone": [
+                                                    "group_5ec4437310d21"
+                                                ],
+                                                "display": "seamless",
+                                                "layout": "block",
+                                                "prefix_label": 0,
+                                                "prefix_name": 0
+                                            }
+                                        ],
+                                        "min": "",
+                                        "max": ""
+                                    },
+                                    "layout_5ec583c16d662": {
+                                        "key": "layout_5ec583c16d662",
+                                        "name": "custom_html",
+                                        "label": "Custom HTML",
+                                        "display": "block",
+                                        "sub_fields": [
+                                            {
+                                                "key": "field_5ec583b66d661",
+                                                "label": "Custom HTML",
+                                                "name": "custom_html",
+                                                "type": "clone",
+                                                "instructions": "",
+                                                "required": 0,
+                                                "conditional_logic": 0,
+                                                "wrapper": {
+                                                    "width": "",
+                                                    "class": "",
+                                                    "id": ""
+                                                },
+                                                "clone": [
+                                                    "group_5ec5832315b73"
+                                                ],
+                                                "display": "seamless",
+                                                "layout": "block",
+                                                "prefix_label": 0,
+                                                "prefix_name": 0
+                                            }
+                                        ],
+                                        "min": "",
+                                        "max": ""
+                                    }
+                                },
+                                "button_label": "Add Row",
+                                "min": "",
+                                "max": 1
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_5f088523aaed8": {
+                        "key": "layout_5f088523aaed8",
+                        "name": "divider",
+                        "label": "Divider",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_5f08852baaed9",
+                                "label": "Divider",
+                                "name": "divider",
+                                "type": "clone",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "clone": [
+                                    "group_5f08840b36d00"
+                                ],
+                                "display": "seamless",
+                                "layout": "block",
+                                "prefix_label": 0,
+                                "prefix_name": 0
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_5ec583606d65d": {
+                        "key": "layout_5ec583606d65d",
+                        "name": "custom_html",
+                        "label": "Custom HTML",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_5ec583666d65e",
+                                "label": "Custom HTML",
+                                "name": "custom_html",
+                                "type": "clone",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "clone": [
+                                    "group_5ec5832315b73"
+                                ],
+                                "display": "seamless",
+                                "layout": "block",
+                                "prefix_label": 0,
+                                "prefix_name": 0
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    }
+                },
+                "button_label": "Add Row",
+                "min": 1,
+                "max": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "impact-email"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "seamless",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": [
+            "the_content"
+        ],
+        "active": true,
+        "description": ""
+    },
+    {
+        "key": "group_5f0e1af03b85b",
+        "title": "Preview Impact Email",
+        "fields": [
+            {
+                "key": "field_5f0e1af5b3f65",
+                "label": "",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "<p style=\"margin-top: 0;\">Click the button below to open the email in a new tab. This page must be updated in order to see the latest changes.<\/p>\r\n<a href=\"https:\/\/gmucf.smca.ucf.edu\/impact\/mail\/?no_cache=true\" target=\"_blank\" style=\"background: #fc0; padding: 8px; color: #000; text-decoration: none; font-weight: bold; display: block; text-align: center;\">Preview Email<\/a>",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "impact-email"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "side",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    },
+    {
+        "key": "group_5eebbbbfc2430",
+        "title": "Email UTM Options",
+        "fields": [
+            {
+                "key": "field_5eebbbf2e06bc",
+                "label": "Enable UTM Param Insertion",
+                "name": "email_enable_utms",
+                "type": "true_false",
+                "instructions": "Uncheck this box to disable automatic UTM param insertion on links in this email. Note that, even if this setting is enabled, the email's UTM Source, Medium, and Campaign values must be set below for automatic UTM insertion to take place.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 1,
+                "ui": 1,
+                "ui_on_text": "Enabled",
+                "ui_off_text": "Disabled"
+            },
+            {
+                "key": "field_5eebbc75e06bd",
+                "label": "UTM Source",
+                "name": "email_utm_source",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5eebbcb6e06bf",
+                "label": "UTM Medium",
+                "name": "email_utm_medium",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "email",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5eebbca4e06be",
+                "label": "UTM Campaign",
+                "name": "email_utm_campaign",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5eebbcdbe06c0",
+                "label": "UTM Content",
+                "name": "email_utm_content",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "ucf-email"
+                }
+            ]
+        ],
+        "menu_order": 1,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    },
+    {
+        "key": "group_5f0c78738a1a7",
+        "title": "Types of Email Content",
+        "fields": [
+            {
+                "key": "field_5f0c787d4779c",
+                "label": "",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "<p><strong>Paragraph<\/strong><\/p>\r\n<p>Basic text content that spans the full width of its container.  Use to add generic text blocks and lists.<\/p>\r\n<p><strong>Full-Width Image<\/strong><\/p>\r\n<p>An image that spans the full width of its container.  Optionally link out to external content.  Can be used for large infographic content, video thumbnails, and more.<\/p>\r\n<p><strong>Article<\/strong><\/p>\r\n<p>Consists of a thumbnail, title, and a deck, which link to some URL.  Choose an existing Post to create an article with automatically, or create a custom article component with fully customizable fields.  Use custom articles for Today stories and videos with descriptions.<\/p>\r\n<p><strong>Article List<\/strong><\/p>\r\n<p>A horizontal list of Articles with a small left-aligned thumbnail.<\/p>\r\n<p><strong>Two Column Row<\/strong><\/p>\r\n<p>A row of two equal-sized columns on desktop email clients.  On mobile email clients, columns collapse and span the full width of the email.  Each column can contain one component each.<\/p>\r\n<p><strong>Divider<\/strong><\/p>\r\n<p>A full-width divider with configurable width and color.<\/p>",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "impact-email"
+                }
+            ]
+        ],
+        "menu_order": 99,
+        "position": "side",
         "style": "default",
         "label_placement": "top",
         "instruction_placement": "label",
