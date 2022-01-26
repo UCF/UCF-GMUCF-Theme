@@ -192,7 +192,7 @@
                     "class": "",
                     "id": ""
                 },
-                "return_format": "array",
+                "return_format": "url",
                 "preview_size": "medium",
                 "library": "all",
                 "min_width": 640,
