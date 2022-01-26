@@ -38,11 +38,7 @@ define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	'coronavirus_utm_medium'           => 'email',
 	'coronavirus_utm_campaign'         => 'coronavirus',
 	'coronavirus_header_utm_content'   => 'header_image',
-	'email_preview_base_list'          => '',
-	'impact_utm_source'                => 'impact_update',
-	'impact_utm_medium'                => 'email',
-	'impact_utm_campaign'              => 'impact',
-	'impact_header_utm_content'        => 'header_image'
+	'email_preview_base_list'          => ''
 ) ) );
 
 define( 'EVENTS_WEEKEND_EDITION', 0 );
@@ -595,78 +591,6 @@ function define_customizer_controls( $wp_customize ) {
 		array(
 			'label'       => 'Coronavirus Email Header - UTM Content',
 			'description' => 'The UTM "content" value to set on the Coronavirus email header.',
-			'section'     => 'analytics',
-			'type'        => 'text'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'impact_utm_source',
-		array (
-			'type' => 'option',
-			'default' => Utilities\get_option_default( 'impact_utm_source' )
-		)
-	);
-
-	$wp_customize->add_control(
-		'impact_utm_source',
-		array(
-			'label'       => 'Impact Emails - UTM Source',
-			'description' => 'The "UTM Source" value set within Impact email content.',
-			'section'     => 'analytics',
-			'type'        => 'text'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'impact_utm_medium',
-		array(
-			'type' => 'option',
-			'default' => Utilities\get_option_default( 'impact_utm_medium' )
-		)
-	);
-
-	$wp_customize->add_control(
-		'impact_utm_medium',
-		array(
-			'label'       => 'Impact Emails - UTM Medium',
-			'description' => 'The "UTM Medium" value set within Impact email content.',
-			'section'     => 'analytics',
-			'type'        => 'text'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'impact_utm_campaign',
-		array(
-			'type' => 'option',
-			'default' => Utilities\get_option_default( 'impact_utm_campaign' )
-		)
-	);
-
-	$wp_customize->add_control(
-		'impact_utm_campaign',
-		array(
-			'label'       => 'Impact Emails - UTM Campaign',
-			'description' => 'The "UTM Campaign" value set within Impact email content.',
-			'section'     => 'analytics',
-			'type'        => 'text'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'impact_header_utm_content',
-		array(
-			'type' => 'option',
-			'default' => Utilities\get_option_default( 'impact_header_utm_content' )
-		)
-	);
-
-	$wp_customize->add_control(
-		'impact_header_utm_content',
-		array(
-			'label'       => 'Impact Email Header - UTM Content',
-			'description' => 'The "Utm Content" value to set for the header image of the Impact email.',
 			'section'     => 'analytics',
 			'type'        => 'text'
 		)
