@@ -24,7 +24,7 @@ $external             = InTheNews\get_in_the_news_stories();
 					<?php
 					foreach ( $external as $story ) :
 						$story_source = ( !empty( $story->source_name ) ) ? $story->source_name : $story->source;
-						$story_source_image = ( !empty( $story->source_image ) ) ? $story->source_image : THEME_IMG_URL . "/external-story-default.png";
+						$story_source_image = ( !empty( $story->source_image ) ) ? $story->source_image : GMUCF_THEME_IMG_URL . "/external-story-default.png";
 					?>
 						<li style="padding-bottom: 30px;" align="left">
 							<table>
