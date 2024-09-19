@@ -30,7 +30,8 @@ function display_gmucf_template( $template ) {
  */
 function gmucf_template_redirect() {
 	// Get the path without server host or leading blog stuff (e.g. /wp3/gmucf)
-	$request_path = substr( $_SERVER['REQUEST_URI'], 1 );
+	$site_path = parse_url( get_site_url() )['path'];
+	$request_path = substr( str_replace( $site_path, '', $_SERVER['REQUEST_URI'] ), 1 );
 
 	// Most to least specific
 	$mapping = array(
@@ -44,12 +45,16 @@ function gmucf_template_redirect() {
 		'events/weekend/text/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/text/base' ); },
 		'events/weekend/'      => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/browser/base' ); },
 		'coronavirus/mail/'    => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
-		'coronavirus/'         => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); }
+		'coronavirus/'         => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
+		'icymi/mail/'    	   => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
+		'icymi/'         	   => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); }
+
 	);
 
 	foreach ( $mapping as $path => $func ) {
 		if ( stripos( $request_path, $path ) === 0 ) {
 			call_user_func( $func );
+			return;
 		}
 	}
 }
