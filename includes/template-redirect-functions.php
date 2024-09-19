@@ -45,9 +45,9 @@ function gmucf_template_redirect() {
 		'gmucf/events/weekend/text/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/text/base' ); },
 		'gmucf/events/weekend/'      => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/browser/base' ); },
 		'gmucf/coronavirus/mail/'    => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
-		'gmucf/coronavirus/'  => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
-		'gmucf/icymi/mail/'    => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
-		'gmucf/icymi/'         => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
+		'gmucf/coronavirus/'  		 => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
+		'gmucf/icymi/mail/'    		 => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
+		'gmucf/icymi/'         		 => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
 
 	);
 
