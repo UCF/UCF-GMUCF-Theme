@@ -29,9 +29,10 @@ function display_gmucf_template( $template ) {
  * @return void
  */
 function gmucf_template_redirect() {
-	// Get the path without server host or leading blog stuff (e.g. /wp3/gmucf)
-	$request_path = substr( $_SERVER['REQUEST_URI'], 1 );
-
+	// Get the path component
+    $request_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $request_path = ltrim($request_path, '/'); // Remove leading slash
+	var_dump($request_path);
 	// Most to least specific
 	$mapping = array(
 		'news/mail/'           => function() { display_gmucf_template( 'template-parts/news/mail/base' ); },
@@ -44,12 +45,16 @@ function gmucf_template_redirect() {
 		'events/weekend/text/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/text/base' ); },
 		'events/weekend/'      => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/browser/base' ); },
 		'coronavirus/mail/'    => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
-		'coronavirus/'         => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); }
+		'gmucf/coronavirus/'  => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
+		'gmucf/icymi/mail/'    => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
+		'gmucf/icymi/'         => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
+
 	);
 
 	foreach ( $mapping as $path => $func ) {
 		if ( stripos( $request_path, $path ) === 0 ) {
 			call_user_func( $func );
+			return;
 		}
 	}
 }
