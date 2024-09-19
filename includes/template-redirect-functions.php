@@ -29,25 +29,25 @@ function display_gmucf_template( $template ) {
  * @return void
  */
 function gmucf_template_redirect() {
-	// Get the path component
-    $request_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    $request_path = ltrim($request_path, '/'); // Remove leading slash
+	// Get the path without server host or leading blog stuff (e.g. /wp3/gmucf)
+	$site_path = parse_url( get_site_url() )['path'];
+	$request_path = substr( str_replace( $site_path, '', $_SERVER['REQUEST_URI'] ), 1 );
 
 	// Most to least specific
 	$mapping = array(
-		'gmucf/news/mail/'           => function() { display_gmucf_template( 'template-parts/news/mail/base' ); },
-		'gmucf/news/text/'           => function() { display_gmucf_template( 'template-parts/news/text/base' ); },
-		'gmucf/news/'                => function() { display_gmucf_template( 'template-parts/news/browser/base' ); },
-		'gmucf/events/weekday/mail/' => function() { $_GET['edition'] = 'weekday'; display_gmucf_template( 'template-parts/events/mail/base' ); },
-		'gmucf/events/weekday/text/' => function() { $_GET['edition'] = 'weekday'; display_gmucf_template( 'template-parts/events/text/base' ); },
-		'gmucf/events/weekday/'      => function() { $_GET['edition'] = 'weekday'; display_gmucf_template( 'template-parts/events/browser/base' ); },
-		'gmucf/events/weekend/mail/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/mail/base' ); },
-		'gmucf/events/weekend/text/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/text/base' ); },
-		'gmucf/events/weekend/'      => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/browser/base' ); },
-		'gmucf/coronavirus/mail/'    => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
-		'gmucf/coronavirus/'  		 => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
-		'gmucf/icymi/mail/'    		 => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
-		'gmucf/icymi/'         		 => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
+		'news/mail/'           => function() { display_gmucf_template( 'template-parts/news/mail/base' ); },
+		'news/text/'           => function() { display_gmucf_template( 'template-parts/news/text/base' ); },
+		'news/'                => function() { display_gmucf_template( 'template-parts/news/browser/base' ); },
+		'events/weekday/mail/' => function() { $_GET['edition'] = 'weekday'; display_gmucf_template( 'template-parts/events/mail/base' ); },
+		'events/weekday/text/' => function() { $_GET['edition'] = 'weekday'; display_gmucf_template( 'template-parts/events/text/base' ); },
+		'events/weekday/'      => function() { $_GET['edition'] = 'weekday'; display_gmucf_template( 'template-parts/events/browser/base' ); },
+		'events/weekend/mail/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/mail/base' ); },
+		'events/weekend/text/' => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/text/base' ); },
+		'events/weekend/'      => function() { $_GET['edition'] = 'weekend'; display_gmucf_template( 'template-parts/events/browser/base' ); },
+		'coronavirus/mail/'    => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
+		'coronavirus/'         => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); },
+		'icymi/mail/'    	   => function() { display_gmucf_template( 'template-parts/coronavirus/mail/base' ); },
+		'icymi/'         	   => function() { display_gmucf_template( 'template-parts/coronavirus/browser/base' ); }
 
 	);
 
