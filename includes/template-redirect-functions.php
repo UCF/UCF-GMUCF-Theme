@@ -32,7 +32,7 @@ function gmucf_template_redirect() {
 	// Get the path component
     $request_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $request_path = ltrim($request_path, '/'); // Remove leading slash
-	var_dump($request_path);
+
 	// Most to least specific
 	$mapping = array(
 		'gmucf/news/mail/'           => function() { display_gmucf_template( 'template-parts/news/mail/base' ); },
