@@ -32,6 +32,8 @@ function get_event_data( $options=array() ) {
 			'per_page' => $options['per_page']
 		);
 
+		var_dump($url);
+
 		$url .= '?' . http_build_query( $params );
 
 		$ch = curl_init( $url );
