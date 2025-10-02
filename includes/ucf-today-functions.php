@@ -90,6 +90,8 @@ function get_gmucf_email_options_feed_values() {
 		array( 'timeout' => $options_timeout )
 	);
 
+	$response_code = wp_remote_retrieve_response_code( $response );
+
 	if ( is_array( $response ) ) {
 		$items = json_decode( wp_remote_retrieve_body( $response ) );
 
@@ -97,8 +99,7 @@ function get_gmucf_email_options_feed_values() {
 			$gmucf_email_options = $items;
 		}
 	} else {
-		$error_string = $response->get_error_message();
-		error_log( 'GMUCF - get_gmucf_email_options_feed_values() - ' . $error_string );
+		error_log( 'GMUCF - get_gmucf_email_options_feed_values() - ' . $response_code );
 	}
 
 	return $gmucf_email_options;
