@@ -63,7 +63,6 @@ $current_date = current_datetime();
                                   <?php echo get_template_part( 'template-parts/news/mail/in-the-news' ); ?>
                                 </td>
                               </tr>
-                              <?php echo get_template_part( 'template-parts/news/mail/announcements' ); ?>
                               <?php echo get_template_part( 'template-parts/news/mail/footer' ); ?>
                             </tbody>
                           </table>
