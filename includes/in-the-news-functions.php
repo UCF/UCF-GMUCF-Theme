@@ -26,6 +26,7 @@ function get_in_the_news_stories() {
 	$arg_string = '?' . http_build_query( $args );
 
 	$response = wp_remote_get( $json_url . $arg_string, array( 'timeout' => $timeout ) );
+	$response_code = wp_remote_retrieve_response_code( $response );
 
 	if ( is_array( $response ) ) {
 		$items = json_decode( wp_remote_retrieve_body( $response ) );
@@ -34,8 +35,7 @@ function get_in_the_news_stories() {
 			$stories = $items;
 		}
 	} else {
-		$error_string = $response->get_error_message();
-		error_log( "GMUCF - get_in_the_news_stories() - " . $error_string );
+		error_log( "GMUCF - get_in_the_news_stories() - " . $response_code );
 	}
 
 	return $stories;

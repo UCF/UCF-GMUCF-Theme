@@ -77,8 +77,7 @@ function get_announcement_details( $announcement_ids=array() ) {
 			);
 		}
 	} else {
-		$error_string = $response->get_error_message();
-		error_log( "GMUCF - get_announcement_details() - " . $error_string );
+		error_log( "GMUCF - get_announcement_details() - " . $response_code );
 	}
 
 	return array_slice( $announcements, 0, 3 );
