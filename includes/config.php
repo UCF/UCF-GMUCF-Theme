@@ -27,8 +27,6 @@ define( 'GMUCF_THEME_CUSTOMIZER_DEFAULTS', serialize( array(
 	'main_site_stories_url'            => 'https://www.ucf.edu/news/feed/',
 	'main_site_stories_more_url'       => 'https://www.ucf.edu/news/',
 	'main_site_stories_timeout'        => 15, // seconds
-	'announcements_url'                => 'https://www.ucf.edu/announcements/api/announcements/?time=thisweek&exclude_ongoing=True&format=json',
-	'announcements_more_url'           => 'https://www.ucf.edu/announcements/',
 	'in_the_news_url'                  => 'https://www.ucf.edu/news/wp-json/ucf-news/v1/external-stories/',
 	'in_the_news_more_url'             => 'https://www.ucf.edu/news/in-the-news/',
 	'in_the_news_item_count'           => 4,
@@ -113,13 +111,6 @@ function define_customizer_sections( $wp_customize ) {
 		'ucf_today_gmucf_options',
 		array(
 			'title' => 'UCF Today GMUCF Options'
-		)
-	);
-
-	$wp_customize->add_section(
-		'announcements',
-		array(
-			'title' => 'Announcements Data'
 		)
 	);
 
@@ -255,43 +246,6 @@ function define_customizer_controls( $wp_customize ) {
 			'description' => 'Number of seconds to wait before timing out a request to the Main Site Stories feed.',
 			'section'     => 'ucf_today_gmucf_options',
 			'type'        => 'number'
-		)
-	);
-
-	//
-	// Announcements Options
-	//
-	$wp_customize->add_setting(
-		'announcements_url',
-		array (
-			'type'    => 'option',
-			'default' => Utilities\get_option_default( 'announcements_url' )
-		)
-	);
-	$wp_customize->add_control(
-		'announcements_url',
-		array(
-			'label'       => 'Announcements Feed URL',
-			'description' => 'URL to the UCF Announcements feed.',
-			'section'     => 'announcements',
-			'type'        => 'text'
-		)
-	);
-
-	$wp_customize->add_setting(
-		'announcements_more_url',
-		array (
-			'type'    => 'option',
-			'default' => Utilities\get_option_default( 'announcements_more_url' )
-		)
-	);
-	$wp_customize->add_control(
-		'announcements_more_url',
-		array(
-			'label'       => 'Announcements "More" URL',
-			'description' => 'URL that directs users to browse more announcements.',
-			'section'     => 'announcements',
-			'type'        => 'text'
 		)
 	);
 

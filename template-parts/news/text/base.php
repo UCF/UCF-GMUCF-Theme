@@ -2,7 +2,6 @@
 namespace GMUCF\Theme\TemplateParts\News\Text\Base;
 use GMUCF\Theme\Includes\UCFToday;
 use GMUCF\Theme\Includes\InTheNews;
-use GMUCF\Theme\Includes\Announcements;
 
 
 header( 'Content-Type: text/plain' );
@@ -34,21 +33,6 @@ UCF IN THE NEWS
 
 <?php endforeach; ?>
 
-<?php
-$announcements = Announcements\get_announcement_details();
-
-if ( count( $announcements ) !== 0 ) :
-?>
-ANNOUNCEMENTS
-========================
-<?php foreach ( $announcements as $announcement ) : ?>
-- <?php echo strip_tags( $announcement['title'] ); ?>
-
-  <?php echo $announcement['permalink']; ?>
-
-
-<?php endforeach; ?>
-<?php endif; ?>
 
 
 UNIVERSITY OF CENTRAL FLORIDA
