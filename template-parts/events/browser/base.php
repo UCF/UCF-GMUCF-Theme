@@ -67,27 +67,15 @@ switch ( $edition ) {
 			#upcoming-submit a:last-child {font-size:14px;}
 
 			/* Bottom */
-			#bottom {clear:both;border-top:1px solid #ddd;}
-			#bottom #social,
-				#bottom #ucf {border:none;padding:0;}
-			#bottom #social {float:right;margin-top:20px;}
-			#bottom #social h2 {font-family:Helvetica,sans-serif;font-weight:100;margin-bottom:5px;}
-			#bottom #social a {text-indent:-300em;width:32px;height:32px;display:block;float:left;margin-left:10px;}
-			#bottom #social #facebook {background:#FFF url('<?php echo GMUCF_THEME_IMG_URL; ?>/social/facebook.png') no-repeat center center;margin-left:0;}
-			#bottom #social #youtube {background:#FFF url('<?php echo GMUCF_THEME_IMG_URL; ?>/social/youtube.png') no-repeat center center;}
-			#bottom #social #twitter {background:#FFF url('<?php echo GMUCF_THEME_IMG_URL; ?>/social/twitter.png') no-repeat center center;}
-			#bottom #social #instagram {background:#FFF url('<?php echo GMUCF_THEME_IMG_URL; ?>/social/instagram.png') no-repeat center center;}
-			#bottom #ucf {
-				display:block;
-				background:#FFF url('<?php echo GMUCF_THEME_IMG_URL; ?>/logo-no-opportunity.png') no-repeat top left;
-				text-decoration:none;padding-top:61px;
-				float:left;
-				color:#333;
-				margin-top:20px;
-				line-height: 1.5em;
-				font-size:13px;
-				min-width: 152px;
-			}
+			#bottom {clear:both;border-top:1px solid #ddd;text-align:center;padding-top:20px;padding-bottom:20px;}
+			#bottom #social {margin-bottom:10px;}
+			#bottom #social a {display:inline-block;text-decoration:none;margin:0 4px;}
+			#bottom #social img,
+				#bottom #ucf img {border:0;display:block;}
+			#bottom #ucf {display:inline-block;margin-bottom:10px;}
+			#bottom #address {color:#333;font-size:13px;line-height:1.5em;}
+			#bottom #address .name {font-weight:bold;text-transform:uppercase;letter-spacing:1.25px;}
+			#bottom #address .name a {color:#000;text-decoration:none;}
 
 			/* Footer */
 			#footer {display:none;}
@@ -136,19 +124,21 @@ switch ( $edition ) {
 			<a href="https://events.ucf.edu/manager/">Submit an event to the UCF Events Calendar</a>
 		</div>
 		<div id="bottom">
-			<a id="ucf" href="https://www.ucf.edu" class="ignore-external">
+			<div id="social">
+				<a id="facebook" class="ignore-external" href="https://www.facebook.com/ucf/"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/facebook-circle.png" alt="UCF on Facebook" width="42" height="42"></a>
+				<a id="twitter" class="ignore-external" href="https://www.twitter.com/UCF/"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/twitter-circle.png" alt="UCF on Twitter" width="42" height="42"></a>
+				<a id="instagram" class="ignore-external" href="https://www.instagram.com/ucf.edu"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/instagram-circle.png" alt="UCF on Instagram" width="42" height="42"></a>
+				<a id="linkedin" class="ignore-external" href="https://www.linkedin.com/edu/university-of-central-florida-18118"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/linkedin-circle.png" alt="UCF on LinkedIn" width="42" height="42"></a>
+				<a id="youtube" class="ignore-external" href="https://www.youtube.com/user/UCF/"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/social/youtube-circle.png" alt="UCF on YouTube" width="42" height="42"></a>
+			</div>
+			<a id="ucf" href="https://www.ucf.edu" class="ignore-external"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/stacked-logo-email.png" alt="UCF" width="100" height="100" style="height:100px;"></a>
+			<div id="address">
+				<div class="name"><a href="https://www.ucf.edu/" class="ignore-external">University of Central Florida</a></div>
 				4000 Central Florida Blvd.
 				<br />
 				Orlando, FL 32816
 				<br />
-				407.823.2000
-			</a>
-			<div id="social">
-				<h2>Get Social</h2>
-				<a id="facebook" class="ignore-external" href="https://www.facebook.com/ucf/">UCF on Facebook</a>
-				<a id="twitter" class="ignore-external" href="https://www.twitter.com/UCF/">UCF on Twitter</a>
-				<a id="instagram" class="ignore-external" href="https://www.instagram.com/ucf.edu">UCF on Instagram</a>
-				<a id="youtube" class="ignore-external" href="https://www.youtube.com/user/UCF/">UCF on Youtube</a>
+				407-823-2000
 			</div>
 		</div>
 	</body>

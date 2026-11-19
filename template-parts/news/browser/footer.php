@@ -14,8 +14,8 @@
 </tr>
 
 <tr>
-	<td style="padding-bottom: 20px; padding-top: 20px; padding-left: 0; padding-right: 0; text-align: center" align="center">
-			<a href="https://www.ucf.edu"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/ucf-tab.png" width="100" height="135" alt="UCF Tab" align="center" class="float-center"></a>
+	<td style="padding-bottom: 10px; padding-top: 10px; padding-left: 0; padding-right: 0; text-align: center" align="center">
+			<a href="https://www.ucf.edu"><img src="<?php echo GMUCF_THEME_IMG_URL; ?>/stacked-logo-email.png" width="100" height="100" style="height: 100px;" alt="UCF Tab" align="center" class="float-center"></a>
 	</td>
 </tr>
 

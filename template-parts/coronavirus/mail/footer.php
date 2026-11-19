@@ -10,7 +10,7 @@ use GMUCF\Theme\Includes\Coronavirus;
 												<td style="text-align: left; border-bottom-style: solid; height: 0; line-height: 0; max-height: 0; min-height: 0; overflow: hidden; padding: 0; width: 100%; border-bottom-width: 3px; border-color: #fc0;" width="100%" align="left"></td>
 											</tr>
 											<tr>
-												<td style="padding-bottom: 30px; padding-top: 45px; text-align: center;" align="center">
+												<td style="padding-bottom: 15px; padding-top: 45px; text-align: center;" align="center">
 													<table style="text-align: center; width: auto;" align="center">
 														<tbody>
 															<tr>
@@ -45,9 +45,9 @@ use GMUCF\Theme\Includes\Coronavirus;
 												</td>
 											</tr>
 											<tr>
-												<td style="padding-bottom: 15px; text-align: center;" align="center">
+												<td style="padding-bottom: 8px; text-align: center;" align="center">
 													<a href="https://www.ucf.edu/">
-														<img src="<?php echo GMUCF_THEME_IMG_URL; ?>/ucf-tab.png" style="width: 100px;" width="100" alt="UCF">
+														<img src="<?php echo GMUCF_THEME_IMG_URL; ?>/stacked-logo-email.png" style="width: 100px; height: 100px;" width="100" height="100" alt="UCF">
 													</a>
 												</td>
 											</tr>
