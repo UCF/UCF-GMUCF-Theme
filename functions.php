@@ -11,7 +11,6 @@ include_once GMUCF_THEME_DIR . 'includes/meta.php';
 include_once GMUCF_THEME_DIR . 'includes/template-redirect-functions.php';
 
 include_once GMUCF_THEME_DIR . 'includes/analytics-functions.php';
-include_once GMUCF_THEME_DIR . 'includes/announcements-functions.php';
 include_once GMUCF_THEME_DIR . 'includes/coronavirus-functions.php';
 include_once GMUCF_THEME_DIR . 'includes/email-markup-functions.php';
 include_once GMUCF_THEME_DIR . 'includes/events-functions.php';
